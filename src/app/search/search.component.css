@@ -1,0 +1,82 @@
+.cclb {
+    background: #fff;
+}
+
+.cclb table {
+    font-size: .9rem;
+    width: 100%;
+    text-align: center;
+}
+
+.cclb table tr {
+    height: 36px;
+}
+
+.cclb table tr:first-child {
+    background: #ececec;
+}
+
+.cclb table tr, .cclb table tr td {
+    height: 36px;
+    border-bottom: solid 1px rgb(231, 231, 231);
+}
+
+.search-head {
+    text-align: center;
+    background: #fff;
+    margin-top: 5px;
+}
+
+.search-content {
+    display: flex;
+    height: 70px;
+}
+
+.search-content div {
+    flex: 5;
+    font-size: .9rem;
+}
+
+.search-content div:nth-child(2) {
+    flex: 5;
+    line-height: 70px;
+    font-size: 1.3rem;
+}
+
+.right {
+    width: 30px;
+    margin-top: 19px;
+}
+
+.search-title {
+    font-size: 1.4rem;
+    padding-top: 15px;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.selectTime {
+    position: absolute;
+    height: 65px;
+    opacity: 0;
+}
+
+.span {
+    float: left;
+    margin-top: 14px;
+    font-size: .7rem;
+    display: block;
+    border: solid 1px #b00e23;
+    border-radius: 50px;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    margin-left: 2px;
+    color: #b00e23;
+    margin-right: 2px;
+}
+
+.blue{
+    color: #145c90 !important;
+    border: solid 1px #145c90 !important;
+}
