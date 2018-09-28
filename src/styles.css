@@ -117,7 +117,7 @@ table td p {
     background: #fff;
     width: 85%;
     margin-left: 7%;
-    margin-top: 30%;
+    margin-top: 20%;
     border-radius: 5px;
 }
 
@@ -125,6 +125,19 @@ table td p {
     margin-left: 6%;
     font-size: 1.2rem;
     color: #333;
+}
+
+.alert-div p span:first-child {
+    display: inline-block;
+    width: 80px;
+    text-align: left;
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+.alert-div p span {
+    color: #353535;
+    font-size: .9rem;
 }
 
 .alert-div p:nth-child(1) {
@@ -163,12 +176,7 @@ table td p {
     font-size: 1.2rem;
 }
 
-.alert-div p span{
-    margin-left: 30px;
-    color: #353535;
-}
-
-.icon4{
+.icon4 {
     background: url('./assets/images/icon4.png') no-repeat;
     height: 25px;
     width: 25px;
@@ -179,18 +187,17 @@ table td p {
     background-size: 100%;
 }
 
-.djzj{
+.djzj {
     background: url('./assets/images/icon1.png') no-repeat;
     background-size: 100%;
-   
 }
 
-.gpsz{
+.gpsz {
     background: url('./assets/images/icon3.png') no-repeat;
     background-size: 100%;
 }
 
-.kyzj{
+.kyzj {
     background: url('./assets/images/icon2.png') no-repeat;
     background-size: 100%;
 }

@@ -3,9 +3,7 @@ import { DataService, StockList } from '../data.service';
 import { HttpService } from '../http.service';
 import { Response } from '@angular/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-
-// tslint:disable-next-line:import-spacing
-import *  as SockJS from 'sockjs-client';
+import * as SockJS from 'sockjs-client';
 import { over } from '@stomp/stompjs';
 
 @Component({
@@ -50,6 +48,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     socketInterval: any;
     lastPrice: any;
     priceType: any;
+    ygsxf = 0; // 预估手续费
     constructor(public data: DataService, public http: HttpService) {
         this.fullcount = '--';
         this.maxPrice = 10;
@@ -155,6 +154,9 @@ export class BuyComponent implements DoCheck, OnDestroy {
 
         // }
         this.submitAlert = this.data.show;
+        this.http.commission().subscribe(res => {
+            this.ygsxf = parseFloat(res.toString());
+        });
     }
 
     /**
@@ -165,10 +167,9 @@ export class BuyComponent implements DoCheck, OnDestroy {
         const content = {
             'stockCode': this.stockCode,
             'appointCnt': this.appointCnt,
-            'appointPrice': this.appointPrice,
-            stockType: this.classType === 'BUY' ? 1 : 2
+            'appointPrice': this.appointPrice
         };
-        this.http.order(this.classType, content).subscribe((res: Response) => {
+        this.http.order(this.classType, content, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res: Response) => {
             if (res['success']) {
                 this.data.ErrorMsg('委托已提交');
                 this.closeAlert();

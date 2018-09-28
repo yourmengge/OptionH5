@@ -141,28 +141,32 @@
       {{text}}确认
     </p>
     <p>
-      账户：
+      <span>账户：</span>
       <span>{{userName}}</span>
     </p>
     <p>
-      名称：
+      <span>名称：</span>
       <span>{{stockName}}</span>
     </p>
     <p>
-      代码：
+      <span>代码：</span>
       <span>{{stockCode}}</span>
     </p>
     <p>
-      数量：
+      <span>数量：</span>
       <span>{{appointCnt}}</span>
     </p>
     <p>
-      委托价：
+      <span>委托价：</span>
       <span>{{appointPrice}}</span>
     </p>
     <p>
-      订单金额：
+      <span>订单金额：</span>
       <span>{{totalPrice(appointPrice,appointCnt)}}</span>
+    </p>
+    <p>
+      <span>预估手续费：</span>
+      <span>{{ygsxf}}</span>
     </p>
     <button class="submit-btn" (click)='submintBuy()'>
       确认

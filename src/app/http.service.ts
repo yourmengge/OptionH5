@@ -31,6 +31,12 @@ export class HttpService {
     return this.POST(this.host + 'push/subsMarket/' + type + '/' + code + '/' + stockType, {});
   }
 
+  /**
+ * 获取手续费
+ */
+  commission() {
+    return this.POST(this.host + 'commission', {});
+  }
 
 
   /**
@@ -50,8 +56,8 @@ export class HttpService {
   /**
    * 下单 参数 买入：BUY 卖出：SELL
    */
-  order(type, data) {
-    return this.POST(this.host + 'appoint/' + type, data);
+  order(type, data, stockType) {
+    return this.POST(this.host + 'appoint/' + type + '/' + stockType, data);
   }
 
   /**
