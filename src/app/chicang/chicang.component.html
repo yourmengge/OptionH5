@@ -1,43 +1,50 @@
 <div class="chedang-div">
-    <div>
-        <div class="icon4"></div>
+  <div>
+    <!-- <div class="icon4"></div>
         <p>
             {{userInfo.totalScale}}
         </p>
         <p>
             总资金
-        </p>
-    </div>
-    <div>
-        <div class="icon4 djzj"></div>
-        <p>
-            {{userInfo.lockScale}}
-        </p>
-        <p>
-            冻结资金
-        </p>
-    </div>
+        </p> -->
+    <div class="icon4 kyzj"></div>
+    <p>
+      {{userInfo.ableScale}}
+    </p>
+    <p>
+      可用资金
+    </p>
+  </div>
+  <div>
+    <div class="icon4 djzj"></div>
+    <p>
+      {{userInfo.lockScale}}
+    </p>
+    <p>
+      冻结资金
+    </p>
+  </div>
 </div>
 <div class="chedang-div">
-    <div>
-        <div class="icon4 gpsz"></div>
-        <p>
-            {{userInfo.stockScale}}
-        </p>
-        <p>
-            股票市值
-        </p>
-    </div>
-    <div>
-        <div class="icon4 kyzj"></div>
-        <p>
-            {{userInfo.ableScale}}
-        </p>
-        <p>
-            可用资金
-        </p>
-    </div>
+  <div>
+    <div class="icon4 gpsz"></div>
+    <p>
+      {{userInfo.stockScale}}
+    </p>
+    <p>
+      持仓市值
+    </p>
+  </div>
+  <div>
+    <!-- <div class="icon4 kyzj"></div>
+    <p>
+      {{userInfo.ableScale}}
+    </p>
+    <p>
+      可用资金
+    </p> -->
+  </div>
 </div>
 <div>
-    <app-cclb></app-cclb>
+  <app-cclb></app-cclb>
 </div>

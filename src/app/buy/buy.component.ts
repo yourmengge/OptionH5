@@ -126,37 +126,25 @@ export class BuyComponent implements DoCheck, OnDestroy {
      * 买入
      */
     buy() {
-        // if (this.data.isNull(this.stockCode)) {
-        //     this.data.ErrorMsg('合约代码不能为空');
-        // } else if (this.data.Decimal(this.appointPrice) > 2) {
-        //     this.data.ErrorMsg('委托价格不能超过两位小数');
-        // } else if (this.data.isNull(this.appointPrice)) {
-        //     this.data.ErrorMsg('委托价格不能为空');
-        // } else if (this.appointPrice < parseFloat(this.stockHQ.lowPrice).toFixed(2)) {
-        //     this.data.ErrorMsg('委托价格不能低于跌停价');
-        // } else if (this.appointPrice > parseFloat(this.stockHQ.highPrice).toFixed(2)) {
-        //     this.data.ErrorMsg('委托价格不能高于涨停价');
-        // } else if (typeof (this.appointCnt) !== 'number') {
-        //     this.appointCnt = 0;
-        //     this.data.ErrorMsg(this.text + '数量必须是数字');
-        // } else if (this.appointCnt % 100 !== 0) {
-        //     if (this.classType === 'SELL' && this.appointCnt === this.fullcount) {
-        //         this.submitAlert = this.data.show;
-        //     } else {
-        //         this.data.ErrorMsg(this.text + '数量必须是100的整数倍');
-        //     }
+        if (this.data.isNull(this.stockCode)) {
+            this.data.ErrorMsg('合约代码不能为空');
+        } else if (this.data.Decimal(this.appointPrice) > 4) {
+            this.data.ErrorMsg('委托价格不能超过四位小数');
+        } else if (this.data.isNull(this.appointPrice)) {
+            this.data.ErrorMsg('委托价格不能为空');
+        } else if (parseInt(this.appointCnt, 0) !== this.appointCnt) {
+            this.data.ErrorMsg(this.text + '数量必须是整数');
+        } else if (this.appointCnt > this.fullcount) {
+            this.data.ErrorMsg(this.text + '数量必须小于可' + this.text2 + '股数');
+        } else if (this.appointCnt <= 0) {
+            this.data.ErrorMsg(this.text + '数量必须大于0');
+        } else {
+            this.submitAlert = this.data.show;
+            this.http.commission().subscribe(res => {
+                this.ygsxf = parseFloat(res.toString()) * this.appointCnt;
+            });
+        }
 
-        // } else if (this.appointCnt > this.fullcount) {
-        //     this.data.ErrorMsg(this.text + '数量必须小于可' + this.text2 + '股数');
-        // } else if (this.appointCnt <= 0) {
-        //     this.data.ErrorMsg(this.text + '数量必须大于0');
-        // } else {
-
-        // }
-        this.submitAlert = this.data.show;
-        this.http.commission().subscribe(res => {
-            this.ygsxf = parseFloat(res.toString());
-        });
     }
 
     /**
@@ -197,14 +185,15 @@ export class BuyComponent implements DoCheck, OnDestroy {
      * 增加减少买入价
      */
     count(type) {
-        // if (!this.data.isNull(this.appointPrice)) {
-        //     if (type === -1 && this.appointPrice > 0 && this.appointPrice > this.stockHQ.lowPrice) {
-        //         this.appointPrice = this.appointPrice - 0.01;
-        //     } else if (type === 1 && this.appointPrice < this.stockHQ.highPrice) {
-        //         this.appointPrice = this.appointPrice + 0.01;
-        //     }
-        //     this.appointPrice = parseFloat(this.appointPrice.toFixed(2));
-        // }
+        if (!this.data.isNull(this.appointPrice)) {
+            this.appointPrice = parseFloat(this.appointPrice);
+            if (type === -1 && this.appointPrice > 0) {
+                this.appointPrice = this.appointPrice - 0.0001;
+            } else if (type === 1) {
+                this.appointPrice = this.appointPrice + 0.0001;
+            }
+            this.appointPrice = parseFloat(this.appointPrice.toFixed(4));
+        }
     }
 
     /**
@@ -270,6 +259,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.http.getGPHQ(this.classType, this.stockCode, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res) => {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.stockHQ = res['resultInfo']['quotation'];
+                this.fullcount = res['resultInfo']['maxAppointCnt'];
                 this.appointPrice = this.stockHQ.lastPrice;
             } else {
                 this.stockHQ = this.data.stockHQ;

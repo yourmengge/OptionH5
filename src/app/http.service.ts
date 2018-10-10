@@ -3,16 +3,14 @@ import { Http, Response } from '@angular/http';
 import { $WebSocket } from 'angular2-websocket/angular2-websocket';
 import { over } from '@stomp/stompjs';
 import { HttpClient } from '@angular/common/http';
-// tslint:disable-next-line:import-spacing
-import *  as SockJS from 'sockjs-client';
+import * as SockJS from 'sockjs-client';
 import { DataService } from './data.service';
 
 @Injectable()
 export class HttpService {
   stompClient: any;
-  // public host = 'http://192.168.88.148:8080';
-  // public host = 'http://218.85.23.217:8082/tnproxy/';
-  public host = 'http://218.85.23.217:8082/option/';
+  // public host = 'http://218.85.23.217:8082/option/';
+  public host = 'http://101.132.65.124:10008/option/';
   public ws = this.host + 'webSocket';
   public stockHQ: any;
 
@@ -28,7 +26,7 @@ export class HttpService {
    * 请求股票行情
    */
   getGPHQ(type, code, stockType) {
-    return this.POST(this.host + 'push/subsMarket/' + type + '/' + code + '/' + stockType, {});
+    return this.POST(this.host + `push/subsMarket/${type}/${code}/${stockType}`, {});
   }
 
   /**

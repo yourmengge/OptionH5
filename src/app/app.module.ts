@@ -25,6 +25,7 @@ import { AlertComponent } from './alert/alert.component';
 import { LoadingComponent } from './loading/loading.component';
 import { NumIntPipe } from './num-int.pipe';
 import { ToFixedPipe } from './to-fixed.pipe';
+import { Round4Pipe } from './round4.pipe';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -68,7 +69,8 @@ const appRoutes: Routes = [
     AlertComponent,
     LoadingComponent,
     NumIntPipe,
-    ToFixedPipe
+    ToFixedPipe,
+    Round4Pipe
   ],
   imports: [
     BrowserAnimationsModule,

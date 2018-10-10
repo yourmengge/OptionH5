@@ -3,7 +3,7 @@
     style="margin-left:2%">
   <p class="gpmc">
     <span>{{stockName}}</span>
-    <span>{{stockHQ.lastPrice}}</span>
+    <span>{{stockHQ.lastPrice | round4}}</span>
     <span>{{stockHQ.upRatio}}</span>
   </p>
 </div>
@@ -24,54 +24,54 @@
   <div>
     <p (click)='selectPrice(stockHQ.sellLevel.sellPrice01)'>
       <span>卖1</span>
-      <span class="{{HQColor(stockHQ.sellLevel.sellPrice01)}}">{{stockHQ.sellLevel.sellPrice01}}</span>
+      <span class="{{HQColor(stockHQ.sellLevel.sellPrice01)}}">{{stockHQ.sellLevel.sellPrice01 | round4}}</span>
       <span>{{stockHQ.sellLevel.sellVolume01 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.sellLevel.sellPrice02)'>
       <span>卖2</span>
-      <span class="{{HQColor(stockHQ.sellLevel.sellPrice02)}}">{{stockHQ.sellLevel.sellPrice02}}</span>
+      <span class="{{HQColor(stockHQ.sellLevel.sellPrice02)}}">{{stockHQ.sellLevel.sellPrice02 | round4}}</span>
       <span>{{stockHQ.sellLevel.sellVolume02 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.sellLevel.sellPrice03)'>
       <span>卖3</span>
-      <span class="{{HQColor(stockHQ.sellLevel.sellPrice03)}}">{{stockHQ.sellLevel.sellPrice03}}</span>
+      <span class="{{HQColor(stockHQ.sellLevel.sellPrice03)}}">{{stockHQ.sellLevel.sellPrice03 | round4}}</span>
       <span>{{stockHQ.sellLevel.sellVolume03 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.sellLevel.sellPrice04)'>
       <span>卖4</span>
-      <span class="{{HQColor(stockHQ.sellLevel.sellPrice04)}}">{{stockHQ.sellLevel.sellPrice04}}</span>
+      <span class="{{HQColor(stockHQ.sellLevel.sellPrice04)}}">{{stockHQ.sellLevel.sellPrice04 | round4}}</span>
       <span>{{stockHQ.sellLevel.sellVolume04 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.sellLevel.sellPrice05)'>
       <span>卖5</span>
-      <span class="{{HQColor(stockHQ.sellLevel.sellPrice05)}}">{{stockHQ.sellLevel.sellPrice05}}</span>
+      <span class="{{HQColor(stockHQ.sellLevel.sellPrice05)}}">{{stockHQ.sellLevel.sellPrice05 | round4}}</span>
       <span>{{stockHQ.sellLevel.sellVolume05 }}</span>
     </p>
   </div>
   <div>
     <p (click)='selectPrice(stockHQ.buyLevel.buyPrice01)'>
       <span>买1</span>
-      <span class="{{HQColor(stockHQ.buyLevel.buyPrice01)}}">{{stockHQ.buyLevel.buyPrice01}}</span>
+      <span class="{{HQColor(stockHQ.buyLevel.buyPrice01)}}">{{stockHQ.buyLevel.buyPrice01 | round4}}</span>
       <span>{{stockHQ.buyLevel.buyVolume01 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.buyLevel.buyPrice02)'>
       <span>买2</span>
-      <span class="{{HQColor(stockHQ.buyLevel.buyPrice02)}}">{{stockHQ.buyLevel.buyPrice02}}</span>
+      <span class="{{HQColor(stockHQ.buyLevel.buyPrice02)}}">{{stockHQ.buyLevel.buyPrice02 | round4}}</span>
       <span>{{stockHQ.buyLevel.buyVolume02 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.buyLevel.buyPrice03)'>
       <span>买3</span>
-      <span class="{{HQColor(stockHQ.buyLevel.buyPrice03)}}">{{stockHQ.buyLevel.buyPrice03}}</span>
+      <span class="{{HQColor(stockHQ.buyLevel.buyPrice03)}}">{{stockHQ.buyLevel.buyPrice03 | round4}}</span>
       <span>{{stockHQ.buyLevel.buyVolume03 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.buyLevel.buyPrice04)'>
       <span>买4</span>
-      <span class="{{HQColor(stockHQ.buyLevel.buyPrice04)}}">{{stockHQ.buyLevel.buyPrice04}}</span>
+      <span class="{{HQColor(stockHQ.buyLevel.buyPrice04)}}">{{stockHQ.buyLevel.buyPrice04 | round4}}</span>
       <span>{{stockHQ.buyLevel.buyVolume04 }}</span>
     </p>
     <p (click)='selectPrice(stockHQ.buyLevel.buyPrice05)'>
       <span>买5</span>
-      <span class="{{HQColor(stockHQ.buyLevel.buyPrice05)}}">{{stockHQ.buyLevel.buyPrice05}}</span>
+      <span class="{{HQColor(stockHQ.buyLevel.buyPrice05)}}">{{stockHQ.buyLevel.buyPrice05 | round4}}</span>
       <span>{{stockHQ.buyLevel.buyVolume05 }}</span>
     </p>
   </div>
@@ -164,7 +164,7 @@
       <span>订单金额：</span>
       <span>{{totalPrice(appointPrice,appointCnt)}}</span>
     </p>
-    <p>
+    <p *ngIf="classType==='BUY'">
       <span>预估手续费：</span>
       <span>{{ygsxf}}</span>
     </p>

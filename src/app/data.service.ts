@@ -230,12 +230,12 @@ export class DataService {
     const millseconds = time.getMilliseconds();
     switch (type) {
       case 'yyyyMMddhhmmss':
-        return year + this.add0(month) + this.add0(day) +
+        return year + this.add0(month).toString() + this.add0(day) +
           this.add0(hour) + this.add0(minutes) + this.add0(seconds) + this.add0(millseconds);
       case 'yyyy-MM-dd':
         return year + '-' + this.add0(month) + '-' + this.add0(day);
       case 'yyyyMMss':
-        return year + this.add0(month) + this.add0(day);
+        return year + this.add0(month).toString() + this.add0(day);
     }
   }
 
