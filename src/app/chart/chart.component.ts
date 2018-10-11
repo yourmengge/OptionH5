@@ -12,12 +12,12 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
     StockChart.drawTrendLine({
       id: 'trendLine',
-      width: document.body.clientWidth,
       height: 180,
-      prices: [9.8, 9.79, 9.76, 9.92, 10.14, 10.2, 10.1],
-      volumes: [415200, 1616900, 753646, 717437],
-      avgPrices: [9.8, 9.79, 9.76, 9.92, 10.14, 10.2, 10.1],
-      preClosePrice: 9.66
+      width: document.body.clientWidth - 20,
+      prices: [0.046, 0.076, 0.066, 0.086, 0.166, 0.166, 0.266, 0.046, 0.076, 0.066, 0.086, 0.166, 0.166, 0.266],
+      volumes: [4100, 6900, 646, 737, 4100, 6900, 646, 737, 4100, 6900, 646, 737],
+      volumeHeight: 50,
+      preClosePrice: 0.066
     });
 
   }
