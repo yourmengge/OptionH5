@@ -98,6 +98,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             default:
                 break;
         }
+        this.appointPrice = this.data.roundNum(this.appointPrice, 4);
     }
 
     /**
@@ -242,6 +243,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         } else {
             this.appointPrice = price;
         }
+        this.appointPrice = this.data.roundNum(this.appointPrice, 4);
     }
 
     /**

@@ -1,7 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Http, Response } from '@angular/http';
-import { $WebSocket } from 'angular2-websocket/angular2-websocket';
-import { over } from '@stomp/stompjs';
 import { HttpClient } from '@angular/common/http';
 import * as SockJS from 'sockjs-client';
 import { DataService } from './data.service';
@@ -9,8 +6,8 @@ import { DataService } from './data.service';
 @Injectable()
 export class HttpService {
   stompClient: any;
-  // public host = 'http://218.85.23.217:8082/option/';
-  public host = 'http://101.132.65.124:10008/option/';
+  public host = 'http://218.85.23.217:8082/option/';
+  // public host = 'http://101.132.65.124:10008/option/';
   public ws = this.host + 'webSocket';
   public stockHQ: any;
 

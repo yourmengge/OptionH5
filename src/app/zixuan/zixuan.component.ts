@@ -7,22 +7,9 @@ import { HttpService } from '../http.service';
   selector: 'app-zixuan',
   templateUrl: './zixuan.component.html',
   styleUrls: ['./zixuan.component.css'],
-  animations: [
-    trigger('showDelete', [
-      state('inactive', style({
-        transform: 'translateX(0)',
-      })),
-      state('active', style({
-        transform: 'translateX(45px)'
-      })),
-      transition('inactive => active', animate('300ms ease-in')),
-      transition('active => inactive', animate('500ms ease-out'))
-    ])
-  ]
 })
 export class ZixuanComponent implements OnInit {
   hasZixuan = this.data.hide;
-  show = 'inactive';
   zixuanList: any;
   zixuanArray = [];
   list: any;
@@ -33,17 +20,14 @@ export class ZixuanComponent implements OnInit {
     this.zixuanList = this.data.getLocalStorage('zixuan');
     if (!this.data.isNull(this.zixuanList)) {
       this.hasZixuan = this.data.show;
-      this.subscribe();
+      // this.subscribe();
     }
 
   }
 
-  edit() {
-    this.show = this.show === 'active' ? 'inactive' : 'active';
-  }
 
   goto() {
-    this.data.goto('main/ssgp');
+    this.data.goto('main/chart');
   }
 
   subscribe() {

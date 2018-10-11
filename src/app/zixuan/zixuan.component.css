@@ -1,109 +1,132 @@
 .empty img {
-    padding: 40px;
-    border: dashed 1px #dfdfdf;
-    margin-top: 120px;
-    position: relative;
-    left: 50%;
-    margin-left: -73px;
+  padding: 40px;
+  border: dashed 1px #dfdfdf;
+  margin-top: 120px;
+  position: relative;
+  left: 50%;
+  margin-left: -73px;
 }
 
 .empty p {
-    text-align: center;
+  text-align: center;
 }
 
 .search {
-    position: relative;
-    width: 25px;
-    margin: 12px;
-    float: right;
+  position: relative;
+  width: 25px;
+  margin: 12px;
+  float: right;
 }
 
 .cclb {
-    background: #fff;
-    overflow-x: hidden;
-    width: 100vw;
+  background: #fff;
+  overflow-x: hidden;
+  width: 100vw;
 }
 
 .cclb table {
-    width: 100%;
-    text-align: center;
-    font-size: .9rem;
+  width: 100%;
+  text-align: center;
+  font-size: .9rem;
 }
 
 .cclb table tr {
-    height: 36px;
-    border-bottom: solid 1px #ccc;
+  height: 36px;
+  border-bottom: solid 1px #ccc;
 }
 
 .cclb table tr:first-child {
-    background: #e3e6e6;
+  background: #e3e6e6;
 }
 
 .cclb table tr td p {
-    margin: 5px;
+  margin: 5px;
 }
 
 .delete-btn {
-    margin-left: 30px;
-    margin-top: 10px;
+  margin-left: 30px;
+  margin-top: 10px;
 }
 
 .table-flex {
-    height: 40px;
-    line-height: 40px;
-    background: #efefef;
-    text-align: center;
-    border-bottom: solid 1px #e4e4e4;
+  height: 40px;
+  line-height: 40px;
+  background: #efefef;
+  text-align: center;
+  border-bottom: solid 1px #e4e4e4;
+  display: flex;
 }
 
-.table-flex div, .table-flex2 div {
-    float: left;
-    width: 20%;
-}
-
-.table-flex div:nth-child(1), .table-flex2 div:nth-child(2) {
-    width: 40%;
+.table-flex div {
+  flex: 1;
+  font-size: 12px;
 }
 
 .table-flex2 div:nth-child(1) {
-    height: 40px;
-    position: absolute;
-    margin-left: -75px;
+  height: 40px;
+  position: absolute;
+  margin-left: -75px;
 }
 
 .table-flex2 {
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-size: .9rem;
-    width: 100vw;
-    border-bottom: solid 1px #f5f5f5;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: .9rem;
+  width: 100vw;
+  border-bottom: solid 1px #f5f5f5;
 }
 
 .edit {
-    float: left;
-    margin-left: 20px;
-    font-size: .9rem;
-    position: relative;
-    z-index: 10;
+  float: left;
+  margin-left: 20px;
+  font-size: .9rem;
+  position: relative;
+  z-index: 10;
 }
 
 .show-delete {
-    animation: show 1000ms;
-    animation-fill-mode:forwards;
+  animation: show 1000ms;
+  animation-fill-mode: forwards;
 }
 
 @keyframes show {
-    from {
-        margin-left: 0px;
-    }
-    to {
-        margin-left: 60px;
-    }
+  from {
+    margin-left: 0px;
+  }
+
+  to {
+    margin-left: 60px;
+  }
 }
 
-.zixuan-list{
-    height: calc(100vh - 146px);
-    overflow-y: auto;
-    overflow-x: hidden;
+.zixuan-list {
+  height: calc(100vh - 180px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+
+.optionTitle{
+  height: 40px;
+  line-height: 40px;
+  display: flex;
+  border-bottom: solid 1px #eae9e9;
+}
+
+.optionTitle span{
+  flex: 1;
+  text-align: center;
+  font-size: 17px;
+}
+
+.optionTitle button{
+  border: none;
+  flex: 1;
+  background: none;
+  outline: none;
+}
+
+.active{
+  border-bottom: solid 2px #b00e23 !important;
 }

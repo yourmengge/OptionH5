@@ -152,11 +152,11 @@ export class DataService {
    */
   getFooterMenu() {
     return [{
-      //   id: 'zixuan',
-      //   name: '自选',
-      //   title: '自选',
-      //   class: 'zixuan'
-      // }, {
+      id: 'zixuan',
+      name: '行情',
+      title: '期权T型报价',
+      class: 'hangqing'
+    }, {
       id: 'jiaoyi',
       name: '交易',
       title: '交易',
@@ -411,7 +411,20 @@ export class DataService {
     }
 
   }
+  /**
+ * 保留n位小数
+ */
+  roundNum(num, n): number {
+    let temp = '1';
+    for (let x = 1; x <= n; x++) {
+      temp = temp + '0';
+    }
+    const i = parseInt(temp, 0);
+    return Math.round(num * i) / i;
+  }
 }
+
+
 export interface Error {
   resultCode: string;
   resultInfo: string;

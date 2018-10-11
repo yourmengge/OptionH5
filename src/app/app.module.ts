@@ -26,6 +26,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { NumIntPipe } from './num-int.pipe';
 import { ToFixedPipe } from './to-fixed.pipe';
 import { Round4Pipe } from './round4.pipe';
+import { ChartComponent } from './chart/chart.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -39,6 +40,7 @@ const jiaoyiChildRoutes: Routes = [
 const appChildRoutes: Routes = [
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'ssgp', component: SsgpComponent },
+  { path: 'chart', component: ChartComponent },
   { path: 'zixuan', component: ZixuanComponent },
   { path: 'jiaoyi', component: JiaoyiComponent, children: jiaoyiChildRoutes },
   { path: '', redirectTo: 'usercenter', pathMatch: 'full' }
@@ -70,7 +72,8 @@ const appRoutes: Routes = [
     LoadingComponent,
     NumIntPipe,
     ToFixedPipe,
-    Round4Pipe
+    Round4Pipe,
+    ChartComponent
   ],
   imports: [
     BrowserAnimationsModule,
