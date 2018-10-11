@@ -411,6 +411,18 @@ export class DataService {
     }
 
   }
+
+  /**
+ * 保留n位小数
+ */
+  roundNum(num, n): number {
+    let temp = '1';
+    for (let x = 1; x <= n; x++) {
+      temp = temp + '0';
+    }
+    const i = parseInt(temp, 0);
+    return Math.round(num * i) / i;
+  }
 }
 export interface Error {
   resultCode: string;

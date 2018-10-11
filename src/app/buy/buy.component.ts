@@ -98,6 +98,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             default:
                 break;
         }
+        this.appointPrice = this.data.roundNum(this.appointPrice, 4);
     }
 
     /**
@@ -242,6 +243,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
         } else {
             this.appointPrice = price;
         }
+
+        this.appointPrice = this.data.roundNum(this.appointPrice, 4);
     }
 
     /**
@@ -260,7 +263,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.stockHQ = res['resultInfo']['quotation'];
                 this.fullcount = res['resultInfo']['maxAppointCnt'];
-                this.appointPrice = this.stockHQ.lastPrice;
+                this.appointPrice = this.data.roundNum(this.stockHQ.lastPrice, 4);
             } else {
                 this.stockHQ = this.data.stockHQ;
             }
