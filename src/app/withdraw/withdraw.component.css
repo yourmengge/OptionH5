@@ -7,11 +7,11 @@
 }
 
 .list-item .right-icon {
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
   float: right;
   margin-right: 10px;
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .list-item span:nth-child(1) {

@@ -2,7 +2,7 @@
   <div class="back" (click)='back()'></div>
   <p class="navigation-title">提现</p>
 </div>
-<div class="list-item">
+<div class="list-item" (click)='goto("transfer")'>
   <span>人民币提现</span>
 
   <img class="right-icon" src="./assets/images/right.png" alt="">
@@ -11,7 +11,7 @@
     <span class="red">0.00</span>
   </div>
 </div>
-<div class="list-item">
+<div class="list-item" (click)='goto("card")'>
   <span>绑定提现银行卡</span>
   <img class="right-icon" src="./assets/images/right.png" alt="">
 </div>

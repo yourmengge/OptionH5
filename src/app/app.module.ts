@@ -29,6 +29,8 @@ import { Round4Pipe } from './round4.pipe';
 import { ChartComponent } from './chart/chart.component';
 import { RechargeComponent } from './recharge/recharge.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
+import { CardComponent } from './card/card.component';
+import { TransferComponent } from './transfer/transfer.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -48,8 +50,10 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'transfer', component: TransferComponent },
   { path: 'withdraw', component: WithdrawComponent },
   { path: 'recharge', component: RechargeComponent },
+  { path: 'card', component: CardComponent },
   { path: 'chart', component: ChartComponent },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'main', component: MainComponent, children: appChildRoutes },
@@ -79,7 +83,9 @@ const appRoutes: Routes = [
     Round4Pipe,
     ChartComponent,
     RechargeComponent,
-    WithdrawComponent
+    WithdrawComponent,
+    CardComponent,
+    TransferComponent
   ],
   imports: [
     BrowserAnimationsModule,

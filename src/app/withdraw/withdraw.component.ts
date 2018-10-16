@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-withdraw',
@@ -7,12 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WithdrawComponent implements OnInit {
 
-  constructor() { }
+  constructor(public data: DataService) { }
 
   ngOnInit() {
   }
 
   back() {
     window.history.back();
+  }
+
+  goto(url) {
+    this.data.goto(url);
   }
 }

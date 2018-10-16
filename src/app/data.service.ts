@@ -133,6 +133,7 @@ export class DataService {
 
   resetStockHQ() {
     this.stockHQ = {
+      'stockName': '',
       'closePrice': '',
       'highPrice': '',
       'lowPrice': '',
