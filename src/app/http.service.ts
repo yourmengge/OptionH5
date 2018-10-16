@@ -20,6 +20,36 @@ export class HttpService {
   }
 
   /**
+   * 充值
+   */
+  aliPay(moeny) {
+    return this.http.post(this.host + `alipay/sign?totalAmount=${moeny}`, {},
+      { headers: this.data.getPayHeader(), responseType: 'text' });
+  }
+
+  /**
+   * 合约周期
+   */
+  heyuezhouqi() {
+    return this.POST(this.host + `tn/quota/yymm`, {});
+  }
+
+  /**
+   * 分时图数组
+   */
+  fenshituList(optionCode) {
+    return this.POST(this.host + `tn/quota/detail/${optionCode}`, {});
+  }
+
+  /**
+   * 合约列表
+   * @Param date
+   */
+  heyueList(date) {
+    return this.POST(this.host + `tn/quota/yymm/${date}`, {});
+  }
+
+  /**
    * 请求股票行情
    */
   getGPHQ(type, code, stockType) {
@@ -33,7 +63,13 @@ export class HttpService {
     return this.POST(this.host + 'commission', {});
   }
 
-
+  /**
+   *  静态信息
+   * @param code 合约代码
+   */
+  getStatic(code) {
+    return this.POST(this.host + `tn/quota/static/${code}`, {});
+  }
   /**
    * 登录接口
    */

@@ -58,14 +58,8 @@
 }
 
 .table-flex div {
-  flex: 1;
+  width: 25%;
   font-size: 12px;
-}
-
-.table-flex2 div:nth-child(1) {
-  height: 40px;
-  position: absolute;
-  margin-left: -75px;
 }
 
 .table-flex2 {
@@ -75,6 +69,15 @@
   font-size: .9rem;
   width: 100vw;
   border-bottom: solid 1px #f5f5f5;
+  display: flex;
+}
+
+.table-flex2 div {
+  width: 25%;
+}
+
+.table-flex2 div:nth-child(3){
+  background: rgba(106, 193, 255, 0.4);
 }
 
 .edit {
@@ -107,26 +110,26 @@
 }
 
 
-.optionTitle{
+.optionTitle {
   height: 40px;
   line-height: 40px;
   display: flex;
   border-bottom: solid 1px #eae9e9;
 }
 
-.optionTitle span{
+.optionTitle span {
   flex: 1;
   text-align: center;
   font-size: 17px;
 }
 
-.optionTitle button{
+.optionTitle button {
   border: none;
   flex: 1;
   background: none;
   outline: none;
 }
 
-.active{
+.active {
   border-bottom: solid 2px #b00e23 !important;
 }

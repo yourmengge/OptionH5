@@ -1,5 +1,5 @@
 <div class="search-input">
-  <input class="input" (keyup)='getQuotation()' maxlength="8" type="text" placeholder="合约代码" [(ngModel)]='stockCode'
+  <input class="input" (keyup)='getQuotation()' maxlength="8" type="number" placeholder="合约代码" [(ngModel)]='stockCode'
     style="margin-left:2%">
   <p class="gpmc">
     <span>{{stockName}}</span>
@@ -124,10 +124,10 @@
   </p>
 </div>
 
-<div class="buy">
-  <div (click)='buy()'>{{text}}</div>
+<div class="bottom-btn">
+  <div class="main" (click)='buy()'>{{text}}</div>
 </div>
-<div class="buy">
+<div class="bottom-btn">
   <div class="clear" (click)='clear()'>清空</div>
 </div>
 

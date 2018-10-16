@@ -6,6 +6,7 @@ html, body {
     font-size: 14px;
     font-family: '微软雅黑';
     color: rgb(39, 39, 39);
+    background: #f7f7f7;
 }
 
 .navigation {
@@ -117,7 +118,7 @@ table td p {
     background: #fff;
     width: 85%;
     margin-left: 7%;
-    margin-top: 20%;
+    margin-top: 10%;
     border-radius: 5px;
 }
 
@@ -200,4 +201,51 @@ table td p {
 .kyzj {
     background: url('./assets/images/icon2.png') no-repeat;
     background-size: 100%;
+}
+
+.navigation .back{
+    width: 25px;
+    height: 25px;
+    background: url(./assets/images/back.png) no-repeat;
+    background-size: 100% 100%;
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 10px;
+    z-index: 10;
+}
+
+.bottom-btn {
+    display: flex;
+    width: 100%;
+    margin-top: 5px;
+}
+
+.bottom-btn .main {
+    flex: 1;
+    background: #b00e23;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border: solid 1px #b00e23;
+    margin: 3px 2vw;
+}
+
+.bottom-btn .main:active{
+    background:#8a0a1b;
+}
+
+.bottom-btn .clear {
+    flex: 1;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    background: #f8f8f8;
+    border: solid 1px #ddd;
+    color: #000;
+    margin: 0px 2vw;
+}
+
+.bottom-btn .clear:active{
+    background:#c9c9c9;
 }

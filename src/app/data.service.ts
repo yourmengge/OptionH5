@@ -13,6 +13,8 @@ export class DataService {
   show = true;
   hide = false;
   token: string;
+  timeoutFenshi: any; // 分时图
+  timeoutQoute: any; // 行情列表
   intervalCapital: any; // 个人中心
   intervalHold: any;  // 持仓
   intervalAppoint: any; // 委托
@@ -107,7 +109,8 @@ export class DataService {
     accountName: 'mario', // 中文名
     lockScale: 0, // 冻结资金
     stockScale: 0, // 股票市值
-    totalScale: 0 // 总资产
+    totalScale: 0, // 总资产
+    stockScale50ETF: 0
   };
 
   opUserCode: string;
@@ -340,6 +343,25 @@ export class DataService {
 
   }
 
+
+  getPayHeader() {
+    if (this.isNull(this.token)) {
+      if (this.isNull(this.getSession('token'))) {
+        this.clearInterval();
+        this.ErrorMsg('请重新登录');
+        this.goto('/login');
+        return;
+      } else {
+        this.token = this.getSession('token');
+        // tslint:disable-next-line:max-line-length
+        return new HttpHeaders({ 'Authorization': this.getSession('token'), 'Content-Type': 'text/html' });
+      }
+
+    } else {
+      return new HttpHeaders({ 'Authorization': this.token, 'Content-Type': 'text/html' });
+    }
+  }
+
   getToken() {
     if (this.isNull(this.token)) {
       return this.getSession('token');
@@ -398,6 +420,8 @@ export class DataService {
     window.clearTimeout(this.intervalCapital);
     window.clearTimeout(this.intervalHold);
     window.clearTimeout(this.intervalZX);
+    window.clearTimeout(this.timeoutQoute);
+    window.clearTimeout(this.timeoutFenshi);
   }
 
   /**

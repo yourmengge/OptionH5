@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { HttpService } from '../http.service';
 
@@ -7,13 +7,15 @@ import { HttpService } from '../http.service';
   templateUrl: './usercenter.component.html',
   styleUrls: ['./usercenter.component.css']
 })
-export class UsercenterComponent implements OnInit {
+export class UsercenterComponent implements OnInit, OnDestroy {
   public menuList: any;
   public userInfo: DataService['userInfo'];
   constructor(public data: DataService, public http: HttpService) {
     this.menuList = this.data.getCenterMenuList();
   }
-
+  ngOnDestroy() {
+    this.data.clearInterval();
+  }
   ngOnInit() {
     this.data.clearInterval();
     this.userInfo = this.data.userInfo;
@@ -45,6 +47,10 @@ export class UsercenterComponent implements OnInit {
     setTimeout(() => {
       this.data.goto('/');
     }, 1000);
+  }
+
+  goto2(url) {
+    this.data.goto(url);
   }
 
 }

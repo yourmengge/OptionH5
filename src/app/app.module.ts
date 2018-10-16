@@ -27,6 +27,8 @@ import { NumIntPipe } from './num-int.pipe';
 import { ToFixedPipe } from './to-fixed.pipe';
 import { Round4Pipe } from './round4.pipe';
 import { ChartComponent } from './chart/chart.component';
+import { RechargeComponent } from './recharge/recharge.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -40,13 +42,15 @@ const jiaoyiChildRoutes: Routes = [
 const appChildRoutes: Routes = [
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'ssgp', component: SsgpComponent },
-  { path: 'chart', component: ChartComponent },
   { path: 'zixuan', component: ZixuanComponent },
   { path: 'jiaoyi', component: JiaoyiComponent, children: jiaoyiChildRoutes },
   { path: '', redirectTo: 'usercenter', pathMatch: 'full' }
 ];
 
 const appRoutes: Routes = [
+  { path: 'withdraw', component: WithdrawComponent },
+  { path: 'recharge', component: RechargeComponent },
+  { path: 'chart', component: ChartComponent },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'main', component: MainComponent, children: appChildRoutes },
   { path: 'login', component: LoginComponent },
@@ -73,7 +77,9 @@ const appRoutes: Routes = [
     NumIntPipe,
     ToFixedPipe,
     Round4Pipe,
-    ChartComponent
+    ChartComponent,
+    RechargeComponent,
+    WithdrawComponent
   ],
   imports: [
     BrowserAnimationsModule,

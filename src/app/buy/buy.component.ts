@@ -58,6 +58,19 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.connectStatus = false;
         this.submitAlert = this.data.hide;
         this.userName = this.data.getOpUserCode();
+        if (!this.data.isNull(this.data.getSession('optionCode'))) {
+            if (this.data.getUrl(3) === 'buy') {
+                this.text = '买入';
+                this.classType = 'BUY';
+                this.text2 = '买';
+            } else if (this.data.getUrl(3) === 'sell') {
+                this.text = '卖出';
+                this.classType = 'SELL';
+                this.text2 = '卖';
+            }
+            this.stockCode = this.data.getSession('optionCode');
+            this.getGPHQ();
+        }
         this.connect();
     }
 
@@ -250,19 +263,23 @@ export class BuyComponent implements DoCheck, OnDestroy {
      * 模糊查询选择股票
      */
     selectGP(data: StockList) {
+        this.stockCode = data.stockCode;
+        this.appointPrice = '';
+        this.data.Loading(this.data.show);
+        this.getGPHQ();
+    }
+
+    getGPHQ() {
         this.priceType = 1;
         this.appointCnt = 1;
         this.ccount = '';
         this.show = 'inactive';
-        this.stockCode = data.stockCode;
-        this.stockName = data.stockName;
-        this.appointPrice = '';
-        this.data.Loading(this.data.show);
         this.http.getGPHQ(this.classType, this.stockCode, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res) => {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.stockHQ = res['resultInfo']['quotation'];
                 this.fullcount = res['resultInfo']['maxAppointCnt'];
-                this.appointPrice = this.stockHQ.lastPrice;
+                this.stockName = this.stockHQ.stockName;
+                this.appointPrice = this.data.roundNum(this.stockHQ.lastPrice, 4);
             } else {
                 this.stockHQ = this.data.stockHQ;
             }

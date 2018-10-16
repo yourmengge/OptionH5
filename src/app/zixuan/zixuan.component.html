@@ -1,38 +1,28 @@
 <div class="navigation">
   <!-- <div class="edit" (click)='edit()'>编辑</div> -->
   <p class="navigation-title">期权T型报价</p>
-  <img src="./assets/images/search1.png" alt="" class="search" (click)='goto()'>
 </div>
 <div class="zixuancontent">
   <div class="optionTitle">
     <span>
       50ETF
     </span>
-    <span>
-      2.3333
+    <span [class]="color(q50eft.upRatio)">
+      {{q50eft.lastPrice}}
     </span>
-    <span>
-      -0.4444
+    <span [class]="color(q50eft.upRatio)">
+      {{q50eft.upDiff}}
     </span>
-    <span>
-      -2%
+    <span [class]="color(q50eft.upRatio)">
+      {{q50eft.upRatio}}
     </span>
   </div>
   <div class="optionTitle">
-    <button class="active">
-      1810
-    </button>
-    <button>
-      1811
-    </button>
-    <button>
-      1812
-    </button>
-    <button>
-      1901
+    <button (click)='change(item)' [class]="item == date?'active':''" *ngFor="let item of dateList">
+      {{item}}
     </button>
   </div>
-  <div class="notempty cclb" *ngIf='hasZixuan'>
+  <div class="notempty cclb">
     <div style="background: #efefef">
       <div class="table-flex">
         <div>
@@ -53,18 +43,21 @@
       </div>
     </div>
     <div class="zixuan-list">
-      <div class="table-flex2" *ngFor='let a of list'>
-        <div>
-          {{a.stockName}} - {{a.stockCode}}
+      <div class="table-flex2" *ngFor='let a of quoteDetail'>
+        <div (click)='goto(a.stockCodeBuy)' [class]="color(a.upRatioBuy)">
+          {{a.upRatioBuy}}
+        </div>
+        <div (click)='goto(a.stockCodeBuy)' [class]="color(a.upRatioBuy)">
+          {{a.lastPriceBuy | round4}}
         </div>
         <div>
-          {{a.lastPrice | toFixed}}
+          {{a.exercisePrice | round4}}
         </div>
-        <div class="{{fontColor(a.upRatio)}}">
-          {{a.upRatio}}
+        <div (click)='goto(a.stockCodeSell)' [class]="color(a.upRatioSell)">
+          {{a.lastPriceSell | round4}}
         </div>
-        <div class="{{fontColor(a.diff)}}">
-          {{a.diff}}
+        <div (click)='goto(a.stockCodeSell)' [class]="color(a.upRatioSell)">
+          {{a.upRatioSell}}
         </div>
       </div>
     </div>

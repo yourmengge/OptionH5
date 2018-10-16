@@ -6,6 +6,8 @@
   <div class="header">
     <img src="./assets/images/head.png" alt="" class="head">
     <p class="name">{{userInfo.accountName}}</p>
+    <button (click)='goto2("withdraw")' class="recharge">提现</button>
+    <button (click)='goto2("recharge")' class="recharge">充值</button>
   </div>
   <div class="menuList">
     <div *ngFor='let a of menuList' class="footer-div {{url === a.id?'icon-active':''}}" (click)='goto(a.id)'>
@@ -23,16 +25,16 @@
       {{userInfo.allottedScale}}
     </p>
     <img src="./assets/images/zc1.png" alt="">
-  </div>
+  </div>-->
   <div class="cszj">
     <p>
-      总资产
+      持仓权益
     </p>
     <p class="red">
-      {{userInfo.totalScale}}
+      {{userInfo.stockScale}}
     </p>
     <img src="./assets/images/zc2.png" alt="">
-  </div> -->
+  </div>
   <div class="cszj">
     <p>
       可用资金
@@ -46,7 +48,7 @@
   <div class="kyzj">
     <div>
       <p> 持仓市值</p>
-      <p class="red"> {{userInfo.stockScale}}</p>
+      <p class="red"> {{userInfo.stockScale50ETF}}</p>
     </div>
     <div>
       <p>

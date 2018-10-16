@@ -29,6 +29,7 @@ export class JiaoyiComponent implements DoCheck {
   }
 
   goto(url) {
+    this.data.removeSession('optionCode');
     this.url = url;
     this.data.goto('main/jiaoyi/' + url);
   }
