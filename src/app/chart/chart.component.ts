@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { HttpService } from '../http.service';
 import { DataService } from '../data.service';
 import * as SockJS from 'sockjs-client';
@@ -9,7 +9,7 @@ declare var StockChart: any;
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit, OnDestroy {
+export class ChartComponent implements OnInit, DoCheck {
   stockHQ: any;
   stockCode: any;
   socketInterval: any;
@@ -22,35 +22,31 @@ export class ChartComponent implements OnInit, OnDestroy {
     stockName: '',
     exerciseDate: '',
     leftDays: '',
-    exercisePrice: ''
+    exercisePrice: '',
+    preClosePrice: ''
   };
   constructor(public data: DataService, public http: HttpService) {
     this.stockCode = this.data.getSession('optionCode');
     this.isconnect = false;
+    this.data.resetStockHQ();
     this.stockHQ = this.data.stockHQ;
   }
-
+  ngDoCheck() {
+    this.stockHQ = this.data.stockHQ;
+  }
   ngOnInit() {
     this.subscribeStock();
-    if (this.stockCode.length === 8) {
-      this.connect();
-    }
     this.getStatic();
   }
 
   getStatic() {
     this.http.getStatic(this.stockCode).subscribe(res => {
       this.staticData = Object.assign(this.staticData, res);
+      this.getFenshituList();
     }, err => {
       this.data.error = err.error;
       this.data.isError();
     });
-  }
-
-  ngOnDestroy() {
-    if (this.isconnect) {
-      this.disconnect();
-    }
   }
 
   getFenshituList() {
@@ -80,7 +76,7 @@ export class ChartComponent implements OnInit, OnDestroy {
       prices: this.price,
       volumes: this.volumes,
       volumeHeight: 50,
-      preClosePrice: parseFloat(this.stockHQ.preClosePrice)
+      preClosePrice: parseFloat(this.staticData.preClosePrice)
     });
   }
 
@@ -95,53 +91,15 @@ export class ChartComponent implements OnInit, OnDestroy {
   subscribeStock() {
     this.http.getGPHQ('BUY', this.stockCode, 'OPEN').subscribe((res) => {
       if (!this.data.isNull(res['resultInfo']['quotation'])) {
-        this.stockHQ = res['resultInfo']['quotation'];
+        this.data.stockHQ = res['resultInfo']['quotation'];
       } else {
         this.stockHQ = this.data.stockHQ;
       }
-      this.getFenshituList();
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
     }, () => {
       this.data.Loading(this.data.hide);
-    });
-  }
-  /**
-      * 断开连接
-      */
-  disconnect() {
-    this.stompClient.disconnect((() => {
-      console.log('断开链接');
-      window.clearInterval(this.socketInterval);
-    }));
-  }
-  /**
-     * 取消订阅
-     */
-  cancelSubscribe() {
-    window.clearInterval(this.socketInterval);
-    this.http.cancelSubscribe().subscribe((res) => {
-      console.log('取消订阅');
-    });
-  }
-  /**
-   * 连接ws
-   */
-  connect() {
-    const that = this;
-    this.cancelSubscribe();
-    const socket = new SockJS(this.http.ws);
-    const headers = { token: this.data.getToken() };
-    this.stompClient = over(socket);
-    this.stompClient.connect(headers, function (frame) {
-      that.isconnect = true;
-      // console.log('Connected: ' + frame);
-      that.stompClient.subscribe('/user/' + that.data.getToken() + '/topic/market', function (res) {
-        that.stockHQ = JSON.parse(res.body);
-      });
-    }, function (err) {
-      console.log('err', err);
     });
   }
   /**

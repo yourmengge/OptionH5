@@ -3,8 +3,6 @@ import { DataService, StockList } from '../data.service';
 import { HttpService } from '../http.service';
 import { Response } from '@angular/http';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import * as SockJS from 'sockjs-client';
-import { over } from '@stomp/stompjs';
 
 @Component({
     selector: 'app-buy',
@@ -33,7 +31,6 @@ export class BuyComponent implements DoCheck, OnDestroy {
     stockCode = '';
     appointPrice: any;
     appointCnt: any;
-    stompClient: any;
     ccount: any;
     fullcount: any;
     minPrice: number;
@@ -71,7 +68,6 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.stockCode = this.data.getSession('optionCode');
             this.getGPHQ();
         }
-        this.connect();
     }
 
     ngDoCheck() {
@@ -84,13 +80,11 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.classType = 'SELL';
             this.text2 = '卖';
         }
+        this.stockHQ = this.data.stockHQ;
     }
 
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnDestroy() {
-        console.log('destroy');
-        this.cancelSubscribe();
-        this.disconnect();
     }
 
     /**
@@ -238,7 +232,14 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.stockHQ = this.data.stockHQ;
         this.cancelSubscribe();
     }
-
+    /**
+   * 取消订阅
+   */
+    cancelSubscribe() {
+        this.http.cancelSubscribe().subscribe((res) => {
+            console.log('取消订阅');
+        });
+    }
     /**
      * 选择买入量
      */
@@ -265,7 +266,6 @@ export class BuyComponent implements DoCheck, OnDestroy {
     selectGP(data: StockList) {
         this.stockCode = data.stockCode;
         this.appointPrice = '';
-        this.data.Loading(this.data.show);
         this.getGPHQ();
     }
 
@@ -276,9 +276,9 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.show = 'inactive';
         this.http.getGPHQ(this.classType, this.stockCode, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res) => {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
-                this.stockHQ = res['resultInfo']['quotation'];
+                this.data.stockHQ = res['resultInfo']['quotation'];
                 this.fullcount = res['resultInfo']['maxAppointCnt'];
-                this.stockName = this.stockHQ.stockName;
+                this.stockName = this.data.stockHQ.stockName;
                 this.appointPrice = this.data.roundNum(this.stockHQ.lastPrice, 4);
             } else {
                 this.stockHQ = this.data.stockHQ;
@@ -287,19 +287,9 @@ export class BuyComponent implements DoCheck, OnDestroy {
         }, (err) => {
             this.data.error = err.error;
             this.data.isError();
-        }, () => {
-            this.data.Loading(this.data.hide);
         });
     }
-    /**
-     * 取消订阅
-     */
-    cancelSubscribe() {
-        window.clearInterval(this.socketInterval);
-        this.http.cancelSubscribe().subscribe((res) => {
-            console.log('取消订阅');
-        });
-    }
+
 
     totalPrice(a, b) {
         if (!this.data.isNull(a) && !this.data.isNull(b)) {
@@ -308,51 +298,6 @@ export class BuyComponent implements DoCheck, OnDestroy {
             return '------';
         }
     }
-
-    /**
-     * 断开连接
-     */
-    disconnect() {
-        if (this.connectStatus) {
-            this.stompClient.disconnect((() => {
-                console.log('断开链接');
-                window.clearInterval(this.socketInterval);
-            }));
-        }
-    }
-    /**
-     * 连接ws
-     */
-    connect() {
-        console.log('发起ws请求');
-        const that = this;
-        this.cancelSubscribe();
-        const socket = new SockJS(this.http.ws);
-        const headers = { token: this.data.getToken() };
-        this.stompClient = over(socket);
-        this.connectStatus = true;
-        this.stompClient.connect(headers, function (frame) {
-            // console.log('Connected: ' + frame);
-            that.stompClient.subscribe('/user/' + that.data.getToken() + '/topic/market', function (res) {
-                that.stockHQ = JSON.parse(res.body);
-                // if (that.appointPrice !== '') {
-                //     // tslint:disable-next-line:max-line-length
-                // tslint:disable-next-line:max-line-length
-                //     that.appointPrice = (that.appointPrice === that.stockHQ.lastPrice) ? parseFloat(that.stockHQ.lastPrice) : that.appointPrice;
-                // } else {
-                //     that.appointPrice = that.stockHQ.lastPrice;
-                // }
-                // that.appointPrice = parseFloat(that.appointPrice);
-
-            });
-            this.socketInterval = setInterval(() => {
-                that.stompClient.send(' ');
-            }, 60000);
-        }, function (err) {
-            console.log('err', err);
-        });
-    }
-
     /**
      * 返回行情加个颜色
      */

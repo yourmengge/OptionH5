@@ -1,5 +1,6 @@
 import { Component, DoCheck } from '@angular/core';
 import { DataService } from '../data.service';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-jiaoyi',
@@ -9,7 +10,7 @@ import { DataService } from '../data.service';
 export class JiaoyiComponent implements DoCheck {
   public url: string;
   public menuList: any;
-  constructor(public data: DataService) {
+  constructor(public data: DataService, public http: HttpService) {
     this.menuList = this.data.getCenterMenuList();
   }
 
@@ -29,9 +30,17 @@ export class JiaoyiComponent implements DoCheck {
   }
 
   goto(url) {
-    this.data.removeSession('optionCode');
-    this.url = url;
-    this.data.goto('main/jiaoyi/' + url);
+    if (url !== this.data.getUrl(3)) {
+      this.http.cancelSubscribe().subscribe(res => {
+        console.log('取消订阅');
+      });
+      this.data.resetStockHQ();
+      this.data.removeSession('optionCode');
+      this.url = url;
+      this.data.goto('main/jiaoyi/' + url);
+    }
+
+
   }
 
 }

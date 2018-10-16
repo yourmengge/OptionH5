@@ -58,7 +58,7 @@ export class ZixuanComponent implements OnInit {
       this.q50eft = res['quote50ETF'];
       this.data.timeoutQoute = setTimeout(() => {
         this.getlist();
-      }, 3000);
+      }, 1000);
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
