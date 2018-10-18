@@ -17,21 +17,29 @@
   line-height: 45px;
   background: #fff;
   border-bottom: solid 1px #f1f1f1;
+  overflow-x: hidden;
 }
 
 .list-item select {
-  width: 100%;
+  width: 65%;
   position: absolute;
   height: 45px;
-  opacity: 0;
   z-index: 10;
+  background: none;
+  border: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .list-item input {
-  height: 40px;
+  height: 36px;
   width: 60%;
   margin-left: 3px;
-  font-size: 16px;
+  font-size: 15px;
   border: none;
 }
 

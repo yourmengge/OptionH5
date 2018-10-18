@@ -7,18 +7,18 @@
     <span class="span-title">
       提现金额
     </span>
-    <input type="number" placeholder="请输入提现金额">
+  <input type="number" placeholder="请输入提现金额" [(ngModel)]="liftScale">
   </div>
 </div>
 <p class="tips">
   <span>
-    可提现余额：0.00 元
+    可提现余额：{{backableScale}} 元
   </span>
   <span>
-    手续费：1 元
+    <!-- 手续费：1 元 -->
   </span>
 </p>
 
 <div class="bottom-btn" style="margin-top:20px;">
-  <div class="main" (click)='buy()'>申请提现</div>
+  <div class="main" (click)='withdraw()'>申请提取</div>
 </div>

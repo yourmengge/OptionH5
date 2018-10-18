@@ -6,6 +6,7 @@ import { DataService } from './data.service';
 @Injectable()
 export class HttpService {
   stompClient: any;
+  // public host = 'http://localhost:8080/option/';
   public host = 'http://218.85.23.217:8082/option/';
   // public host = 'http://101.132.65.124:10008/option/';
   public ws = this.host + 'webSocket';
@@ -17,6 +18,50 @@ export class HttpService {
   POST(url, data) {
     this.data.getHeader();
     return this.http.post(url, data, this.data.getHeader());
+  }
+
+  /**
+   * 获取银行列表
+   */
+  getBankList() {
+    return this.POST(this.host + 'tn/banks', {});
+  }
+
+  /**
+   * 获取银行省份列表
+   */
+  getProvinceList(bankId) {
+    return this.POST(this.host + `tn/banks/${bankId}/provinces`, {});
+  }
+
+  /**
+ * 获取银行城市列表
+ */
+  getCityList(bankId, provinceId) {
+    return this.POST(this.host + `tn/banks/${bankId}/province/${provinceId}/cities`, {});
+  }
+
+  /**
+  * 获取银行支行列表
+  */
+  getBranchList(bankId, provinceId, branchId) {
+    return this.POST(this.host + `tn/banks/${bankId}/province/${provinceId}/cities/${branchId}/branches`, {});
+  }
+
+  /**
+   * 查询银行卡绑定
+   */
+  getCard() {
+    return this.POST(this.host + `tn/query/card`, {});
+  }
+
+
+  /**
+   * 绑定银行卡
+   * @param data 绑定银行卡
+   */
+  bandCard(data) {
+    return this.POST(this.host + `tn/bind/card`, data);
   }
 
   /**
@@ -82,6 +127,13 @@ export class HttpService {
    */
   searchStock(code) {
     return this.POST(this.host + 'stock?input=' + code, {});
+  }
+
+  /**
+   * 提现
+   */
+  withdraw(data) {
+    return this.POST(this.host + 'lift', data);
   }
 
   /**

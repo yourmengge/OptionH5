@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { HttpService } from '../http.service';
 
@@ -7,7 +7,7 @@ import { HttpService } from '../http.service';
   templateUrl: './zixuan.component.html',
   styleUrls: ['./zixuan.component.css'],
 })
-export class ZixuanComponent implements OnInit {
+export class ZixuanComponent implements OnInit, OnDestroy {
   hasZixuan = this.data.hide;
   zixuanList: any;
   zixuanArray = [];
@@ -25,13 +25,19 @@ export class ZixuanComponent implements OnInit {
   constructor(public data: DataService, public http: HttpService) { }
 
   ngOnInit() {
+    this.http.cancelSubscribe().subscribe((res) => {
+      console.log('取消订阅');
+    });
     this.getDate();
+  }
+
+  ngOnDestroy() {
+    this.data.clearInterval();
   }
 
 
   goto(code) {
     this.data.setSession('optionCode', code);
-    this.data.clearInterval();
     this.data.goto('chart');
   }
 

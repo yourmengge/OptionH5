@@ -21,7 +21,10 @@ export class DataService {
   intervalZX: any; // 自选股
   nowUrl: string;
   market: 'market'; // 行情的ws，header
-
+  selectOption = [{
+    value: 0,
+    text: '== 请选择 =='
+  }];
   /**
    * 股票行情
    */

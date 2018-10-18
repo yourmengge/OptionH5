@@ -9,7 +9,7 @@ declare var StockChart: any;
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit, DoCheck {
+export class ChartComponent implements OnInit, DoCheck, OnDestroy {
   stockHQ: any;
   stockCode: any;
   socketInterval: any;
@@ -30,6 +30,10 @@ export class ChartComponent implements OnInit, DoCheck {
     this.isconnect = false;
     this.data.resetStockHQ();
     this.stockHQ = this.data.stockHQ;
+  }
+
+  ngOnDestroy() {
+    this.data.clearInterval();
   }
   ngDoCheck() {
     this.stockHQ = this.data.stockHQ;
@@ -76,7 +80,8 @@ export class ChartComponent implements OnInit, DoCheck {
       prices: this.price,
       volumes: this.volumes,
       volumeHeight: 50,
-      preClosePrice: parseFloat(this.staticData.preClosePrice)
+      preClosePrice: parseFloat(this.staticData.preClosePrice),
+      middleLineColor: 'rgb(169, 126, 0)'
     });
   }
 

@@ -43,7 +43,6 @@ export class AppComponent implements DoCheck, OnInit {
   connect() {
     console.log('发起ws请求');
     const that = this;
-    this.cancelSubscribe();
     const socket = new SockJS(this.http.ws);
     const headers = { token: this.data.getToken() };
     this.stompClient = over(socket);

@@ -146,6 +146,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.data.ErrorMsg(this.text + '数量必须小于可' + this.text2 + '股数');
         } else if (this.appointCnt <= 0) {
             this.data.ErrorMsg(this.text + '数量必须大于0');
+        } else if (this.appointCnt > 30) {
+            this.data.ErrorMsg(this.text + '数量不能大于30张');
         } else {
             this.submitAlert = this.data.show;
             this.http.commission().subscribe(res => {
@@ -229,6 +231,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.stockName = '';
         this.fullcount = '--';
         this.priceType = 0;
+        this.data.resetStockHQ();
         this.stockHQ = this.data.stockHQ;
         this.cancelSubscribe();
     }
@@ -269,6 +272,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.getGPHQ();
     }
 
+    // 选中合约
     getGPHQ() {
         this.priceType = 1;
         this.appointCnt = 1;
@@ -279,7 +283,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
                 this.data.stockHQ = res['resultInfo']['quotation'];
                 this.fullcount = res['resultInfo']['maxAppointCnt'];
                 this.stockName = this.data.stockHQ.stockName;
-                this.appointPrice = this.data.roundNum(this.stockHQ.lastPrice, 4);
+                this.appointPrice = this.data.roundNum(this.data.stockHQ.lastPrice, 4);
             } else {
                 this.stockHQ = this.data.stockHQ;
             }

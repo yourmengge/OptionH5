@@ -29,6 +29,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   usercenter() {
     this.http.userCenter().subscribe((res: DataService['userInfo']) => {
       this.userInfo = res;
+      this.data.setSession('backscale', res['ableScale']);
       this.data.intervalCapital = setTimeout(() => {
         this.usercenter();
       }, 3000);
