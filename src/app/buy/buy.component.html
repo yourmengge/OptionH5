@@ -1,6 +1,6 @@
 <div class="search-input">
   <input class="input" (keyup)='getQuotation()' maxlength="8" type="number" placeholder="合约代码" [(ngModel)]='stockCode'
-    style="margin-left:2%">
+    style="margin-left:5px;width: calc(100% - 20px)">
   <p class="gpmc">
     <span>{{stockName}}</span>
     <span>{{stockHQ.lastPrice | round4}}</span>

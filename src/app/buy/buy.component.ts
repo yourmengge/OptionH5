@@ -45,7 +45,10 @@ export class BuyComponent implements DoCheck, OnDestroy {
     socketInterval: any;
     lastPrice: any;
     priceType: any;
+    maxAppointCnt = ''; // 最大可买数量
+    ableScale = 0; // 可用资金
     ygsxf = 0; // 预估手续费
+    commission = 0; // 交易佣金
     constructor(public data: DataService, public http: HttpService) {
         this.fullcount = '--';
         this.maxPrice = 10;
@@ -68,6 +71,10 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.stockCode = this.data.getSession('optionCode');
             this.getGPHQ();
         }
+        this.http.commission().subscribe(res => {
+            this.ygsxf = parseFloat(res.toString()) * this.appointCnt;
+        });
+        this.ableScale = this.data.getSession('backscale');
     }
 
     ngDoCheck() {
@@ -89,6 +96,16 @@ export class BuyComponent implements DoCheck, OnDestroy {
 
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnDestroy() {
+    }
+
+    ableCnt() {
+        // tslint:disable-next-line:max-line-length
+        if (this.classType === 'BUY' && !this.data.isNull(this.appointPrice)
+            && !this.data.isNull(this.appointCnt)) {
+            this.maxAppointCnt = (this.ableScale / (10000 * parseFloat(this.appointPrice) + this.commission)).toString();
+            this.maxAppointCnt = parseInt(this.maxAppointCnt, 0).toString();
+        }
+        return this.maxAppointCnt;
     }
 
     /**
@@ -113,9 +130,12 @@ export class BuyComponent implements DoCheck, OnDestroy {
     }
 
     /**
-     * 获取行情快照
+     * 获取股票列表
      */
     getQuotation() {
+        this.data.searchStockCode = '';
+        this.stockHQ.lastPrice = '';
+        this.stockHQ.upRatio = '';
         this.stockName = '';
         this.show = 'active';
         const content = null;
@@ -154,9 +174,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.data.ErrorMsg(this.text + '数量不能大于30张');
         } else {
             this.submitAlert = this.data.show;
-            this.http.commission().subscribe(res => {
-                this.ygsxf = parseFloat(res.toString()) * this.appointCnt;
-            });
+
         }
 
     }
@@ -289,7 +307,12 @@ export class BuyComponent implements DoCheck, OnDestroy {
                 if (this.classType === 'BUY') {
                     this.appointCnt = 1;
                 } else {
-                    this.appointCnt = this.fullcount;
+                    if (this.fullcount > 30) {
+                        this.appointCnt = 30;
+                    } else {
+                        this.appointCnt = this.fullcount;
+                    }
+
                 }
                 this.stockName = this.data.stockHQ.stockName;
                 this.appointPrice = this.data.roundNum(this.data.stockHQ.lastPrice, 4);
