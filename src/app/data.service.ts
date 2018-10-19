@@ -11,6 +11,7 @@ export class DataService {
   errMsg = '出错啦';
   error: Error;
   show = true;
+  searchStockCode = '';
   hide = false;
   token: string;
   timeoutFenshi: any; // 分时图
@@ -113,8 +114,7 @@ export class DataService {
     accountName: 'mario', // 中文名
     lockScale: 0, // 冻结资金
     stockScale: 0, // 股票市值
-    totalScale: 0, // 总资产
-    stockScale50ETF: 0
+    totalScale: 0// 总资产
   };
 
   opUserCode: string;

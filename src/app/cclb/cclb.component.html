@@ -14,7 +14,7 @@
         参考成本/现价
       </td>
     </tr>
-    <tr *ngFor='let a of list'>
+    <tr *ngFor='let a of list' (click)='select(a)'>
       <td>
         <p>{{a.stockCode}}</p>
         <p>{{a.stockName}}</p>

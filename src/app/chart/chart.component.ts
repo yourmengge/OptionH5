@@ -1,8 +1,6 @@
 import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { HttpService } from '../http.service';
 import { DataService } from '../data.service';
-import * as SockJS from 'sockjs-client';
-import { over } from '@stomp/stompjs';
 declare var StockChart: any;
 @Component({
   selector: 'app-chart',
@@ -72,7 +70,6 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   fenshitu() {
-    console.log(this.stockHQ.preClosePrice);
     StockChart.drawTrendLine({
       id: 'trendLine',
       height: 180,

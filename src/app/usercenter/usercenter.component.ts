@@ -40,8 +40,16 @@ export class UsercenterComponent implements OnInit, OnDestroy {
       this.data.Loading(this.data.hide);
     });
   }
-
+  /**
+  * 取消订阅
+  */
+  cancelSubscribe() {
+    this.http.cancelSubscribe().subscribe((res) => {
+      console.log('取消订阅');
+    });
+  }
   logout() {
+    this.cancelSubscribe();
     this.data.ErrorMsg('注销成功');
     this.data.removeSession('token');
     this.data.removeSession('opUserCode');
@@ -51,7 +59,19 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   }
 
   goto2(url) {
-    this.data.goto(url);
+    if (url === 'withdraw') {
+      this.http.getCard().subscribe(res => {
+        if (this.data.isNull(res)) {
+          this.data.ErrorMsg('请先绑定银行卡');
+          this.data.goto('card');
+        } else {
+          this.data.goto(url);
+        }
+      });
+    } else {
+      this.data.goto(url);
+    }
+
   }
 
 }

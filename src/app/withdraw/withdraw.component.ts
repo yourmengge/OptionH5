@@ -14,12 +14,7 @@ export class WithdrawComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.http.getCard().subscribe(res => {
-      if (this.data.isNull(res)) {
-        this.data.ErrorMsg('请先绑定银行卡');
-        this.data.goto('card');
-      }
-    });
+
   }
 
   back() {

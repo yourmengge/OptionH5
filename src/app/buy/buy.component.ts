@@ -81,6 +81,10 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.text2 = '卖';
         }
         this.stockHQ = this.data.stockHQ;
+        if (this.data.searchStockCode !== '' && this.data.searchStockCode.length === 8 && this.data.searchStockCode !== this.stockCode) {
+            this.stockCode = this.data.searchStockCode;
+            this.getGPHQ();
+        }
     }
 
     // tslint:disable-next-line:use-life-cycle-interface
@@ -232,6 +236,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.fullcount = '--';
         this.priceType = 0;
         this.data.resetStockHQ();
+        this.data.searchStockCode = '';
         this.stockHQ = this.data.stockHQ;
         this.cancelSubscribe();
     }
@@ -275,13 +280,17 @@ export class BuyComponent implements DoCheck, OnDestroy {
     // 选中合约
     getGPHQ() {
         this.priceType = 1;
-        this.appointCnt = 1;
         this.ccount = '';
         this.show = 'inactive';
         this.http.getGPHQ(this.classType, this.stockCode, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res) => {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];
                 this.fullcount = res['resultInfo']['maxAppointCnt'];
+                if (this.classType === 'BUY') {
+                    this.appointCnt = 1;
+                } else {
+                    this.appointCnt = this.fullcount;
+                }
                 this.stockName = this.data.stockHQ.stockName;
                 this.appointPrice = this.data.roundNum(this.data.stockHQ.lastPrice, 4);
             } else {

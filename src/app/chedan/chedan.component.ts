@@ -50,21 +50,14 @@ export class ChedanComponent implements OnInit {
   }
 
   chedan(orderdata) {
-    if (new Date().getTime() - this.clickTime < 500) {
-      console.log('双击');
-      console.log(orderdata);
-      this.submitAlert = this.data.show;
-      this.orderData.appointCnt = orderdata.appointCnt;
-      this.orderData.appointPrice = orderdata.appointPrice;
-      this.orderData.stockCode = orderdata.stockCode;
-      this.orderData.stockName = orderdata.stockName;
-      this.orderData.dealCnt = orderdata.dealCnt;
-      this.type = orderdata.appointTypeDesc;
-      this.orderData.appointOrderCode = orderdata.appointOrderCode;
-    } else {
-      this.clickTime = new Date().getTime();
-    }
-
+    this.submitAlert = this.data.show;
+    this.orderData.appointCnt = orderdata.appointCnt;
+    this.orderData.appointPrice = orderdata.appointPrice;
+    this.orderData.stockCode = orderdata.stockCode;
+    this.orderData.stockName = orderdata.stockName;
+    this.orderData.dealCnt = orderdata.dealCnt;
+    this.type = orderdata.appointTypeDesc;
+    this.orderData.appointOrderCode = orderdata.appointOrderCode;
 
   }
 
@@ -91,8 +84,8 @@ export class ChedanComponent implements OnInit {
   // }
 
   /**
- * 关闭弹窗
- */
+  * 关闭弹窗
+  */
   closeAlert() {
     this.submitAlert = this.data.hide;
   }
