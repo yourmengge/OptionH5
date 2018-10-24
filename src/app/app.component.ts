@@ -21,6 +21,7 @@ export class AppComponent implements DoCheck, OnInit {
 
   ngOnInit() {
     // this.connect();
+
   }
   /**
   * 取消订阅
@@ -63,6 +64,12 @@ export class AppComponent implements DoCheck, OnInit {
         this.connect();
         this.isConnect = !this.isConnect;
       }
+    } else {
+      if (this.isConnect) {
+        this.isConnect = !this.isConnect;
+        this.disconnect();
+      }
+
     }
   }
 }

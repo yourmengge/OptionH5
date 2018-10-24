@@ -10,7 +10,7 @@ import { Md5 } from 'ts-md5/dist/md5';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  logo = 'login';
   public phone: string;
   public password: string;
   public header = {
@@ -21,6 +21,11 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.data.clearInterval();
+    if (window.location.hostname === '101.132.101.5') {
+      this.logo = 'dfqq';
+    } else {
+      this.logo = 'login';
+    }
   }
 
   login() {

@@ -51,7 +51,8 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   logout() {
     this.cancelSubscribe();
     this.data.ErrorMsg('注销成功');
-    this.data.removeSession('token');
+    this.data.setSession('token', '');
+    this.data.token = '';
     this.data.removeSession('opUserCode');
     setTimeout(() => {
       this.data.goto('/');
