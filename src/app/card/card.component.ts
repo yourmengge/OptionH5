@@ -143,7 +143,7 @@ export class CardComponent implements OnInit {
   getName(list, id): string {
     let name;
     list.some(element => {
-      if (element.value.toString() === id) {
+      if (element.value.toString() === id.toString()) {
         name = element.text;
         return true;
       }

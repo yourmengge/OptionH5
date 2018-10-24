@@ -17,7 +17,7 @@
       </p>
     </div>
   </div>
-  <!-- <div class="cszj">
+  <div class="cszj">
     <p>
       期初规模
     </p>
@@ -25,7 +25,16 @@
       {{userInfo.allottedScale}}
     </p>
     <img src="./assets/images/zc1.png" alt="">
-  </div>-->
+  </div>
+  <div class="cszj">
+    <p>
+      总资产
+    </p>
+    <p class="red">
+      {{userInfo.totalScale}}
+    </p>
+    <img src="./assets/images/zc2.png" alt="">
+  </div>
   <div class="cszj">
     <p>
       持仓权益
@@ -33,22 +42,12 @@
     <p class="red">
       {{userInfo.stockScale}}
     </p>
-    <img src="./assets/images/zc2.png" alt="">
-  </div>
-  <div class="cszj">
-    <p>
-      可用资金
-    </p>
-    <p class="red">
-      {{userInfo.ableScale}}
-
-    </p>
     <img src="./assets/images/zc3.png" alt="">
   </div>
   <div class="kyzj">
     <div>
-      <p> 总资产</p>
-      <p class="red"> {{userInfo.totalScale}}</p>
+      <p> 可用资金 </p>
+      <p class="red"> {{userInfo.ableScale}}</p>
     </div>
     <div>
       <p>

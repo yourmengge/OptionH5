@@ -72,7 +72,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.getGPHQ();
         }
         this.http.commission().subscribe(res => {
-            this.ygsxf = parseFloat(res.toString()) * this.appointCnt;
+            this.ygsxf = parseInt(res.toString(), 0);
         });
         this.ableScale = this.data.getSession('backscale');
     }
