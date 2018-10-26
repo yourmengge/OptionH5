@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../data.service';
 import { HttpService } from '../http.service';
-import { Response, RequestOptions, Headers } from '@angular/http';
 import { Md5 } from 'ts-md5/dist/md5';
 
 @Component({
@@ -21,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.data.clearInterval();
-    if (window.location.hostname === '101.132.101.5') {
+    if (window.location.host.indexOf('eastnsd') > 0) { // 东方期权
       this.logo = 'dfqq';
     } else {
       this.logo = 'login';

@@ -109,9 +109,9 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
      */
   HQColor(price) {
     if (price !== '--') {
-      if (price > this.stockHQ.preClosePrice) {
+      if (price > this.staticData.preClosePrice) {
         return 'red';
-      } else if (price < this.stockHQ.preClosePrice) {
+      } else if (price < this.staticData.preClosePrice) {
         return 'green';
       } else {
         return '';
@@ -121,6 +121,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   goto(url) {
+    this.data.searchStockCode = this.stockCode;
     this.data.goto(`main/jiaoyi/${url}`);
   }
 

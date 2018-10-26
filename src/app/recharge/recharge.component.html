@@ -13,11 +13,16 @@
     <input class="recharge-input" type="number" style="font-size:14px;" placeholder="输入充值金额" (keyup)='input()' [(ngModel)]="inputMoney">
   </div>
 </div>
-<div class="pay-way">
+<div class="pay-way" (click)='selectPayType(1)'>
   <img src="./assets/images/ali.png" alt="">
   <span>支付宝支付</span>
-  <div class="radio"></div>
+  <div class="radio {{payType == 1?'':'radio-none'}}"></div>
+</div>
+<div class="pay-way" (click)='selectPayType(2)'>
+  <img src="./assets/images/bank.png" alt="">
+  <span>银行卡转账</span>
+  <div class="radio {{payType == 2?'':'radio-none'}}"></div>
 </div>
 <div class="bottom-btn" style="margin-top:20px;">
-  <div class="main" (click)='pay()'>支付</div>
+  <div class="main" (click)='pay()'>下一步</div>
 </div>

@@ -28,6 +28,14 @@ export class HttpService {
   }
 
   /**
+   * 银行转账信息提交
+   * @param amount 充值金额
+   */
+  submitBankTrans(amount) {
+    return this.POST(this.host + 'submitBankTrans', { totalAmount: amount });
+  }
+
+  /**
    * 获取银行省份列表
    */
   getProvinceList(bankId) {
@@ -106,6 +114,13 @@ export class HttpService {
  */
   commission() {
     return this.POST(this.host + 'commission', {});
+  }
+
+  /**
+   * 获取收款人信息
+   */
+  getPayCardInfo() {
+    return this.POST(this.host + 'payCardInfo', {});
   }
 
   /**

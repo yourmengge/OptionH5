@@ -22,34 +22,44 @@
   background: none;
 }
 
-.pay-way{
-    margin-top: 10px;
-    background: #fff;
+.pay-way {
+  margin-top: 10px;
+  background: #fff;
 }
 
-.pay-way img{
-    width: 30px;
-    height: 30px;
-    margin: 10px;
-    vertical-align: middle;
+.pay-way img {
+  width: 30px;
+  height: 30px;
+  margin: 10px;
+  vertical-align: middle;
 }
 
-.pay-way span{
-    margin-left: 20px;
+.pay-way span {
+  margin-left: 20px;
 }
 
-.radio{
-    background: url(../../assets/images/radio-button.png);
-    background-size: 100% 100%;
-    width: 20px;
-    height: 20px;
-    float: right;
-    margin-right: 20px;
-    margin-top: 15px;
+.radio {
+  background: url(../../assets/images/radio-button.png);
+  background-size: 100% 100%;
+  width: 20px;
+  height: 20px;
+  float: right;
+  margin-right: 20px;
+  margin-top: 15px;
 }
 
-.active{
-    background: #b00e23;
-    color: #fff;
-    border: solid 1px #b00e23;
+.radio-none {
+  background: url(../../assets/images/radio02.png);
+  background-size: 100% 100%;
+  width: 23px;
+  height: 23px;
+  float: right;
+  margin-right: 18px;
+  margin-top: 12px;
+}
+
+.active {
+  background: #b00e23;
+  color: #fff;
+  border: solid 1px #b00e23;
 }

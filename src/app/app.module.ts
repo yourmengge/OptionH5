@@ -31,6 +31,7 @@ import { RechargeComponent } from './recharge/recharge.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { CardComponent } from './card/card.component';
 import { TransferComponent } from './transfer/transfer.component';
+import { BankcardComponent } from './bankcard/bankcard.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -50,6 +51,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'bankcard', component: BankcardComponent },
   { path: 'transfer', component: TransferComponent },
   { path: 'withdraw', component: WithdrawComponent },
   { path: 'recharge', component: RechargeComponent },
@@ -85,7 +87,8 @@ const appRoutes: Routes = [
     RechargeComponent,
     WithdrawComponent,
     CardComponent,
-    TransferComponent
+    TransferComponent,
+    BankcardComponent
   ],
   imports: [
     BrowserAnimationsModule,

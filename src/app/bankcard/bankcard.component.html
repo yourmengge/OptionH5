@@ -1,0 +1,49 @@
+<div class="navigation">
+  <div class="back" (click)='back()'></div>
+  <p class="navigation-title">充值信息确认</p>
+</div>
+<div class="cell-list">
+  <div class="list-item">
+    <span class="list-item-name">
+      收款银行
+    </span>
+    <span class="list-item-content">
+      {{bankName}}
+    </span>
+  </div>
+  <div class="list-item">
+    <span class="list-item-name">
+      收款人姓名
+    </span>
+    <span class="list-item-content">
+      {{cardInfro.bankAccountName}}
+    </span>
+  </div>
+  <div class="list-item">
+    <span class="list-item-name">
+      收款账号
+    </span>
+    <span class="list-item-content">
+      {{cardInfro.bankCardNo}}
+    </span>
+  </div>
+  <div class="list-item">
+    <span class="list-item-name">
+      开户行
+    </span>
+    <span class="list-item-content">
+      {{cardInfro.bankName}}
+    </span>
+  </div>
+  <div class="list-item">
+    <span class="span-title">
+      充值金额
+    </span>
+    <span class="list-item-content">
+      {{amount}}
+    </span>
+  </div>
+</div>
+<div class="bottom-btn" style="margin-top:20px;">
+  <div class="main" (click)='pay()'>提交</div>
+</div>
