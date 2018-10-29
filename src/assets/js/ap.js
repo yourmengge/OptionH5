@@ -102,7 +102,7 @@
     };
     b.pay = function (d) {
         var c = encodeURIComponent(a.encode(d));
-        location.href = "pay.htm?goto=" + c
+        location.href = "./assets/js/pay.htm?goto=" + c
     };
     b.decode = function (c) {
         return a.decode(decodeURIComponent(c))
