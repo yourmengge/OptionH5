@@ -21,6 +21,48 @@ export class HttpService {
   }
 
   /**
+   * 获取验证码
+   */
+  getCode(type, phone) {
+    return this.http.post(this.host + `public/smsCode/${type}/${phone}`, {});
+  }
+
+  /**
+   * 资金流水
+   */
+  getFlow(data) {
+    return this.POST(this.host + 'tn/payOrder/list', data);
+  }
+
+  /**
+   * 用户注册
+   */
+  signup(data) {
+    return this.http.post(this.host + `public/register`, data);
+  }
+
+  /**
+ * 用户修改密码
+ */
+  reset(data) {
+    return this.http.post(this.host + `public/pwdResetByVerifyCode`, data);
+  }
+
+  /**
+   * 资讯列表
+   */
+  newsList() {
+    return this.http.post(this.host + 'tn/quota/newsList', {});
+  }
+
+  /**
+   * 资讯详情
+   */
+  newsDetail(id) {
+    return this.http.post(this.host + `tn/quota/newsDetail/${id}`, {});
+  }
+
+  /**
    * 获取银行列表
    */
   getBankList() {
@@ -84,7 +126,23 @@ export class HttpService {
    * 合约周期
    */
   heyuezhouqi() {
-    return this.POST(this.host + `tn/quota/yymm`, {});
+    return this.http.post(this.host + `tn/quota/yymm`, {});
+  }
+
+  /**
+   * 获取认购/认沽列表
+   * @param date 日期
+   * @param type 买或卖
+   */
+  getQuotaList(date, type) {
+    return this.http.post(this.host + `tn/quota/yymm/${date}/${type}`, {});
+  }
+
+  /**
+   * 总体趋势
+   */
+  generalTrend() {
+    return this.http.post(this.host + `tn/quota/generalTrend`, {});
   }
 
   /**
@@ -99,14 +157,14 @@ export class HttpService {
    * @Param date
    */
   heyueList(date) {
-    return this.POST(this.host + `tn/quota/yymm/${date}`, {});
+    return this.http.post(this.host + `tn/quota/yymm/${date}`, {});
   }
 
   /**
    * 请求股票行情
    */
-  getGPHQ(type, code, stockType) {
-    return this.POST(this.host + `push/subsMarket/${type}/${code}/${stockType}`, {});
+  getGPHQ(code, token) {
+    return this.POST(this.host + `push/subsMarket/${code}?tokenP=${token}`, {});
   }
 
   /**

@@ -14,6 +14,7 @@ export class DataService {
   searchStockCode = '';
   hide = false;
   token: string;
+  tokenP: string;
   timeoutFenshi: any; // 分时图
   timeoutQoute: any; // 行情列表
   intervalCapital: any; // 个人中心
@@ -217,6 +218,11 @@ export class DataService {
    */
   getFooterMenu() {
     return [{
+      id: 'index',
+      name: '首页',
+      title: '期权T型报价',
+      class: 'index'
+    }, {
       id: 'zixuan',
       name: '行情',
       title: '期权T型报价',
@@ -226,6 +232,11 @@ export class DataService {
       name: '交易',
       title: '交易',
       class: 'jiaoyi'
+    }, {
+      id: 'chicang',
+      name: '资产',
+      title: '期权T型报价',
+      class: 'zichan'
     }, {
       id: 'usercenter',
       name: '个人',
@@ -301,6 +312,8 @@ export class DataService {
         return year + '-' + this.add0(month) + '-' + this.add0(day);
       case 'yyyyMMss':
         return year + this.add0(month).toString() + this.add0(day);
+      case 'yyyy/MM/dd':
+        return year + '/' + this.add0(month) + '/' + this.add0(day);
     }
   }
 
@@ -391,7 +404,7 @@ export class DataService {
     if (this.isNull(this.token)) {
       if (this.isNull(this.getSession('token'))) {
         this.clearInterval();
-        this.ErrorMsg('请重新登录');
+        this.ErrorMsg('请登录');
         this.goto('/login');
         return;
       } else {
@@ -405,12 +418,18 @@ export class DataService {
 
   }
 
+  /**
+   * 带参数的页面跳转
+   */
+  gotoId(url, id) {
+    this.router.navigate([url, id]);
+  }
 
   getPayHeader() {
     if (this.isNull(this.token)) {
       if (this.isNull(this.getSession('token'))) {
         this.clearInterval();
-        this.ErrorMsg('请重新登录');
+        this.ErrorMsg('请登录');
         this.goto('/login');
         return;
       } else {
@@ -508,6 +527,24 @@ export class DataService {
     const i = parseInt(temp, 0);
     return Math.round(num * i) / i;
   }
+
+  /**
+   * 随机生成n位字符串
+   * @param num 生成字符串的位数
+   */
+  randomString(num) {
+    const arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c',
+      'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+      's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F',
+      'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+      'V', 'W', 'X', 'Y', 'Z'];
+    let temp = '';
+    for (let i = 0; i < num; i++) {
+      temp = temp + arr[Math.round(Math.random() * (arr.length - 1))];
+    }
+    return temp;
+  }
+
 }
 
 

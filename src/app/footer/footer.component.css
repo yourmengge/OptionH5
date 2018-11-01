@@ -43,6 +43,18 @@
     background-position: -9px -9px;
 }
 
+.index{
+    background: url(../../assets/images/index.png) no-repeat;
+    background-size: 194%;
+    background-position: -9px -9px;
+}
+
+.zichan{
+    background: url(../../assets/images/zichan.png) no-repeat;
+    background-size: 194%;
+    background-position: -9px -9px;
+}
+
 .jiaoyi{
     background: url(../../assets/images/jiaoyi.png) no-repeat;
     background-size: 194%;

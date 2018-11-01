@@ -1,7 +1,6 @@
 .head {
     width: 65px;
     border-radius: 90px;
-    float: left;
 }
 
 .header {
@@ -9,14 +8,11 @@
     background: #b00e23;
     color: #fff;
     padding: 15px;
-    height: 80px;
+    height: 150px;
 }
 
 .name {
-    float: left;
-    margin-top: 22px;
-    margin-left: 11px;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .menuList {
@@ -116,14 +112,15 @@
 }
 
 .recharge{
-    float: right;
-    margin-right: 10px;
-    margin-top: 20px;
     background: #fff;
     color: #b00e23;
     border: solid 1px #b00e23;
     padding: 5px 20px;
     border-radius: 5px;
+    text-align: center;
+    width: 88px;
+    font-size: 0.8rem;
+    margin: 0 5px;
 }
 
 .recharge:active{

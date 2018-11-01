@@ -9,8 +9,7 @@ import { HttpService } from '../http.service';
 })
 export class BankcardComponent implements OnInit {
   amount: '';
-  bankName = '';
-  cardInfro = { 'bankAccountName': '', 'bankCardNo': '', 'bankName': '' };
+  cardInfro = { 'bankAccountName': '', 'bankCardNo': '', 'bankName': '', bankBranch: '' };
   constructor(public data: DataService, public http: HttpService) {
     this.amount = this.data.getSession('amount');
   }
@@ -22,7 +21,6 @@ export class BankcardComponent implements OnInit {
   getPayCardInfo() {
     this.http.getPayCardInfo().subscribe(res => {
       this.cardInfro = Object.assign(this.cardInfro, res);
-      this.bankName = this.cardInfro.bankName.split('-')[0];
     }, err => {
       this.data.error = err.error;
       this.data.isError();
@@ -35,7 +33,7 @@ export class BankcardComponent implements OnInit {
 
   pay() {
     this.http.submitBankTrans(this.amount).subscribe(res => {
-      this.data.ErrorMsg('您的充值申请已提交，请尽快进行线下支付');
+      this.data.ErrorMsg('充值已提交，等待后台审核');
       setTimeout(() => {
         this.back();
       }, 1000);

@@ -32,6 +32,11 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 import { CardComponent } from './card/card.component';
 import { TransferComponent } from './transfer/transfer.component';
 import { BankcardComponent } from './bankcard/bankcard.component';
+import { IndexComponent } from './index/index.component';
+import { QuotalistComponent } from './quotalist/quotalist.component';
+import { SignupComponent } from './signup/signup.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { CapitalFlowComponent } from './capital-flow/capital-flow.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -43,14 +48,18 @@ const jiaoyiChildRoutes: Routes = [
 ];
 
 const appChildRoutes: Routes = [
+  { path: 'index', component: IndexComponent },
+  { path: 'chicang', component: ChicangComponent },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'ssgp', component: SsgpComponent },
   { path: 'zixuan', component: ZixuanComponent },
   { path: 'jiaoyi', component: JiaoyiComponent, children: jiaoyiChildRoutes },
-  { path: '', redirectTo: 'usercenter', pathMatch: 'full' }
+  { path: '', redirectTo: 'index', pathMatch: 'full' }
 ];
 
 const appRoutes: Routes = [
+  { path: 'capitalflow', component: CapitalFlowComponent },
+  { path: 'quatolist/:id', component: QuotalistComponent },
   { path: 'bankcard', component: BankcardComponent },
   { path: 'transfer', component: TransferComponent },
   { path: 'withdraw', component: WithdrawComponent },
@@ -59,8 +68,11 @@ const appRoutes: Routes = [
   { path: 'chart', component: ChartComponent },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'main', component: MainComponent, children: appChildRoutes },
+  { path: 'signup', component: SignupComponent },
+  { path: 'forget', component: SignupComponent },
+  { path: 'newdetail/:id', component: NewsDetailComponent },
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '', redirectTo: 'main', pathMatch: 'full' }
 ];
 
 @NgModule({
@@ -88,7 +100,12 @@ const appRoutes: Routes = [
     WithdrawComponent,
     CardComponent,
     TransferComponent,
-    BankcardComponent
+    BankcardComponent,
+    IndexComponent,
+    QuotalistComponent,
+    SignupComponent,
+    NewsDetailComponent,
+    CapitalFlowComponent
   ],
   imports: [
     BrowserAnimationsModule,

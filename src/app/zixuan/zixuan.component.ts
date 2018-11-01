@@ -25,9 +25,6 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   constructor(public data: DataService, public http: HttpService) { }
 
   ngOnInit() {
-    this.http.cancelSubscribe().subscribe((res) => {
-      console.log('取消订阅');
-    });
     this.getDate();
   }
 
@@ -47,11 +44,17 @@ export class ZixuanComponent implements OnInit, OnDestroy {
     this.getlist();
   }
 
+  quato(type) {
+    this.data.gotoId('quatolist', this.date + '_' + type);
+  }
+
   getDate() {
     this.http.heyuezhouqi().subscribe(res => {
       this.dateList = res;
       this.date = res[0];
-      this.getlist();
+      if (!this.data.isNull(this.date)) {
+        this.getlist();
+      }
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();

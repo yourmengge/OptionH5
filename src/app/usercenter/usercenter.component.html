@@ -6,8 +6,11 @@
   <div class="header">
     <img src="./assets/images/head.png" alt="" class="head">
     <p class="name">{{userInfo.accountName}}</p>
-    <!-- <button (click)='goto2("withdraw")' class="recharge">提现</button> -->
-    <button (click)='goto2("recharge")' class="recharge">充值</button>
+    <div>
+      <button (click)='goto2("withdraw")' class="recharge">提现</button>
+      <button (click)='goto2("recharge")' class="recharge">充值</button>
+      <button (click)='goto2("capitalflow")' class="recharge">资金流水</button>
+    </div>
   </div>
   <div class="menuList">
     <div *ngFor='let a of menuList' class="footer-div {{url === a.id?'icon-active':''}}" (click)='goto(a.id)'>

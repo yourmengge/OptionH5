@@ -300,7 +300,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.priceType = 1;
         this.ccount = '';
         this.show = 'inactive';
-        this.http.getGPHQ(this.classType, this.stockCode, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res) => {
+        this.http.getGPHQ(this.stockCode, this.data.token).subscribe((res) => {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];
                 this.fullcount = res['resultInfo']['maxAppointCnt'];

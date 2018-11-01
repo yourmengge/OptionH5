@@ -21,7 +21,11 @@ export class AppComponent implements DoCheck, OnInit {
 
   ngOnInit() {
     // this.connect();
-
+    if (this.data.isNull(this.data.getSession('token'))) {
+      this.data.token = this.data.randomString(32);
+      this.data.setSession('token', this.data.token);
+    }
+    console.log(this.data.token);
   }
   /**
   * 取消订阅

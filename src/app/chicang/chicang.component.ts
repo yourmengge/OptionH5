@@ -9,9 +9,15 @@ import { DataService } from '../data.service';
 })
 export class ChicangComponent implements OnInit {
   public userInfo: DataService['userInfo'];
+  isJiaoyi: any;
   constructor(public data: DataService, public http: HttpService) { }
 
   ngOnInit() {
+    if (this.data.getUrl(2) === 'chicang') {
+      this.isJiaoyi = false;
+    } else {
+      this.isJiaoyi = true;
+    }
     this.userInfo = this.data.userInfo;
     this.usercenter();
 

@@ -91,7 +91,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
    * 订阅股票
    */
   subscribeStock() {
-    this.http.getGPHQ('BUY', this.stockCode, 'OPEN').subscribe((res) => {
+    this.http.getGPHQ(this.stockCode, this.data.token).subscribe((res) => {
       if (!this.data.isNull(res['resultInfo']['quotation'])) {
         this.data.stockHQ = res['resultInfo']['quotation'];
       } else {

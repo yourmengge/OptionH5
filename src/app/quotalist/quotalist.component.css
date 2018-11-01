@@ -49,8 +49,7 @@
 }
 
 .table-flex {
-  height: 40px;
-  line-height: 40px;
+  height: 44px;
   background: #efefef;
   text-align: center;
   border-bottom: solid 1px #e4e4e4;
@@ -62,21 +61,32 @@
   font-size: 12px;
 }
 
+.table-flex div p {
+  margin: 4px 0px;
+}
+
+.single-line {
+  line-height: 44px;
+}
+
 .table-flex2 {
-  height: 40px;
-  line-height: 40px;
+  height: 44px;
   text-align: center;
-  font-size: .9rem;
+  font-size: .85rem;
   width: 100vw;
   border-bottom: solid 1px #f5f5f5;
   display: flex;
+}
+
+.table-flex2 div p {
+  margin: 4px 0px;
 }
 
 .table-flex2 div {
   width: 25%;
 }
 
-.table-flex2 div:nth-child(3) {
+.table-flex2 div:nth-child(1) {
   background: rgba(106, 193, 255, 0.4);
 }
 
@@ -97,13 +107,14 @@
   from {
     margin-left: 0px;
   }
+
   to {
     margin-left: 60px;
   }
 }
 
 .zixuan-list {
-  height: calc(100vh - 270px);
+  height: calc(100vh - 186px);
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -143,20 +154,9 @@
   margin: 8px 20px;
   border: none;
   color: #fff;
+
 }
 
-.btn-list button:nth-child(1) {
+.btn-active {
   background: #b00e23;
-}
-
-.btn-list button:nth-child(2) {
-  background: #145c90;
-}
-
-.btn-list button:active {
-  background: #8a0a1b;
-}
-
-.btn-list button:nth-child(2):active {
-  background: #0d3b5c;
 }
