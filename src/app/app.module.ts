@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ClipboardModule } from 'ngx-clipboard';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { UsercenterComponent } from './usercenter/usercenter.component';
@@ -53,6 +53,9 @@ const appChildRoutes: Routes = [
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'ssgp', component: SsgpComponent },
   { path: 'zixuan', component: ZixuanComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'forget', component: SignupComponent },
   { path: 'jiaoyi', component: JiaoyiComponent, children: jiaoyiChildRoutes },
   { path: '', redirectTo: 'index', pathMatch: 'full' }
 ];
@@ -68,10 +71,7 @@ const appRoutes: Routes = [
   { path: 'chart', component: ChartComponent },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'main', component: MainComponent, children: appChildRoutes },
-  { path: 'signup', component: SignupComponent },
-  { path: 'forget', component: SignupComponent },
   { path: 'newdetail/:id', component: NewsDetailComponent },
-  { path: 'login', component: LoginComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' }
 ];
 
@@ -113,6 +113,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule,
     HttpClientModule,
+    ClipboardModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true, useHash: true }),
   ],
   providers: [DataService, HttpService],

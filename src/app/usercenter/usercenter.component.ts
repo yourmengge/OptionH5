@@ -29,6 +29,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   usercenter() {
     this.http.userCenter().subscribe((res: DataService['userInfo']) => {
       this.userInfo = res;
+      this.data.setSession('userName', res['accountName']);
       this.data.setSession('backscale', res['ableScale']);
       this.data.intervalCapital = setTimeout(() => {
         this.usercenter();
@@ -56,7 +57,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
     this.data.setSession('token', this.data.token);
     this.data.removeSession('opUserCode');
     setTimeout(() => {
-      this.data.goto('/login');
+      this.data.goto('main/login');
     }, 1000);
   }
 

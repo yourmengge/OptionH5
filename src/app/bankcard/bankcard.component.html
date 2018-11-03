@@ -43,7 +43,18 @@
       {{amount}}
     </span>
   </div>
+  <div class="list-item" style="height:auto">
+    <span class="span-title" style="margin:auto">
+      备注
+    </span>
+    <span class="list-item-content" style="width: 200px;line-height: 2;text-align: right;font-size: .9rem;">
+      {{remark}}
+    </span>
+  </div>
 </div>
+<p style="padding-left: 20px;">
+  请点击 <button (click)='copy()' class="copy">复制</button>复制该备注信息
+</p>
 <div class="bottom-btn" style="margin-top:20px;">
   <div class="main" (click)='pay()'>提交</div>
 </div>

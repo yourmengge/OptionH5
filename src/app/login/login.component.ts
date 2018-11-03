@@ -65,6 +65,6 @@ export class LoginComponent implements OnInit {
   }
 
   goto(type) {
-    this.data.goto(type);
+    this.data.goto('main/' + type);
   }
 }

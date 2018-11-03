@@ -305,6 +305,9 @@ export class DataService {
     const seconds = time.getSeconds();
     const millseconds = time.getMilliseconds();
     switch (type) {
+      case 'yyyy-MM-ddhh:mm:ss':
+        return year + '-' + this.add0(month).toString() + '-' + this.add0(day) + ' ' +
+          this.add0(hour) + ':' + this.add0(minutes) + ':' + this.add0(seconds);
       case 'yyyyMMddhhmmss':
         return year + this.add0(month).toString() + this.add0(day) +
           this.add0(hour) + this.add0(minutes) + this.add0(seconds) + this.add0(millseconds);
@@ -367,7 +370,7 @@ export class DataService {
     if (this.error.resultCode === 'token.error') {
       this.removeSession('token');
       this.clearInterval();
-      this.goto('/login');
+      this.goto('main/login');
     }
   }
 
@@ -416,7 +419,7 @@ export class DataService {
       if (this.isNull(this.getSession('token'))) {
         this.clearInterval();
         this.ErrorMsg('请登录');
-        this.goto('/login');
+        this.goto('main/login');
         return;
       } else {
         this.token = this.getSession('token');
@@ -441,7 +444,7 @@ export class DataService {
       if (this.isNull(this.getSession('token'))) {
         this.clearInterval();
         this.ErrorMsg('请登录');
-        this.goto('/login');
+        this.goto('main/login');
         return;
       } else {
         this.token = this.getSession('token');

@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   inviteCode: any;
   text = '';
   code: string;
+  userName = '';
   time = 60;
   type: string; // 判断注册还是忘记密码
   constructor(public data: DataService, public http: HttpService) {
@@ -27,16 +28,16 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     if (window.location.hash.indexOf('?code=') > 0) {
       this.inviteCode = window.location.hash.split('?code=')[1];
-      this.type = this.data.getUrl(1).split('?code=')[0];
+      this.type = this.data.getUrl(2).split('?code=')[0];
     } else {
       this.inviteCode = '';
-      this.type = this.data.getUrl(1);
+      this.type = this.data.getUrl(2);
     }
 
   }
 
   goto() {
-    this.data.goto('login');
+    this.data.goto('main/login');
   }
 
   getCode() {
@@ -69,7 +70,9 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
-    if (this.phone.length !== 11) {
+    if (this.userName.length === 0) {
+      this.data.ErrorMsg('请输入昵称');
+    } else if (this.phone.length !== 11) {
       this.data.ErrorMsg('请输入正确的手机号码');
     } else if (this.code.length === 0) {
       this.data.ErrorMsg('请输入正确的验证码');
@@ -86,6 +89,7 @@ export class SignupComponent implements OnInit {
 
   signup() {
     const data = {
+      userName: this.userName,
       mobile: this.phone,
       password: Md5.hashStr(this.password),
       inviteCode: this.inviteCode,
@@ -93,11 +97,15 @@ export class SignupComponent implements OnInit {
     };
     this.http.signup(data).subscribe(res => {
       this.data.ErrorMsg('注册成功');
-      this.data.goto('login');
+      this.data.goto('main/login');
     }, err => {
       this.data.error = err.error;
       this.data.isError();
     });
+  }
+
+  book() {
+    location.href = './assets/book.html';
   }
 
   reset() {
