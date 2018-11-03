@@ -33,9 +33,9 @@ export class FooterComponent implements DoCheck {
 
   goto(url) {
     if (url !== this.data.getUrl(2)) {
-      // this.http.cancelSubscribe().subscribe(res => {
-      //   console.log('取消订阅');
-      // });
+      this.http.cancelSubscribe().subscribe(res => {
+        console.log('取消订阅');
+      });
       this.data.resetStockHQ();
       this.data.removeSession('optionCode');
       this.url = url;

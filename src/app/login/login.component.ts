@@ -23,6 +23,8 @@ export class LoginComponent implements OnInit {
     this.data.clearInterval();
     if (window.location.host.indexOf('eastnsd') > 0) { // 东方期权
       this.logo = 'dfqq';
+    } else if (window.location.host.indexOf('fjsrgs') > 0) {
+      this.logo = 'zgb';
     } else {
       this.logo = 'login';
     }

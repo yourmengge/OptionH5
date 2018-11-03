@@ -317,6 +317,17 @@ export class DataService {
     }
   }
 
+  beforeMonth() {
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth();
+    const day = new Date().getDate();
+    if (month === 0) {
+      month = 12;
+      year = year - 1;
+    }
+    return `${year}-${this.add0(month)}-${this.add0(day)}`;
+  }
+
   /**
    * 个位数补充0
    */

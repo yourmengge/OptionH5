@@ -45,6 +45,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   */
   cancelSubscribe() {
     this.http.cancelSubscribe().subscribe((res) => {
+      this.data.resetStockHQ();
       console.log('取消订阅');
     });
   }
@@ -55,7 +56,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
     this.data.setSession('token', this.data.token);
     this.data.removeSession('opUserCode');
     setTimeout(() => {
-      this.data.goto('/');
+      this.data.goto('/login');
     }, 1000);
   }
 

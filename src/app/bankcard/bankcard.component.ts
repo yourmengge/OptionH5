@@ -33,7 +33,7 @@ export class BankcardComponent implements OnInit {
 
   pay() {
     this.http.submitBankTrans(this.amount).subscribe(res => {
-      this.data.ErrorMsg('充值已提交，等待后台审核');
+      this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
       setTimeout(() => {
         this.back();
       }, 1000);

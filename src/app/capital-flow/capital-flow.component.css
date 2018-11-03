@@ -59,6 +59,8 @@
   background: #fff;
   border-bottom: solid 1px #f1f1f1;
   border-top: solid 1px #f1f1f1;
+  height: calc(100vh - 106px);
+  overflow-y: auto;
 }
 
 .flow-list .icon{

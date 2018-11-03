@@ -72,7 +72,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.getGPHQ();
         }
         this.http.commission().subscribe(res => {
-            this.ygsxf = parseInt(res.toString(), 0);
+            this.ygsxf = parseFloat(res.toString());
         });
         this.ableScale = this.data.getSession('backscale');
     }
@@ -96,6 +96,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
 
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnDestroy() {
+        this.data.resetStockHQ();
+        this.data.searchStockCode = '';
     }
 
     ableCnt() {
@@ -263,6 +265,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
    */
     cancelSubscribe() {
         this.http.cancelSubscribe().subscribe((res) => {
+            this.data.resetStockHQ();
             console.log('取消订阅');
         });
     }

@@ -23,6 +23,14 @@ export class ChicangComponent implements OnInit {
 
   }
 
+  overflow(type) {
+    if (!type) {
+      return 'chicang';
+    } else {
+      return '';
+    }
+  }
+
   usercenter() {
     this.http.userCenter().subscribe((res: DataService['userInfo']) => {
       this.userInfo = res;

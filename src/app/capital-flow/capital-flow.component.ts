@@ -12,8 +12,8 @@ export class CapitalFlowComponent implements OnInit {
   endDate: any;
   list: any;
   constructor(public data: DataService, public http: HttpService) {
-    this.startDate = this.data.getTime('yyyy-MM-dd', new Date());
-    this.endDate = this.startDate;
+    this.startDate = this.data.getTime('yyyy-MM-dd', new Date(this.data.beforeMonth()));
+    this.endDate = this.data.getTime('yyyy-MM-dd', new Date());
   }
 
   ngOnInit() {
