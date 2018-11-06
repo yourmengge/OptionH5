@@ -97,6 +97,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     // tslint:disable-next-line:use-life-cycle-interface
     ngOnDestroy() {
         this.data.resetStockHQ();
+        this.cancelSubscribe();
         this.data.searchStockCode = '';
     }
 
@@ -109,6 +110,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
         }
         return this.maxAppointCnt;
     }
+
+
 
     /**
      * 选择价格类型
@@ -306,10 +309,11 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.http.getGPHQ(this.stockCode, this.data.token).subscribe((res) => {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];
-                this.fullcount = res['resultInfo']['maxAppointCnt'];
                 if (this.classType === 'BUY') {
                     this.appointCnt = 1;
+                    this.fullcount = res['resultInfo']['maxBuyCnt'];
                 } else {
+                    this.fullcount = res['resultInfo']['maxSellCnt'];
                     if (this.fullcount > 30) {
                         this.appointCnt = 30;
                     } else {

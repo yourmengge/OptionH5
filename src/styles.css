@@ -9,7 +9,7 @@ body {
   font-family: '微软雅黑';
   color: #373737;
   background: #f8f8f8;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 .Body {
@@ -274,4 +274,12 @@ table td p {
 
 .bottom-btn .clear:active {
   background: #c9c9c9;
+}
+
+@media screen and (max-width: 320px) {
+
+  body,
+  html {
+    font-size: 12px;
+  }
 }

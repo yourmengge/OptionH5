@@ -2,8 +2,8 @@
   <img class="logo" src="./assets/images/signup.jpg" alt="">
   <div class="input-div">
     <p class="title">{{type == 'signup'?'注册':'找回密码'}}</p>
-    <div class="login-input" *ngIf="type == 'signup'">
-      <div class="icon"></div>
+    <div class="login-input " *ngIf="type == 'signup'">
+      <div class="icon name"></div>
       <input type="text" placeholder="昵称" maxlength="11" [(ngModel)]='userName'>
     </div>
     <div class="login-input">
@@ -23,7 +23,7 @@
     </div>
     <div class="login-input" *ngIf="type == 'signup'">
       <div class="icon inviteCode"></div>
-      <input type="text" placeholder="邀请码(选填)" [(ngModel)]='inviteCode'>
+      <input type="text" placeholder="邀请码" [(ngModel)]='inviteCode'>
     </div>
     <p class="book" *ngIf="type == 'signup'">
       注册即视为同意：《 <a (click)='book()'>风险揭示书</a> 》

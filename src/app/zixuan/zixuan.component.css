@@ -139,7 +139,7 @@
 
 .btn-list button {
   flex: 1;
-  height: 35px;
+  font-size: .9rem;
   margin: 8px 20px;
   border: none;
   color: #fff;

@@ -58,7 +58,7 @@
 
 .table-flex div {
   width: 25%;
-  font-size: 12px;
+  font-size: .9rem;
 }
 
 .table-flex div p {
@@ -129,7 +129,7 @@
 .optionTitle span {
   flex: 1;
   text-align: center;
-  font-size: 17px;
+  font-size: 1.2rem;
 }
 
 .optionTitle button {
@@ -150,7 +150,6 @@
 
 .btn-list button {
   flex: 1;
-  height: 35px;
   margin: 8px 20px;
   border: none;
   color: #fff;

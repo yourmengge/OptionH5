@@ -26,6 +26,17 @@ export class ZixuanComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getDate();
+    this.cancelSubscribe();
+  }
+
+  /**
+* 取消订阅
+*/
+  cancelSubscribe() {
+    this.http.cancelSubscribe().subscribe((res) => {
+      this.data.resetStockHQ();
+      console.log('取消订阅');
+    });
   }
 
   ngOnDestroy() {

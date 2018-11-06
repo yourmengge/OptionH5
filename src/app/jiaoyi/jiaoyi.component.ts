@@ -34,6 +34,7 @@ export class JiaoyiComponent implements DoCheck {
       this.http.cancelSubscribe().subscribe(res => {
         console.log('取消订阅');
       });
+      this.data.sellCnt = '';
       this.data.searchStockCode = '';
       this.data.resetStockHQ();
       this.data.removeSession('optionCode');

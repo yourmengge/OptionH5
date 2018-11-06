@@ -16,6 +16,7 @@ export class SignupComponent implements OnInit {
   code: string;
   userName = '';
   time = 60;
+  url: any;
   type: string; // 判断注册还是忘记密码
   constructor(public data: DataService, public http: HttpService) {
     this.phone = '';
@@ -23,11 +24,12 @@ export class SignupComponent implements OnInit {
     this.password = '';
     this.inviteCode = '';
     this.text = '获取验证码';
+    this.url = window.location.host;
   }
 
   ngOnInit() {
     if (window.location.hash.indexOf('?code=') > 0) {
-      this.inviteCode = window.location.hash.split('?code=')[1];
+      this.inviteCode = window.location.hash.split('?code=')[1].split('&')[0].replace(/%3D/g, '');
       this.type = this.data.getUrl(2).split('?code=')[0];
     } else {
       this.inviteCode = '';
@@ -69,8 +71,16 @@ export class SignupComponent implements OnInit {
 
   }
 
+  needInvitedCode() {
+    if (this.url.indexOf('fjsrgs') > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   submit() {
-    if (this.userName.length === 0) {
+    if (this.userName.length === 0 && this.type === 'signup') {
       this.data.ErrorMsg('请输入昵称');
     } else if (this.phone.length !== 11) {
       this.data.ErrorMsg('请输入正确的手机号码');
@@ -78,6 +88,8 @@ export class SignupComponent implements OnInit {
       this.data.ErrorMsg('请输入正确的验证码');
     } else if (this.password.length < 6 || this.password.length > 12) {
       this.data.ErrorMsg('密码长度必须大于6位不能超过12位');
+    } else if (this.inviteCode.length === 0 && this.needInvitedCode() && this.type === 'signup') {
+      this.data.ErrorMsg('请输入邀请码');
     } else {
       if (this.type === 'signup') {
         this.signup();

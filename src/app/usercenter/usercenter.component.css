@@ -126,3 +126,11 @@
 .recharge:active{
     background: #ddd7d7;
 }
+
+@media screen and (max-width: 320px) {
+
+    .recharge {
+      padding: 5px 10px;
+      width: 70px;
+    }
+  }

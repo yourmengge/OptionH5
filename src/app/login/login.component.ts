@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
         console.log(res);
         this.data.setSession('opUserCode', this.phone);
         this.data.opUserCode = this.phone;
+        this.data.isConnect = false;
         this.data.token = res['resultInfo'];
         this.data.setSession('token', this.data.token);
         // this.header = {

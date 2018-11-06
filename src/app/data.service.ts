@@ -5,13 +5,14 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable()
 
 export class DataService {
-
+  isConnect = false; // 判断是否需要链接ws
   alert = false;
   loading = false;
   errMsg = '出错啦';
   error: Error;
   show = true;
   searchStockCode = '';
+  sellCnt = '';
   hide = false;
   token: string;
   tokenP: string;
@@ -121,6 +122,7 @@ export class DataService {
   opUserCode: string;
 
   constructor(public router: Router) {
+    this.token = this.getSession('token');
     if (this.getSession('userInfo') !== null) {
       this.opUserCode = this.getSession('opUserCode');
       const response = this.getSession('userInfo');

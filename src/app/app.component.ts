@@ -13,7 +13,6 @@ export class AppComponent implements DoCheck, OnInit {
   title = 'app';
   loading = true;
   stompClient: any;
-  isConnect = false;
   constructor(public data: DataService, public http: HttpService) {
     this.alert = this.data.alert;
     this.loading = this.data.loading;
@@ -25,7 +24,6 @@ export class AppComponent implements DoCheck, OnInit {
       this.data.token = this.data.randomString(32);
       this.data.setSession('token', this.data.token);
     }
-    console.log(this.data.token);
   }
   /**
   * 取消订阅
@@ -61,20 +59,16 @@ export class AppComponent implements DoCheck, OnInit {
       console.log('err', err);
     });
   }
+
+  needConnect() {
+  }
+
   ngDoCheck() {
     this.alert = this.data.alert;
     this.loading = this.data.loading;
-    if (!this.data.isNull(this.data.getToken())) {
-      if (!this.isConnect) {
-        this.connect();
-        this.isConnect = !this.isConnect;
-      }
-    } else {
-      if (this.isConnect) {
-        this.isConnect = !this.isConnect;
-        this.disconnect();
-      }
-
+    if (!this.data.isConnect) {
+      this.connect();
+      this.data.isConnect = !this.data.isConnect;
     }
   }
 }
