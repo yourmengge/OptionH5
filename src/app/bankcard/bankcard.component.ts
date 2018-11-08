@@ -11,10 +11,12 @@ export class BankcardComponent implements OnInit {
   amount: any;
   remark: any;
   userName: any;
-  cardInfro = { 'bankAccountName': '', 'bankCardNo': '', 'bankName': '', bankBranch: '' };
+  payType: any;
+  cardInfro = { 'bankAccountName': '', 'bankCardNo': '', 'bankName': '', bankBranch: '', aliyPay: '', aliyPayName: '' };
   constructor(public data: DataService, public http: HttpService, private _clipboardService: ClipboardService) {
     this.amount = this.data.getSession('amount');
     this.userName = this.data.getSession('userName');
+    this.payType = this.data.getSession('payType');
   }
 
   ngOnInit() {
@@ -42,7 +44,7 @@ export class BankcardComponent implements OnInit {
   }
 
   pay() {
-    this.http.submitBankTrans(this.amount).subscribe(res => {
+    this.http.submitBankTrans(this.amount, this.payType === '2' ? 'BANK' : 'ALIPAY').subscribe(res => {
       this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
       setTimeout(() => {
         this.back();

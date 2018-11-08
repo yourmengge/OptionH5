@@ -67,6 +67,7 @@ export class RechargeComponent implements OnInit {
         this.data.ErrorMsg('充值金额必须大于0，最多两位小数');
       }
     } else { // 银行卡支付
+      this.data.setSession('payType', this.payType);
       this.data.setSession('amount', this.money);
       this.data.goto('bankcard');
     }

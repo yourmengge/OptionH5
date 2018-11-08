@@ -73,8 +73,8 @@ export class HttpService {
    * 银行转账信息提交
    * @param amount 充值金额
    */
-  submitBankTrans(amount) {
-    return this.POST(this.host + 'submitBankTrans', { totalAmount: amount });
+  submitBankTrans(amount, type) {
+    return this.POST(this.host + 'submitBankTrans/' + type, { totalAmount: amount });
   }
 
   /**

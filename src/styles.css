@@ -146,6 +146,8 @@ table td p {
   margin-left: 6%;
   font-size: 1.2rem;
   color: #333;
+  margin-bottom: 0px;
+  margin-top: 10px;
 }
 
 .alert-div p span:first-child {

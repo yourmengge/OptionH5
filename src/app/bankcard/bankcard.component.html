@@ -3,7 +3,23 @@
   <p class="navigation-title">充值信息确认</p>
 </div>
 <div class="cell-list">
-  <div class="list-item">
+  <div class="list-item" *ngIf="payType==3">
+    <span class="list-item-name">
+      支付宝账号
+    </span>
+    <span class="list-item-content" >
+      {{cardInfro.aliyPay}}
+    </span>
+  </div>
+  <div class="list-item" *ngIf="payType==3">
+    <span class="list-item-name">
+      收款人姓名
+    </span>
+    <span class="list-item-content">
+      {{cardInfro.aliyPayName}}
+    </span>
+  </div>
+  <div class="list-item" *ngIf="payType==2">
     <span class="list-item-name">
       收款银行
     </span>
@@ -11,7 +27,7 @@
       {{cardInfro.bankName}}
     </span>
   </div>
-  <div class="list-item">
+  <div class="list-item" *ngIf="payType==2">
     <span class="list-item-name">
       收款人姓名
     </span>
@@ -19,7 +35,7 @@
       {{cardInfro.bankAccountName}}
     </span>
   </div>
-  <div class="list-item">
+  <div class="list-item" *ngIf="payType==2">
     <span class="list-item-name">
       收款账号
     </span>
@@ -27,7 +43,7 @@
       {{cardInfro.bankCardNo}}
     </span>
   </div>
-  <div class="list-item">
+  <div class="list-item" *ngIf="payType==2">
     <span class="list-item-name">
       开户行
     </span>
