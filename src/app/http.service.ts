@@ -6,8 +6,8 @@ import { DataService } from './data.service';
 @Injectable()
 export class HttpService {
   stompClient: any;
-  // public host = 'http://localhost:8080/option/';
-  public host = 'http://218.85.23.217:8082/option/';
+  public host = 'http://localhost:8080/option/';
+  // public host = 'http://218.85.23.217:8082/option/';
   // public host = 'http://101.132.65.124:10008/option/';
   public ws = this.host + 'webSocket';
   public stockHQ: any;
@@ -74,7 +74,7 @@ export class HttpService {
    * @param amount 充值金额
    */
   submitBankTrans(amount, type) {
-    return this.POST(this.host + 'submitBankTrans/' + type, { totalAmount: amount });
+    return this.POST(this.host + 'tntg/submitBankTrans/' + type, { totalAmount: amount });
   }
 
   /**
@@ -171,14 +171,14 @@ export class HttpService {
  * 获取手续费
  */
   commission() {
-    return this.POST(this.host + 'commission', {});
+    return this.POST(this.host + 'tntg/commission', {});
   }
 
   /**
    * 获取收款人信息
    */
   getPayCardInfo() {
-    return this.POST(this.host + 'payCardInfo', {});
+    return this.POST(this.host + 'tntg/payCardInfo', {});
   }
 
   /**
@@ -192,28 +192,28 @@ export class HttpService {
    * 登录接口
    */
   login(data) {
-    return this.http.post(this.host + 'login', data);
+    return this.http.post(this.host + 'tntg/login', data);
   }
 
   /**
    * 模糊查询股票
    */
   searchStock(code) {
-    return this.POST(this.host + 'stock?input=' + code, {});
+    return this.POST(this.host + 'tntg/stock?input=' + code, {});
   }
 
   /**
    * 提现
    */
   withdraw(data) {
-    return this.POST(this.host + 'lift', data);
+    return this.POST(this.host + 'tntg/lift', data);
   }
 
   /**
    * 下单 参数 买入：BUY 卖出：SELL
    */
   order(type, data, stockType) {
-    return this.POST(this.host + 'appoint/' + type + '/' + stockType, data);
+    return this.POST(this.host + 'tntg/appoint/' + type + '/' + stockType, data);
   }
 
   /**
@@ -227,28 +227,28 @@ export class HttpService {
    * 查询持仓
    */
   getHold() {
-    return this.POST(this.host + 'hold', {});
+    return this.POST(this.host + 'tntg/hold', {});
   }
 
   /**
    * 查询委托
    */
   getAppoint(time) {
-    return this.POST(this.host + 'appointHis?' + time, {});
+    return this.POST(this.host + 'tntg/appointHis?' + time, {});
   }
 
   /**
    * 个人中心
    */
   userCenter() {
-    return this.POST(this.host + 'capital', {});
+    return this.POST(this.host + 'tntg/capital', {});
   }
 
   /**
    * 确认撤单
    */
   chedan(code) {
-    return this.POST(this.host + 'cancel/' + code, {});
+    return this.POST(this.host + 'tntg/cancel/' + code, {});
   }
 
   /**
