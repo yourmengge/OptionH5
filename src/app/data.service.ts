@@ -122,7 +122,7 @@ export class DataService {
   opUserCode: string;
 
   constructor(public router: Router) {
-    this.token = this.getSession('token');
+    this.token = this.getToken();
     if (this.getSession('userInfo') !== null) {
       this.opUserCode = this.getSession('opUserCode');
       const response = this.getSession('userInfo');
@@ -351,14 +351,6 @@ export class DataService {
     return sessionStorage.removeItem(name);
   }
 
-  getLocalStorage(name) {
-    return localStorage.getItem(name);
-  }
-
-  setLocalStorage(name, data) {
-    return localStorage.setItem(name, data);
-  }
-
   /**
    * 请求出错提示
    */
@@ -383,8 +375,25 @@ export class DataService {
     this.alert = true;
     setTimeout(() => {
       this.alert = false;
-    }, 2000);
+    }, 3000);
     this.errMsg = desc;
+  }
+
+  /**
+   * 本地缓存
+   * @param name // 缓存名
+   * @param value // 缓存值
+   */
+  setLocalStorage(name, value) {
+    localStorage.setItem(name, value);
+  }
+
+  /**
+   * 获取本地缓存
+   * @param name // 缓存名
+   */
+  getLocalStorage(name) {
+    return localStorage.getItem(name);
   }
 
   /**
@@ -418,14 +427,14 @@ export class DataService {
 
   getHeader() {
     if (this.isNull(this.token)) {
-      if (this.isNull(this.getSession('token'))) {
+      if (this.isNull(this.getToken())) {
         this.clearInterval();
         this.ErrorMsg('请登录');
         this.goto('main/login');
         return;
       } else {
-        this.token = this.getSession('token');
-        return { headers: new HttpHeaders({ 'Authorization': this.getSession('token') }) };
+        this.token = this.getToken();
+        return { headers: new HttpHeaders({ 'Authorization': this.getToken() }) };
       }
 
     } else {
@@ -443,15 +452,15 @@ export class DataService {
 
   getPayHeader() {
     if (this.isNull(this.token)) {
-      if (this.isNull(this.getSession('token'))) {
+      if (this.isNull(this.getToken())) {
         this.clearInterval();
         this.ErrorMsg('请登录');
         this.goto('main/login');
         return;
       } else {
-        this.token = this.getSession('token');
+        this.token = this.getToken();
         // tslint:disable-next-line:max-line-length
-        return new HttpHeaders({ 'Authorization': this.getSession('token'), 'Content-Type': 'text/html' });
+        return new HttpHeaders({ 'Authorization': this.getToken(), 'Content-Type': 'text/html' });
       }
 
     } else {
@@ -461,7 +470,7 @@ export class DataService {
 
   getToken() {
     if (this.isNull(this.token)) {
-      return this.getSession('token');
+      return this.getLocalStorage('token');
     } else {
       return this.token;
     }

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.data.setSession('token', '');
+    this.data.setLocalStorage('token', '');
     this.data.clearInterval();
     if (window.location.host.indexOf('eastnsd') > 0) { // 东方期权
       this.logo = 'dfqq';
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
         this.data.opUserCode = this.phone;
         this.data.isConnect = false;
         this.data.token = res['resultInfo'];
-        this.data.setSession('token', this.data.token);
+        this.data.setLocalStorage('token', this.data.token);
         // this.header = {
         //   'Authorization': res['itg']['token']
         // };
