@@ -6,10 +6,11 @@ import { DataService } from './data.service';
 @Injectable()
 export class HttpService {
   stompClient: any;
-  public host = 'http://localhost:8080/option/';
-  // public host = 'http://218.85.23.217:8082/option/';
+  // public host = 'http://localhost:8080/option/';
+  public host = 'http://218.85.23.217:8082/option/';
+  public wshost = 'http://218.85.23.217:8082/option/';
   // public host = 'http://101.132.65.124:10008/option/';
-  public ws = this.host + 'webSocket';
+  public ws = this.wshost + 'webSocket';
   public stockHQ: any;
 
   constructor(public http: HttpClient, public data: DataService) {
@@ -31,7 +32,7 @@ export class HttpService {
    * 资金流水
    */
   getFlow(data) {
-    return this.POST(this.host + 'tn/payOrder/list', data);
+    return this.POST(this.host + 'tntg/payOrder/list', data);
   }
 
   /**

@@ -36,7 +36,7 @@ export class CapitalFlowComponent implements OnInit {
 
   getlist() {
     const data = {
-      accountCode: this.data.getSession('opUserCode'),
+      accountCode: this.data.getOpUserCode(),
       createTimeStart: this.startDate,
       createTimeEnd: this.endDate
     };

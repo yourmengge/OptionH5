@@ -16,6 +16,8 @@ export class LoginComponent implements OnInit {
     'Authorization': ''
   };
   constructor(public data: DataService, public http: HttpService) {
+    this.password = '';
+    this.phone = '';
   }
 
   ngOnInit() {
@@ -25,6 +27,8 @@ export class LoginComponent implements OnInit {
       this.logo = 'dfqq';
     } else if (window.location.host.indexOf('fjsrgs') > 0) {
       this.logo = 'zgb';
+    } else if (window.location.host.indexOf('anandakeji') > 0) {
+      this.logo = 'qy';
     } else {
       this.logo = 'login';
     }
