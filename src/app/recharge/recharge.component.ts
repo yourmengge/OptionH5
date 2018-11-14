@@ -49,8 +49,8 @@ export class RechargeComponent implements OnInit {
 
 
   pay() {
-    if (this.payType === 1) { // 支付宝支付
-      if (this.data.Decimal(this.money) <= 2 && this.money > 0) {
+    if (this.data.Decimal(this.money) <= 2 && this.money > 0 && this.money !== null) {
+      if (this.payType === 1) { // 支付宝支付
         if (this.isWeiChat) {
           _AP.pay(this.http.host + `/alipay/sign?totalAmount=${this.money}&token=${this.data.getToken()}`);
         } else {// 普通浏览器
@@ -62,14 +62,13 @@ export class RechargeComponent implements OnInit {
             document.forms[0].submit();
           });
         }
-
-      } else {
-        this.data.ErrorMsg('充值金额必须大于0，最多两位小数');
+      } else { // 银行卡支付
+        this.data.setSession('payType', this.payType);
+        this.data.setSession('amount', this.money);
+        this.data.goto('bankcard');
       }
-    } else { // 银行卡支付
-      this.data.setSession('payType', this.payType);
-      this.data.setSession('amount', this.money);
-      this.data.goto('bankcard');
+    } else {
+      this.data.ErrorMsg('充值金额必须大于0，最多两位小数');
     }
   }
 
