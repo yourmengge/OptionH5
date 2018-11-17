@@ -37,6 +37,7 @@ import { QuotalistComponent } from './quotalist/quotalist.component';
 import { SignupComponent } from './signup/signup.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { CapitalFlowComponent } from './capital-flow/capital-flow.component';
+import { QrcodeComponent } from './qrcode/qrcode.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -61,6 +62,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'qrcode/:id', component: QrcodeComponent },
   { path: 'capitalflow', component: CapitalFlowComponent },
   { path: 'quatolist/:id', component: QuotalistComponent },
   { path: 'bankcard', component: BankcardComponent },
@@ -105,7 +107,8 @@ const appRoutes: Routes = [
     QuotalistComponent,
     SignupComponent,
     NewsDetailComponent,
-    CapitalFlowComponent
+    CapitalFlowComponent,
+    QrcodeComponent
   ],
   imports: [
     BrowserAnimationsModule,

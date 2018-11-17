@@ -16,8 +16,18 @@ export class LoginComponent implements OnInit {
     'Authorization': ''
   };
   constructor(public data: DataService, public http: HttpService) {
-    this.password = '';
-    this.phone = '';
+    if (!this.data.isNull(this.data.getLocalStorage('userPhone'))) {
+      this.phone = this.data.getLocalStorage('userPhone');
+    } else {
+      this.phone = '';
+    }
+    if (!this.data.isNull(this.data.getLocalStorage('password'))) {
+      this.password = this.data.getLocalStorage('password');
+    } else {
+      this.password = '';
+    }
+
+
   }
 
   ngOnInit() {
@@ -29,6 +39,8 @@ export class LoginComponent implements OnInit {
       this.logo = 'zgb';
     } else if (window.location.host.indexOf('anandakeji') > 0) {
       this.logo = 'qy';
+    } else if (window.location.host.indexOf('ly50etf') > 0) {
+      this.logo = 'zhishu';
     } else {
       this.logo = 'login';
     }
@@ -48,6 +60,8 @@ export class LoginComponent implements OnInit {
       this.http.login(body).subscribe((res) => {
         console.log(res);
         this.data.setSession('opUserCode', this.phone);
+        this.data.setLocalStorage('userPhone', this.phone);
+        this.data.setLocalStorage('password', this.password);
         this.data.opUserCode = this.phone;
         this.data.isConnect = false;
         this.data.token = res['resultInfo'];

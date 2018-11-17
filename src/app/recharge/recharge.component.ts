@@ -13,6 +13,7 @@ export class RechargeComponent implements OnInit {
   inputMoney: any;
   payType: any;
   isWeiChat = true;
+  showWechatPay = false;
   constructor(public http: HttpService, public data: DataService) {
     this.money = '100';
     this.inputMoney = '';
@@ -22,6 +23,11 @@ export class RechargeComponent implements OnInit {
   ngOnInit() {
     this.isWeiXin();
     console.log(this.data.getToken());
+    if (window.location.host.indexOf('anandakeji') > 0 || window.location.host.indexOf('hankun') > 0) {
+      this.showWechatPay = true;
+    } else {
+      this.showWechatPay = false;
+    }
   }
 
   back() {
@@ -62,10 +68,31 @@ export class RechargeComponent implements OnInit {
             document.forms[0].submit();
           });
         }
-      } else { // 银行卡支付
+      } else if (this.payType === 2 || this.payType === 3) { // 银行卡支付
         this.data.setSession('payType', this.payType);
         this.data.setSession('amount', this.money);
         this.data.goto('bankcard');
+      } else if (this.payType === 4) {
+        const data = {
+          amount: this.money,
+          channel: '华阳信通'
+        };
+        this.data.loading = true;
+        this.http.thirdPay(data).subscribe(res => {
+          this.data.loading = false;
+          this.data.gotoId('qrcode', res);
+        });
+      } else if (this.payType === 5) {
+        const data = {
+          amount: this.money,
+          channel: '银联'
+        };
+        this.http.thirdPay(data).subscribe(res => {
+          const div = document.createElement('div');
+          div.innerHTML = res;
+          document.body.appendChild(div);
+          document.forms[0].submit();
+        });
       }
     } else {
       this.data.ErrorMsg('充值金额必须大于0，最多两位小数');

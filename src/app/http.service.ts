@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as SockJS from 'sockjs-client';
 import { DataService } from './data.service';
 
 @Injectable()
 export class HttpService {
   stompClient: any;
-  // public host = 'http://localhost:8080/option/';
-  public host = 'http://218.85.23.217:8082/option/';
-  public wshost = 'http://218.85.23.217:8082/option/';
+  public host = '';
   // public host = 'http://101.132.65.124:10008/option/';
-  public ws = this.wshost + 'webSocket';
+  public ws = '';
   public stockHQ: any;
 
   constructor(public http: HttpClient, public data: DataService) {
+    console.log(location.protocol);
+    this.host = location.protocol + '//218.85.23.217:8082/option/';
+    // this.host = location.protocol + '//101.132.65.124:10008/option/';
+    this.ws = this.host + 'webSocket';
   }
 
   POST(url, data) {
@@ -121,6 +122,14 @@ export class HttpService {
   aliPay(moeny) {
     return this.http.post(this.host + `alipay/sign?totalAmount=${moeny}`, {},
       { headers: this.data.getPayHeader(), responseType: 'text' });
+  }
+
+  /**
+   * 第三方支付
+   */
+  thirdPay(data) {
+    return this.http.post(this.host + 'thirdpay/request', data,
+      { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
   }
 
   /**

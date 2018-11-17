@@ -26,6 +26,7 @@
               "src/styles.css"
             ],
             "scripts": [
+              "./src/assets/js/qrcode.js",
               "./src/assets/js/stock.js",
               "./src/assets/js/ap.js"
             ]
