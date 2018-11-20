@@ -33,7 +33,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
       this.data.setSession('backscale', res['ableScale']);
       this.data.intervalCapital = setTimeout(() => {
         this.usercenter();
-      }, 3000);
+      }, 60000);
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
