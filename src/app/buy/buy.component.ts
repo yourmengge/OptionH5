@@ -175,8 +175,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.data.ErrorMsg(this.text + '数量必须小于可' + this.text2 + '股数');
         } else if (this.appointCnt <= 0) {
             this.data.ErrorMsg(this.text + '数量必须大于0');
-        } else if (this.appointCnt > 30) {
-            this.data.ErrorMsg(this.text + '数量不能大于30张');
+        } else if (this.appointCnt > 29) {
+            this.data.ErrorMsg(this.text + '数量不能大于29张');
         } else {
             this.submitAlert = this.data.show;
 
@@ -314,8 +314,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
                     this.fullcount = res['resultInfo']['maxBuyCnt'];
                 } else {
                     this.fullcount = res['resultInfo']['maxSellCnt'];
-                    if (this.fullcount > 30) {
-                        this.appointCnt = 30;
+                    if (this.fullcount > 29) {
+                        this.appointCnt = 29;
                     } else {
                         this.appointCnt = this.fullcount;
                     }

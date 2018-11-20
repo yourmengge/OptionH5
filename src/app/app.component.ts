@@ -56,8 +56,19 @@ export class AppComponent implements DoCheck, OnInit {
         that.data.stockHQ = JSON.parse(res.body);
       });
     }, function (err) {
-      console.log('err', err);
+      console.log('断开连接');
     });
+    socket.onclose = function () {
+      console.log('断开了');
+      that.connect();
+      if (that.data.getUrl(1) === 'chart' || that.data.getUrl(3) === 'buy' || that.data.getUrl(3) === 'sell') {
+        if (!that.data.isNull(that.data.searchStockCode)) {
+          that.http.getGPHQ(that.data.searchStockCode, that.data.getToken()).subscribe(res => {
+
+          });
+        }
+      }
+    };
   }
 
   needConnect() {

@@ -9,9 +9,15 @@ import { HttpService } from '../http.service';
 })
 export class CclbComponent implements OnInit {
   list: any;
+  isJiaoyi: any;
   constructor(public data: DataService, public http: HttpService) { }
 
   ngOnInit() {
+    if (this.data.getUrl(2) === 'chicang') {
+      this.isJiaoyi = false;
+    } else {
+      this.isJiaoyi = true;
+    }
     this.cxtgcc();
   }
 
@@ -35,6 +41,9 @@ export class CclbComponent implements OnInit {
   select(a) {
     this.data.searchStockCode = a.stockCode;
     this.data.sellCnt = a.stockCntAble;
+    if (!this.isJiaoyi) {
+      this.data.goto('main/jiaoyi/sell');
+    }
   }
 
 }

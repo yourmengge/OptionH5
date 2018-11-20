@@ -113,7 +113,7 @@ export class DataService {
   userInfo = {
     allottedScale: 0, // 初期规模
     ableScale: 0,  // 可用资金
-    accountName: 'mario', // 中文名
+    accountName: 'null', // 中文名
     lockScale: 0, // 冻结资金
     stockScale: 0, // 股票市值
     totalScale: 0// 总资产
@@ -123,8 +123,9 @@ export class DataService {
 
   constructor(public router: Router) {
     this.token = this.getToken();
+    this.opUserCode = this.getSession('opUserCode');
     if (this.getSession('userInfo') !== null) {
-      this.opUserCode = this.getSession('opUserCode');
+
       const response = this.getSession('userInfo');
       this.token = '';
     }

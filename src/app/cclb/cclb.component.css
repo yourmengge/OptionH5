@@ -10,13 +10,15 @@
 }
 
 .cclb table tr, .cclb table tr td {
-    height: 36px;
-    /* border-bottom: solid 1px rgb(231, 231, 231); */
+    height: 40px;
+    border-bottom: solid 1px rgb(238, 238, 238);
 }
 
 .cclb table tr:first-child {
-    background: #ececec;
+    background: #ececec !important;
 }
+
+
 
 .green {
     color: green;

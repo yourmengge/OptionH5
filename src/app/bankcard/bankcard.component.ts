@@ -47,7 +47,7 @@ export class BankcardComponent implements OnInit {
     this.http.submitBankTrans(this.amount, this.payType === '2' ? 'BANK' : 'ALIPAY').subscribe(res => {
       this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
       setTimeout(() => {
-        this.back();
+        window.history.go(-2);
       }, 1000);
     }, (err) => {
       this.data.error = err.error;
