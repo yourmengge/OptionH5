@@ -1,6 +1,7 @@
 <div class="search-head">
   <p class="search-title">委托时间</p>
-  <p class="search-title" style="text-align: center;margin-bottom: 0;padding-bottom: 20px;">{{dateTime}}</p>
+  <p class="search-title" style="text-align: center;margin-bottom: 0;padding-bottom: 20px;">{{date}}</p>
+  <input type="date" class="date" [(ngModel)]="date" (change)='change()'>
   <!-- <div class="search-content">
 		<div (click)='change(-1)'>
 			<img class="right" src="./assets/images/left.png" alt="">

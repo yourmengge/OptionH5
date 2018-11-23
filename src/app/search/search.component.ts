@@ -10,15 +10,12 @@ import { Response, RequestOptions, Headers } from '@angular/http';
 })
 export class SearchComponent implements OnInit {
 
-  dateTime: string;
-  time: any;
+  date: string;
   drwt: DataService['drwt'];
-  selectTime: any;
   list: any;
 
   constructor(public data: DataService, public http: HttpService) {
-    this.time = new Date().getTime();
-    this.dateTime = this.data.getTime('yyyy-MM-dd', this.time);
+    this.date = this.data.getTime('yyyy-MM-dd', new Date());
     // this.selectTime = new Date();
   }
 
@@ -30,7 +27,7 @@ export class SearchComponent implements OnInit {
   }
 
   getOrder() {
-    this.http.getAppoint('date=' + this.data.getTime('yyyyMMss', this.time)).subscribe((res) => {
+    this.http.getAppoint('date=' + this.data.getTime('yyyyMMss', this.date)).subscribe((res) => {
       this.list = res;
       // tslint:disable-next-line:forin
       // for (const i in this.list) {
@@ -44,32 +41,10 @@ export class SearchComponent implements OnInit {
     });
   }
 
-  change(type) {
-    if (type === -1) {
-      this.time = this.time - 86400000;
-    } else {
-      this.time = this.time + 86400000;
-    }
-    this.dateTime = this.data.getTime('yyyy-MM-dd', this.time);
-    this.getOrder();
-  }
-
-  select() {
-    console.log(this.selectTime);
-    if (this.selectTime !== '') {
-      this.dateTime = this.selectTime;
-      this.time = new Date(this.selectTime).getTime();
+  change() {
+    if (!this.data.isNull(this.date)) {
       this.getOrder();
     }
-
   }
-
-  // toTime(time) {
-  //   if (time.length === 6) {
-  //     return time.substr(0, 2) + ':' + time.substr(2, 2) + ':' + time.substr(4, 2);
-  //   } else {
-  //     return time.substr(8, 2) + ':' + time.substr(10, 2) + ':' + time.substr(12, 2);
-  //   }
-  // }
 
 }
