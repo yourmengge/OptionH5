@@ -15,7 +15,7 @@
         [(ngModel)]="inputMoney">
     </div>
   </div>
-  <div class="pay-way" (click)='selectPayType(1)'>
+  <div class="pay-way" (click)='selectPayType(1)' *ngIf="showAliPay">
     <img src="./assets/images/ali.png" alt="">
     <span>支付宝支付</span>
     <div class="radio {{payType == 1?'':'radio-none'}}"></div>

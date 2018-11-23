@@ -14,6 +14,7 @@ export class RechargeComponent implements OnInit {
   payType: any;
   isWeiChat = true;
   showWechatPay = false;
+  showAliPay = false;
   constructor(public http: HttpService, public data: DataService) {
     this.money = '100';
     this.inputMoney = '';
@@ -23,10 +24,18 @@ export class RechargeComponent implements OnInit {
   ngOnInit() {
     this.isWeiXin();
     console.log(this.data.getToken());
-    if (window.location.host.indexOf('anandakeji') > 0 || window.location.host.indexOf('hankun') > 0) {
+    if (location.host.indexOf('anandakeji') > 0 || location.host.indexOf('hankun') > 0 || location.host.indexOf('eastnsd') > 0) {
       this.showWechatPay = true;
     } else {
       this.showWechatPay = false;
+    }
+
+    if (location.host.indexOf('ly50etf') > 0 || location.host.indexOf('hankun') > 0) {
+      this.showAliPay = true;
+      this.payType = 1;
+    } else {
+      this.showAliPay = false;
+      this.payType = 2;
     }
   }
 
