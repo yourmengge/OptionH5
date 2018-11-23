@@ -120,7 +120,7 @@ export class DataService {
   };
 
   opUserCode: string;
-
+  logo = '';
   constructor(public router: Router) {
     this.token = this.getToken();
     this.opUserCode = this.getSession('opUserCode');
@@ -128,6 +128,21 @@ export class DataService {
 
       const response = this.getSession('userInfo');
       this.token = '';
+    }
+    this.initLogo();
+  }
+
+  initLogo() {
+    if (window.location.host.indexOf('eastnsd') > 0) { // 东方期权
+      this.logo = 'dfqq';
+    } else if (window.location.host.indexOf('fjsrgs') > 0) {
+      this.logo = 'zgb';
+    } else if (window.location.host.indexOf('anandakeji') > 0) {
+      this.logo = 'qy';
+    } else if (window.location.host.indexOf('ly50etf') > 0) {
+      this.logo = 'zhishu';
+    } else {
+      this.logo = 'login';
     }
   }
 

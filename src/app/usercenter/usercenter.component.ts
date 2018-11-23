@@ -10,6 +10,7 @@ import { HttpService } from '../http.service';
 export class UsercenterComponent implements OnInit, OnDestroy {
   public menuList: any;
   public userInfo: DataService['userInfo'];
+  public logo = 'hk';
   constructor(public data: DataService, public http: HttpService) {
     this.menuList = this.data.getCenterMenuList();
   }
@@ -17,6 +18,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
     this.data.clearInterval();
   }
   ngOnInit() {
+    this.logo = this.data.logo;
     this.data.clearInterval();
     this.userInfo = this.data.userInfo;
     this.usercenter();
