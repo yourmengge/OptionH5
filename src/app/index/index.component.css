@@ -28,11 +28,15 @@
   flex: 1;
   text-align: center;
   padding-top: 10px;
-  font-size: .9rem;
+  font-size: .8rem;
 }
 
 .tabs .tabs-div2 p {
   margin: 6px 0;
+}
+
+.tabs .tabs-div2 p:last-child {
+  font-size: 0.9rem;
 }
 
 .tabs .tabs-div .tab-icon {
@@ -76,20 +80,20 @@
   margin-left: 5px;
 }
 
-.zixun-title span{
-    line-height: 40px;
+.zixun-title span {
+  line-height: 40px;
 }
 
-.zixun-content{
-    padding: 5px 15px; 
-    border-bottom: solid 1px #e4e4e4;
+.zixun-content {
+  padding: 5px 15px;
+  border-bottom: solid 1px #e4e4e4;
 }
 
-.content-title{
-    font-size: .9rem;
+.content-title {
+  font-size: .9rem;
 }
 
-.content-info{
-    font-size: .8rem;
-    color: #868686;
+.content-info {
+  font-size: .8rem;
+  color: #868686;
 }
