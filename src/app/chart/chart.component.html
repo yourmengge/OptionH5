@@ -137,7 +137,7 @@
       </p>
     </div>
   </div>
-  <div class="bottom-btn">
+  <div class="bottom-btn" *ngIf="stockCode.length == 8">
     <button (click)='goto("buy")'>买入</button>
     <button (click)='goto("sell")'>卖出</button>
   </div>

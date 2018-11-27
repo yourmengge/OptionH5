@@ -1,20 +1,12 @@
-<div class="search-head">
+<!-- <div class="search-head">
   <p class="search-title">委托时间</p>
   <p class="search-title" style="text-align: center;margin-bottom: 0;padding-bottom: 20px;    height: 30px;">{{date}} <a class='select'></a> </p>
   <input type="date" class="date" [(ngModel)]="date" (change)='change()'>
-  <!-- <div class="search-content">
-		<div (click)='change(-1)'>
-			<img class="right" src="./assets/images/left.png" alt="">
-		</div>
-		<div>
-			<input class="selectTime" type="date" [(ngModel)]='selectTime' (change)='select()'>{{dateTime}}
-		</div>
-		<div (click)='change(1)'>
-			<img class="right" src="./assets/images/right.png" alt="">
-		</div>
-		
-	</div> -->
-
+</div> -->
+<div class="date-div">
+  <span>查询日期</span>
+  <input type="date" name="" id="" (change)='change()' [(ngModel)]="date">
+  <span class="date-span" >{{date}}</span>
 </div>
 <div class="cclb">
   <table cellspacing="0">

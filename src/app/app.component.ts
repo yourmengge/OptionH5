@@ -71,9 +71,6 @@ export class AppComponent implements DoCheck, OnInit {
     };
   }
 
-  needConnect() {
-  }
-
   ngDoCheck() {
     this.alert = this.data.alert;
     this.loading = this.data.loading;
