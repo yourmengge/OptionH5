@@ -8,7 +8,7 @@ declare var _AP: any;
   styleUrls: ['./recharge.component.css']
 })
 export class RechargeComponent implements OnInit {
-  list = [100, 200, 500, 800, 1000, 2000];
+  list = [1000, 3000, 5000, 7000, 9000, 10000];
   money: any;
   inputMoney: any;
   payType: any;
@@ -16,7 +16,7 @@ export class RechargeComponent implements OnInit {
   showWechatPay = false;
   showAliPay = false;
   constructor(public http: HttpService, public data: DataService) {
-    this.money = '100';
+    this.money = '1000';
     this.inputMoney = '';
     this.payType = 1;
   }

@@ -291,26 +291,6 @@ export class DataService {
   }
 
   /**
-   * 生成请求body
-   */
-  reqBody(data, apiCode, opUserCode) {
-    const req = {
-      itg: {
-        content: data,
-        infCode: apiCode,
-        msgTime: this.getTime('yyyyMMddhhmmss', new Date()),
-        msgType: 0,
-        opUserCode: opUserCode,
-        opUserType: 6,
-        reqNo: this.getTime('yyyyMMddhhmmss', new Date()),
-        reqSource: 'human_channel'
-      }
-    };
-    return req;
-
-  }
-
-  /**
    * 获取当前时间：毫秒
    */
   getTime(type, time) {
@@ -521,17 +501,16 @@ export class DataService {
   }
 
   /**
-   * 判断时间点是否在9：00到11：30，13：00到15：00之间
+   * 判断时间点是否在8：00到16：00之间
    */
   isPerfectTime() {
     const time = new Date();
-    if (time.getHours() >= 9 && (time.getHours() <= 11 && time.getMinutes() <= 30)) {
+    if (time.getHours() >= 8 && (time.getHours() <= 16)) {
       return true;
+    } else {
+      return false;
     }
-    if (time.getHours() >= 13 && time.getHours() <= 14) {
-      return true;
-    }
-    return false;
+
   }
 
   /**

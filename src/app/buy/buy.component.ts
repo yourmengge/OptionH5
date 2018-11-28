@@ -310,7 +310,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];
                 if (this.classType === 'BUY') {
-                    this.appointCnt = 1;
+                    this.appointCnt = 10;
                     this.fullcount = res['resultInfo']['maxBuyCnt'];
                 } else {
                     this.fullcount = res['resultInfo']['maxSellCnt'];

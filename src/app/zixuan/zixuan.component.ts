@@ -77,7 +77,9 @@ export class ZixuanComponent implements OnInit, OnDestroy {
       this.quoteDetail = res['quoteDetail'];
       this.q50eft = res['quote50ETF'];
       this.data.timeoutQoute = setTimeout(() => {
-        this.getlist();
+        if (this.data.isPerfectTime()) { // 在8：00~16：00之间刷新
+          this.getlist();
+        }
       }, 1000);
     }, (err) => {
       this.data.error = err.error;
