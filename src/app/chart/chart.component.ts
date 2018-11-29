@@ -120,6 +120,14 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
 
   }
 
+  color(string) {
+    if (!this.data.isNull(string)) {
+      if (string.indexOf('-') >= 0) {
+        return 'green';
+      }
+    }
+  }
+
   goto(url) {
     this.data.searchStockCode = this.stockCode;
     this.data.goto(`main/jiaoyi/${url}`);

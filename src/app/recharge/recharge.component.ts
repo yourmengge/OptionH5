@@ -8,7 +8,7 @@ declare var _AP: any;
   styleUrls: ['./recharge.component.css']
 })
 export class RechargeComponent implements OnInit {
-  list = [1000, 3000, 5000, 7000, 9000, 10000];
+  list = [1000, 3000, 5000, 8000, 10000, 20000];
   money: any;
   inputMoney: any;
   payType: any;
