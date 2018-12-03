@@ -80,14 +80,15 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
+    this.password = this.password.trim();
     if (this.userName.length === 0 && this.type === 'signup') {
       this.data.ErrorMsg('请输入昵称');
     } else if (this.phone.length !== 11) {
       this.data.ErrorMsg('请输入正确的手机号码');
     } else if (this.code.length === 0) {
       this.data.ErrorMsg('请输入正确的验证码');
-    } else if (this.password.length < 6 || this.password.length > 12) {
-      this.data.ErrorMsg('密码长度必须大于6位不能超过12位');
+    } else if (this.password.length < 6 || this.password.length > 12 || !this.data.passwordRE.test(this.password)) {
+      this.data.ErrorMsg('密码长度必须为6到12位的数字或字母');
     } else if (this.inviteCode.length === 0 && this.needInvitedCode() && this.type === 'signup') {
       this.data.ErrorMsg('请输入邀请码');
     } else {

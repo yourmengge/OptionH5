@@ -42,6 +42,8 @@ export class LoginComponent implements OnInit {
     } else if (this.password === '') {
       this.data.ErrorMsg('请输入登录密码');
     } else {
+      this.phone = this.phone.trim();
+      this.password = this.password.trim();
       const body = {
         'username': this.phone,
         'password': Md5.hashStr(this.password)

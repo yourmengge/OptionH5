@@ -32,7 +32,7 @@ export class BankcardComponent implements OnInit {
     const date = this.data.getTime('yyyy-MM-ddhh:mm:ss', new Date());
     this.http.getPayCardInfo().subscribe(res => {
       this.cardInfro = Object.assign(this.cardInfro, res);
-      this.remark = `用户：${this.data.getSession('opUserCode')} 姓名：${this.userName} 在 ${date} 充值 ${this.amount} 元`;
+      this.remark = `用户：${this.data.getSession('accountCode')} 姓名：${this.userName} 在 ${date} 充值 ${this.amount} 元`;
     }, err => {
       this.data.error = err.error;
       this.data.isError();

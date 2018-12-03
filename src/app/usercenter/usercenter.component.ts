@@ -31,6 +31,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   usercenter() {
     this.http.userCenter().subscribe((res: DataService['userInfo']) => {
       this.userInfo = res;
+      this.data.setSession('accountCode', res['accountCode']);
       this.data.setSession('userName', res['accountName']);
       this.data.setSession('backscale', res['ableScale']);
       this.data.intervalCapital = setTimeout(() => {
@@ -65,7 +66,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   }
 
   goto2(url) {
-    if (url === 'withdraw') {
+    if (url === 'withdraw' || url === 'recharge') {
       this.http.getCard().subscribe(res => {
         if (this.data.isNull(res)) {
           this.data.ErrorMsg('请先绑定银行卡');

@@ -28,6 +28,8 @@ export class DataService {
     value: 0,
     text: '== 请选择 =='
   }];
+
+  passwordRE = /^[A-Za-z0-9]+$/;
   /**
    * 股票行情
    */
