@@ -12,11 +12,24 @@ export class IndexComponent implements OnInit, OnDestroy {
   list: any;
   timeout: any;
   newslist: any;
+  img = [];
   constructor(public data: DataService, public http: HttpService) {
 
   }
 
   ngOnInit() {
+    if (this.data.logo === 'dfqq') {
+      this.img = [
+        './assets/images/banner4.jpg',
+        './assets/images/banner5.jpg'
+      ];
+    } else {
+      this.img = [
+        './assets/images/banner.jpg',
+        './assets/images/banner2.jpg',
+        './assets/images/banner3.jpg'
+      ];
+    }
     const mySwiper = new Swiper('.swiper-container', {
       autoplay: true,
       pagination: {
