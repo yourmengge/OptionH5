@@ -13,6 +13,7 @@ export class CardComponent implements OnInit {
   cityList: any;
   branchesList: any;
   id: any;
+  filledIn: boolean;
   cardInfo = {
     id: '',
     bankId: '',
@@ -93,11 +94,14 @@ export class CardComponent implements OnInit {
   getCard() {
     this.http.getCard().subscribe(res => {
       if (!this.data.isNull(res)) {
+        this.filledIn = true;
         this.cardInfo = Object.assign(this.cardInfo, res);
         this.id = this.cardInfo.id;
         this.getBranch();
         this.getProvinces();
         this.getCity();
+      } else {
+        this.filledIn = false;
       }
     }, err => {
       this.data.error = err.error;
