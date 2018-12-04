@@ -58,8 +58,8 @@ export class AppComponent implements DoCheck, OnInit {
     }, function (err) {
       console.log('断开连接');
     });
-    socket.onclose = function () {
-      console.log('断开了');
+    socket.onclose = function (even) {
+      console.log(even);
       that.connect();
       if (that.data.getUrl(1) === 'chart' || that.data.getUrl(3) === 'buy' || that.data.getUrl(3) === 'sell') {
         if (!that.data.isNull(that.data.searchStockCode)) {
