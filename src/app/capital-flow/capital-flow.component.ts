@@ -48,6 +48,22 @@ export class CapitalFlowComponent implements OnInit {
     });
   }
 
+  fontColor(type, num: number) {
+    if (type === 2 || (type === 3 && num < 0)) {
+      return 'blue';
+    } else {
+      return '';
+    }
+  }
+
+  borderColor(type, num: number) {
+    if (type === 2 || (type === 3 && num < 0)) {
+      return 'blueBorder';
+    } else {
+      return '';
+    }
+  }
+
   color(status) {
     if (status === 1) {
       return 'status green';

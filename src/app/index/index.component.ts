@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import Swiper from 'swiper';
+// import Swiper from 'swiper';
 import { DataService } from '../data.service';
 import { HttpService } from '../http.service';
-
+declare var Swiper: any;
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -12,30 +12,22 @@ export class IndexComponent implements OnInit, OnDestroy {
   list: any;
   timeout: any;
   newslist: any;
-  img = [];
+  logo = '';
   constructor(public data: DataService, public http: HttpService) {
 
   }
 
   ngOnInit() {
-    if (this.data.logo === 'dfqq') {
-      this.img = [
-        './assets/images/banner4.jpg',
-        './assets/images/banner5.jpg'
-      ];
-    } else {
-      this.img = [
-        './assets/images/banner.jpg',
-        './assets/images/banner2.jpg',
-        './assets/images/banner3.jpg'
-      ];
-    }
+    this.logo = this.data.logo;
     const mySwiper = new Swiper('.swiper-container', {
-      autoplay: true,
       pagination: {
         el: '.swiper-pagination',
       },
-      loop: true,
+      autoplay: {
+        delay: 3000,
+        stopOnLastSlide: false,
+        disableOnInteraction: false,
+      },
     });
     this.generalTrend();
     this.newsList();

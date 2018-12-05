@@ -161,7 +161,7 @@
       <span>订单金额：</span>
       <span>{{totalPrice(appointPrice,appointCnt)}}</span>
     </p>
-    <p>
+    <p *ngIf="text === '卖出'">
       <span>预估手续费：</span>
       <span>{{ygsxf * appointCnt}}</span>
     </p>
