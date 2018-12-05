@@ -134,6 +134,19 @@ export class DataService {
     this.initLogo();
   }
 
+  getBrowserInfo() {
+    const Sys = {
+      browser: '',
+      ver: 0
+    };
+    const ua = navigator.userAgent.toLowerCase();
+    const re = /(msie|firefox|chrome|opera|version).*?([\d.]+)/;
+    const m = ua.match(re);
+    Sys.browser = m[1].replace(/version/, 'safari');
+    Sys.ver = parseInt(m[2].split('.')[0], 0);
+    return Sys;
+  }
+
   initLogo() {
     if (window.location.host.indexOf('eastnsd') > 0) { // 东方期权
       this.logo = 'dfqq';

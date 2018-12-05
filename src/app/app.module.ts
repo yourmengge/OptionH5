@@ -38,6 +38,8 @@ import { SignupComponent } from './signup/signup.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { CapitalFlowComponent } from './capital-flow/capital-flow.component';
 import { QrcodeComponent } from './qrcode/qrcode.component';
+import { VersionComponent } from './page/version/version.component';
+import { NotfoundComponent } from './page/notfound/notfound.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -62,6 +64,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'version', component: VersionComponent },
   { path: 'qrcode/:id', component: QrcodeComponent },
   { path: 'capitalflow', component: CapitalFlowComponent },
   { path: 'quatolist/:id', component: QuotalistComponent },
@@ -74,7 +77,8 @@ const appRoutes: Routes = [
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'main', component: MainComponent, children: appChildRoutes },
   { path: 'newdetail/:id', component: NewsDetailComponent },
-  { path: '', redirectTo: 'main', pathMatch: 'full' }
+  { path: '', redirectTo: 'main', pathMatch: 'full' },
+  { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({
@@ -108,7 +112,9 @@ const appRoutes: Routes = [
     SignupComponent,
     NewsDetailComponent,
     CapitalFlowComponent,
-    QrcodeComponent
+    QrcodeComponent,
+    VersionComponent,
+    NotfoundComponent
   ],
   imports: [
     BrowserAnimationsModule,
