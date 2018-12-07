@@ -49,11 +49,12 @@ export class SignupComponent implements OnInit {
       // 获取验证码
       this.http.getCode(this.type === 'signup' ? 'REGISTER' : 'PWD_RESET', this.phone).subscribe(res => {
         this.data.ErrorMsg('验证码已发送请注意查收');
+        this.countDown();
       }, err => {
         this.data.error = err.error;
         this.data.isError();
       });
-      this.countDown();
+
     }
   }
 
