@@ -31,7 +31,7 @@ export class CapitalFlowComponent implements OnInit {
 
 
   back() {
-    window.history.back();
+    this.data.back();
   }
 
   getlist() {

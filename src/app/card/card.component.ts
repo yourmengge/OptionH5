@@ -47,7 +47,7 @@ export class CardComponent implements OnInit {
   }
 
   back() {
-    window.history.back();
+    this.data.back();
   }
 
   // 获取银行列表

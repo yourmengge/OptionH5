@@ -15,15 +15,22 @@ export class SearchComponent implements OnInit {
   list: any;
 
   constructor(public data: DataService, public http: HttpService) {
-    this.date = this.data.getTime('yyyy-MM-dd', new Date());
     // this.selectTime = new Date();
   }
 
   ngOnInit() {
+    this.date = this.data.getSessionOrParam('searchDate', this.data.getTime('yyyy-MM-dd', new Date()));
+    this.data.setSession('searchDate', this.date);
     this.getOrder();
     this.data.intervalAppoint = setInterval(() => {
       this.getOrder();
     }, 3000);
+  }
+
+  goto(data) {
+    this.data.nowUrl = '';
+    this.data.setSession('transactionDetail', JSON.stringify(data));
+    this.data.goto('detail');
   }
 
   getOrder() {
@@ -43,6 +50,7 @@ export class SearchComponent implements OnInit {
 
   change() {
     if (!this.data.isNull(this.date)) {
+      this.data.setSession('searchDate', this.date);
       this.getOrder();
     }
   }

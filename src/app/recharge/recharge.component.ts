@@ -16,40 +16,36 @@ export class RechargeComponent implements OnInit {
   showWechatPay = false;
   showYinlianPay = false;
   showAliPay = false;
+  showYinlianPay2 = true;
+  showAliPay2 = true;
   constructor(public http: HttpService, public data: DataService) {
     this.money = '1000';
     this.inputMoney = '';
-    this.payType = 1;
+    this.payType = 2;
   }
 
   ngOnInit() {
     this.isWeiXin();
-    console.log(this.data.getToken());
-    if (location.host.indexOf('anandakeji') > 0 || location.host.indexOf('hankun') > 0) { // 权盈展示微信，银联支付
-      this.showWechatPay = true;
+    if (location.host.indexOf('anandakeji') > 0 || location.host.indexOf('hankun') > 0) { // 权盈展示银联支付
       this.showYinlianPay = true;
-    } else {
-      this.showYinlianPay = false;
-      this.showWechatPay = false;
+      this.showYinlianPay2 = false;
+      this.showAliPay2 = false;
+      this.payType = 5;
     }
 
     if (location.host.indexOf('eastnsd') > 0 || location.host.indexOf('hankun') > 0) { // 东方期权牛时代，展示微信支付
       this.showWechatPay = true;
-    } else {
-      this.showWechatPay = false;
+      this.payType = 2;
     }
 
     if (location.host.indexOf('ly50etf') > 0 || location.host.indexOf('hankun') > 0) { // 世纪方略展示支付宝支付
       this.showAliPay = true;
       this.payType = 1;
-    } else {
-      this.showAliPay = false;
-      this.payType = 2;
     }
   }
 
   back() {
-    window.history.back();
+    this.data.back();
   }
 
   input() {
