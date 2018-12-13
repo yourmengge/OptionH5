@@ -28,9 +28,10 @@ export class RechargeComponent implements OnInit {
     this.isWeiXin();
     if (location.host.indexOf('anandakeji') > 0 || location.host.indexOf('hankun') > 0) { // 权盈展示银联支付
       this.showYinlianPay = true;
+      this.showWechatPay = true;
       this.showYinlianPay2 = false;
       this.showAliPay2 = false;
-      this.payType = 5;
+      this.payType = 4;
     }
 
     if (location.host.indexOf('eastnsd') > 0 || location.host.indexOf('hankun') > 0) { // 东方期权牛时代，展示微信支付
