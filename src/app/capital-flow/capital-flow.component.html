@@ -13,12 +13,14 @@
 <div class="flow-content">
   <div class="flow-list" *ngFor="let item of list">
     <div class="icon">
-      <span [class]="item.totalAmount>=0?'':'blueBorder'">{{item.orderTypeDesc}}</span>
+      <span [class]="borderColor(item.orderType,item.totalAmount)">{{item.orderTypeDesc}}</span>
     </div>
     <div>
       <p style="color:#b00e23;">
         <span [class]="item.totalAmount>=0?'':'blue'">
+
           {{item.totalAmount>0?'+':''}}{{item.totalAmount}}
+
         </span>
         <span class="status" [class]="color(item.auditResult)">{{item.auditResultDesc}}</span>
       </p>
