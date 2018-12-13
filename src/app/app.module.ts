@@ -41,6 +41,7 @@ import { QrcodeComponent } from './qrcode/qrcode.component';
 import { VersionComponent } from './page/version/version.component';
 import { NotfoundComponent } from './page/notfound/notfound.component';
 import { DetailComponent } from './detail/detail.component';
+import { HtmlpipePipe } from './htmlpipe.pipe';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -117,7 +118,8 @@ const appRoutes: Routes = [
     QrcodeComponent,
     VersionComponent,
     NotfoundComponent,
-    DetailComponent
+    DetailComponent,
+    HtmlpipePipe
   ],
   imports: [
     BrowserAnimationsModule,

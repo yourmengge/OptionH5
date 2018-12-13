@@ -13,6 +13,7 @@ export class NewsDetailComponent implements OnInit {
   title: string;
   date: string;
   html: any;
+  news = '';
   constructor(public activeRoute: ActivatedRoute, public data: DataService, public http: HttpService) {
     this.id = this.activeRoute.snapshot.params['id'];
   }
@@ -26,6 +27,7 @@ export class NewsDetailComponent implements OnInit {
       this.title = res['title'];
       this.date = res['createTime'];
       this.html = res['body'];
+      this.html = this.html.replace(/<img/g, '<img style="max-width: calc(100vw - 20px);"');
     }, err => {
       this.data.error = err.error;
       this.data.isError();

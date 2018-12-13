@@ -9,7 +9,13 @@
   <div class="date">
     日期：{{date}}
   </div>
-  <div [innerHtml]='html'>
+  <div [innerHtml]='html | htmlpipe' class="news">
 
   </div>
 </div>
+<style>
+  .img {
+    width: 100px !important;
+  }
+
+</style>

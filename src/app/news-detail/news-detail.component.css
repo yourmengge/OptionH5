@@ -2,6 +2,7 @@
     font-size: 1.2rem;
     text-align: center;
     margin: 20px 0;
+    padding: 0 10px;
 }
 
 .date{
@@ -13,4 +14,12 @@
 #content{
     height: calc(100vh - 50px);
     overflow-y: auto;
+}
+
+.news{
+    padding: 10px;
+    overflow-x: hidden;
+}
+.img{
+    width: 100px !important;
 }
