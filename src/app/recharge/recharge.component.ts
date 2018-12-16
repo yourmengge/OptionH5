@@ -26,7 +26,7 @@ export class RechargeComponent implements OnInit {
 
   ngOnInit() {
     this.isWeiXin();
-    if (location.host.indexOf('anandakeji') > 0 || location.host.indexOf('hankun') > 0) { // 权盈展示银联支付
+    if (location.host.indexOf('anandakeji') > 0) { // 权盈展示银联支付
       this.showYinlianPay = true;
       this.showYinlianPay2 = false;
       this.showWechatPay = true;
@@ -34,13 +34,22 @@ export class RechargeComponent implements OnInit {
       this.payType = 4;
     }
 
-    if (location.host.indexOf('eastnsd') > 0 || location.host.indexOf('hankun') > 0) { // 东方期权牛时代，展示微信支付
+    if (location.host.indexOf('eastnsd') > 0) { // 东方期权牛时代，展示微信支付
       this.showWechatPay = true;
       this.payType = 2;
     }
 
-    if (location.host.indexOf('ly50etf') > 0 || location.host.indexOf('hankun') > 0) { // 世纪方略展示支付宝支付
+    if (location.host.indexOf('ly50etf') > 0) { // 世纪方略展示支付宝支付
       this.showAliPay = true;
+      this.payType = 1;
+    }
+
+    if (location.host.indexOf('hankun') > 0) {
+      this.showWechatPay = true;
+      this.showYinlianPay = true;
+      this.showAliPay = true;
+      this.showYinlianPay2 = true;
+      this.showAliPay2 = true;
       this.payType = 1;
     }
   }
