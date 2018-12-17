@@ -28,6 +28,7 @@ export class RechargeComponent implements OnInit {
     this.isWeiXin();
     if (location.host.indexOf('anandakeji') > 0) { // 权盈展示银联支付
       this.showYinlianPay = true;
+      this.showWechatPay = true;
       this.showYinlianPay2 = false;
       this.showWechatPay = true;
       this.showAliPay2 = false;
