@@ -4,7 +4,7 @@
     <p class="title">{{type == 'signup'?'注册':'找回密码'}}</p>
     <div class="login-input " *ngIf="type == 'signup'">
       <div class="icon name"></div>
-      <input type="text" placeholder="昵称" maxlength="11" [(ngModel)]='userName'>
+      <input type="text" placeholder="昵称" maxlength="10" [(ngModel)]='userName'>
     </div>
     <div class="login-input">
       <div class="icon"></div>
