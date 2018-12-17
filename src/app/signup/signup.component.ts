@@ -81,7 +81,8 @@ export class SignupComponent implements OnInit {
   }
 
   submit() {
-    this.userName = this.userName.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, '');
+    // tslint:disable-next-line:max-line-length
+    this.userName = this.userName.replace(/([\uE000-\uF8FF]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|[\u2694-\u2697]|\uD83E[\uDD10-\uDD5D])/g, '');
     this.password = this.password.trim();
     if (this.userName.length === 0 && this.type === 'signup') {
       this.data.ErrorMsg('请输入昵称');
@@ -104,7 +105,7 @@ export class SignupComponent implements OnInit {
 
   signup() {
     const data = {
-      userName: this.userName.replace(/([\uE000-\uF8FF]|\uD83C[\uDF00-\uDFFF]|\uD83D[\uDC00-\uDDFF])/g, ''),
+      userName: this.userName,
       mobile: this.phone,
       password: Md5.hashStr(this.password),
       inviteCode: this.inviteCode,
