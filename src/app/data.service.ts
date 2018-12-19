@@ -387,7 +387,7 @@ export class DataService {
     this.alert = true;
     setTimeout(() => {
       this.alert = false;
-    }, 2000);
+    }, 5000);
     this.errMsg = this.error.resultInfo;
     if (this.error.resultCode === 'token.error') {
       this.removeSession('token');
@@ -403,7 +403,7 @@ export class DataService {
     this.alert = true;
     setTimeout(() => {
       this.alert = false;
-    }, 3000);
+    }, 5000);
     this.errMsg = desc;
   }
 

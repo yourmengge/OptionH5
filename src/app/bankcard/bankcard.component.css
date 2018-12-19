@@ -23,6 +23,7 @@
 .list-item-content{
     float: right;
     margin-right: 20px;
+    max-width: 200px;
 }
 
 .copy{
