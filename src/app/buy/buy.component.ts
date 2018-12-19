@@ -172,7 +172,11 @@ export class BuyComponent implements DoCheck, OnDestroy {
         } else if (parseInt(this.appointCnt, 0) !== this.appointCnt) {
             this.data.ErrorMsg(this.text + '数量必须是整数');
         } else if (this.appointCnt > this.fullcount) {
-            this.data.ErrorMsg(this.text + '数量必须小于可' + this.text2 + '股数');
+            if (this.classType === 'BUY') {
+                this.data.ErrorMsg('可用资金不足');
+            } else {
+                this.data.ErrorMsg(`${this.text}数量必须小于可${this.text2}数量`);
+            }
         } else if (this.appointCnt <= 0) {
             this.data.ErrorMsg(this.text + '数量必须大于0');
         } else if (this.appointCnt > 29) {
