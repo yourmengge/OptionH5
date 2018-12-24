@@ -5,7 +5,7 @@
         名称
       </td>
       <td>
-        参考盈亏
+        盈亏/手续费
       </td>
       <td>
         持仓/可用
@@ -19,8 +19,13 @@
         <p>{{a.stockCode}}</p>
         <p>{{a.stockName}}</p>
       </td>
-      <td class="{{a.profit < 0?'green':'red'}}">
-        {{a.profit}}
+      <td>
+        <p class="{{a.profit < 0?'green':'red'}}">
+          {{a.profit}}
+        </p>
+        <p>
+          {{a.commission}}
+        </p>
       </td>
       <td>
         <p>
@@ -32,10 +37,10 @@
       </td>
       <td>
         <p>
-          {{a.costPrice | round4}}
+          {{a.costPrice}}
         </p>
         <p>
-          {{a.lastPrice | round4}}
+          {{a.lastPrice}}
         </p>
       </td>
     </tr>

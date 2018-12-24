@@ -18,6 +18,7 @@ export class RechargeComponent implements OnInit {
   showAliPay = false;
   showYinlianPay2 = true;
   showAliPay2 = true;
+  showAliPay3 = false;
   constructor(public http: HttpService, public data: DataService) {
     this.money = '1000';
     this.inputMoney = '';
@@ -36,7 +37,7 @@ export class RechargeComponent implements OnInit {
     }
 
     if (location.host.indexOf('eastnsd') > 0) { // 东方期权牛时代，展示微信支付
-      this.showWechatPay = true;
+      // this.showWechatPay = true;
       this.payType = 2;
     }
 
@@ -45,12 +46,13 @@ export class RechargeComponent implements OnInit {
       this.payType = 1;
     }
 
-    if (location.host.indexOf('hankun') > 0) {
+    if (location.host.indexOf('hankun') > 0 || location.host.indexOf('localhost') >= 0) {
       this.showWechatPay = true;
       this.showYinlianPay = true;
       this.showAliPay = true;
       this.showYinlianPay2 = true;
       this.showAliPay2 = true;
+      this.showAliPay3 = true;
       this.payType = 1;
     }
   }
@@ -117,6 +119,18 @@ export class RechargeComponent implements OnInit {
           div.innerHTML = res;
           document.body.appendChild(div);
           document.forms[0].submit();
+        });
+      } else if (this.payType === 6) {
+        const data = {
+          amount: this.money,
+          channel: '支付宝'
+        };
+        this.data.loading = true;
+        this.http.thirdPayBCAT(data).subscribe(res => {
+          location.href = res.toString();
+        }, (err) => {
+          this.data.error = err.error;
+          this.data.isError();
         });
       }
     } else {

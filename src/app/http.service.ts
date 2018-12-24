@@ -132,6 +132,10 @@ export class HttpService {
       { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
   }
 
+  thirdPayBCAT(data) {
+    return this.POST(this.host + 'thirdpayBCAT/request', data);
+  }
+
   /**
    * 合约周期
    */
