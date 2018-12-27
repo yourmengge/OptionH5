@@ -390,6 +390,9 @@ export class DataService {
     setTimeout(() => {
       this.alert = false;
     }, 5000);
+    if (typeof (this.error) === 'string') {
+      this.error = JSON.parse(this.error);
+    }
     this.errMsg = this.error.resultInfo;
     if (this.error.resultCode === 'token.error') {
       this.removeSession('token');

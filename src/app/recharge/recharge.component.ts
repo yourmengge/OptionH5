@@ -13,48 +13,43 @@ export class RechargeComponent implements OnInit {
   inputMoney: any;
   payType: any;
   isWeiChat = true;
-  showWechatPay = false;
-  showYinlianPay = false;
-  showAliPay = false;
-  showYinlianPay2 = true;
-  showAliPay2 = true;
-  showAliPay3 = false;
+  // showWechatPay = false;
+  // showYinlianPay = false;
+  // showAliPay = false;
+  // showYinlianPay2 = false;
+  // showAliPay2 = false;
+  // showAliPay3 = false;
+  cardConfig = [false, false, false, false, false, false];
+  configName = ['alipay_online', 'bank', 'alipay', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat'];
+  config: any;
   constructor(public http: HttpService, public data: DataService) {
     this.money = '1000';
     this.inputMoney = '';
-    this.payType = 2;
+    this.payType = -1;
   }
 
   ngOnInit() {
     this.isWeiXin();
-    if (location.host.indexOf('anandakeji') > 0) { // 权盈展示银联支付
-      this.showYinlianPay = true;
-      this.showWechatPay = true;
-      this.showYinlianPay2 = false;
-      this.showWechatPay = true;
-      this.showAliPay2 = false;
-      this.payType = 4;
-    }
+    this.getCardConfig();
+  }
 
-    if (location.host.indexOf('eastnsd') > 0) { // 东方期权牛时代，展示微信支付
-      // this.showWechatPay = true;
-      this.payType = 2;
-    }
-
-    if (location.host.indexOf('ly50etf') > 0) { // 世纪方略展示支付宝支付
-      this.showAliPay = true;
-      this.payType = 1;
-    }
-
-    if (location.host.indexOf('hankun') > 0 || location.host.indexOf('localhost') >= 0) {
-      this.showWechatPay = true;
-      this.showYinlianPay = true;
-      this.showAliPay = true;
-      this.showYinlianPay2 = true;
-      this.showAliPay2 = true;
-      this.showAliPay3 = true;
-      this.payType = 1;
-    }
+  getCardConfig() {
+    this.http.getCardConfig().subscribe(res => {
+      this.config = res['resultInfo'].split(',');
+      this.configName.forEach((element, key) => {
+        if (this.config.indexOf(element) >= 0) {
+          if (this.payType === -1) {
+            this.payType = key + 1;
+          }
+          this.cardConfig[key] = true;
+        } else {
+          this.cardConfig[key] = false;
+        }
+      });
+    }, (err) => {
+      this.data.error = err.error;
+      this.data.isError();
+    });
   }
 
   back() {

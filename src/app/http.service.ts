@@ -12,8 +12,8 @@ export class HttpService {
 
   constructor(public http: HttpClient, public data: DataService) {
     console.log(location.protocol);
-    // this.host = location.protocol + '//218.85.23.217:8082/option/';
     this.host = 'https://biz.hankuntech.com/option/';
+    // this.host = 'https://opt.anandakeji.com/option/';
     this.ws = this.host + 'webSocket';
   }
 
@@ -125,6 +125,13 @@ export class HttpService {
   }
 
   /**
+   * 获取充值配置
+   */
+  getCardConfig() {
+    return this.POST(this.host + 'tntg/config/CTRL_PAY_CHANNEL', {});
+  }
+
+  /**
    * 第三方支付
    */
   thirdPay(data) {
@@ -133,7 +140,8 @@ export class HttpService {
   }
 
   thirdPayBCAT(data) {
-    return this.POST(this.host + 'thirdpayBCAT/request', data);
+    return this.http.post(this.host + 'thirdpayBCAT/request', data,
+      { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
   }
 
   /**
