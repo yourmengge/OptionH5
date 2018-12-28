@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, DoCheck } from '@angular/core';
 import { HttpService } from '../http.service';
 import { DataService } from '../data.service';
 declare var StockChart: any;
+declare var EmchartsMobileTime: any;
+declare var EmchartsMobileK: any;
 @Component({
   selector: 'app-chart',
   templateUrl: './chart.component.html',
@@ -23,6 +25,23 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     exercisePrice: '',
     preClosePrice: ''
   };
+  chartTypeList = [{
+    name: '分时',
+    type: 'T1'
+  }, {
+    name: '五日',
+    type: 'T5'
+  }, {
+    name: '日K',
+    type: 'DK'
+  }, {
+    name: '周K',
+    type: 'WK'
+  }, {
+    name: '月K',
+    type: 'MK'
+  }];
+  chartType = 'T1';
   constructor(public data: DataService, public http: HttpService) {
     this.stockCode = this.data.getSession('optionCode');
     this.isconnect = false;
@@ -41,6 +60,34 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     this.getStatic();
   }
 
+  changeType(type) {
+    window.clearTimeout(this.data.timeoutFenshi);
+    this.chartType = type;
+    if (this.chartType === 'T1' || this.chartType === 'T5') {
+      this.getFenshituList();
+    } else {
+      this.KLine();
+    }
+  }
+
+  KLine() {
+    const chart = new EmchartsMobileK({
+      container: 'chart',
+      type: this.chartType,
+      code: `${this.stockCode}_SO`,
+      width: document.body.clientWidth,
+      height: 200,
+      dpr: 2,
+      showVMark: true
+    });
+    // 调用绘图方法
+    chart.draw();
+
+    this.data.timeoutFenshi = setTimeout(() => {
+      chart.draw();
+    }, 30000);
+  }
+
   getStatic() {
     this.http.getStatic(this.stockCode).subscribe(res => {
       this.staticData = Object.assign(this.staticData, res);
@@ -52,21 +99,34 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   getFenshituList() {
-    this.http.fenshituList(this.stockCode).subscribe((res) => {
-      this.price = [];
-      this.volumes = [];
-      Object.keys(res).forEach(key => {
-        this.price.push(res[key].lastPrice);
-        this.volumes.push(res[key].incrVolume);
-      });
-      this.fenshitu();
-      this.data.timeoutFenshi = setTimeout(() => {
-        this.getFenshituList();
-      }, 30000);
-    }, (err) => {
-      this.data.error = err.error;
-      this.data.isError();
+    const chart = new EmchartsMobileTime({
+      container: 'chart',
+      code: `${this.stockCode}_SO`,
+      width: document.body.clientWidth,
+      height: 180,
+      dpr: 2
     });
+    // 调用绘图方法
+    chart.draw();
+
+    this.data.timeoutFenshi = setTimeout(() => {
+      chart.draw();
+    }, 30000);
+    // this.http.fenshituList(this.stockCode).subscribe((res) => {
+    //   this.price = [];
+    //   this.volumes = [];
+    //   Object.keys(res).forEach(key => {
+    //     this.price.push(res[key].lastPrice);
+    //     this.volumes.push(res[key].incrVolume);
+    //   });
+    //   this.fenshitu();
+    //   this.data.timeoutFenshi = setTimeout(() => {
+    //     this.getFenshituList();
+    //   }, 30000);
+    // }, (err) => {
+    //   this.data.error = err.error;
+    //   this.data.isError();
+    // });
   }
 
   fenshitu() {

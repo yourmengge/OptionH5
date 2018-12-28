@@ -65,13 +65,21 @@
 }
 
 .shifen {
-  border-bottom: solid 1px #eaeaea;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  color: #b00e23;
-  font-size: 1.2rem;
-  margin-top: 10px;
-  padding-top: 5px;
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.active{
+  color: #b00e23 !important;
+  border-bottom: solid 1px #b00e23;
+}
+
+.shifen span{
+  flex: 1;
 }
 
 .chart-content {

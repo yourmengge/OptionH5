@@ -71,8 +71,11 @@
     </div>
   </div>
   <div class="fenshi-div">
-    <p class="shifen">分时</p>
-    <canvas style="margin-left:10px;" id="trendLine"></canvas>
+    <p class="shifen">
+      <span *ngFor="let item of chartTypeList" [class]='item.type == chartType?"active":""' (click)='changeType(item.type)'>{{item.name}}</span>
+    </p>
+    <!-- <canvas style="margin-left:10px;" id="trendLine"></canvas> -->
+    <div id="chart"></div>
   </div>
 
   <div class="right-div">

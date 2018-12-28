@@ -29,7 +29,8 @@
               "./src/assets/js/qrcode.js",
               "./src/assets/js/stock.js",
               "./src/assets/js/ap.js",
-              "./src/assets/js/swiper.js"
+              "./src/assets/js/swiper.js",
+              "./src/assets/js/emcharts.js"
             ]
           },
           "configurations": {
