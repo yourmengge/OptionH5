@@ -84,7 +84,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     chart.draw();
 
     this.data.timeoutFenshi = setTimeout(() => {
-      chart.draw();
+      this.KLine();
     }, 30000);
   }
 
@@ -110,7 +110,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     chart.draw();
 
     this.data.timeoutFenshi = setTimeout(() => {
-      chart.draw();
+      this.getFenshituList();
     }, 30000);
     // this.http.fenshituList(this.stockCode).subscribe((res) => {
     //   this.price = [];

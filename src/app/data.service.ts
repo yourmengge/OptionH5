@@ -154,8 +154,6 @@ export class DataService {
   initLogo() {
     if (window.location.host.indexOf('eastnsd') > 0) { // 东方期权
       this.logo = 'dfqq';
-    } else if (window.location.host.indexOf('fjsrgs') > 0) {
-      this.logo = 'zgb';
     } else if (window.location.host.indexOf('anandakeji') > 0) { // 权盈
       this.logo = 'qy';
     } else if (window.location.host.indexOf('ly50etf') > 0) { // 世纪方略

@@ -41,6 +41,16 @@ input:read-only {
   overflow-y: auto;
 }
 
+.demonstration{
+  position: fixed;
+  top: 50px;
+  font-size: 30px;
+  color: #fff;
+  right: 40px;
+  background: #b00e23;
+  z-index: 100;
+}
+
 .chedang-div {
   background: #fff;
   text-align: center;
