@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class Round4Pipe implements PipeTransform {
 
   transform(value: any, args?: any): any {
-    if (value !== '--' && value !== '' && value !== '-' && value !== 0) {
+    if (value !== '--' && value !== '' && value !== '-' && value !== 0 && value !== undefined) {
       return (Math.round(parseFloat(value) * 10000) / 10000).toFixed(4);
     } else {
       return value;

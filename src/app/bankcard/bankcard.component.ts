@@ -28,6 +28,11 @@ export class BankcardComponent implements OnInit {
     this._clipboardService.copyFromContent(this.remark);
   }
 
+  copy1(text) {
+    this.data.ErrorMsg('已复制');
+    this._clipboardService.copyFromContent(text);
+  }
+
   getPayCardInfo() {
     const date = this.data.getTime('yyyy-MM-ddhh:mm:ss', new Date());
     this.http.getPayCardInfo().subscribe(res => {

@@ -74,7 +74,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     const chart = new EmchartsMobileK({
       container: 'chart',
       type: this.chartType,
-      code: `${this.stockCode}_SO`,
+      code: `${this.stockCode}${this.stockCode.length === 6 ? '1' : '_SO'}`,
       width: document.body.clientWidth,
       height: 200,
       dpr: 2,
@@ -101,10 +101,11 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
   getFenshituList() {
     const chart = new EmchartsMobileTime({
       container: 'chart',
-      code: `${this.stockCode}_SO`,
+      code: `${this.stockCode}${this.stockCode.length === 6 ? '1' : '_SO'}`,
       width: document.body.clientWidth,
       height: 180,
-      dpr: 2
+      dpr: 2,
+      type: this.chartType
     });
     // 调用绘图方法
     chart.draw();

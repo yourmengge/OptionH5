@@ -3,7 +3,7 @@
   <p class="navigation-title">充值信息确认</p>
 </div>
 <div class="cell-list">
-  <div class="list-item" *ngIf="payType==3">
+  <div class="list-item" *ngIf="payType==3" (click)='copy1(cardInfro.aliyPay)'>
     <span class="list-item-name">
       支付宝账号
     </span>
@@ -27,7 +27,7 @@
       {{cardInfro.bankName}}
     </span>
   </div>
-  <div class="list-item" *ngIf="payType==2">
+  <div class="list-item" *ngIf="payType==2" (click)='copy1(cardInfro.bankAccountName)'>
     <span class="list-item-name">
       收款人姓名
     </span>
@@ -35,7 +35,7 @@
       {{cardInfro.bankAccountName}}
     </span>
   </div>
-  <div class="list-item" *ngIf="payType==2">
+  <div class="list-item" *ngIf="payType==2" (click)='copy1(cardInfro.bankCardNo)'>
     <span class="list-item-name">
       收款账号
     </span>
