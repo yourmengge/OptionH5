@@ -19,7 +19,9 @@ export class ChedanComponent implements OnInit {
     appointPrice: '',
     appointTypeDesc: '',
     appointOrderCode: '',
-    dealCnt: ''
+    dealCnt: '',
+    productCode: '',
+    pkOrder: ''
   };
   clickTime: any;
   submitAlert: boolean;
@@ -51,13 +53,9 @@ export class ChedanComponent implements OnInit {
 
   chedan(orderdata) {
     this.submitAlert = this.data.show;
-    this.orderData.appointCnt = orderdata.appointCnt;
-    this.orderData.appointPrice = orderdata.appointPrice;
-    this.orderData.stockCode = orderdata.stockCode;
-    this.orderData.stockName = orderdata.stockName;
-    this.orderData.dealCnt = orderdata.dealCnt;
+    this.orderData = Object.assign(this.orderData, orderdata);
     this.type = orderdata.appointTypeDesc;
-    this.orderData.appointOrderCode = orderdata.appointOrderCode;
+
 
   }
 
@@ -96,7 +94,11 @@ export class ChedanComponent implements OnInit {
    */
   submitChedan() {
     if (!this.data.isNull(this.orderData.appointOrderCode)) {
-      this.http.chedan(this.orderData.appointOrderCode).subscribe((res) => {
+      const data = {
+        productCode: this.orderData.productCode,
+        pkOrder: this.orderData.pkOrder
+      };
+      this.http.chedan({ list: [data] }).subscribe((res) => {
         console.log(res);
         this.data.ErrorMsg('撤单已提交');
         this.closeAlert();

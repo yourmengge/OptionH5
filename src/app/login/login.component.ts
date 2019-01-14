@@ -57,7 +57,6 @@ export class LoginComponent implements OnInit {
         this.data.opUserCode = this.phone;
         this.data.isConnect = false;
         this.data.token = res['resultInfo'];
-        this.data.setLocalStorage('token', this.data.token);
         // this.header = {
         //   'Authorization': res['itg']['token']
         // };

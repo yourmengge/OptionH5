@@ -58,7 +58,6 @@ export class UsercenterComponent implements OnInit, OnDestroy {
     this.data.ErrorMsg('注销成功');
     this.data.isConnect = false;
     this.data.token = this.data.randomString(32);
-    this.data.setLocalStorage('token', this.data.token);
     this.data.removeSession('opUserCode');
     setTimeout(() => {
       this.data.goto('main/login');
@@ -66,7 +65,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   }
 
   goto2(url) {
-    if (url === 'withdraw' || url === 'recharge') {
+    if (url === 'withdraw' || (url === 'recharge' && this.data.logo !== 'zhishu')) {
       this.http.getCard().subscribe(res => {
         if (this.data.isNull(res)) {
           this.data.ErrorMsg('请先绑定银行卡');

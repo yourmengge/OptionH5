@@ -106,7 +106,6 @@ export class DataService {
     'isVritual': 1,
     'memo': '',
     'pkOrder': '',
-    'productCode': '',
     'teamCode': ''
   };
   /**
@@ -540,7 +539,7 @@ export class DataService {
    */
   isPerfectTime() {
     const time = new Date();
-    if (time.getHours() >= 8 && (time.getHours() <= 16)) {
+    if (time.getHours() >= 8 && time.getHours() < 16) {
       return true;
     } else {
       return false;

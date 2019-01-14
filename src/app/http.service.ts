@@ -12,7 +12,7 @@ export class HttpService {
 
   constructor(public http: HttpClient, public data: DataService) {
     console.log(location.protocol);
-    this.host = 'https://biz.hankuntech.com/option/';
+    this.host = 'http://192.168.1.82/option/';
     // this.host = 'https://opt.anandakeji.com/option/';
     this.ws = this.host + 'webSocket';
   }
@@ -269,8 +269,8 @@ export class HttpService {
   /**
    * 确认撤单
    */
-  chedan(code) {
-    return this.POST(this.host + 'tntg/cancel/' + code, {});
+  chedan(data) {
+    return this.POST(this.host + 'tntg/batchCancel', data);
   }
 
   /**

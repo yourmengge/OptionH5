@@ -84,7 +84,9 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     chart.draw();
 
     this.data.timeoutFenshi = setTimeout(() => {
-      this.KLine();
+      if (this.data.isPerfectTime()) {
+        this.KLine();
+      }
     }, 30000);
   }
 
@@ -111,7 +113,9 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     chart.draw();
 
     this.data.timeoutFenshi = setTimeout(() => {
-      this.getFenshituList();
+      if (this.data.isPerfectTime()) {
+        this.getFenshituList();
+      }
     }, 30000);
     // this.http.fenshituList(this.stockCode).subscribe((res) => {
     //   this.price = [];
@@ -153,6 +157,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
    */
   subscribeStock() {
     this.http.getGPHQ(this.stockCode, this.data.token).subscribe((res) => {
+      console.log('订阅成功');
       if (!this.data.isNull(res['resultInfo']['quotation'])) {
         this.data.stockHQ = res['resultInfo']['quotation'];
       } else {

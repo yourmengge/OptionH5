@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { HttpService } from '../http.service';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-zixuan',

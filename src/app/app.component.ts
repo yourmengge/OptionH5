@@ -13,6 +13,7 @@ export class AppComponent implements DoCheck, OnInit {
   title = 'app';
   loading = true;
   stompClient: any;
+  socket: any;
   constructor(public data: DataService, public http: HttpService) {
     this.alert = this.data.alert;
     this.loading = this.data.loading;
@@ -23,6 +24,9 @@ export class AppComponent implements DoCheck, OnInit {
       this.data.token = this.data.randomString(32);
       this.data.setLocalStorage('token', this.data.token);
     }
+    this.socket = new SockJS(this.http.ws);
+    this.stompClient = over(this.socket);
+    this.connect();
     // const version = Object.assign(this.data.getBrowserInfo(), {});
     // if (version.browser === 'safari' && version.ver < 10) {
     //   this.data.isConnect = true;
@@ -57,18 +61,15 @@ export class AppComponent implements DoCheck, OnInit {
   connect() {
     console.log('发起ws请求');
     const that = this;
-    const socket = new SockJS(this.http.ws);
     const headers = { token: this.data.getToken() };
-    this.stompClient = over(socket);
     this.stompClient.connect(headers, function (frame) {
-      that.stompClient.subscribe('/user/' + that.data.getToken() + '/topic/market', function (res) {
-        that.data.stockHQ = JSON.parse(res.body);
-      });
+      console.log('连接成功');
+      that.connectWs();
     }, function (err) {
-      console.log('断开连接');
+      console.log('连接失败');
     });
-    socket.onclose = function (even) {
-      console.log(even);
+    this.socket.onclose = function () {
+      console.log('断开了');
       that.connect();
       if (that.data.getUrl(1) === 'chart' || that.data.getUrl(3) === 'buy' || that.data.getUrl(3) === 'sell') {
         if (!that.data.isNull(that.data.searchStockCode)) {
@@ -80,12 +81,23 @@ export class AppComponent implements DoCheck, OnInit {
     };
   }
 
+  connectWs() {
+    const that = this;
+    that.stompClient.subscribe('/user/' + that.data.getToken() + '/topic/market', function (res) {
+      that.data.stockHQ = JSON.parse(res.body);
+    });
+  }
+
   ngDoCheck() {
     this.alert = this.data.alert;
     this.loading = this.data.loading;
     if (!this.data.isConnect) {
-      this.connect();
-      this.data.isConnect = !this.data.isConnect;
+      this.data.isConnect = true;
+      if (this.data.getLocalStorage('token') !== this.data.getToken()) {
+        this.data.setLocalStorage('token', this.data.token);
+        this.connectWs();
+      }
     }
+
   }
 }
