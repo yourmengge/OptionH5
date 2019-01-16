@@ -159,6 +159,8 @@ export class DataService {
       this.logo = 'zhishu';
     } else if (window.location.host.indexOf('f8f8s') > 0) { // 成都
       this.logo = 'chengdu';
+    } else if (window.location.host.indexOf('ahgcdl') > 0) { // 创宇
+      this.logo = 'chuangyu';
     } else {
       this.logo = 'login';
     }
