@@ -40,8 +40,6 @@ export class UsercenterComponent implements OnInit, OnDestroy {
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
-    }, () => {
-      this.data.Loading(this.data.hide);
     });
   }
   /**

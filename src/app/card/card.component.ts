@@ -64,6 +64,7 @@ export class CardComponent implements OnInit {
   getProvinces() {
     this.http.getProvinceList(this.cardInfo.bankId).subscribe((res: Array<any>) => {
       this.provinceList = this.data.selectOption.concat(res);
+      this.getCity();
     }, err => {
       this.data.error = err.error;
       this.data.isError();
@@ -74,6 +75,7 @@ export class CardComponent implements OnInit {
   getCity() {
     this.http.getCityList(this.cardInfo.bankId, this.cardInfo.provinceId).subscribe((res: Array<any>) => {
       this.cityList = this.data.selectOption.concat(res);
+      this.getBranch();
     }, err => {
       this.data.error = err.error;
       this.data.isError();
@@ -159,12 +161,18 @@ export class CardComponent implements OnInit {
     if (value !== 0) {
       switch (name) {
         case 'bankId':
+          this.cardInfo.provinceId = '0';
+          this.cardInfo.cityId = '0';
+          this.cardInfo.subBranchId = '0';
           this.getProvinces();
           break;
         case 'provinceId':
+          this.cardInfo.cityId = '0';
+          this.cardInfo.subBranchId = '0';
           this.getCity();
           break;
         case 'cityId':
+          this.cardInfo.subBranchId = '0';
           this.getBranch();
           break;
         default:

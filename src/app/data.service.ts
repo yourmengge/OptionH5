@@ -25,7 +25,7 @@ export class DataService {
   nowUrl: string;
   market: 'market'; // 行情的ws，header
   selectOption = [{
-    value: 0,
+    value: '0',
     text: '== 请选择 =='
   }];
 

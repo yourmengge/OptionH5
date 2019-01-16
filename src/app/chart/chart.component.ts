@@ -166,8 +166,6 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
-    }, () => {
-      this.data.Loading(this.data.hide);
     });
   }
   /**

@@ -327,8 +327,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
                     this.fullcount = res['resultInfo']['maxBuyCnt'];
                 } else {
                     this.fullcount = res['resultInfo']['maxSellCnt'];
-                    if (this.fullcount > 29) {
-                        this.appointCnt = 29;
+                    if (this.fullcount > 200) {
+                        this.appointCnt = 200;
                     } else {
                         this.appointCnt = this.fullcount;
                     }
