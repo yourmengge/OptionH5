@@ -6,10 +6,26 @@
   <div class="cell-list">
     <div class="list-item">
       <span class="list-item-name">
-        合约名称
+        委托时间
       </span>
       <span class="list-item-content">
-        {{detail.stockName}}
+        {{detail.appointTime}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        委托编号
+      </span>
+      <span class="list-item-content">
+        {{detail.appointOrderCode}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        产品编号
+      </span>
+      <span class="list-item-content">
+        {{detail.produceCode}}
       </span>
     </div>
     <div class="list-item">
@@ -22,6 +38,30 @@
     </div>
     <div class="list-item">
       <span class="list-item-name">
+        合约名称
+      </span>
+      <span class="list-item-content">
+        {{detail.stockName}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        委托价格
+      </span>
+      <span class="list-item-content">
+        {{detail.appointPrice}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        委托数量
+      </span>
+      <span class="list-item-content">
+        {{detail.appointCnt}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
         买卖方向
       </span>
       <span class="list-item-content">
@@ -30,58 +70,19 @@
     </div>
     <div class="list-item">
       <span class="list-item-name">
-        标志
-      </span>
-      <span class="list-item-content">
-        {{detail.appointStatusDesc}}
-      </span>
-    </div>
-    <div class="list-item">
-      <span class="list-item-name">
-        时间
-      </span>
-      <span class="list-item-content">
-        {{detail.appointTime}}
-      </span>
-    </div>
-    <div class="list-item">
-      <span class="list-item-name">
-        委托价
-      </span>
-      <span class="list-item-content">
-        {{detail.appointPrice}}
-      </span>
-    </div>
-    <div class="list-item">
-      <span class="list-item-name">
-        成交价
+        成交价格
       </span>
       <span class="list-item-content">
         {{detail.dealAvrPrice}}
       </span>
     </div>
+
     <div class="list-item">
       <span class="list-item-name">
-        委托量
-      </span>
-      <span class="list-item-content">
-        {{detail.appointCnt}}
-      </span>
-    </div>
-    <div class="list-item">
-      <span class="list-item-name">
-        成交量
+        成交数量
       </span>
       <span class="list-item-content">
         {{detail.dealCnt}}
-      </span>
-    </div>
-    <div class="list-item">
-      <span class="list-item-name">
-        手续费
-      </span>
-      <span class="list-item-content">
-        {{detail.commission}}
       </span>
     </div>
     <div class="list-item">
@@ -94,12 +95,27 @@
     </div>
     <div class="list-item">
       <span class="list-item-name">
+        手续费
+      </span>
+      <span class="list-item-content">
+        {{detail.commission}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
         发生金额
       </span>
       <span class="list-item-content">
         {{detail.happenAmount}}
       </span>
     </div>
-
+    <div class="list-item">
+      <span class="list-item-name">
+        委托状态
+      </span>
+      <span class="list-item-content">
+        {{detail.appointStatusDesc}}
+      </span>
+    </div>
   </div>
 </div>

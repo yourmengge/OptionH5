@@ -1,0 +1,39 @@
+.member-content {
+  border-bottom: solid 1px #f1f1f1;
+  border-top: solid 1px #f1f1f1;
+  background: #fff;
+  overflow-y: auto;
+  height: calc(100vh - 50px);
+}
+
+.member-content div:last-child {
+  border-bottom: none;
+}
+
+.member-item {
+  padding: 10px 20px 10px 0;
+  margin-left: 15px;
+  border-bottom: solid 1px #f1f1f1;
+}
+
+.member-item p {
+  margin: 0;
+}
+
+.member-item p:nth-child(2) {
+  font-size: 1.1rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.member-item span {
+  display: inline-block;
+  float: right;
+  margin-top: 13px;
+}
+
+.member-item p:nth-child(3) {
+  font-size: .9rem;
+  color: #888;
+}

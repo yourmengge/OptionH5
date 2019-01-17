@@ -29,6 +29,8 @@ export class CardComponent implements OnInit {
     identityNo: '',
     mobile: ''
   };
+  isUpdate = 'false';
+  text = '绑定';
   constructor(public data: DataService, public http: HttpService) {
     this.id = '';
     this.bankList = this.data.selectOption;
@@ -39,6 +41,8 @@ export class CardComponent implements OnInit {
     this.cardInfo.cityId = '0';
     this.branchesList = this.data.selectOption;
     this.cardInfo.subBranchId = '0';
+    this.isUpdate = this.data.getSession('updateCard') || 'false';
+    this.text = this.isUpdate === 'true' ? '修改' : '绑定';
   }
 
   ngOnInit() {
@@ -96,7 +100,11 @@ export class CardComponent implements OnInit {
   getCard() {
     this.http.getCard().subscribe(res => {
       if (!this.data.isNull(res)) {
-        this.filledIn = true;
+        if (this.isUpdate === 'true') {
+          this.filledIn = false;
+        } else {
+          this.filledIn = true;
+        }
         this.cardInfo = Object.assign(this.cardInfo, res);
         this.id = this.cardInfo.id;
         this.getBranch();
@@ -135,7 +143,7 @@ export class CardComponent implements OnInit {
       this.data.ErrorMsg('请输入正确的手机号码');
     } else {
       this.http.bandCard(this.cardInfo).subscribe(res => {
-        this.data.ErrorMsg('绑定成功');
+        this.data.ErrorMsg(`${this.text}成功`);
         this.getCard();
         this.back();
       }, err => {

@@ -43,6 +43,10 @@ import { NotfoundComponent } from './page/notfound/notfound.component';
 import { DetailComponent } from './detail/detail.component';
 import { HtmlpipePipe } from './htmlpipe.pipe';
 import { InquireComponent } from './inquire/inquire/inquire.component';
+import { SettingComponent } from './setting/setting/setting.component';
+import { ResetPwdComponent } from './setting/reset-pwd/reset-pwd.component';
+import { MemberComponent } from './inquire/member/member.component';
+import { Qrcode2Component } from './inquire/qrcode2/qrcode2.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -67,6 +71,10 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'qrcode2', component: Qrcode2Component },
+  { path: 'member', component: MemberComponent },
+  { path: 'resetPwd', component: ResetPwdComponent },
+  { path: 'setting', component: SettingComponent },
   { path: 'inquire', component: InquireComponent },
   { path: 'version', component: VersionComponent },
   { path: 'qrcode/:id', component: QrcodeComponent },
@@ -122,7 +130,11 @@ const appRoutes: Routes = [
     NotfoundComponent,
     DetailComponent,
     HtmlpipePipe,
-    InquireComponent
+    InquireComponent,
+    SettingComponent,
+    ResetPwdComponent,
+    MemberComponent,
+    Qrcode2Component
   ],
   imports: [
     BrowserAnimationsModule,

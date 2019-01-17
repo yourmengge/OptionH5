@@ -1,0 +1,18 @@
+<div class="navigation">
+  <div class="back" (click)='back()'></div>
+  <p class="navigation-title">成员列表</p>
+</div>
+<div class="member-content">
+  <div class="member-item" *ngFor="let item of list">
+    <span>
+      {{item.desc}}
+    </span>
+    <p>
+      {{item.name}}
+    </p>
+
+    <p>
+      {{item.phone}}
+    </p>
+  </div>
+</div>

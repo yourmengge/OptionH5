@@ -1,0 +1,57 @@
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  border-top: solid 1px #f1f1f1;
+}
+
+.grid-div {
+  width: calc(100vw / 3 - 1px);
+  text-align: center;
+  border-bottom: solid 1px #f1f1f1;
+  background: #fff;
+  border-right: solid 1px #f1f1f1;
+  padding-top: 20px;
+}
+
+.grid div:nth-child(3),
+.grid div:nth-child(6),
+.grid div:nth-child(9) {
+  border-right: none;
+}
+
+.grid-div:active {
+  background: #f1f1f1;
+}
+
+.grid-div .icon {
+  width: 35px;
+  height: 35px;
+  background: url(../../../assets/images/grid-icon.png) no-repeat;
+  margin: auto;
+  background-size: 100% 700%;
+}
+
+.hbcc {
+  background-position-y: -35px !important;
+}
+
+.drwy {
+  background-position-y: -70px !important;
+}
+
+.drcj {
+  background-position-y: -105px !important;
+}
+
+.capitalflow {
+  background-position-y: -140px !important;
+}
+
+.qrcode2 {
+  background-position-y: -175px !important;
+}
+
+.member {
+  background-position-y: -210px !important;
+}

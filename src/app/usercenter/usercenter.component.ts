@@ -51,6 +51,11 @@ export class UsercenterComponent implements OnInit, OnDestroy {
       console.log('取消订阅');
     });
   }
+
+  setting() {
+    this.data.goto('setting');
+  }
+
   logout() {
     this.cancelSubscribe();
     this.data.ErrorMsg('注销成功');

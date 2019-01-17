@@ -44,10 +44,17 @@ export class HttpService {
   }
 
   /**
- * 用户修改密码
+ * 用户忘记密码
  */
   reset(data) {
     return this.http.post(this.host + `public/pwdResetByVerifyCode`, data);
+  }
+
+  /**
+   * 用户修改密码
+   */
+  resetOldPwd(data) {
+    return this.POST(this.host + 'tntg/pwdReset', data);
   }
 
   /**
