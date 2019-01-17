@@ -47,6 +47,7 @@ import { SettingComponent } from './setting/setting/setting.component';
 import { ResetPwdComponent } from './setting/reset-pwd/reset-pwd.component';
 import { MemberComponent } from './inquire/member/member.component';
 import { Qrcode2Component } from './inquire/qrcode2/qrcode2.component';
+import { PayComponent } from './pay/pay.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -76,6 +77,7 @@ const appRoutes: Routes = [
   { path: 'resetPwd', component: ResetPwdComponent },
   { path: 'setting', component: SettingComponent },
   { path: 'inquire', component: InquireComponent },
+  { path: 'pay', component: PayComponent },
   { path: 'version', component: VersionComponent },
   { path: 'qrcode/:id', component: QrcodeComponent },
   { path: 'capitalflow', component: CapitalFlowComponent },
@@ -91,7 +93,7 @@ const appRoutes: Routes = [
   { path: 'main', component: MainComponent, children: appChildRoutes },
   { path: 'newdetail/:id', component: NewsDetailComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: '**', component: NotfoundComponent }
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
@@ -134,7 +136,8 @@ const appRoutes: Routes = [
     SettingComponent,
     ResetPwdComponent,
     MemberComponent,
-    Qrcode2Component
+    Qrcode2Component,
+    PayComponent
   ],
   imports: [
     BrowserAnimationsModule,

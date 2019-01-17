@@ -12,7 +12,7 @@ export class BankcardComponent implements OnInit {
   remark: any;
   userName: any;
   payType: any;
-  cardInfro = { 'bankAccountName': '', 'bankCardNo': '', 'bankName': '', bankBranch: '', aliyPay: '', aliyPayName: '' };
+  cardInfro = { 'bankAccountName': '', 'bankCardNo': '', 'bankName': '', bankBranch: '', aliyPay: '', aliyPayName: '', aliyPayCodeUrl: '' };
   constructor(public data: DataService, public http: HttpService, private _clipboardService: ClipboardService) {
     this.amount = this.data.getSession('amount');
     this.userName = this.data.getSession('userName');
@@ -37,6 +37,7 @@ export class BankcardComponent implements OnInit {
     const date = this.data.getTime('yyyy-MM-ddhh:mm:ss', new Date());
     this.http.getPayCardInfo().subscribe(res => {
       this.cardInfro = Object.assign(this.cardInfro, res);
+      this.data.setSession('aliyPayCodeUrl', this.cardInfro.aliyPayCodeUrl);
       this.remark = `用户：${this.data.getSession('accountCode')} 姓名：${this.userName} 在 ${date} 充值 ${this.amount} 元`;
     }, err => {
       this.data.error = err.error;
@@ -52,10 +53,11 @@ export class BankcardComponent implements OnInit {
     this.data.loading = this.data.show;
     this.http.submitBankTrans(this.amount, this.payType === '2' ? 'BANK' : 'ALIPAY').subscribe(res => {
       this.data.loading = this.data.hide;
-      this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
-      setTimeout(() => {
-        window.history.go(-2);
-      }, 1000);
+      location.href = './assets/js/pay.html';
+      // this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
+      // setTimeout(() => {
+      //   window.history.go(-2);
+      // }, 1000);
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
