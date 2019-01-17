@@ -42,6 +42,7 @@ import { VersionComponent } from './page/version/version.component';
 import { NotfoundComponent } from './page/notfound/notfound.component';
 import { DetailComponent } from './detail/detail.component';
 import { HtmlpipePipe } from './htmlpipe.pipe';
+import { PayComponent } from './pay/pay.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -66,6 +67,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'pay', component: PayComponent },
   { path: 'version', component: VersionComponent },
   { path: 'qrcode/:id', component: QrcodeComponent },
   { path: 'capitalflow', component: CapitalFlowComponent },
@@ -81,7 +83,7 @@ const appRoutes: Routes = [
   { path: 'main', component: MainComponent, children: appChildRoutes },
   { path: 'newdetail/:id', component: NewsDetailComponent },
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: '**', component: NotfoundComponent }
+  { path: '**', component: NotfoundComponent },
 ];
 
 @NgModule({
@@ -119,7 +121,8 @@ const appRoutes: Routes = [
     VersionComponent,
     NotfoundComponent,
     DetailComponent,
-    HtmlpipePipe
+    HtmlpipePipe,
+    PayComponent
   ],
   imports: [
     BrowserAnimationsModule,

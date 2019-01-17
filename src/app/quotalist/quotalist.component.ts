@@ -10,12 +10,13 @@ import { HttpService } from '../http.service';
   styleUrls: ['./quotalist.component.css']
 })
 export class QuotalistComponent extends ZixuanComponent {
-  date: any;
+  date2: any;
   type: any;
   constructor(public data: DataService, public http: HttpService, public activeRoute: ActivatedRoute) {
     super(data, http);
-    this.date = this.activeRoute.snapshot.params['id'].split('_')[0];
+    this.date2 = this.activeRoute.snapshot.params['id'].split('_')[0];
     this.type = this.activeRoute.snapshot.params['id'].split('_')[1];
+    console.log(this.date2);
   }
   back() {
     this.data.back();
@@ -28,7 +29,7 @@ export class QuotalistComponent extends ZixuanComponent {
   }
 
   getlist() {
-    this.http.getQuotaList(this.date, this.type).subscribe(res => {
+    this.http.getQuotaList(this.date2, this.type).subscribe(res => {
       this.quoteDetail = res['quoteDetail'];
       this.q50eft = res['quote50ETF'];
       this.data.timeoutQoute = setTimeout(() => {
