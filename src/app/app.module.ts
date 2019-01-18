@@ -43,6 +43,7 @@ import { NotfoundComponent } from './page/notfound/notfound.component';
 import { DetailComponent } from './detail/detail.component';
 import { HtmlpipePipe } from './htmlpipe.pipe';
 import { PayComponent } from './pay/pay.component';
+import { HoldComponent } from './hold/hold.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -67,6 +68,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'hold', component: HoldComponent },
   { path: 'pay', component: PayComponent },
   { path: 'version', component: VersionComponent },
   { path: 'qrcode/:id', component: QrcodeComponent },
@@ -122,7 +124,8 @@ const appRoutes: Routes = [
     NotfoundComponent,
     DetailComponent,
     HtmlpipePipe,
-    PayComponent
+    PayComponent,
+    HoldComponent
   ],
   imports: [
     BrowserAnimationsModule,
