@@ -50,19 +50,19 @@
     <span class="span-title">
       户名
     </span>
-    <input [readonly]='filledIn' placeholder="请输入银行卡户名" maxlength="10" type="text" [(ngModel)]="cardInfo.userName">
+    <input [readonly]='filledIn2' placeholder="请输入银行卡户名" maxlength="10" type="text" [(ngModel)]="cardInfo.userName">
   </div>
   <div class="list-item">
     <span class="span-title">
       身份证
     </span>
-    <input [readonly]='filledIn' placeholder="请输入身份证" maxlength="18" type="text" [(ngModel)]="cardInfo.identityNo">
+    <input [readonly]='filledIn2' placeholder="请输入身份证" maxlength="18" type="text" [(ngModel)]="cardInfo.identityNo">
   </div>
   <div class="list-item">
     <span class="span-title">
       手机
     </span>
-    <input placeholder="请输入手机号" maxlength="11" type="text" [(ngModel)]="cardInfo.mobile">
+    <input [readonly]='filledIn2' placeholder="请输入手机号" maxlength="11" type="text" [(ngModel)]="cardInfo.mobile">
   </div>
 </div>
 

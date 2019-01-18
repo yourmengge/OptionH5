@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
+import { HttpService } from '../../http.service';
 declare var QRCode: any;
 @Component({
   selector: 'app-qrcode2',
@@ -8,13 +9,20 @@ declare var QRCode: any;
 })
 export class Qrcode2Component implements OnInit {
   code = '';
-  constructor(public data: DataService) {
-    this.code = '123sdfsds';
+  constructor(public data: DataService, public http: HttpService) {
+    this.getInviteCode();
+  }
+
+  getInviteCode() {
+    this.http.getInviteCode().subscribe(res => {
+      this.code = res.toString();
+      const qrcode = new QRCode('qrcode');
+      qrcode.makeCode(`${location.origin}/h5option/#/main/signup?code=${res.toString()}`);
+    });
   }
 
   ngOnInit() {
-    const qrcode = new QRCode('qrcode');
-    qrcode.makeCode(this.code);
+
   }
   back() {
     this.data.back();

@@ -5,14 +5,20 @@
 <div class="member-content">
   <div class="member-item" *ngFor="let item of list">
     <span>
-      {{item.desc}}
+      {{item.accountName}}
     </span>
     <p>
-      {{item.name}}
+      {{item.accountCode}}
     </p>
 
     <p>
-      {{item.phone}}
+      {{item.commission}}
     </p>
+    <p>
+      {{item.cfgTypeDesc}}
+    </p>
+    <p>
+      {{item.cfgDelayFee}}
+    </p> 
   </div>
 </div>

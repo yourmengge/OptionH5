@@ -14,6 +14,7 @@ export class CardComponent implements OnInit {
   branchesList: any;
   id: any;
   filledIn: boolean;
+  filledIn2: boolean;
   cardInfo = {
     id: '',
     bankId: '',
@@ -105,6 +106,7 @@ export class CardComponent implements OnInit {
         } else {
           this.filledIn = true;
         }
+        this.filledIn2 = true;
         this.cardInfo = Object.assign(this.cardInfo, res);
         this.id = this.cardInfo.id;
         this.getBranch();
@@ -112,6 +114,7 @@ export class CardComponent implements OnInit {
         this.getCity();
       } else {
         this.filledIn = false;
+        this.filledIn2 = false;
       }
     }, err => {
       this.data.error = err.error;

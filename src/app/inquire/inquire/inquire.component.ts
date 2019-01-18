@@ -9,35 +9,28 @@ import { DataService } from '../../data.service';
 export class InquireComponent implements OnInit {
 
   gridList = [{
-    id: 'fbcc',
-    title: '分笔持仓',
-    needShow: true
+    id: 'hold',
+    title: '分笔持仓'
   }, {
-    id: 'hbcc',
-    title: '合并持仓',
-    needShow: true
+    id: 'hold2',
+    title: '合并持仓'
   }, {
-    id: 'drwy',
-    title: '当日委托',
-    needShow: true
+    id: 'appoint',
+    title: '历史委托'
   }, {
-    id: 'drcj',
-    title: '当日成交',
-    needShow: true
+    id: 'appoint2',
+    title: '历史成交'
   }, {
     id: 'capitalflow',
-    title: '资金流水',
-    needShow: true
+    title: '资金流水'
   }];
 
   gridList2 = [{
     id: 'qrcode2',
-    title: '推广码',
-    needShow: true
+    title: '推广码'
   }, {
     id: 'member',
-    title: '成员列表',
-    needShow: false
+    title: '成员列表'
   }];
 
   constructor(public data: DataService) {
@@ -51,6 +44,8 @@ export class InquireComponent implements OnInit {
   }
 
   goto(url) {
+    this.data.setSession('appointDateEnd', '');
+    this.data.setSession('appointDate', '');
     this.data.goto(url);
   }
 }

@@ -293,4 +293,39 @@ export class HttpService {
   zixuanDetail(string) {
     return this.http.post(this.host + 'push/self/' + string, {}, this.data.getHeader());
   }
+
+  /**
+   * 分笔持仓
+   */
+  holdDetail() {
+    return this.POST(this.host + 'tntg/holdDetail', {});
+  }
+
+  /**
+   * 获取推广码
+   */
+  getInviteCode() {
+    return this.POST(this.host + 'tntg/inviteCode', {});
+  }
+
+  /**
+   * 历史委托，历史成交，分页查询
+   */
+  getHisAppoint(url, data) {
+    return this.POST(this.host + `tn/history/${url}`, data);
+  }
+
+  /**
+   * 历史委托详情，历史成交详情
+   */
+  getAppointDetail(url) {
+    return this.POST(this.host + `tn/history/${url}`, {});
+  }
+
+  /**
+   * 获取会员列表
+   */
+  getMember() {
+    return this.POST(this.host + 'tntg/members', {});
+  }
 }

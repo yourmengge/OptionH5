@@ -48,6 +48,10 @@ import { ResetPwdComponent } from './setting/reset-pwd/reset-pwd.component';
 import { MemberComponent } from './inquire/member/member.component';
 import { Qrcode2Component } from './inquire/qrcode2/qrcode2.component';
 import { PayComponent } from './pay/pay.component';
+import { HoldComponent } from './inquire/hold/hold.component';
+import { HoldDetailComponent } from './inquire/hold-detail/hold-detail.component';
+import { AppointComponent } from './inquire/appoint/appoint.component';
+import { AppointDetailComponent } from './inquire/appoint-detail/appoint-detail.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -72,11 +76,17 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'appointDetail', component: AppointDetailComponent },
+  { path: 'appoint', component: AppointComponent },
+  { path: 'appoint2', component: AppointComponent },
+  { path: 'holdDetail', component: HoldDetailComponent },
   { path: 'qrcode2', component: Qrcode2Component },
   { path: 'member', component: MemberComponent },
   { path: 'resetPwd', component: ResetPwdComponent },
   { path: 'setting', component: SettingComponent },
   { path: 'inquire', component: InquireComponent },
+  { path: 'hold', component: HoldComponent },
+  { path: 'hold2', component: HoldComponent },
   { path: 'pay', component: PayComponent },
   { path: 'version', component: VersionComponent },
   { path: 'qrcode/:id', component: QrcodeComponent },
@@ -137,7 +147,11 @@ const appRoutes: Routes = [
     ResetPwdComponent,
     MemberComponent,
     Qrcode2Component,
-    PayComponent
+    PayComponent,
+    HoldComponent,
+    HoldDetailComponent,
+    AppointComponent,
+    AppointDetailComponent
   ],
   imports: [
     BrowserAnimationsModule,

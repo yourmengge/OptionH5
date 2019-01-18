@@ -1,0 +1,127 @@
+<div class="navigation">
+  <div class="back" (click)='back()'></div>
+  <p class="navigation-title">历史{{text}}</p>
+</div>
+<!-- <div class="search-head">
+  <p class="search-title">委托时间</p>
+  <p class="search-title" style="text-align: center;margin-bottom: 0;padding-bottom: 20px;    height: 30px;">{{date}} <a class='select'></a> </p>
+  <input type="date" class="date" [(ngModel)]="date" (change)='change()'>
+</div> -->
+<div class="date-div">
+  <span>查询日期</span>
+  <input type="date" name="" id="" (change)='change()' [(ngModel)]="date">
+  <span class="date-span">{{date}}</span>
+  ~
+  <input type="date" name="" id="" (change)='change()' [(ngModel)]="dateEnd">
+  <span class="date-span">{{dateEnd}}</span>
+</div>
+<!-- 历史委托 -->
+<div class="cclb" *ngIf="text == '委托'" (scroll)='onScroll($event)'>
+  <table cellspacing="0">
+    <tr>
+      <td>
+        名称/代码
+      </td>
+      <td>
+        标志/时间
+      </td>
+      <td>
+        委托/成交价
+      </td>
+      <td>
+        委托/成交量
+      </td>
+    </tr>
+    <tr *ngFor='let a of list' (click)='goto(a)'>
+      <td>
+        <span class="span {{a.subtype == 2?'blue':''}}">{{a.subtype === 1?'买':'卖'}}</span>
+        <p>
+          {{a.stockName}}
+        </p>
+        <p>
+          {{a.stockCode}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.entruststatusDesc}}
+        </p>
+        <p>
+          {{a.ordertime}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.entrustprice | round4}}
+        </p>
+        <p>
+          {{a.dealavrprice | round4}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.stockcnt}}
+        </p>
+        <p>
+          {{a.dealcnt}}
+        </p>
+      </td>
+    </tr>
+  </table>
+  <div class='stopLoad' *ngIf="stopLoad">
+    {{list.length === 0?'暂无数据':'没有更多数据啦~~'}}
+  </div>
+</div>
+
+
+<!-- 历史成交 -->
+<div class="cclb" *ngIf="text != '委托'" (scroll)='onScroll($event)'>
+  <table cellspacing="0">
+    <tr>
+      <td>
+        名称/代码
+      </td>
+      <td>
+        方向
+      </td>
+      <td>
+        时间
+      </td>
+      <td>
+        成交量/成交价
+      </td>
+    </tr>
+    <tr *ngFor='let a of list' (click)='goto(a)'>
+      <td>
+        <!-- <span class="span {{a.bstype == 2?'blue':''}}">{{a.bstype === 1?'买':'卖'}}</span> -->
+        <p>
+          {{a.stockname}}
+        </p>
+        <p>
+          {{a.stockno}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.bstypeDesc}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.dealtime}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.dealcnt}}
+        </p>
+        <p>
+          {{a.dealprice}}
+        </p>
+      </td>
+    </tr>
+  </table>
+  <div class='stopLoad' *ngIf="stopLoad">
+    {{list.length === 0?'暂无数据':'没有更多数据啦~~'}}
+  </div>
+</div>

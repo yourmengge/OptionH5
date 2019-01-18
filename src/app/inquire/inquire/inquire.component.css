@@ -14,9 +14,7 @@
   padding-top: 20px;
 }
 
-.grid div:nth-child(3),
-.grid div:nth-child(6),
-.grid div:nth-child(9) {
+.grid div:nth-child(3), .grid div:nth-child(6), .grid div:nth-child(9) {
   border-right: none;
 }
 
@@ -32,15 +30,15 @@
   background-size: 100% 700%;
 }
 
-.hbcc {
+.hold2 {
   background-position-y: -35px !important;
 }
 
-.drwy {
+.appoint {
   background-position-y: -70px !important;
 }
 
-.drcj {
+.appoint2 {
   background-position-y: -105px !important;
 }
 

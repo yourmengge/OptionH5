@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import './assets/css/swiper.min.css';
-html, body {
+
+html,
+body {
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -41,7 +43,7 @@ input:read-only {
   overflow-y: auto;
 }
 
-.demonstration{
+.demonstration {
   position: fixed;
   top: 50px;
   font-size: 30px;
@@ -292,8 +294,17 @@ table td p {
   background: #c9c9c9;
 }
 
+.stopLoad {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  color: #969696;
+}
+
 @media screen and (max-width: 320px) {
-  body, html {
+
+  body,
+  html {
     font-size: 12px;
   }
 }

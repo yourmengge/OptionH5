@@ -1,0 +1,97 @@
+<div class="navigation">
+  <div class="back" (click)='back()'></div>
+  <p class="navigation-title">{{text}}持仓</p>
+</div>
+<div class="cclb" *ngIf="text =='分笔'">
+  <table cellspacing="0">
+    <tr>
+      <td>
+        名称/代码
+      </td>
+      <td>
+        数量/成交均价
+      </td>
+      <td>
+        成交市值/手续费
+      </td>
+      <td>
+        日期
+      </td>
+    </tr>
+    <tr *ngFor='let a of list' (click)='goto(a)'>
+      <td>
+        <p>{{a.stockCode}}</p>
+        <p>{{a.stockName}}</p>
+      </td>
+      <td>
+        <p>
+          {{a.dealCnt}}
+        </p>
+        <p>
+          {{a.dealAvgPrice}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.uncloseDealAmount}}
+        </p>
+        <p>
+          {{a.commission}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.orderDateTime}}
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="cclb" *ngIf="text =='合并'">
+  <table cellspacing="0">
+    <tr>
+      <td>
+        名称/代码
+      </td>
+      <td>
+        盈亏/手续费
+      </td>
+      <td>
+        持仓/可用
+      </td>
+      <td>
+        参考成本/现价
+      </td>
+    </tr>
+    <tr *ngFor='let a of list'>
+      <td>
+        <p>{{a.stockCode}}</p>
+        <p>{{a.stockName}}</p>
+      </td>
+      <td>
+        <p class="{{a.profit < 0?'green':'red'}}">
+          {{a.profit}}
+        </p>
+        <p>
+          {{a.commission}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.stockCnt}}
+        </p>
+        <p>
+          {{a.stockCntAble}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.costPrice}}
+        </p>
+        <p>
+          {{a.lastPrice}}
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>
