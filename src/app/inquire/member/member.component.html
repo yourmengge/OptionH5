@@ -4,21 +4,26 @@
 </div>
 <div class="member-content">
   <div class="member-item" *ngFor="let item of list">
-    <span>
-      {{item.accountName}}
-    </span>
+
     <p>
-      {{item.accountCode}}
+      <span>
+        会员名称：{{item.accountName}}
+      </span>
+      <span>
+        会员ID：{{item.accountCode}}
+      </span>
     </p>
 
     <p>
-      {{item.commission}}
+      <span>
+        佣金：{{item.commission}}
+      </span>
+      <span>
+        持仓模式：{{item.cfgTypeDesc}}
+      </span>
     </p>
     <p>
-      {{item.cfgTypeDesc}}
+      延期费用：{{item.cfgDelayFee}}
     </p>
-    <p>
-      {{item.cfgDelayFee}}
-    </p> 
   </div>
 </div>
