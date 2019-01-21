@@ -14,7 +14,7 @@
   padding-top: 20px;
 }
 
-.grid div:nth-child(3), .grid div:nth-child(6), .grid div:nth-child(9) {
+.grid div:nth-child(3n){
   border-right: none;
 }
 

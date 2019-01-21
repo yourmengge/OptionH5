@@ -31,6 +31,7 @@ export class AppointComponent implements OnInit {
       this.data.setSession('appointDate', this.date);
       this.list = [];
       this.getOrder();
+
     }
   }
 
@@ -54,17 +55,21 @@ export class AppointComponent implements OnInit {
       pageNo: this.pageNo,
       pageSize: 20,
     };
-    this.http.getHisAppoint(this.text === '委托' ? 'entrust' : 'deal', data).subscribe((res: Array<any>) => {
-      if (res.length === 0) {
-        this.stopLoad = true;
-      } else {
-        this.stopLoad = false;
-      }
-      this.list = this.list.concat(res);
-    }, (err) => {
-      this.data.error = err.error;
-      this.data.isError();
-    });
+    if (new Date(this.dateEnd).getTime() - new Date(this.date).getTime() > 2592000000) {
+      this.data.ErrorMsg('查询区间不能超过一个月');
+    } else {
+      this.http.getHisAppoint(this.text === '委托' ? 'entrust' : 'deal', data).subscribe((res: Array<any>) => {
+        if (res.length === 0) {
+          this.stopLoad = true;
+        } else {
+          this.stopLoad = false;
+        }
+        this.list = this.list.concat(res);
+      }, (err) => {
+        this.data.error = err.error;
+        this.data.isError();
+      });
+    }
   }
 
   goto(data) {

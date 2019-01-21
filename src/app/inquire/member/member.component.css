@@ -5,15 +5,19 @@
   height: calc(100vh - 50px);
 }
 
-.member-content div:last-child {
-  border-bottom: none;
+.member-item:nth-child(3n) {
+  border-left: solid 5px #ffcd1e;
+}
+
+.member-item:nth-child(3n+1) {
+  border-left: solid 5px #1a91ec;
 }
 
 .member-item {
   padding: 1px 15px;
-  border-left: solid 5px #b00e23;
   background: #fff;
-  margin-bottom: 5px;
+  border-left: solid 5px #d56919;
+  margin-top: 5px;
   font-size: .9rem;
 }
 

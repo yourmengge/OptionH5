@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../../data.service';
+import { HttpService } from '../../http.service';
 
 @Component({
   selector: 'app-inquire',
@@ -7,7 +8,7 @@ import { DataService } from '../../data.service';
   styleUrls: ['./inquire.component.css']
 })
 export class InquireComponent implements OnInit {
-
+  isAgent = false;
   gridList = [{
     id: 'hold',
     title: '分笔持仓'
@@ -33,12 +34,24 @@ export class InquireComponent implements OnInit {
     title: '成员列表'
   }];
 
-  constructor(public data: DataService) {
-    this.gridList = this.gridList.concat(this.gridList2);
+  constructor(public data: DataService, public http: HttpService) {
   }
 
   ngOnInit() {
+    this.getQrcode();
   }
+
+  getQrcode() {
+    this.http.getInviteCode().subscribe(res => {
+      if (!this.data.isNull(res)) {
+        this.gridList = this.gridList.concat(this.gridList2);
+      }
+    }, err => {
+      this.data.error = err.error;
+      this.data.isError();
+    });
+  }
+
   back() {
     this.data.back();
   }

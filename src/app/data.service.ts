@@ -407,7 +407,7 @@ export class DataService {
     this.alert = true;
     setTimeout(() => {
       this.alert = false;
-    }, 5000);
+    }, 3000);
     this.errMsg = desc;
   }
 

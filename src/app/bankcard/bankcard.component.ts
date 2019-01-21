@@ -53,10 +53,11 @@ export class BankcardComponent implements OnInit {
     this.data.loading = this.data.show;
     this.http.submitBankTrans(this.amount, this.payType === '2' ? 'BANK' : 'ALIPAY').subscribe(res => {
       this.data.loading = this.data.hide;
-      if (!this.data.isNull(this.cardInfro.aliyPayCodeUrl)) {
+      if (!this.data.isNull(this.cardInfro.aliyPayCodeUrl) && this.payType !== '2') {
         location.href = './assets/js/pay.html';
       } else {
-        this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
+        // this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
+        alert('充值已提交，请尽快充值，等待后台审核');
         setTimeout(() => {
           window.history.go(-2);
         }, 1000);
