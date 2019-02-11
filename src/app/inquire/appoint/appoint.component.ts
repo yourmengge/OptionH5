@@ -30,6 +30,7 @@ export class AppointComponent implements OnInit {
       this.data.setSession('appointDateEnd', this.dateEnd);
       this.data.setSession('appointDate', this.date);
       this.list = [];
+      this.pageNo = 1;
       this.getOrder();
 
     }

@@ -17,19 +17,20 @@
   </div>
   <div class="pay-way" (click)='selectPayType(1)' *ngIf="cardConfig[0]">
     <img src="./assets/images/ali.png" alt="">
-    <span>支付宝支付</span>
+    <span>支付宝支付<label class='red'>（手续费6‰）</label></span>
     <div class="radio {{payType == 1?'':'radio-none'}}"></div>
   </div>
   <div class="pay-way" (click)='selectPayType(2)' *ngIf="cardConfig[1]">
-    <img src="./assets/images/bank.png" alt="">
-    <span>银行卡转账(线下)</span>
+    <img src="./assets/images/ali.png" alt="">
+    <span>支付宝支付</span>
     <div class="radio {{payType == 2?'':'radio-none'}}"></div>
   </div>
   <div class="pay-way" (click)='selectPayType(3)' *ngIf="cardConfig[2]">
-    <img src="./assets/images/ali.png" alt="">
-    <span>支付宝支付(线下)</span>
+    <img src="./assets/images/bank.png" alt="">
+    <span>银行卡转账(线下)</span>
     <div class="radio {{payType == 3?'':'radio-none'}}"></div>
   </div>
+
   <div class="pay-way" (click)='selectPayType(4)' *ngIf="cardConfig[3]">
     <img src="./assets/images/wechat.png" alt="">
     <span>华阳信通支付(微信)</span>

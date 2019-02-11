@@ -13,14 +13,14 @@ export class RechargeComponent implements OnInit {
   inputMoney: any;
   payType: any;
   isWeiChat = true;
-  // showWechatPay = false;
-  // showYinlianPay = false;
-  // showAliPay = false;
-  // showYinlianPay2 = false;
-  // showAliPay2 = false;
-  // showAliPay3 = false;
+  startTime: any;
+  endTime: any;
+  chargeTime: string;
+  chargeRange: string;
+  minMoney: any;
+  maxMoney: any;
   cardConfig = [false, false, false, false, false, false];
-  configName = ['alipay_online', 'bank', 'alipay', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat'];
+  configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat'];
   config: any;
   constructor(public http: HttpService, public data: DataService) {
     this.money = '1000';
@@ -31,6 +31,24 @@ export class RechargeComponent implements OnInit {
   ngOnInit() {
     this.isWeiXin();
     this.getCardConfig();
+    this.http.chargeWithdrawInfo().subscribe(res => {
+      this.chargeRange = res['chargeRange'];
+      this.chargeTime = res['chargeTime'];
+      if (!this.data.isNull(this.chargeRange)) {
+        this.minMoney = this.data.splitString(this.chargeRange, '~', 0);
+        this.maxMoney = this.data.splitString(this.chargeRange, '~', 1);
+      } else {
+        this.minMoney = 0;
+        this.maxMoney = 0;
+      }
+      if (!this.data.isNull(this.chargeTime)) {
+        this.startTime = this.data.splitString(this.chargeTime, '~', 0);
+        this.endTime = this.data.splitString(this.chargeTime, '~', 1);
+      } else {
+        this.startTime = 0;
+        this.endTime = 0;
+      }
+    });
   }
 
   getCardConfig() {
@@ -46,6 +64,7 @@ export class RechargeComponent implements OnInit {
           this.cardConfig[key] = false;
         }
       });
+      console.log(this.cardConfig);
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
@@ -77,7 +96,12 @@ export class RechargeComponent implements OnInit {
 
 
   pay() {
-    if (this.data.Decimal(this.money) <= 2 && this.money > 0 && this.money !== null) {
+    const now = this.data.timeToNum(this.data.add0(new Date().getHours()) + ':' + this.data.add0(new Date().getMinutes()));
+    if (!this.data.isOnTime(this.startTime, this.endTime, now)) {
+      this.data.ErrorMsg(`充值时间必须在${this.chargeTime}之间`);
+    } else if (!this.data.isOnTime(this.minMoney, this.maxMoney, this.money)) {
+      this.data.ErrorMsg(`充值金额必须在${this.chargeRange}之间`);
+    } else if (this.data.Decimal(this.money) <= 2 && this.money > 0 && this.money !== null) {
       if (this.payType === 1) { // 支付宝支付
         if (this.isWeiChat) {
           _AP.pay(this.http.host + `/alipay/sign?totalAmount=${this.money}&token=${this.data.getToken()}`);

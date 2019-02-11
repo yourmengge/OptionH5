@@ -10,7 +10,9 @@ import { HttpService } from '../http.service';
 export class CapitalFlowComponent implements OnInit {
   startDate: any;
   endDate: any;
-  list: any;
+  list = [];
+  pageNo = 1;
+  stopLoad = false;
   constructor(public data: DataService, public http: HttpService) {
     this.startDate = this.data.getTime('yyyy-MM-dd', new Date(this.data.beforeMonth()));
     this.endDate = this.data.getTime('yyyy-MM-dd', new Date());
@@ -22,6 +24,8 @@ export class CapitalFlowComponent implements OnInit {
 
   change() {
     if (new Date(this.startDate).getTime() <= new Date(this.endDate).getTime()) {
+      this.list = [];
+      this.pageNo = 1;
       this.getlist();
     } else {
       this.data.ErrorMsg('开始日期必须大于结束日期');
@@ -34,14 +38,29 @@ export class CapitalFlowComponent implements OnInit {
     this.data.back();
   }
 
+  onScroll(e) {
+    if (Math.round(e.srcElement.scrollTop + e.srcElement.clientHeight) >= e.srcElement.scrollHeight) {
+      if (!this.stopLoad) {
+        this.pageNo = this.pageNo + 1;
+        this.getlist();
+      }
+    }
+  }
+
   getlist() {
     const data = {
-      accountCode: this.data.getOpUserCode(),
       createTimeStart: this.startDate,
-      createTimeEnd: this.endDate
+      createTimeEnd: this.endDate,
+      pageNo: this.pageNo,
+      pageSize: 20,
     };
     this.http.getFlow(data).subscribe(res => {
-      this.list = res['rows'];
+      if (res['rows'].length === 0) {
+        this.stopLoad = true;
+      } else {
+        this.stopLoad = false;
+      }
+      this.list = this.list.concat(res['rows']);
     }, err => {
       this.data.error = err.error;
       this.data.isError();

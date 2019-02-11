@@ -152,6 +152,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.stockName = '';
         this.show = 'active';
         const content = null;
+        this.cancelSubscribe();
         this.http.searchStock(this.stockCode).subscribe((res) => {
             this.list = res;
         }, (err) => {
@@ -179,12 +180,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.data.ErrorMsg('委托价格不能为空');
         } else if (parseInt(this.appointCnt, 0) !== this.appointCnt) {
             this.data.ErrorMsg(this.text + '数量必须是整数');
-        } else if (this.appointCnt > this.fullcount) {
-            if (this.classType === 'BUY') {
-                this.data.ErrorMsg('可用资金不足');
-            } else {
-                this.data.ErrorMsg(`${this.text}数量必须小于可${this.text2}数量`);
-            }
+        } else if (this.appointCnt > this.fullcount && this.classType === 'SELL') {
+            this.data.ErrorMsg(`${this.text}数量必须小于可${this.text2}数量`);
         } else if (this.appointCnt <= 0) {
             this.data.ErrorMsg(this.text + '数量必须大于0');
         } else if (this.appointCnt > 200) {
@@ -208,7 +205,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         };
         this.http.order(this.classType, content, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res: Response) => {
             if (res['success']) {
-                this.data.ErrorMsg('委托已提交');
+                this.data.ErrorMsg('已委托，待成交');
                 this.closeAlert();
                 this.clear();
             }

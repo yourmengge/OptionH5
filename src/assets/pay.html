@@ -149,7 +149,7 @@
   <script>
     if (location.hash.indexOf('error') !== -1) {
       alert('参数错误，请检查');
-    } else {  
+    } else {
       const ua = navigator.userAgent.toLowerCase();
       const tip2 = document.getElementById('weixin-tip');
       const tipImg2 = document.getElementById('weixin-tip-img');
@@ -164,7 +164,7 @@
           tipImg.className = 'J-weixin-tip-img weixin-tip-img android';
         }
       } else {
-        location.href = sessionStorage.getItem('aliyPayCodeUrl');
+        location.href = 'https://' + location.search.split('?url=')[1];
       }
     }
 

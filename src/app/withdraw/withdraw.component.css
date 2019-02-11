@@ -3,7 +3,6 @@
   line-height: 45px;
   background: #fff;
   margin-top: 10px;
-
 }
 
 .list-item .right-icon {
@@ -18,15 +17,24 @@
   margin-left: 10px;
 }
 
+.feelock {
+  text-align: right;
+  height: 30px;
+  line-height: 30px;
+  margin-right: 15px;
+  font-size: .9rem;
+  color: #9a9a9a;
+}
+
 .list-item div {
   float: right;
   margin-right: 10px;
 }
 
-.list-item div span:nth-child(1){
-    color: #9a9a9a;
+.list-item div span:nth-child(1) {
+  color: #9a9a9a;
 }
 
-.list-item:active{
-    background: rgb(245, 245, 245);
+.list-item:active {
+  background: rgb(245, 245, 245);
 }

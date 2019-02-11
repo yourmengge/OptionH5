@@ -12,11 +12,17 @@ export class BankcardComponent implements OnInit {
   remark: any;
   userName: any;
   payType: any;
+  confirm = false;
   cardInfro = { 'bankAccountName': '', 'bankCardNo': '', 'bankName': '', bankBranch: '', aliyPay: '', aliyPayName: '', aliyPayCodeUrl: '' };
   constructor(public data: DataService, public http: HttpService, private _clipboardService: ClipboardService) {
     this.amount = this.data.getSession('amount');
     this.userName = this.data.getSession('userName');
     this.payType = this.data.getSession('payType');
+    if (this.payType === '3') {
+      this.payType = '2';
+    } else {
+      this.payType = '3';
+    }
   }
 
   ngOnInit() {
@@ -54,18 +60,19 @@ export class BankcardComponent implements OnInit {
     this.http.submitBankTrans(this.amount, this.payType === '2' ? 'BANK' : 'ALIPAY').subscribe(res => {
       this.data.loading = this.data.hide;
       if (!this.data.isNull(this.cardInfro.aliyPayCodeUrl) && this.payType !== '2') {
-        location.href = './assets/js/pay.html';
+        location.href = `${location.href.split('#/')[0]}/assets/pay.html?url=${this.cardInfro.aliyPayCodeUrl.split('//')[1]}`;
       } else {
         // this.data.ErrorMsg('充值已提交，请尽快充值，等待后台审核');
-        alert('充值已提交，请尽快充值，等待后台审核');
-        setTimeout(() => {
-          window.history.go(-2);
-        }, 1000);
+        this.confirm = true;
       }
 
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
     });
+  }
+
+  ok() {
+    window.history.go(-2);
   }
 }

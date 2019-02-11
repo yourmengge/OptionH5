@@ -3,7 +3,7 @@
   <p class="navigation-title">充值信息确认</p>
 </div>
 <div class="cell-list">
-  <div class="list-item" *ngIf="payType==3" (click)='copy1(cardInfro.aliyPay)'>
+  <div class="list-item" *ngIf="payType==3">
     <span class="list-item-name">
       支付宝账号
     </span>
@@ -27,7 +27,7 @@
       {{cardInfro.bankName}}
     </span>
   </div>
-  <div class="list-item" *ngIf="payType==2" (click)='copy1(cardInfro.bankAccountName)'>
+  <div class="list-item" *ngIf="payType==2" >
     <span class="list-item-name">
       收款人姓名
     </span>
@@ -35,13 +35,15 @@
       {{cardInfro.bankAccountName}}
     </span>
   </div>
-  <div class="list-item" *ngIf="payType==2" (click)='copy1(cardInfro.bankCardNo)'>
+  <div class="list-item" *ngIf="payType==2">
     <span class="list-item-name">
       收款账号
     </span>
     <span class="list-item-content">
       {{cardInfro.bankCardNo}}
+      <a (click)='copy1(cardInfro.bankCardNo)'  class="copy" style='padding: 2px 3px;margin: 0;'>复制</a>
     </span>
+    
   </div>
   <div class="list-item" *ngIf="payType==2" style="height: auto;line-height: 2;">
     <span class="list-item-name">
@@ -72,5 +74,16 @@
   为了便于客服审核，转账时请务必点击 <button (click)='copy()' class="copy">复制</button>复制填写该备注说明
 </p>
 <div class="bottom-btn" style="margin-top:20px;">
-  <div class="main" (click)='pay()'>去提交</div>
+  <div class="main" (click)='pay()'>去转账</div>
+</div>
+<div class="confirm" *ngIf="confirm">
+  <div>
+    <p class="title">
+      提示
+    </p>
+    <p class="content">
+      充值已提交，请尽快充值，等待后台审核
+    </p>
+    <button (click)='ok()'>好</button>
+  </div>
 </div>

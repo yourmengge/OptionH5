@@ -25,3 +25,45 @@
   display: inline-block;
   width: 45%;
 }
+
+.input-search-div {
+  background: #fff;
+  height: 32px;
+  padding: 10px;
+}
+
+.search-input {
+  height: 30px;
+  padding: 0 10px;
+  width: calc(100vw - 90px);
+  border: solid 1px #515151;
+  border-radius: 50px;
+  float: left;
+}
+
+.search-input input {
+  width: calc(100% - 30px);
+  border: none;
+  height: 28px;
+  border-radius: 50px;
+}
+
+.search-input button{
+  width: 25px;
+  height: 25px;
+  float: right;
+  border: none;
+  background: url(../../../assets/images/close.png) no-repeat;
+  background-size: 100% 100%;
+  background-position-y: 2px;
+}
+
+.input-search-div .search {
+  height: 30px;
+  width: 30px;
+  float: right;
+  border: none;
+  background: url(../../../assets/images/search.png) no-repeat;
+  background-size: 80% 80%;
+  background-position-y: 4px;
+}

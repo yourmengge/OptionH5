@@ -325,7 +325,14 @@ export class HttpService {
   /**
    * 获取会员列表
    */
-  getMember() {
-    return this.POST(this.host + 'tntg/members', {});
+  getMember(data) {
+    return this.POST(this.host + 'tntg/members', data);
+  }
+
+  /**
+   * 获取充值提现限制
+   */
+  chargeWithdrawInfo() {
+    return this.POST(this.host + 'tntg/chargeWithdrawInfo', {});
   }
 }

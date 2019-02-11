@@ -2,9 +2,15 @@
   <div class="back" (click)='back()'></div>
   <p class="navigation-title">成员列表</p>
 </div>
-<div class="member-content">
+<div class='input-search-div'>
+  <div class='search-input'>
+    <input type="text" placeholder="会员ID" [(ngModel)]="accountCode">
+    <button *ngIf="accountCode !== ''" (click)='accountCode = "";'></button>
+  </div>
+  <button class='search' (click)='search()'></button>
+</div>
+<div class="member-content" (scroll)='onScroll($event)'>
   <div class="member-item" *ngFor="let item of list">
-
     <p>
       <span>
         会员名称：{{item.accountName}}
@@ -25,5 +31,8 @@
     <p>
       延期费用：{{item.cfgDelayFee}}
     </p>
+  </div>
+  <div class='stopLoad' *ngIf="stopLoad">
+    {{list.length === 0?'暂无数据':'没有更多数据啦~~'}}
   </div>
 </div>

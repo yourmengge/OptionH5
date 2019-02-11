@@ -17,10 +17,10 @@ export class InquireComponent implements OnInit {
     title: '合并持仓'
   }, {
     id: 'appoint',
-    title: '历史委托'
+    title: '委托记录'
   }, {
     id: 'appoint2',
-    title: '历史成交'
+    title: '成交记录'
   }, {
     id: 'capitalflow',
     title: '资金流水'

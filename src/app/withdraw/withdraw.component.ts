@@ -9,8 +9,10 @@ import { HttpService } from '../http.service';
 })
 export class WithdrawComponent implements OnInit {
   backableScale: any;
+  delayFeeLock: any;
   constructor(public data: DataService, public http: HttpService) {
     this.backableScale = this.data.getSession('backscale');
+    this.delayFeeLock = this.data.getSession('delayFeeLock');
   }
 
   ngOnInit() {

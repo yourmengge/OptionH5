@@ -137,6 +137,28 @@ export class DataService {
     window.history.back();
   }
 
+  isOnTime(start, end, flag) {
+    start = this.timeToNum(start);
+    end = this.timeToNum(end);
+    if (flag >= start && flag <= end || start === 0 && end === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  splitString(string: string, type: string, num: number) {
+    return string.split(type)[num];
+  }
+
+  timeToNum(string) {
+    if (string === 0) {
+      return 0;
+    } else {
+      return parseInt(string.replace(':', ''), 0);
+    }
+  }
+
   getBrowserInfo() {
     const Sys = {
       browser: '',
@@ -318,7 +340,7 @@ export class DataService {
       class: 'chicang'
     }, {
       id: 'search',
-      name: '查询',
+      name: '委托',
       class: 'search'
     }];
   }

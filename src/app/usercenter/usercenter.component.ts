@@ -33,7 +33,8 @@ export class UsercenterComponent implements OnInit, OnDestroy {
       this.userInfo = res;
       this.data.setSession('accountCode', res['accountCode']);
       this.data.setSession('userName', res['accountName']);
-      this.data.setSession('backscale', res['ableScale']);
+      this.data.setSession('backscale', res['liftAble']);
+      this.data.setSession('delayFeeLock', res['delayFeeLock']);
       this.data.intervalCapital = setTimeout(() => {
         this.usercenter();
       }, 60000);

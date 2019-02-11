@@ -10,7 +10,7 @@
   <input type="date" name="" id="" (change)='change()' [(ngModel)]="endDate">
   <span class="date-span">{{endDate}}</span>
 </div>
-<div class="flow-content">
+<div class="flow-content" (scroll)='onScroll($event)'>
   <div class="flow-list" *ngFor="let item of list">
     <div class="icon">
       <span [class]="item.totalAmount>=0?'':'blueBorder'">{{item.orderTypeDesc}}</span>
@@ -28,9 +28,12 @@
       <p>
         {{item.createTime}}
       </p>
-      <p class="red" *ngIf="item.auditResult == -1">
+      <p class="red" *ngIf="item.auditResult == -1 || item.orderType == 23">
         备注：{{item.remark}}
       </p>
     </div>
+  </div>
+  <div class='stopLoad' *ngIf="stopLoad">
+    {{list.length === 0?'暂无数据':'没有更多数据啦~~'}}
   </div>
 </div>
