@@ -49,7 +49,10 @@ export class BuyComponent implements DoCheck, OnDestroy {
     ableScale = 0; // 可用资金
     ygsxf = 0; // 预估手续费
     commission = 0; // 交易佣金
+    gearing = 3; // 杠杆倍数
+    jiaoyiType: string;
     constructor(public data: DataService, public http: HttpService) {
+        this.jiaoyiType = this.data.jiaoyiType;
         this.fullcount = '--';
         this.maxPrice = 10;
         this.minPrice = 5;

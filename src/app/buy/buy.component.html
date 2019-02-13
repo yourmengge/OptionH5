@@ -84,6 +84,17 @@
       <input type="radio" name="price" (click)='selectType(3)' [checked]='priceType==3'>排队价
     </div>
   </div>
+  <div class="left-line" *ngIf="jiaoyiType == 'SELL' && classType == 'SELL'">
+    <span>
+      保证金杠杆
+    </span>
+    <div class="left-content">
+      <input type="radio" name="gearing" (click)='gearingType(1)' [checked]='gearing==1'>1
+      <input type="radio" name="gearing" (click)='gearingType(3)' [checked]='gearing==3'>3
+      <input type="radio" name="gearing" (click)='gearingType(5)' [checked]='gearing==5'>5
+      <input type="radio" name="gearing" (click)='gearingType(8)' [checked]='gearing==8'>8
+    </div>
+  </div>
   <div class="left-line">
     <span>
       委托价格
@@ -117,7 +128,8 @@
     <div class="{{ccount==29?'four-btn-active':''}}" (click)='selectCount(29)'>29</div>
   </div>
   <p style="margin-top: 50px;  text-align: right;">
-    订单金额：{{totalPrice(appointPrice,appointCnt)}}
+    <span>订单金额：{{totalPrice(appointPrice,appointCnt)}}</span>
+    <span style='margin-left: 20px;' *ngIf="jiaoyiType == 'SELL' && classType == 'SELL'">保证金：{{totalPrice(appointPrice,appointCnt)}}</span>
   </p>
 </div>
 
@@ -130,7 +142,7 @@
 
 
 <div style="margin-top:20px;">
-	<app-cclb></app-cclb>
+  <app-cclb></app-cclb>
 </div>
 <div class="submit-alert" *ngIf='submitAlert'>
   <div class="alert-div">
@@ -163,6 +175,14 @@
     </p>
     <p *ngIf="text != '卖出'">
       <span>预估手续费：</span>
+      <span>{{ygsxf * appointCnt}}</span>
+    </p>
+    <p *ngIf="jiaoyiType == 'SELL' && text == '卖出'">
+      <span>预估保证金：</span>
+      <span>{{ygsxf * appointCnt}}</span>
+    </p>
+    <p *ngIf="jiaoyiType == 'SELL' && text != '卖出'">
+      <span>预估释放保证金：</span>
       <span>{{ygsxf * appointCnt}}</span>
     </p>
     <button class="submit-btn" (click)='submintBuy()'>

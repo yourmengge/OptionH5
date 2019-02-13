@@ -10,8 +10,23 @@ import { HttpService } from '../http.service';
 export class JiaoyiComponent implements DoCheck {
   public url: string;
   public menuList: any;
+  public jiaoyiType: string;
   constructor(public data: DataService, public http: HttpService) {
-    this.menuList = this.data.getCenterMenuList();
+    this.jiaoyiType = this.data.jiaoyiType;
+    this.getMenu();
+  }
+
+  getMenu() {
+    const url = this.data.getUrl(3);
+    if (this.jiaoyiType === 'BUY') {
+      this.menuList = this.data.getCenterMenuList();
+    } else {
+      this.menuList = this.data.getCenterMenuList2();
+    }
+    // 判断当前页面是买入还是卖出，如果是其他页面则不做跳转。买入页面时，跳转到卖出页面，卖出页面跳转到买入页面
+    if (url === 'sell' || url === 'buy') {
+      this.data.goto(`main/jiaoyi/${url === 'sell' ? 'buy' : 'sell'}`);
+    }
   }
 
   ngDoCheck() {
@@ -27,6 +42,12 @@ export class JiaoyiComponent implements DoCheck {
   ngOnDestroy() {
     console.log('destroy');
     this.data.clearInterval();
+  }
+
+  changeType(type) {
+    this.data.jiaoyiType = type;
+    this.jiaoyiType = type;
+    this.getMenu();
   }
 
   goto(url) {

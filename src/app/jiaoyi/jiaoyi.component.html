@@ -1,5 +1,8 @@
 <div class="navigation">
-  交易
+  <div class="tabs-top">
+    <button [class]='jiaoyiType == "BUY"?"active-btn":""' (click)='changeType("BUY")'>买方</button>
+    <button [class]='jiaoyiType == "SELL"?"active-btn":""' (click)='changeType("SELL")'>卖方</button>
+  </div>
 </div>
 <div class="menuList">
   <div *ngFor='let a of menuList' class="footer-div {{url === a.id?'footer-div-active':''}}" (click)='goto(a.id)'>
