@@ -120,6 +120,14 @@ export class DataService {
     totalScale: 0// 总资产
   };
 
+  responseData: Object;
+
+  myObserver = {
+    next: x => this.afterResponse(),
+    error: err => console.error('Observer got an error: ' + err),
+    complete: () => console.log('Observer got a complete notification'),
+  };
+
   opUserCode: string;
   logo = '';
   constructor(public router: Router) {
@@ -131,6 +139,9 @@ export class DataService {
       this.token = '';
     }
     this.initLogo();
+  }
+  afterResponse() {
+
   }
 
   back() {
@@ -183,6 +194,8 @@ export class DataService {
       this.logo = 'chengdu';
     } else if (window.location.host.indexOf('ahgcdl') > 0) { // 创宇
       this.logo = 'chuangyu';
+    } else if (window.location.host.indexOf('mkqe') > 0) {
+      this.logo = 'xdgs';
     } else {
       this.logo = 'login';
     }

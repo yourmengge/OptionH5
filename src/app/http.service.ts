@@ -249,7 +249,7 @@ export class HttpService {
    * 取消订阅
    */
   cancelSubscribe() {
-    return this.POST(this.host + 'push/unsubsMarket', {});
+    return this.POST(`${this.host}push/unsubsMarket?tokenP=${this.data.getToken()}`, {});
   }
 
   /**
@@ -299,6 +299,13 @@ export class HttpService {
    */
   holdDetail() {
     return this.POST(this.host + 'tntg/holdDetail', {});
+  }
+
+  /**
+   * 平仓
+   */
+  appointSELL(stockCode, type) {
+    return this.POST(`${this.host}tntg/appoint/${type}/CLOSE/${stockCode}`, {});
   }
 
   /**

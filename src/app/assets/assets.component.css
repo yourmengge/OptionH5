@@ -1,0 +1,115 @@
+.tabs {
+  width: 100vw;
+  display: flex;
+  border-bottom: solid 5px #f8f8f8;
+}
+
+.tabs button {
+  flex: 1;
+  background: #fff;
+  border: none;
+  height: 47px;
+  line-height: 46px;
+  color: #333;
+  outline: none;
+}
+
+.tabs-active {
+  line-height: 46px !important;
+  height: 46px !important;
+  border-bottom: solid 1px #b00e23 !important;
+  color: #b00e23 !important;
+}
+
+.cclb {
+  background: #fff;
+}
+
+.cclb table {
+  width: 100%;
+  text-align: center;
+  /* border-top: solid 1px #ccc; */
+  font-size: .9rem;
+}
+
+.cclb table tr, .cclb table tr td {
+  height: 40px;
+  border-bottom: solid 1px rgb(238, 238, 238);
+}
+
+.cclb table tr:first-child {
+  background: #ececec !important;
+}
+
+.green {
+  color: green;
+}
+
+.red {
+  color: #b00e23;
+}
+
+.table-div {
+  display: flex;
+  height: 57px;
+  line-height: 57px;
+  border-top: solid 1px #ececec;
+  background: #fff;
+}
+
+.table-div div {
+  flex: 1;
+  text-align: center;
+  font-size: .9rem;
+  position: relative;
+  z-index: 10;
+  color: #595757;
+}
+
+.table-div div:nth-child(2) {
+  flex: .7;
+}
+
+.table-div div p {
+  margin: 0;
+  font-size: .85rem;
+  line-height: 20px;
+}
+
+.table-div div p:first-child {
+  margin-top: 8px;
+}
+
+.caozuo {
+  display: flex;
+  background: rgba(247, 247, 247, 1);
+  color: rgba(89, 87, 87, 1);
+  box-shadow: 0px 4px 12px 1px rgba(137, 137, 137, 0.26);
+  z-index: 11;
+  position: relative;
+}
+
+.caozuo div {
+  flex: 1;
+  text-align: center;
+  height: 52px;
+  line-height: 52px;
+}
+
+.icon {
+  width: 23px;
+  height: 23px;
+  display: inline-block;
+  background: url(../../assets/images/hold-icon.png) no-repeat;
+  vertical-align: middle;
+  background-size: 100% 300%;
+  margin-top: -5px;
+}
+
+.caozuo .sell {
+  background-position-y: -23px;
+}
+
+.caozuo .sell2 {
+  background-position-y: -46px;
+}
