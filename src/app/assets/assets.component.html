@@ -1,0 +1,144 @@
+<div class='tabs'>
+  <button [class]="type == 0?'tabs-active':''" (click)='changeType(0)'>
+    合并持仓
+  </button>
+  <button [class]="type == 1?'tabs-active':''" (click)='changeType(1)'>
+    分笔持仓
+  </button>
+</div>
+<div *ngIf="type == 0">
+  <!-- <div class="cclb">
+    <table cellspacing="0">
+      <tr>
+        <td>
+          名称
+        </td>
+        <td>
+          盈亏
+        </td>
+        <td>
+          持仓/可用
+        </td>
+        <td>
+          参考成本/现价
+        </td>
+      </tr>
+      <tr *ngFor='let a of list'>
+        <td>
+          <p>{{a.stockCode}}</p>
+          <p>{{a.stockName}}</p>
+        </td>
+        <td>
+          <p class="{{a.profit < 0?'green':'red'}}">
+            {{a.profit}}
+          </p>
+        </td>
+        <td>
+          <p>
+            {{a.stockCnt}}
+          </p>
+          <p>
+            {{a.stockCntAble}}
+          </p>
+        </td>
+        <td>
+          <p>
+            {{a.costPrice}}
+          </p>
+          <p>
+            {{a.lastPrice}}
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div> -->
+  <div class='table-div' style='border-top: none;'>
+    <div>名称</div>
+    <div>盈亏</div>
+    <div>持仓/可用</div>
+    <div>参考成本/现价</div>
+  </div>
+  <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
+    <div class='table-div table-content'>
+      <div>
+        <p>{{a.stockCode}}</p>
+        <p>{{a.stockName | replace:'50ETF'}}</p>
+      </div>
+      <div>
+        <p style='line-height: 57px;margin-top: 0;' class="{{a.profit < 0?'green':'red'}}">
+          {{a.profit}}
+        </p>
+      </div>
+      <div>
+        <p>
+          {{a.stockCnt}}
+        </p>
+        <p>
+          {{a.stockCntAble}}
+        </p>
+      </div>
+      <div>
+        <p>
+          {{a.costPrice}}
+        </p>
+        <p>
+          {{a.lastPrice}}
+        </p>
+      </div>
+    </div>
+    <div class='caozuo' *ngIf="caozuo == index;">
+      <div (click)='select(a,"buy")'>
+        <a class='icon'></a> 买入
+      </div>
+      <div (click)='select(a,"sell")'>
+        <a class='icon sell'></a> 卖出
+      </div>
+      <div (click)='submitAlert(a)'>
+        <a class='icon sell2'></a> 一键平仓
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="type == 1">
+  <div class="cclb">
+    <table cellspacing="0">
+      <tr>
+        <td>
+          名称/代码
+        </td>
+        <td>
+          成交均价/市价
+        </td>
+        <td>
+          盈亏额/市值
+        </td>
+        <td>
+          持仓数量
+        </td>
+      </tr>
+      <tr *ngFor='let a of list'>
+        <td>
+          <p>{{a.stockName}}</p>
+          <p>{{a.stockCode}}</p>
+        </td>
+        <td>
+          <p>{{a.dealAvgPrice}}</p>
+          <p>{{a.lastPrice}}</p>
+        </td>
+        <td>
+          <p [class]="a.profit < 0?'green':'red'">
+            {{a.profit}}
+          </p>
+          <p>
+            {{a.uncloseDealAmount}}
+          </p>
+        </td>
+        <td>
+          <p>
+            {{a.unclose}}
+          </p>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

@@ -35,7 +35,7 @@ export class FooterComponent implements DoCheck {
     window.clearTimeout(this.data.timeoutQoute);
     if (url !== this.data.getUrl(2)) {
       this.http.cancelSubscribe().subscribe(res => {
-        console.log('取消订阅');
+        console.log(`取消订阅,${this.data.getToken()}`);
       });
       this.data.resetStockHQ();
       this.data.removeSession('optionCode');

@@ -281,7 +281,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     cancelSubscribe() {
         this.http.cancelSubscribe().subscribe((res) => {
             this.data.resetStockHQ();
-            console.log('取消订阅');
+            console.log(`取消订阅,${this.data.getToken()}`);
         });
     }
     /**

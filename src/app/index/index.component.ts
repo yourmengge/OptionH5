@@ -13,8 +13,9 @@ export class IndexComponent implements OnInit, OnDestroy {
   timeout: any;
   newslist: any;
   logo = '';
+  responseData: Object;
   constructor(public data: DataService, public http: HttpService) {
-
+    this.responseData = this.data.responseData;
   }
 
   ngOnInit() {

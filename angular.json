@@ -30,7 +30,8 @@
               "./src/assets/js/stock.js",
               "./src/assets/js/ap.js",
               "./src/assets/js/swiper.js",
-              "./src/assets/js/emcharts.js"
+              "./src/assets/js/emcharts.js",
+              "./src/assets/js/layer.js"
             ]
           },
           "configurations": {

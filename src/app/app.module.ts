@@ -52,6 +52,8 @@ import { HoldComponent } from './inquire/hold/hold.component';
 import { HoldDetailComponent } from './inquire/hold-detail/hold-detail.component';
 import { AppointComponent } from './inquire/appoint/appoint.component';
 import { AppointDetailComponent } from './inquire/appoint-detail/appoint-detail.component';
+import { AssetsComponent } from './assets/assets.component';
+import { ReplacePipe } from './replace.pipe';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -151,7 +153,9 @@ const appRoutes: Routes = [
     HoldComponent,
     HoldDetailComponent,
     AppointComponent,
-    AppointDetailComponent
+    AppointDetailComponent,
+    AssetsComponent,
+    ReplacePipe
   ],
   imports: [
     BrowserAnimationsModule,
