@@ -50,13 +50,13 @@
         </span>
       </p>
       <p>
-        {{item.stockName}}
+        <a class='up-down {{isUporDown(item.upRatio)}}'></a>{{item.stockName}}
       </p>
     </div>
   </div>
   <div class="zixun">
     <div class="zixun-title">
-      <img src="./assets/images/zixun.png" alt="">
+      <img src="./assets/images/zixun.gif" alt="">
       <span>资讯</span>
     </div>
     <div class="zixun-content" *ngFor="let item of newslist" (click)='goto(item.id)'>

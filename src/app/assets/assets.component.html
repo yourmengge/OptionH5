@@ -6,7 +6,7 @@
     分笔持仓
   </button>
 </div>
-<div *ngIf="type == 0">
+<div *ngIf="type == 0" style='padding-bottom:50px;'>
   <!-- <div class="cclb">
     <table cellspacing="0">
       <tr>
@@ -52,7 +52,7 @@
       </tr>
     </table>
   </div> -->
-  <div class='table-div' style='border-top: none;'>
+  <div class='table-div' style='border-top: none;line-height: 50px;height: 50px;'>
     <div>名称</div>
     <div>盈亏</div>
     <div>持仓/可用</div>
@@ -99,46 +99,36 @@
     </div>
   </div>
 </div>
-<div *ngIf="type == 1">
-  <div class="cclb">
-    <table cellspacing="0">
-      <tr>
-        <td>
-          名称/代码
-        </td>
-        <td>
-          成交均价/市价
-        </td>
-        <td>
-          盈亏额/市值
-        </td>
-        <td>
-          持仓数量
-        </td>
-      </tr>
-      <tr *ngFor='let a of list'>
-        <td>
-          <p>{{a.stockName}}</p>
-          <p>{{a.stockCode}}</p>
-        </td>
-        <td>
-          <p>{{a.dealAvgPrice}}</p>
-          <p>{{a.lastPrice}}</p>
-        </td>
-        <td>
-          <p [class]="a.profit < 0?'green':'red'">
-            {{a.profit}}
-          </p>
-          <p>
-            {{a.uncloseDealAmount}}
-          </p>
-        </td>
-        <td>
-          <p>
-            {{a.unclose}}
-          </p>
-        </td>
-      </tr>
-    </table>
+<div *ngIf="type == 1" style='padding-bottom:50px;'>
+  <div class='table-div' style='border-top: none;line-height: 50px;height: 50px;'>
+    <div>名称/代码</div>
+    <div style='flex:1'>成交均价/市价</div>
+    <div>盈亏额/市值</div>
+    <div>持仓数量</div>
+  </div>
+  <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
+    <div class='table-div table-content'>
+      <div>
+        <p>{{a.stockName | replace:'50ETF'}}</p>
+        <p>{{a.stockCode}}</p>
+      </div>
+      <div style='flex:1'>
+        <p>{{a.dealAvgPrice}}</p>
+        <p>{{a.lastPrice}}</p>
+      </div>
+      <div>
+        <p [class]="a.profit < 0?'green':'red'">
+          {{a.profit}}
+        </p>
+        <p>
+          {{a.uncloseDealAmount}}
+        </p>
+      </div>
+      <div>
+        <p style='line-height: 57px;margin-top: 0;'>
+          {{a.unclose}}
+        </p>
+      </div>
+    </div>
   </div>
 </div>

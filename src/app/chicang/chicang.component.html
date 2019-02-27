@@ -1,29 +1,8 @@
 <div class="navigation" *ngIf="!isJiaoyi">
   <p class="navigation-title">资产</p>
 </div>
-<!-- <div class="chedang-div">
-  <div>
-    <div class="icon4 kyzj"></div>
-    <p>
-      {{userInfo.ableScale}}
-    </p>
-    <p>
-      可用资金
-    </p>
-  </div>
-  <div>
-    <div class="icon4 djzj"></div>
-    <p>
-      {{userInfo.lockScale}}
-    </p>
-    <p>
-      冻结资金
-    </p>
-  </div>
-</div>
-<div class="chedang-div">
-  <div>
-    <div class="icon4 gpsz"></div>
+<div [class]="overflow(isJiaoyi)">
+  <div class='zichan'>
     <p>
       {{userInfo.totalScale}}
     </p>
@@ -31,50 +10,33 @@
       总资产
     </p>
   </div>
-  <div>
-    <div class="icon4 kyzj"></div>
-    <p>
-      {{userInfo.stockScale}}
-    </p>
-    <p>
-      持仓权益
-    </p>
-  </div>
-</div> -->
-<div class='zichan'>
-  <p>
-    {{userInfo.totalScale}}
-  </p>
-  <p>
-    总资产
-  </p>
-</div>
-<div class="zichan" style='display: flex;'>
-  <div>
-    <p>
-      {{userInfo.ableScale}}
-    </p>
-    <p>
-      可用资金
-    </p>
-  </div>
-  <div>
-    <p>
-      {{userInfo.lockScale}}
-    </p>
-    <p>
-      冻结资金
-    </p>
+  <div class="zichan" style='display: flex;'>
+    <div>
+      <p>
+        {{userInfo.ableScale}}
+      </p>
+      <p>
+        可用资金
+      </p>
+    </div>
+    <div>
+      <p>
+        {{userInfo.lockScale}}
+      </p>
+      <p>
+        冻结资金
+      </p>
+    </div>
+    <div>
+      <p>
+        {{userInfo.stockScale}}
+      </p>
+      <p>
+        持仓权益
+      </p>
+    </div>
   </div>
   <div>
-    <p>
-      {{userInfo.stockScale}}
-    </p>
-    <p>
-      持仓权益
-    </p>
+    <app-assets></app-assets>
   </div>
-</div>
-<div [class]="overflow(isJiaoyi)">
-  <app-assets></app-assets>
 </div>

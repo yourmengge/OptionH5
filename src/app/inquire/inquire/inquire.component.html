@@ -3,12 +3,14 @@
   <p class="navigation-title">查询</p>
 </div>
 
-<div class="grid">
-  <div class="grid-div" *ngFor="let item of gridList" (click)='goto(item.id)'>
-    
-    <div class='icon {{item.id}}'></div>
-    <p>
-      {{item.title}}
-    </p>
+<div class='grid-content'>
+  <div class="grid">
+    <div class="grid-div" *ngFor="let item of gridList" (click)='goto(item.id)'>
+
+      <div class='icon {{item.id}}'></div>
+      <p>
+        {{item.title}}
+      </p>
+    </div>
   </div>
 </div>

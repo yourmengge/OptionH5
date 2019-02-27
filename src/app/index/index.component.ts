@@ -69,6 +69,16 @@ export class IndexComponent implements OnInit, OnDestroy {
     }
   }
 
+  isUporDown(string) {
+    if (string) {
+      if (string.indexOf('-') >= 0) {
+        return 'isDown';
+      } else {
+        return '';
+      }
+    }
+  }
+
   goto(id) {
     this.data.gotoId('newdetail', id);
   }
