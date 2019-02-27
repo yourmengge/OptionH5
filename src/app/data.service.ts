@@ -196,6 +196,8 @@ export class DataService {
       this.logo = 'chuangyu';
     } else if (window.location.host.indexOf('mkqe') > 0) {
       this.logo = 'xdgs';
+    } else if (window.location.host.indexOf('hbetfzx') > 0) {
+      this.logo = 'hb';
     } else {
       this.logo = 'login';
     }
