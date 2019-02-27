@@ -12,10 +12,11 @@ export class AppointDetailComponent implements OnInit {
   text = '';
   constructor(public data: DataService, public http: HttpService) {
     this.text = this.data.getSession('appointType');
+    this.getAppointDetail();
   }
 
   ngOnInit() {
-    this.getAppointDetail();
+
   }
 
   back() {

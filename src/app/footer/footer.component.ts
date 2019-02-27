@@ -40,6 +40,7 @@ export class FooterComponent implements DoCheck {
       });
       this.data.resetStockHQ();
       this.data.removeSession('optionCode');
+      this.data.removeSession('dateType');
       this.url = url;
       this.data.goto('main/' + url);
       this.title();
