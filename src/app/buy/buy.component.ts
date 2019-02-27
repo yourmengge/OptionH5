@@ -123,7 +123,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.priceType = type;
         switch (type) {
             case 1:
-                this.appointPrice = this.stockHQ.lastPrice;
+                // tslint:disable-next-line:max-line-length
+                this.appointPrice = this.classType === 'BUY' ? this.data.stockHQ.sellLevel.sellPrice05 : this.data.stockHQ.buyLevel.buyPrice05;
                 break;
             case 2:
                 if (this.classType === 'BUY') {
@@ -315,7 +316,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
 
     // 选中合约
     getGPHQ() {
-        this.priceType = 2;
+        this.priceType = 1;
         this.ccount = '';
         this.show = 'inactive';
         this.http.getGPHQ(this.stockCode, this.data.token).subscribe((res) => {
@@ -336,9 +337,9 @@ export class BuyComponent implements DoCheck, OnDestroy {
                 }
                 this.stockName = this.data.stockHQ.stockName;
                 if (this.classType === 'BUY') {
-                    this.appointPrice = this.data.roundNum(this.data.stockHQ.sellLevel.sellPrice01, 4);
+                    this.appointPrice = this.data.roundNum(this.data.stockHQ.sellLevel.sellPrice05, 4);
                 } else {
-                    this.appointPrice = this.data.roundNum(this.data.stockHQ.buyLevel.buyPrice01, 4);
+                    this.appointPrice = this.data.roundNum(this.data.stockHQ.buyLevel.buyPrice05, 4);
                 }
             } else {
                 this.stockHQ = this.data.stockHQ;

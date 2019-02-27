@@ -1,7 +1,6 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
   border-top: solid 1px #f1f1f1;
 }
 
@@ -14,7 +13,7 @@
   padding-top: 20px;
 }
 
-.grid div:nth-child(3n){
+.grid div:nth-child(3n) {
   border-right: none;
 }
 
@@ -52,4 +51,9 @@
 
 .member {
   background-position-y: -210px !important;
+}
+
+.grid-content {
+  height: calc(100vh - 50px);
+  background: #fff;
 }

@@ -6,8 +6,9 @@
 <div class="index">
   <div class="swiper-container">
     <div class="swiper-wrapper">
-      <div class="swiper-slide"><img src='./assets/images/banner4.jpg' alt=""></div>
-      <div class="swiper-slide"><img src='./assets/images/banner5.jpg' alt=""></div>
+      <div class="swiper-slide"><img src='./assets/images/banner.jpg' alt=""></div>
+      <div class="swiper-slide"><img src='./assets/images/banner.jpg' alt=""></div>
+      <div class="swiper-slide"><img src='./assets/images/banner.jpg' alt=""></div>
     </div>
     <div class="swiper-pagination"></div>
   </div>
@@ -37,7 +38,7 @@
       </p>
     </div>
   </div>
-  <div class="tabs">
+  <div class="tabs" style='padding: 0 5px;'>
     <div class="tabs-div2 " *ngFor="let item of list">
       <p [class]="color(item.upRatio)">{{item.lastPrice}}</p>
       <p [class]="color(item.upRatio)">
@@ -49,13 +50,13 @@
         </span>
       </p>
       <p>
-        {{item.stockName}}
+        <a class='up-down {{isUporDown(item.upRatio)}}'></a>{{item.stockName}}
       </p>
     </div>
   </div>
   <div class="zixun">
     <div class="zixun-title">
-      <img src="./assets/images/zixun.png" alt="">
+      <img src="./assets/images/zixun.gif" alt="">
       <span>资讯</span>
     </div>
     <div class="zixun-content" *ngFor="let item of newslist" (click)='goto(item.id)'>

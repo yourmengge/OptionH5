@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../data.service';
 import { HttpService } from '../http.service';
-import { of } from 'rxjs';
 
 @Component({
   selector: 'app-zixuan',
@@ -53,6 +52,7 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   change(date) {
     this.date = date;
     this.data.clearInterval();
+    this.data.setSession('dateType', date);
     this.getlist();
   }
 
@@ -63,7 +63,7 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   getDate() {
     this.http.heyuezhouqi().subscribe(res => {
       this.dateList = res;
-      this.date = res[0];
+      this.date = !this.data.isNull(this.data.getSession('dateType')) ? this.data.getSession('dateType') : this.date = res[0];
       if (!this.data.isNull(this.date)) {
         this.getlist();
       }

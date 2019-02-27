@@ -36,9 +36,11 @@ button {
   text-align: center;
   height: 49px;
   line-height: 49px;
-  background: #b00e23;
-  color: #fff;
+  background: #fff;
+  color: #000;
   font-size: 1.2rem;
+  font-weight: 400;
+  box-shadow: 0px 1px 3px 0px rgba(83, 56, 56, 0.08);
 }
 
 .tabs-top {
@@ -68,8 +70,9 @@ button {
 
 .main-content {
   height: calc(100vh - 94px);
-  background: rgb(243, 243, 243);
+  background: #fff;
   overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .demonstration {
@@ -375,6 +378,70 @@ table td p {
   color: #007aff;
   border-top: solid 1px #f1f1f1;
   font-size: 1.1rem;
+}
+
+.cell-list {
+  border-top: solid 1px #e5e5e5;
+  /* border-bottom: solid 1px #e5e5e5; */
+  padding-left: 20px;
+  background: #fff;
+  color: #333;
+  text-align: left;
+}
+
+.cell-list .list-item:last-child {
+  border-bottom: none !important;
+}
+
+.list-item {
+  height: 45px;
+  line-height: 45px;
+  background: #fff;
+  border-bottom: solid 1px #f1f1f1;
+  overflow-x: hidden;
+}
+
+.list-item-content {
+  float: right;
+  margin-right: 20px;
+  max-width: 200px;
+  text-align: right;
+}
+
+.list-item select {
+  width: 65%;
+  position: absolute;
+  height: 45px;
+  z-index: 10;
+  background: none;
+  border: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list-item input {
+  height: 36px;
+  width: 60%;
+  margin-left: 3px;
+  font-size: 15px;
+  border: none;
+}
+
+.list-item .span-title {
+  display: inline-block;
+  width: 30%;
+}
+
+.list-item .right-icon {
+  width: 15px;
+  height: 15px;
+  float: right;
+  margin-right: 10px;
+  margin-top: 15px;
 }
 
 @media screen and (max-width: 320px) {

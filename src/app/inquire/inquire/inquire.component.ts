@@ -24,6 +24,12 @@ export class InquireComponent implements OnInit {
   }, {
     id: 'capitalflow',
     title: '资金流水'
+  }, {
+    id: 'capitalflow',
+    title: '平仓结算'
+  }, {
+    id: 'capitalflow',
+    title: '开仓结算'
   }];
 
   gridList2 = [{

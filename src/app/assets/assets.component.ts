@@ -42,6 +42,11 @@ export class AssetsComponent implements OnInit, OnDestroy {
     });
   }
 
+  detail(code) {
+    this.data.setSession('optionCode', code);
+    this.data.goto('chart');
+  }
+
   sell(a) {
     this.http.appointSELL(a.stockCode, 'SELL').subscribe(res => {
       this.data.ErrorMsg('已委托，待成交');

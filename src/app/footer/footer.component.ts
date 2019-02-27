@@ -13,14 +13,15 @@ export class FooterComponent implements DoCheck {
   public menuList: any;
   public name: string;
 
-  constructor(public data: DataService, public http: HttpService) { }
+  constructor(public data: DataService, public http: HttpService) {
+    this.menuList = this.data.getFooterMenu();
+  }
 
   ngDoCheck() {
     this.url = this.data.getUrl(2);
     if (this.url === 'ssgp') {
       this.url = 'zixuan';
     }
-    this.menuList = this.data.getFooterMenu();
     this.title();
     if (this.data.getUrl(2) !== 'jiaoyi') {
       this.data.nowUrl = '';
@@ -39,6 +40,7 @@ export class FooterComponent implements DoCheck {
       });
       this.data.resetStockHQ();
       this.data.removeSession('optionCode');
+      this.data.removeSession('dateType');
       this.url = url;
       this.data.goto('main/' + url);
       this.title();
