@@ -102,7 +102,7 @@
   display: inline-block;
   background: url(../../assets/images/hold-icon.png) no-repeat;
   vertical-align: middle;
-  background-size: 100% 300%;
+  background-size: 100% 400%;
   margin-top: -5px;
 }
 
@@ -112,4 +112,8 @@
 
 .caozuo .sell2 {
   background-position-y: -46px;
+}
+
+.caozuo .detail{
+  background-position-y: -69px;
 }
