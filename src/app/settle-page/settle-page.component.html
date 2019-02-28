@@ -1,0 +1,58 @@
+<div class="navigation">
+  <div class="back" (click)='back()'></div>
+  <p class="navigation-title">{{text}}结算</p>
+</div>
+<!-- <div class="search-head">
+  <p class="search-title">委托时间</p>
+  <p class="search-title" style="text-align: center;margin-bottom: 0;padding-bottom: 20px;    height: 30px;">{{date}} <a class='select'></a> </p>
+  <input type="date" class="date" [(ngModel)]="date" (change)='change()'>
+</div> -->
+<div class="date-div">
+  <span>查询日期</span>
+  <input type="date" name="" id="" (change)='change()' [(ngModel)]="date">
+  <span class="date-span">{{date}}</span>
+</div>
+<!-- 历史委托 -->
+<div class="cclb">
+  <table cellspacing="0">
+    <tr>
+      <td>
+        结算日期
+      </td>
+      <td>
+        名称/代码
+      </td>
+      <td>
+        成交市值
+      </td>
+      <td>
+        实{{url === 'settleOpen'?'扣':'收'}}金额
+      </td>
+    </tr>
+    <tr *ngFor='let a of list' (click)='goto(a)'>
+      <td>
+        <p>
+          {{a.dealdate}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.stockName}}
+        </p>
+        <p>
+          {{a.stockno}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.dealprice}}
+        </p>
+      </td>
+      <td>
+        <p>
+          {{a.happenAmount}}
+        </p>
+      </td>
+    </tr>
+  </table>
+</div>

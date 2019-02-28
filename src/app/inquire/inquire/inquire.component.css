@@ -53,6 +53,14 @@
   background-position-y: -210px !important;
 }
 
+.settleClose {
+  background-position-y: -245px !important;
+}
+
+.settleOpen {
+  background-position-y: -280px !important;
+}
+
 .grid-content {
   height: calc(100vh - 50px);
   background: #fff;

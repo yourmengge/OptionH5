@@ -33,7 +33,7 @@ export class SearchComponent implements OnInit {
   }
 
   getOrder() {
-    this.http.getAppoint('date=' + this.data.getTime('yyyyMMss', this.date)).subscribe((res) => {
+    this.http.getAppoint('date=' + this.data.getTime('yyyyMMdd', this.date)).subscribe((res) => {
       this.list = res;
       // tslint:disable-next-line:forin
       // for (const i in this.list) {

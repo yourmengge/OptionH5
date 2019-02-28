@@ -60,7 +60,7 @@ export class ChedanComponent implements OnInit {
   }
 
   getOrder() {
-    const today = this.data.getTime('yyyyMMss', new Date());
+    const today = this.data.getTime('yyyyMMdd', new Date());
     this.http.getAppoint(`ing=true&date=${today}`).subscribe((res) => {
       this.list = res;
       // tslint:disable-next-line:forin
