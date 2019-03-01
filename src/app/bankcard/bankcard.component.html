@@ -9,6 +9,7 @@
     </span>
     <span class="list-item-content">
       {{cardInfro.aliyPay}}
+      <a (click)='copy1(cardInfro.aliyPay)'  class="copy" style='padding: 2px 3px;margin: 0;'>复制</a>
     </span>
   </div>
   <div class="list-item" *ngIf="payType==3">
