@@ -61,6 +61,7 @@ export class TransferComponent implements OnInit {
       const data = {
         liftScale: this.liftScale
       };
+      this.data.loading = this.data.show;
       this.http.withdraw(data).subscribe(res => {
         this.data.ErrorMsg('提现申请已提交');
         this.http.userCenter().subscribe(response => {
@@ -72,6 +73,8 @@ export class TransferComponent implements OnInit {
       }, err => {
         this.data.error = err.error;
         this.data.isError();
+      }, () => {
+        this.data.loading = this.data.hide;
       });
     }
   }
