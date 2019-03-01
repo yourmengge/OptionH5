@@ -2,7 +2,7 @@
   <div class="back" (click)='back()'></div>
   <p class="navigation-title">详情</p>
 </div>
-<div class="content">
+<div class="content" *ngIf="url === 'holdDetail'">
   <div class="cell-list">
     <div class="list-item">
       <span class="list-item-name">
@@ -123,6 +123,124 @@
       </span>
       <span class="list-item-content">
         {{detail.delayFee}}
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="content" *ngIf="url !== 'holdDetail'">
+  <div class="cell-list">
+    <div class="list-item">
+      <span class="list-item-name">
+        结算日期
+      </span>
+      <span class="list-item-content">
+        {{detail.dealdate}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        流水号
+      </span>
+      <span class="list-item-content">
+        {{detail.dealno}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        会员ID
+      </span>
+      <span class="list-item-content">
+        {{detail.accountcode}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        会员名称
+      </span>
+      <span class="list-item-content">
+        {{detail.accountName}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        发生时间
+      </span>
+      <span class="list-item-content">
+        {{detail.dealtime}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        合约代码
+      </span>
+      <span class="list-item-content">
+        {{detail.stockno}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        合约名称
+      </span>
+      <span class="list-item-content">
+        {{detail.stockName}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        成交数量
+      </span>
+      <span class="list-item-content">
+        {{detail.dealcnt}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        成交价格
+      </span>
+      <span class="list-item-content">
+        {{detail.dealAmount}}
+      </span>
+    </div>
+
+    <div class="list-item">
+      <span class="list-item-name">
+        成交市值
+      </span>
+      <span class="list-item-content">
+        {{detail.dealprice}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        应缴手续费
+      </span>
+      <span class="list-item-content">
+        {{detail.commission}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        应缴保证金
+      </span>
+      <span class="list-item-content">
+        {{detail.dealAmount}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        总应结算
+      </span>
+      <span class="list-item-content">
+        {{detail.happenAmount}}
+      </span>
+    </div>
+    <div class="list-item">
+      <span class="list-item-name">
+        实{{url == 'settleCloseDetail'?'收':'扣'}}金额
+      </span>
+      <span class="list-item-content">
+        {{detail.happenAmount}}
       </span>
     </div>
   </div>

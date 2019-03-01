@@ -26,7 +26,7 @@
   height: 35px;
   background: url(../../../assets/images/grid-icon.png) no-repeat;
   margin: auto;
-  background-size: 100% 700%;
+  background-size: 100% 900%;
 }
 
 .hold2 {
@@ -51,6 +51,14 @@
 
 .member {
   background-position-y: -210px !important;
+}
+
+.settleClose {
+  background-position-y: -245px !important;
+}
+
+.settleOpen {
+  background-position-y: -280px !important;
 }
 
 .grid-content {

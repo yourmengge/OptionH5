@@ -25,10 +25,10 @@ export class InquireComponent implements OnInit {
     id: 'capitalflow',
     title: '资金流水'
   }, {
-    id: 'capitalflow',
+    id: 'settleClose',
     title: '平仓结算'
   }, {
-    id: 'capitalflow',
+    id: 'settleOpen',
     title: '开仓结算'
   }];
 

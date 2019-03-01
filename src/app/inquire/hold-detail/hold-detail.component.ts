@@ -8,10 +8,19 @@ import { DataService } from '../../data.service';
 })
 export class HoldDetailComponent implements OnInit {
   detail: any;
-  constructor(public data: DataService) { }
+  url = '';
+  constructor(public data: DataService) {
+    this.url = this.data.getUrl(1);
+  }
 
   ngOnInit() {
-    this.detail = JSON.parse(this.data.getSession('holdDetail'));
+    if (this.url === 'holdDetail') {
+      this.detail = JSON.parse(this.data.getSession('holdDetail'));
+    } else {
+      this.detail = JSON.parse(this.data.getSession('settleDetail'));
+    }
+    console.log(this.detail);
+
   }
 
   back() {

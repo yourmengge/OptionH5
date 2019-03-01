@@ -409,7 +409,7 @@ export class DataService {
           this.add0(hour) + this.add0(minutes) + this.add0(seconds) + this.add0(millseconds);
       case 'yyyy-MM-dd':
         return year + '-' + this.add0(month) + '-' + this.add0(day);
-      case 'yyyyMMss':
+      case 'yyyyMMdd':
         return year + this.add0(month).toString() + this.add0(day);
       case 'yyyy/MM/dd':
         return year + '/' + this.add0(month) + '/' + this.add0(day);

@@ -342,4 +342,11 @@ export class HttpService {
   chargeWithdrawInfo() {
     return this.POST(this.host + 'tntg/chargeWithdrawInfo', {});
   }
+
+  /**
+   * 结算接口
+   */
+  settleMent(type, data) {
+    return this.POST(`${this.host}tn/history/${type}`, data);
+  }
 }
