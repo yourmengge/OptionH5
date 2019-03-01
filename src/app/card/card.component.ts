@@ -147,7 +147,7 @@ export class CardComponent implements OnInit {
     } else {
       this.http.bandCard(this.cardInfo).subscribe(res => {
         this.data.ErrorMsg(`${this.text}成功`);
-        this.getCard();
+        // this.getCard();
         this.back();
       }, err => {
         this.data.error = err.error;
