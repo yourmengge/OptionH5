@@ -33,6 +33,7 @@ export class FooterComponent implements DoCheck {
 
 
   goto(url) {
+    this.data.jiaoyiType = 'BUY';
     window.clearTimeout(this.data.timeoutQoute);
     if (url !== this.data.getUrl(2)) {
       this.http.cancelSubscribe().subscribe(res => {

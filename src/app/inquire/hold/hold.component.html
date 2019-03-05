@@ -19,9 +19,10 @@
       </td>
     </tr>
     <tr *ngFor='let a of list' (click)='goto(a)'>
-      <td>
+      <td style='width:30%;'>
+        <span class="span {{a.holdType == 2?'blue':''}}">{{a.holdTypeDesc}}</span>
         <p>{{a.stockCode}}</p>
-        <p>{{a.stockName}}</p>
+        <p>{{a.stockName | replace:'50ETF'}}</p>
       </td>
       <td>
         <p>
@@ -39,7 +40,7 @@
           {{a.commission}}
         </p>
       </td>
-      <td>
+      <td style='width:25%;'>
         <p>
           {{a.orderDateTime}}
         </p>
@@ -64,9 +65,10 @@
       </td>
     </tr>
     <tr *ngFor='let a of list'>
-      <td>
+      <td  style='width:30%;'>
+        <span class="span {{a.holdType == 2?'blue':''}}">{{a.holdTypeDesc}}</span>
         <p>{{a.stockCode}}</p>
-        <p>{{a.stockName}}</p>
+        <p>{{a.stockName | replace:'50ETF'}}</p>
       </td>
       <td>
         <p class="{{a.profit < 0?'green':'red'}}">

@@ -61,6 +61,7 @@
   <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
     <div class='table-div table-content'>
       <div>
+        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 20px;'>{{a.holdTypeDesc}}</span>
         <p>{{a.stockCode}}</p>
         <p>{{a.stockName | replace:'50ETF'}}</p>
       </div>
@@ -112,6 +113,7 @@
   <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
     <div class='table-div table-content'>
       <div>
+        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 20px;' >{{a.holdTypeDesc}}</span>
         <p>{{a.stockName | replace:'50ETF'}}</p>
         <p>{{a.stockCode}}</p>
       </div>

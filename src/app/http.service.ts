@@ -197,6 +197,13 @@ export class HttpService {
   }
 
   /**
+   * 获取保证金
+   */
+  getBaozhengjin(code) {
+    return this.POST(this.host + `tntg/seller/deposit/${code}`, {});
+  }
+
+  /**
  * 获取手续费
  */
   commission() {

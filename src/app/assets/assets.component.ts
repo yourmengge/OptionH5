@@ -48,7 +48,8 @@ export class AssetsComponent implements OnInit, OnDestroy {
   }
 
   sell(a) {
-    this.http.appointSELL(a.stockCode, 'SELL').subscribe(res => {
+    const holdType = a.holdType === 1 ? 'SELL' : 'BUY'; // 1.卖平，2.买平
+    this.http.appointSELL(a.stockCode, holdType).subscribe(res => {
       this.data.ErrorMsg('已委托，待成交');
       this.caozuo = -1;
       this.getlist();
@@ -61,6 +62,7 @@ export class AssetsComponent implements OnInit, OnDestroy {
   select(a, type) {
     this.data.searchStockCode = a.stockCode;
     this.data.sellCnt = a.stockCntAble;
+    this.data.jiaoyiType = a.holdType === 1 ? 'BUY' : 'SELL';
     if (location.href.indexOf('chicang') > 0) {
       this.data.goto(`main/jiaoyi/${type}`);
     }

@@ -46,7 +46,7 @@ button {
 .tabs-top {
   width: 126px;
   display: flex;
-  border: solid 1px #fff;
+  border: solid 1px #b00e23;
   border-radius: 3px;
   height: 22px;
   font-size: 12px;
@@ -55,17 +55,26 @@ button {
   position: relative;
 }
 
+.SELL .main {
+  background: #145c90 !important;
+  border: solid 1px #145c90 !important;
+}
+
+.tabs-top button:first-child {
+  border-right: solid 1px #b00e23;
+}
+
 .tabs-top button {
   flex: 1;
   border: none;
   background: none;
-  color: #fff;
+  color: #b00e23;
   line-height: 22px;
 }
 
 .tabs-top .active-btn {
-  background: #fff !important;
-  color: #b00e23 !important;
+  background: #b00e23 !important;
+  color: #fff !important;
 }
 
 .main-content {
@@ -124,7 +133,6 @@ table td p {
   width: 100%;
   background: #f9f9f9;
   border-top: solid 1px #ececec;
-  margin-top: -8PX !important;
   height: 400px;
   z-index: 0617;
   overflow-y: auto;
@@ -442,6 +450,26 @@ table td p {
   float: right;
   margin-right: 10px;
   margin-top: 15px;
+}
+
+
+.span {
+  float: left;
+  margin-top: 14px;
+  font-size: .7rem;
+  display: block;
+  border: solid 1px #b00e23;
+  border-radius: 5px;
+  width: 20px;
+  line-height: 16px;
+  margin-left: 2px;
+  color: #b00e23;
+  margin-right: 2px;
+}
+
+.blue {
+  color: #145c90 !important;
+  border: solid 1px #145c90 !important;
 }
 
 @media screen and (max-width: 320px) {
