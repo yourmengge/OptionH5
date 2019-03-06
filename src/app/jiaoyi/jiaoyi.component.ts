@@ -40,6 +40,14 @@ export class JiaoyiComponent implements DoCheck {
   }
 
   ngDoCheck() {
+    if (this.jiaoyiType !== this.data.jiaoyiType) {
+      this.jiaoyiType = this.data.jiaoyiType;
+      if (this.jiaoyiType === 'BUY') {
+        this.menuList = this.data.getCenterMenuList();
+      } else {
+        this.menuList = this.data.getCenterMenuList2();
+      }
+    }
     if (this.data.nowUrl !== this.data.getUrl(3)) {
       this.data.nowUrl = this.data.getUrl(3);
       this.url = this.data.getUrl(3);

@@ -30,7 +30,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     show = 'inactive';
     stockCode = '';
     appointPrice: any;
-    appointCnt = 0;
+    appointCnt: number;
     ccount: any;
     fullcount: any;
     minPrice: number;
@@ -57,6 +57,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.fullcount = '--';
         this.maxPrice = 10;
         this.minPrice = 5;
+        this.appointCnt = null;
         this.stockHQ = this.data.stockHQ;
         this.appointPrice = '';
         this.connectStatus = false;
@@ -194,7 +195,9 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.data.ErrorMsg(this.text + '数量不能大于200张');
         } else {
             this.submitAlert = this.data.show;
-
+            if (this.data.jiaoyiType === 'SELL' && this.classType === 'BUY') { // 卖方买入获取释放保证金
+                this.getBaozhengjin();
+            }
         }
 
     }
@@ -204,7 +207,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
      */
     submintBuy() {
         this.data.Loading(this.data.show);
-        const content = {
+        let content = {
             'stockCode': this.stockCode,
             'appointCnt': this.appointCnt,
             'appointPrice': this.appointPrice
@@ -224,11 +227,12 @@ export class BuyComponent implements DoCheck, OnDestroy {
             classType = 'SELL';
             openType = 'CLOSE';
         } else if (this.classType === 'SELL' && this.jiaoyiType === 'SELL') { // 卖方卖出
-            classType = 'BUY';
-            openType = 'CLOSE';
-        } else if (this.classType === 'BUY' && this.jiaoyiType === 'SELL') { // 卖方买入
             classType = 'SELL';
             openType = 'OPEN';
+            content = Object.assign(content, { level: this.gearing });
+        } else if (this.classType === 'BUY' && this.jiaoyiType === 'SELL') { // 卖方买入
+            classType = 'BUY';
+            openType = 'CLOSE';
         }
 
 
@@ -291,7 +295,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     clear() {
         this.stockCode = '';
         this.appointPrice = '';
-        this.appointCnt = 0;
+        this.appointCnt = null;
         this.ccount = '';
         this.stockName = '';
         this.fullcount = '--';
@@ -337,14 +341,17 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.stockCode = data.stockCode;
         this.appointPrice = '';
         this.getGPHQ();
-        this.getBaozhengjin();
+        if (this.data.jiaoyiType === 'SELL' && this.classType === 'SELL') { // 卖方卖出获取保证金
+            this.getBaozhengjin();
+        }
     }
 
     /**
      * 获取保证金
      */
     getBaozhengjin() {
-        this.http.getBaozhengjin(this.stockCode).subscribe(res => {
+        const code = this.classType === 'SELL' ? `OPEN/${this.stockCode}` : `CLOSE/${this.stockCode}?closeCnt=${this.appointCnt}`;
+        this.http.getBaozhengjin(code).subscribe(res => {
             this.baozhengjin = res['resultInfo'];
         });
     }
@@ -354,7 +361,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.priceType = 1;
         this.ccount = '';
         this.show = 'inactive';
-        this.http.getGPHQ(this.stockCode, this.data.token).subscribe((res) => {
+        this.http.getGPHQ2(this.stockCode, this.data.token, this.data.jiaoyiType === 'SELL' ? 'true' : 'false').subscribe((res) => {
             console.log('订阅成功');
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];

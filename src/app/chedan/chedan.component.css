@@ -68,3 +68,33 @@
 .zichan p {
   margin: 4px 0;
 }
+
+.comfire-div {
+  width: 90%;
+  margin-left: 5%;
+  background: #fff;
+  margin-top: 10vh;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.comfire-div p {
+  margin: 18px 0 !important;
+  width: 80%;
+  text-align: left;
+  margin-left: 25% !important;
+}
+
+.comfire-div p:first-child{
+  font-size: 1.3rem;
+  width: 100%;
+  text-align: center;
+  padding: 20px 0;
+  margin-left:  0 !important;
+
+}
+
+.comfire-div .submit-btn,
+.comfire-div .cancel-btn {
+  margin-left: 0;
+}

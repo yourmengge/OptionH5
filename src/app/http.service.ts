@@ -196,6 +196,13 @@ export class HttpService {
     return this.POST(this.host + `push/subsMarket/${code}?tokenP=${token}`, {});
   }
 
+   /**
+   * 请求股票行情
+   */
+  getGPHQ2(code, token, type) {
+    return this.POST(this.host + `push/subsMarket/${code}?tokenP=${token}&seller=${type}`, {});
+  }
+
   /**
    * 获取保证金
    */
