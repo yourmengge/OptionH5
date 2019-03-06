@@ -73,7 +73,7 @@ import 'core-js/es7/reflect';
 import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 
-import 'es6-shim';
+import 'es6-shim'; // 去掉这个引用可以兼容安卓低版本，加上这个引用兼容ios快捷方式打开空白问题
 import '@babel/polyfill';
 
 /***************************************************************************************************
