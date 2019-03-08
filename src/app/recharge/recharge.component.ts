@@ -19,8 +19,8 @@ export class RechargeComponent implements OnInit {
   chargeRange: string;
   minMoney: any;
   maxMoney: any;
-  cardConfig = [false, false, false, false, false, false];
-  configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat'];
+  cardConfig = [false, false, false, false, false, false, false];
+  configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat'];
   config: any;
   constructor(public http: HttpService, public data: DataService) {
     this.money = '1000';
@@ -124,20 +124,30 @@ export class RechargeComponent implements OnInit {
           channel: '华阳信通'
         };
         this.data.loading = true;
-        this.http.thirdPay(data).subscribe(res => {
+        this.http.thirdPay('thirdpay', data).subscribe(res => {
           this.data.loading = false;
           this.data.gotoId('qrcode', res);
+        }, (err) => {
+          this.data.error = err.error;
+          this.data.isError();
+        }, () => {
+          this.data.loading = false;
         });
       } else if (this.payType === 5) {
         const data = {
           amount: this.money,
           channel: '银联'
         };
-        this.http.thirdPay(data).subscribe(res => {
+        this.http.thirdPay('thirdpay', data).subscribe(res => {
           const div = document.createElement('div');
           div.innerHTML = res;
           document.body.appendChild(div);
           document.forms[0].submit();
+        }, (err) => {
+          this.data.error = err.error;
+          this.data.isError();
+        }, () => {
+          this.data.loading = false;
         });
       } else if (this.payType === 6) {
         const data = {
@@ -145,11 +155,25 @@ export class RechargeComponent implements OnInit {
           channel: '支付宝'
         };
         this.data.loading = true;
-        this.http.thirdPayBCAT(data).subscribe(res => {
+        this.http.thirdPay('thirdpayBCAT', data).subscribe(res => {
           location.href = res.toString();
         }, (err) => {
           this.data.error = err.error;
           this.data.isError();
+        });
+      } else if (this.payType === 7) {
+        const data = {
+          amount: this.money,
+          channel: '清算所三方支付'
+        };
+        this.data.loading = true;
+        this.http.thirdPay('thirdpayHBWX', data).subscribe(res => {
+          this.data.gotoId('qrcode', res);
+        }, (err) => {
+          this.data.error = err.error;
+          this.data.isError();
+        }, () => {
+          this.data.loading = false;
         });
       }
     } else {

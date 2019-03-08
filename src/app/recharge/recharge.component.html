@@ -46,6 +46,11 @@
     <span>支付宝支付</span>
     <div class="radio {{payType == 6?'':'radio-none'}}"></div>
   </div>
+  <div class="pay-way" (click)='selectPayType(7)' *ngIf="cardConfig[6]">
+    <img src="./assets/images/wechat.png" alt="">
+    <span>微信支付</span>
+    <div class="radio {{payType == 7?'':'radio-none'}}"></div>
+  </div>
   <div class="bottom-btn" style="margin-top:20px;margin-bottom: 30px;">
     <div class="main" (click)='pay()'>下一步</div>
   </div>
