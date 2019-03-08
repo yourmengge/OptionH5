@@ -194,10 +194,12 @@ export class BuyComponent implements DoCheck, OnDestroy {
         } else if (this.appointCnt > 200) {
             this.data.ErrorMsg(this.text + '数量不能大于200张');
         } else {
-            this.submitAlert = this.data.show;
             if (this.data.jiaoyiType === 'SELL' && this.classType === 'BUY') { // 卖方买入获取释放保证金
                 this.getBaozhengjin();
+            } else {
+                this.submitAlert = this.data.show;
             }
+
         }
 
     }
@@ -229,7 +231,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         } else if (this.classType === 'SELL' && this.jiaoyiType === 'SELL') { // 卖方卖出
             classType = 'SELL';
             openType = 'OPEN';
-            content = Object.assign(content, { level: this.gearing });
+            content = Object.assign(content, { lever: this.gearing });
         } else if (this.classType === 'BUY' && this.jiaoyiType === 'SELL') { // 卖方买入
             classType = 'BUY';
             openType = 'CLOSE';
@@ -353,6 +355,12 @@ export class BuyComponent implements DoCheck, OnDestroy {
         const code = this.classType === 'SELL' ? `OPEN/${this.stockCode}` : `CLOSE/${this.stockCode}?closeCnt=${this.appointCnt}`;
         this.http.getBaozhengjin(code).subscribe(res => {
             this.baozhengjin = res['resultInfo'];
+            if (this.classType === 'BUY') {
+                this.submitAlert = this.data.show;
+            }
+        }, err => {
+            this.data.error = err.error;
+            this.data.isError();
         });
     }
 
@@ -366,8 +374,8 @@ export class BuyComponent implements DoCheck, OnDestroy {
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];
                 if (this.classType === 'BUY') {
-                    this.appointCnt = 10;
                     this.fullcount = res['resultInfo']['maxBuyCnt'];
+                    this.appointCnt = this.fullcount >= 10 ? 10 : this.fullcount;
                     this.appointPrice = this.data.roundNum(this.data.stockHQ.sellLevel.sellPrice05, 4);
                 } else {
                     this.fullcount = res['resultInfo']['maxSellCnt'];
@@ -391,6 +399,10 @@ export class BuyComponent implements DoCheck, OnDestroy {
 
     gearingType(type) {
         this.gearing = type;
+        this.http.maxSellCnt(this.stockCode, this.gearing).subscribe(res => {
+            this.fullcount = res['resultInfo'];
+            this.appointCnt = this.fullcount;
+        });
     }
 
     totalBZJ() {

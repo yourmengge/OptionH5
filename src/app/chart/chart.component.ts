@@ -149,6 +149,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
 
   back() {
     this.data.removeSession('optionCode');
+    this.http.cancelSubscribe().subscribe(res => { });
     this.data.back();
   }
 
@@ -194,7 +195,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
 
   goto(url) {
     this.data.searchStockCode = this.stockCode;
-    this.data.goto(`main/jiaoyi/${url}`);
+    this.data.goto(`main/jiaoyi/${url}/BUY`);
   }
 
 }

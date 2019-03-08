@@ -25,7 +25,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   }
 
   goto(url) {
-    this.data.goto('main/jiaoyi/' + url);
+    this.data.goto(`main/jiaoyi/${url}/BUY`);
   }
 
   usercenter() {

@@ -57,11 +57,13 @@ import { ReplacePipe } from './replace.pipe';
 import { SettlePageComponent } from './settle-page/settle-page.component';
 
 const jiaoyiChildRoutes: Routes = [
-  { path: 'chicang', component: ChicangComponent },
-  { path: 'chedan', component: ChedanComponent },
-  { path: 'search', component: SearchComponent },
+  { path: 'chicang/:id', component: ChicangComponent },
+  { path: 'chedan/:id', component: ChedanComponent },
+  { path: 'search/:id', component: SearchComponent },
   { path: 'sell', component: BuyComponent },
   { path: 'buy', component: BuyComponent },
+  { path: 'sell/:id', component: BuyComponent },
+  { path: 'buy/:id', component: BuyComponent },
   { path: '', redirectTo: 'buy', pathMatch: 'full' }
 ];
 

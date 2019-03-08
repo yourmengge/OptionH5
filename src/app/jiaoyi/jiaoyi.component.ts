@@ -12,6 +12,7 @@ export class JiaoyiComponent implements DoCheck {
   public menuList: any;
   public jiaoyiType: string;
   constructor(public data: DataService, public http: HttpService) {
+    this.data.jiaoyiType = this.data.getUrl(4);
     this.jiaoyiType = this.data.jiaoyiType;
     if (this.data.jiaoyiType === 'BUY') {
       this.menuList = this.data.getCenterMenuList();
@@ -21,6 +22,13 @@ export class JiaoyiComponent implements DoCheck {
   }
 
   changeType(type) {
+    this.http.cancelSubscribe().subscribe(res => {
+      console.log(`取消订阅,${this.data.getToken()}`);
+    });
+    this.data.sellCnt = '';
+    this.data.searchStockCode = '';
+    this.data.resetStockHQ();
+    this.data.removeSession('optionCode');
     this.data.jiaoyiType = type;
     this.jiaoyiType = type;
     if (this.jiaoyiType === 'BUY') {
@@ -35,7 +43,7 @@ export class JiaoyiComponent implements DoCheck {
     const url = this.data.getUrl(3);
     // 判断当前页面是买入还是卖出，如果是其他页面则不做跳转。买入页面时，跳转到卖出页面，卖出页面跳转到买入页面
     if (url === 'sell' || url === 'buy') {
-      this.data.goto(`main/jiaoyi/${url === 'sell' ? 'buy' : 'sell'}`);
+      this.data.gotoId(`main/jiaoyi/${url === 'sell' ? 'buy' : 'sell'}`, this.jiaoyiType);
     }
   }
 
@@ -51,6 +59,7 @@ export class JiaoyiComponent implements DoCheck {
     if (this.data.nowUrl !== this.data.getUrl(3)) {
       this.data.nowUrl = this.data.getUrl(3);
       this.url = this.data.getUrl(3);
+      console.log(this.url);
       this.data.clearInterval();
     }
 
@@ -72,7 +81,9 @@ export class JiaoyiComponent implements DoCheck {
       this.data.resetStockHQ();
       this.data.removeSession('optionCode');
       this.url = url;
-      this.data.goto('main/jiaoyi/' + url);
+      this.data.gotoId(`main/jiaoyi/${url}`, this.jiaoyiType);
+
+
     }
 
 

@@ -152,6 +152,13 @@ export class HttpService {
   }
 
   /**
+   * 卖方获取最大可卖数量
+   */
+  maxSellCnt(stockCode, level) {
+    return this.POST(`${this.host}/push/maxSellCnt/${stockCode}/${level}`, {});
+  }
+
+  /**
    * 合约周期
    */
   heyuezhouqi() {
@@ -196,9 +203,9 @@ export class HttpService {
     return this.POST(this.host + `push/subsMarket/${code}?tokenP=${token}`, {});
   }
 
-   /**
-   * 请求股票行情
-   */
+  /**
+  * 请求股票行情
+  */
   getGPHQ2(code, token, type) {
     return this.POST(this.host + `push/subsMarket/${code}?tokenP=${token}&seller=${type}`, {});
   }

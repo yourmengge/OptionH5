@@ -43,7 +43,11 @@ export class FooterComponent implements DoCheck {
       this.data.removeSession('optionCode');
       this.data.removeSession('dateType');
       this.url = url;
-      this.data.goto('main/' + url);
+      if (url === 'jiaoyi') {
+        this.data.goto('main/jiaoyi/buy/BUY');
+      } else {
+        this.data.goto('main/' + url);
+      }
       this.title();
     }
   }
