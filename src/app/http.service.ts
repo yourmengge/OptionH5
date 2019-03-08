@@ -139,17 +139,17 @@ export class HttpService {
   }
 
   /**
-   * 第三方支付
+   * 第三方支付 微信：thirdpay ，支付宝：thirdpayBCAT ，汇宝微信：thirdpayHBWX
    */
-  thirdPay(data) {
-    return this.http.post(this.host + 'thirdpay/request', data,
+  thirdPay(type, data) {
+    return this.http.post(`${this.host}${type}/request`, data,
       { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
   }
 
-  thirdPayBCAT(data) {
-    return this.http.post(this.host + 'thirdpayBCAT/request', data,
-      { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
-  }
+  // thirdPayBCAT(data) {
+  //   return this.http.post(this.host + 'thirdpayBCAT/request', data,
+  //     { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
+  // }
 
   /**
    * 卖方获取最大可卖数量
