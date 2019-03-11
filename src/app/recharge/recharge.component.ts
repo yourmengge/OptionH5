@@ -23,7 +23,7 @@ export class RechargeComponent implements OnInit {
   configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat'];
   config: any;
   constructor(public http: HttpService, public data: DataService) {
-    this.money = '1000';
+    this.money = this.list[0];
     this.inputMoney = '';
     this.payType = -1;
   }

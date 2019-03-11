@@ -27,16 +27,6 @@ export class AppComponent implements DoCheck, OnInit {
     this.socket = new SockJS(this.http.ws);
     this.stompClient = over(this.socket);
     this.connect();
-    // const version = Object.assign(this.data.getBrowserInfo(), {});
-    // if (version.browser === 'safari' && version.ver < 10) {
-    //   this.data.isConnect = true;
-    //   this.data.goto('version');
-    // } else {
-    //   if (this.data.isNull(this.data.getToken())) {
-    //     this.data.token = this.data.randomString(32);
-    //     this.data.setLocalStorage('token', this.data.token);
-    //   }
-    // }
   }
   /**
   * 取消订阅
