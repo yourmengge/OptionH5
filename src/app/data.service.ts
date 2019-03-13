@@ -133,6 +133,7 @@ export class DataService {
   logo = '';
   constructor(public router: Router) {
     this.token = this.getToken();
+    this.tokenP = this.getTokenP();
     this.opUserCode = this.getSession('opUserCode');
     if (this.getSession('userInfo') !== null) {
 
@@ -570,6 +571,14 @@ export class DataService {
       return this.getLocalStorage('token');
     } else {
       return this.token;
+    }
+  }
+
+  getTokenP() {
+    if (this.isNull(this.tokenP)) {
+      return this.getLocalStorage('tokenP');
+    } else {
+      return this.tokenP;
     }
   }
 

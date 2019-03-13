@@ -23,7 +23,7 @@ export class JiaoyiComponent implements DoCheck {
 
   changeType(type) {
     this.http.cancelSubscribe().subscribe(res => {
-      console.log(`取消订阅,${this.data.getToken()}`);
+      console.log(`取消订阅,${this.data.getTokenP()}`);
     });
     this.data.sellCnt = '';
     this.data.searchStockCode = '';
@@ -74,7 +74,7 @@ export class JiaoyiComponent implements DoCheck {
   goto(url) {
     if (url !== this.data.getUrl(3)) {
       this.http.cancelSubscribe().subscribe(res => {
-        console.log(`取消订阅,${this.data.getToken()}`);
+        console.log(`取消订阅,${this.data.getTokenP()}`);
       });
       this.data.sellCnt = '';
       this.data.searchStockCode = '';

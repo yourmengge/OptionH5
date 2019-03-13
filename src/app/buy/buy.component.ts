@@ -313,7 +313,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     cancelSubscribe() {
         this.http.cancelSubscribe().subscribe((res) => {
             this.data.resetStockHQ();
-            console.log(`取消订阅,${this.data.getToken()}`);
+            console.log(`取消订阅,${this.data.getTokenP()}`);
         });
     }
     /**
@@ -341,6 +341,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
      */
     selectGP(data: StockList) {
         this.stockCode = data.stockCode;
+        this.data.searchStockCode = data.stockCode;
         this.appointPrice = '';
         this.getGPHQ();
         if (this.data.jiaoyiType === 'SELL' && this.classType === 'SELL') { // 卖方卖出获取保证金
@@ -369,7 +370,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.priceType = 1;
         this.ccount = '';
         this.show = 'inactive';
-        this.http.getGPHQ2(this.stockCode, this.data.token, this.data.jiaoyiType === 'SELL' ? 'true' : 'false').subscribe((res) => {
+        this.http.getGPHQ2(this.stockCode,  this.data.jiaoyiType === 'SELL' ? 'true' : 'false').subscribe((res) => {
             console.log('订阅成功');
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];

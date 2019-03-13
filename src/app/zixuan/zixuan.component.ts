@@ -35,7 +35,7 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   cancelSubscribe() {
     this.http.cancelSubscribe().subscribe((res) => {
       this.data.resetStockHQ();
-      console.log(`取消订阅,${this.data.getToken()}`);
+      console.log(`取消订阅,${this.data.getTokenP()}`);
     });
   }
 
@@ -46,6 +46,7 @@ export class ZixuanComponent implements OnInit, OnDestroy {
 
   goto(code) {
     this.data.setSession('optionCode', code);
+    this.data.searchStockCode = code;
     this.data.goto('chart');
   }
 

@@ -17,6 +17,7 @@ export class AppComponent implements DoCheck, OnInit {
   constructor(public data: DataService, public http: HttpService) {
     this.alert = this.data.alert;
     this.loading = this.data.loading;
+    this.data.setLocalStorage('tokenP', this.data.randomString(32));
   }
 
   ngOnInit() {
@@ -34,7 +35,7 @@ export class AppComponent implements DoCheck, OnInit {
   cancelSubscribe() {
     this.http.cancelSubscribe().subscribe((res) => {
       this.data.resetStockHQ();
-      console.log(`取消订阅,${this.data.getToken()}`);
+      console.log(`取消订阅,${this.data.getTokenP()}`);
     });
   }
   /**
@@ -52,7 +53,7 @@ export class AppComponent implements DoCheck, OnInit {
     console.log('发起ws请求');
     let temp = false;
     const that = this;
-    const headers = { token: this.data.getToken() };
+    const headers = { token: this.data.getTokenP() };
     this.stompClient.connect(headers, function (frame) {
       console.log('连接成功');
       temp = true;
@@ -66,27 +67,32 @@ export class AppComponent implements DoCheck, OnInit {
         this.socket = new SockJS(this.http.ws);
         this.stompClient = over(this.socket);
         this.connect();
+        if (!this.data.isNull(this.data.searchStockCode)) {
+          if (this.data.getUrl(1) === 'chart') {
+            this.http.getGPHQ(this.data.searchStockCode).subscribe(res => {
+
+            });
+          } else if (this.data.getUrl(3) === 'buy' || this.data.getUrl(3) === 'sell') {
+            this.http.getGPHQ2(this.data.searchStockCode, this.data.getUrl(4)).subscribe(res => {
+
+            });
+          }
+        }
       }
     }, 10000);
     this.socket.onclose = function () {
       console.log('断开了');
       temp = false;
       that.connect();
-      if (that.data.getUrl(1) === 'chart' || that.data.getUrl(3) === 'buy' || that.data.getUrl(3) === 'sell') {
-        if (!that.data.isNull(that.data.searchStockCode)) {
-          that.http.getGPHQ(that.data.searchStockCode, that.data.getToken()).subscribe(res => {
 
-          });
-        }
-      }
     };
   }
 
   connectWs() {
     const that = this;
-    that.stompClient.subscribe('/user/' + that.data.getToken() + '/topic/market', function (res) {
+    that.stompClient.subscribe('/user/' + that.data.getTokenP() + '/topic/market', function (res) {
       const data = JSON.parse(res.body);
-      if (that.data.searchStockCode === data.stockCode) {
+      if (that.data.searchStockCode === data.stockCode || that.data.getSession('optionCode') === data.stockCode) {
         that.data.stockHQ = data;
       }
     });
