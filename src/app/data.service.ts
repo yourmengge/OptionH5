@@ -16,6 +16,7 @@ export class DataService {
   hide = false;
   token: string;
   tokenP: string;
+  jiaoyiType = 'BUY'; // 交易界面买方或者卖方 卖方；SELL 买方：BUY
   timeoutFenshi: any; // 分时图
   timeoutQoute: any; // 行情列表
   intervalCapital: any; // 个人中心
@@ -132,6 +133,7 @@ export class DataService {
   logo = '';
   constructor(public router: Router) {
     this.token = this.getToken();
+    this.tokenP = this.getTokenP();
     this.opUserCode = this.getSession('opUserCode');
     if (this.getSession('userInfo') !== null) {
 
@@ -334,7 +336,7 @@ export class DataService {
   }
 
   /**
-   * 获取个人中心菜单列表
+   * 获取个人中心菜单列表 买方
    */
   getCenterMenuList() {
     return [{
@@ -345,6 +347,33 @@ export class DataService {
       id: 'sell',
       name: '卖出',
       class: 'sell'
+    }, {
+      id: 'chedan',
+      name: '撤单',
+      class: 'chedan'
+    }, {
+      id: 'chicang',
+      name: '持仓',
+      class: 'chicang'
+    }, {
+      id: 'search',
+      name: '委托',
+      class: 'search'
+    }];
+  }
+
+  /**
+ * 获取个人中心菜单列表 卖方
+ */
+  getCenterMenuList2() {
+    return [{
+      id: 'sell',
+      name: '卖出',
+      class: 'sell'
+    }, {
+      id: 'buy',
+      name: '买入',
+      class: ''
     }, {
       id: 'chedan',
       name: '撤单',
@@ -542,6 +571,14 @@ export class DataService {
       return this.getLocalStorage('token');
     } else {
       return this.token;
+    }
+  }
+
+  getTokenP() {
+    if (this.isNull(this.tokenP)) {
+      return this.getLocalStorage('tokenP');
+    } else {
+      return this.tokenP;
     }
   }
 

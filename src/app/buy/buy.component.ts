@@ -279,7 +279,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     cancelSubscribe() {
         this.http.cancelSubscribe().subscribe((res) => {
             this.data.resetStockHQ();
-            console.log(`取消订阅,${this.data.getToken()}`);
+            console.log(`取消订阅,${this.data.getTokenP()}`);
         });
     }
     /**
@@ -316,7 +316,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.priceType = 1;
         this.ccount = '';
         this.show = 'inactive';
-        this.http.getGPHQ(this.stockCode, this.data.token).subscribe((res) => {
+        this.http.getGPHQ2(this.stockCode, this.data.token).subscribe((res) => {
             console.log('订阅成功');
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];

@@ -190,11 +190,19 @@ export class HttpService {
   }
 
   /**
-   * 请求股票行情
-   */
-  getGPHQ(code, token) {
-    return this.POST(this.host + `push/subsMarket/${code}?tokenP=${token}`, {});
+ * 请求股票行情
+ */
+  getGPHQ(code) {
+    return this.http.post(this.host + `push/subsMarket/${code}?tokenP=${this.data.getTokenP()}`, {});
   }
+
+  /**
+  * 请求股票行情
+  */
+  getGPHQ2(code, type) {
+    return this.POST(this.host + `push/subsMarket/${code}?tokenP=${this.data.getTokenP()}`, {});
+  }
+
 
   /**
  * 获取手续费
@@ -249,7 +257,7 @@ export class HttpService {
    * 取消订阅
    */
   cancelSubscribe() {
-    return this.POST(`${this.host}push/unsubsMarket?tokenP=${this.data.getToken()}`, {});
+    return this.http.post(`${this.host}push/unsubsMarket?tokenP=${this.data.getTokenP()}`, {});
   }
 
   /**

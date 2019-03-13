@@ -41,17 +41,17 @@
   border-bottom: none;
 }
 
-.flow-list div:nth-child(1) {
+/* .flow-list div:nth-child(1) {
   width: 70px;
   margin: auto;
-}
+} */
 
-.flow-list div:nth-child(2) {
+.flow-list div:nth-child(1) {
   flex: 3;
   font-size: .85rem;
 }
 
-.flow-list div:nth-child(2) p {
+.flow-list div:nth-child(1) p {
   margin: 7px 0;
 }
 
