@@ -50,16 +50,27 @@ export class AppComponent implements DoCheck, OnInit {
    */
   connect() {
     console.log('发起ws请求');
+    let temp = false;
     const that = this;
     const headers = { token: this.data.getToken() };
     this.stompClient.connect(headers, function (frame) {
       console.log('连接成功');
+      temp = true;
       that.connectWs();
     }, function (err) {
       console.log('连接失败');
     });
+    setTimeout(() => {
+      if (!temp) {
+        this.disconnect();
+        this.socket = new SockJS(this.http.ws);
+        this.stompClient = over(this.socket);
+        this.connect();
+      }
+    }, 10000);
     this.socket.onclose = function () {
       console.log('断开了');
+      temp = false;
       that.connect();
       if (that.data.getUrl(1) === 'chart' || that.data.getUrl(3) === 'buy' || that.data.getUrl(3) === 'sell') {
         if (!that.data.isNull(that.data.searchStockCode)) {
@@ -74,7 +85,10 @@ export class AppComponent implements DoCheck, OnInit {
   connectWs() {
     const that = this;
     that.stompClient.subscribe('/user/' + that.data.getToken() + '/topic/market', function (res) {
-      that.data.stockHQ = JSON.parse(res.body);
+      const data = JSON.parse(res.body);
+      if (that.data.searchStockCode === data.stockCode) {
+        that.data.stockHQ = data;
+      }
     });
   }
 

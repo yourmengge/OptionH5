@@ -55,8 +55,6 @@ export class ChedanComponent implements OnInit {
     this.submitAlert = this.data.show;
     this.orderData = Object.assign(this.orderData, orderdata);
     this.type = orderdata.appointTypeDesc;
-
-
   }
 
   getOrder() {
@@ -77,10 +75,6 @@ export class ChedanComponent implements OnInit {
       this.data.Loading(this.data.hide);
     });
   }
-
-  // toTime(time) {
-  //   return time.substr(0, 2) + ':' + time.substr(2, 2) + ':' + time.substr(4, 2);
-  // }
 
   /**
   * 关闭弹窗
