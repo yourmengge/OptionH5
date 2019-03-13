@@ -467,11 +467,6 @@ table td p {
   margin-right: 2px;
 }
 
-.blue {
-  color: #145c90 !important;
-  border: solid 1px #145c90 !important;
-}
-
 @media screen and (max-width: 320px) {
 
   body,

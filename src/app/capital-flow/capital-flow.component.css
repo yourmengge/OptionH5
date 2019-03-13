@@ -41,17 +41,19 @@
   border-bottom: none;
 }
 
-.flow-list div:nth-child(1) {
-  width: 70px;
+/* .flow-list div:nth-child(1) {
+  width: 52px;
+  height: 52px;
   margin: auto;
-}
+  margin-right: 20px;
+} */
 
-.flow-list div:nth-child(2) {
+.flow-list div:nth-child(1) {
   flex: 3;
   font-size: .85rem;
 }
 
-.flow-list div:nth-child(2) p {
+.flow-list div:nth-child(1) p {
   margin: 7px 0;
 }
 
@@ -63,11 +65,7 @@
   overflow-y: auto;
 }
 
-.flow-list .icon span {
-  width: 50px;
-  height: 50px;
-  display: inline-block;
-  vertical-align: middle;
+.flow-list .icon {
   text-align: center;
   line-height: 50px;
   border: solid 1px #b00e23;
