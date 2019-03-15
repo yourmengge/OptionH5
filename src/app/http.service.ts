@@ -357,4 +357,11 @@ export class HttpService {
   settleMent(type, data) {
     return this.POST(`${this.host}tn/history/${type}`, data);
   }
+
+  /**
+   * 提现手续费
+   */
+  transferCommission() {
+    return this.POST(`${this.host}tntg/config/CTRL_WITHDRAW_COMMISSION`, {});
+  }
 }
