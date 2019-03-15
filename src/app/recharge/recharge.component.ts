@@ -19,8 +19,8 @@ export class RechargeComponent implements OnInit {
   chargeRange: string;
   minMoney: any;
   maxMoney: any;
-  cardConfig = [false, false, false, false, false, false, false];
-  configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat'];
+  cardConfig = [false, false, false, false, false, false, false, false];
+  configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat', 'hongbo'];
   config: any;
   constructor(public http: HttpService, public data: DataService) {
     this.money = this.list[0];
@@ -169,6 +169,21 @@ export class RechargeComponent implements OnInit {
         this.data.loading = true;
         this.http.thirdPay('thirdpayHBWX', data).subscribe(res => {
           this.data.gotoId('qrcode', res);
+        }, (err) => {
+          this.data.error = err.error;
+          this.data.isError();
+        }, () => {
+          this.data.loading = false;
+        });
+      } else if (this.payType === 8) {
+        const data = {
+          amount: this.money
+        };
+        this.data.loading = true;
+        this.http.thirdPay('thirdpayHongbo', data).subscribe(res => {
+          // this.data.gotoId('qrcode', res);
+          location.href = res;
+          console.log(res);
         }, (err) => {
           this.data.error = err.error;
           this.data.isError();

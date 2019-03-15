@@ -51,6 +51,11 @@
     <span>微信支付</span>
     <div class="radio {{payType == 7?'':'radio-none'}}"></div>
   </div>
+  <div class="pay-way" (click)='selectPayType(8)' *ngIf="cardConfig[7]">
+    <img src="./assets/images/yinlian.png" alt="">
+    <span>第三方支付</span>
+    <div class="radio {{payType == 8?'':'radio-none'}}"></div>
+  </div>
   <div class="bottom-btn" style="margin-top:20px;margin-bottom: 30px;">
     <div class="main" (click)='pay()'>下一步</div>
   </div>
