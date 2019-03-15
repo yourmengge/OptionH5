@@ -45,7 +45,7 @@ export class TransferComponent implements OnInit {
     });
     this.http.transferCommission().subscribe(res => {
       // 判断返回值为字符串时，直接展示，为数字类型加上元
-      this.commission = typeof (res['resultInfo']) === 'string' ? res['resultInfo'] : res['resultInfo'] + '元';
+      this.commission = isNaN(res['resultInfo']) ? res['resultInfo'] : res['resultInfo'] + '元';
     });
   }
   back() {
