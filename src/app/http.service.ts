@@ -364,4 +364,18 @@ export class HttpService {
   transferCommission() {
     return this.POST(`${this.host}tntg/config/CTRL_WITHDRAW_COMMISSION`, {});
   }
+
+  /**
+   * 支付接口
+   */
+  payment(data) {
+    return this.POST(`${this.host}thirdpayJoinpay/smsCode`, data);
+  }
+
+  /**
+   * 短信确认接口
+   */
+  smsCode(code) {
+    return this.POST(`${this.host}thirdpayJoinpay/pay/${code}`, {});
+  }
 }

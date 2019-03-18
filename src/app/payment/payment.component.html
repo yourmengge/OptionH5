@@ -1,0 +1,58 @@
+<div class="navigation">
+  <div class="back" (click)='back()'></div>
+  <p class="navigation-title">支付</p>
+</div>
+<div>
+  <p class="payment-amount">{{paymentInfo.amount}}<span>元</span></p>
+  <div class="cell-list">
+    <div class="list-item">
+      <span class="span-title">
+        姓名
+      </span>
+      <input placeholder="请输入您的真实姓名" maxlength="30" type="text" [(ngModel)]="paymentInfo.userName">
+    </div>
+    <div class="list-item">
+      <span class="span-title">
+        手机号
+      </span>
+      <input appNumberInput placeholder="银行预留手机号" maxlength="11" type="text" [(ngModel)]="paymentInfo.mobile">
+    </div>
+    <div class="list-item">
+      <span class="span-title">
+        身份证
+      </span>
+      <input placeholder="真实证件号" maxlength="18" type="text" [(ngModel)]="paymentInfo.idCard">
+    </div>
+    <div class="list-item">
+      <span class="span-title">
+        卡号
+      </span>
+      <input appNumberInput placeholder="请输入银行卡号" maxlength="30" type="text" [(ngModel)]="paymentInfo.bankCard">
+    </div>
+  </div>
+</div>
+<div class="bottom-btn" style="margin-top:20px;">
+  <div class="main" (click)='submit()'>确定</div>
+</div>
+<div class="input-code" *ngIf="codeDiv">
+  <div class="input-code-div">
+    <div class="title">
+      <p>请输入验证码</p> <span (click)='close()'>关闭</span>
+    </div>
+    <p style="text-align:center">
+      验证码已发送到手机：{{paymentInfo.mobile}}
+    </p>
+    <!-- <div class="code-input">
+      <input appNumberInput type="text" maxlength="1" [(ngModel)]="num0" (keyup)='keyup()' >
+      <input appNumberInput type="text" maxlength="1" [(ngModel)]="num1" (keyup)='keyup()'>
+      <input appNumberInput type="text" maxlength="1" [(ngModel)]="num2" (keyup)='keyup()'>
+      <input appNumberInput type="text" maxlength="1" [(ngModel)]="num3" (keyup)='keyup()'>
+      <input appNumberInput type="text" maxlength="1" [(ngModel)]="num4" (keyup)='keyup()'>
+      <input appNumberInput type="text" maxlength="1" [(ngModel)]="num5" (keyup)='keyup()'>
+    </div> -->
+    <div class="code-input2">
+      <input appNumberInput type="text" maxlength="6" (keyup)='keyup()' [(ngModel)]="smsCode" placeholder="短信验证码">
+    </div>
+    <button (click)='resend()' [disabled]='second !== 0'>{{secondText}}重新发送</button>
+  </div>
+</div>

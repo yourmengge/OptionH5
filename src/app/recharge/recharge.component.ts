@@ -19,8 +19,8 @@ export class RechargeComponent implements OnInit {
   chargeRange: string;
   minMoney: any;
   maxMoney: any;
-  cardConfig = [false, false, false, false, false, false, false, false];
-  configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat', 'hongbo'];
+  cardConfig = [false, false, false, false, false, false, false, false, false];
+  configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat', 'hongbo', 'joinpay'];
   config: any;
   constructor(public http: HttpService, public data: DataService) {
     this.money = this.list[0];
@@ -190,9 +190,12 @@ export class RechargeComponent implements OnInit {
         }, () => {
           this.data.loading = false;
         });
+      } else if (this.payType === 9) {
+        this.data.setSession('payment-money', this.money);
+        this.data.goto('payment');
+      } else {
+        this.data.ErrorMsg('充值金额必须大于0，最多两位小数');
       }
-    } else {
-      this.data.ErrorMsg('充值金额必须大于0，最多两位小数');
     }
   }
 
