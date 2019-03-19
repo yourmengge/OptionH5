@@ -55,6 +55,8 @@ import { AppointDetailComponent } from './inquire/appoint-detail/appoint-detail.
 import { AssetsComponent } from './assets/assets.component';
 import { ReplacePipe } from './replace.pipe';
 import { SettlePageComponent } from './settle-page/settle-page.component';
+import { PaymentComponent } from './payment/payment.component';
+import { NumberInputDirective } from './number-input.directive';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -79,6 +81,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'payment', component: PaymentComponent },
   { path: 'settleCloseDetail', component: HoldDetailComponent },
   { path: 'settleOpenDetail', component: HoldDetailComponent },
   { path: 'appointDetail', component: AppointDetailComponent },
@@ -161,7 +164,9 @@ const appRoutes: Routes = [
     AppointDetailComponent,
     AssetsComponent,
     ReplacePipe,
-    SettlePageComponent
+    SettlePageComponent,
+    PaymentComponent,
+    NumberInputDirective
   ],
   imports: [
     BrowserAnimationsModule,

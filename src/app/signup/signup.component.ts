@@ -121,7 +121,7 @@ export class SignupComponent implements OnInit {
   }
 
   book() {
-    location.href = './assets/book.html';
+    this.data.gotoId('newdetail', 1);
   }
 
   reset() {
