@@ -22,6 +22,7 @@ export class RechargeComponent implements OnInit {
   cardConfig = [false, false, false, false, false, false, false, false, false];
   configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat', 'hongbo', 'joinpay'];
   config: any;
+  payWayConfig = [];
   constructor(public http: HttpService, public data: DataService) {
     this.money = this.list[0];
     this.inputMoney = '';
@@ -53,18 +54,70 @@ export class RechargeComponent implements OnInit {
 
   getCardConfig() {
     this.http.getCardConfig().subscribe(res => {
-      this.config = res['resultInfo'].split(',');
-      this.configName.forEach((element, key) => {
-        if (this.config.indexOf(element) >= 0) {
-          if (this.payType === -1) {
-            this.payType = key + 1;
-          }
-          this.cardConfig[key] = true;
-        } else {
-          this.cardConfig[key] = false;
+      const array: Array<any> = res['resultInfo'].split(',');
+      array.forEach(element => {
+        const data = {
+          index: 1,
+          name: '',
+          pic: '',
+          type: '',
+          fee: ''
+        };
+        data.type = element;
+        switch (element) {
+          case 'alipay_online':
+            data.name = '支付宝支付';
+            data.pic = 'ali';
+            data.index = 1;
+            data.fee = '0.6%';
+            break;
+          case 'alipay':
+            data.name = '支付宝支付（线下）';
+            data.pic = 'ali';
+            data.index = 2;
+            break;
+          case 'bank':
+            data.name = '银行卡转账（线下）';
+            data.pic = 'bank';
+            data.index = 3;
+            break;
+          case 'quanying_wechat':
+            data.name = '华阳信通支付(微信)';
+            data.pic = 'wechat';
+            data.index = 4;
+            break;
+          case 'quanying_unionpay':
+            data.name = '银联';
+            data.pic = 'yinlian';
+            data.index = 5;
+            break;
+          case 'alipay_bcat':
+            data.name = '支付宝支付';
+            data.pic = 'ali';
+            data.index = 6;
+            break;
+          case 'hb_wechat':
+            data.name = '微信支付';
+            data.pic = 'wechat';
+            data.index = 7;
+            data.fee = '0.6%';
+            break;
+          case 'hongbo':
+            data.name = '第三方支付';
+            data.pic = 'yinlian';
+            data.index = 8;
+            break;
+          case 'joinpay':
+            data.name = '汇聚支付';
+            data.pic = 'yinlian';
+            data.index = 9;
+            data.fee = '0.3%';
+            break;
         }
+        this.payWayConfig.push(data);
+        this.payType = this.payWayConfig[0].index;
+        console.log(this.payWayConfig);
       });
-      console.log(this.cardConfig);
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
