@@ -58,31 +58,52 @@
   border-right: none;
 }
 
-.code-input input:last-child{
-    border-right: solid 1px #ccc;
+.code-input input:last-child {
+  border-right: solid 1px #ccc;
 }
 
-.code-input2 input{
-    margin: auto;
-    border: none;
-    height: 40px;
-    border-bottom: solid 1px #ccc;
-    width: 60%;
-    text-align: center;
-    margin: 20px;
-    margin-left: 20%;
-    font-size: 30px;
+.code-input2 input {
+  margin: auto;
+  border: none;
+  height: 40px;
+  border-bottom: solid 1px #ccc;
+  width: 60%;
+  text-align: center;
+  margin: 20px;
+  margin-left: 20%;
+  font-size: 30px;
 }
 
-.input-code-div button{
-    width: 100%;
-    height: 45px;
-    border: none;
-    color: #fff;
-    font-size: 17px;
-    background: #b00e23;
+.input-code-div button {
+  width: 100%;
+  height: 45px;
+  border: none;
+  color: #fff;
+  font-size: 17px;
+  background: #b00e23;
 }
 
-.input-code-div button:disabled{
-    background: #ccc;
+.input-code-div button:disabled {
+  background: #ccc;
+}
+
+.bank-limit {
+  width: 100vw;
+  margin-top: 20px;
+}
+
+.bank-limit table {
+  width: calc(100% - 24px);
+  margin-left: 12px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+
+.bank-limit table tr{
+  height: 30px;
+}
+
+.payment-content {
+  overflow-y: auto;
+  height: calc(100vh - 48px);
 }

@@ -366,16 +366,30 @@ export class HttpService {
   }
 
   /**
-   * 支付接口
+   * 支付接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
    */
-  payment(data) {
-    return this.POST(`${this.host}thirdpayJoinpay/smsCode`, data);
+  payment(data, type) {
+    return this.POST(`${this.host}${type}/smsCode`, data);
+  }
+
+ /**
+   * 短信确认接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
+   */
+  smsCode(code, type) {
+    return this.POST(`${this.host}${type}/pay/${code}`, {});
   }
 
   /**
-   * 短信确认接口
+   * 支付接口标准快捷支付
    */
-  smsCode(code) {
-    return this.POST(`${this.host}thirdpayJoinpay/pay/${code}`, {});
+  payment2(url, data) {
+    return this.http.post(`${this.host}${url}`, data, { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
+  }
+
+  /**
+   * 获取银行列表
+   */
+  getBankList2(type) {
+    return this.POST(`${this.host}tntg/config/PAY_SYX_BANKS_${type}`, {});
   }
 }

@@ -23,6 +23,7 @@ export class RechargeComponent implements OnInit {
   configName = ['alipay_online', 'alipay', 'bank', 'quanying_wechat', 'quanying_unionpay', 'alipay_bcat', 'hb_wechat', 'hongbo', 'joinpay'];
   config: any;
   payWayConfig = [];
+  showText = false;
   constructor(public http: HttpService, public data: DataService) {
     this.money = this.list[0];
     this.inputMoney = '';
@@ -75,10 +76,12 @@ export class RechargeComponent implements OnInit {
             data.name = '支付宝支付（线下）';
             data.pic = 'ali';
             data.index = 2;
+            this.showText = true;
             break;
           case 'bank':
             data.name = '银行卡转账（线下）';
             data.pic = 'bank';
+            this.showText = true;
             data.index = 3;
             break;
           case 'quanying_wechat':
@@ -112,6 +115,24 @@ export class RechargeComponent implements OnInit {
             data.pic = 'yinlian';
             data.index = 9;
             data.fee = '0.3%';
+            break;
+          case 'allscoreQuick':
+            data.name = '商银信-快捷认证支付';
+            data.pic = 'yinlian';
+            data.index = 10;
+            data.fee = '0.6%';
+            break;
+          case 'allscoreB2CWap':
+            data.name = '商银信-标准快捷支付';
+            data.pic = 'yinlian';
+            data.index = 11;
+            data.fee = '0.6%';
+            break;
+          case 'allscoreB2C':
+            data.name = '商银信-B2C网关在线支付';
+            data.pic = 'yinlian';
+            data.index = 12;
+            data.fee = '0.4%';
             break;
         }
         this.payWayConfig.push(data);
@@ -171,7 +192,7 @@ export class RechargeComponent implements OnInit {
         this.data.setSession('payType', this.payType);
         this.data.setSession('amount', this.money);
         this.data.goto('bankcard');
-      } else if (this.payType === 4) {
+      } else if (this.payType === 4) { // 跳转到二维码页面
         const data = {
           amount: this.money,
           channel: '华阳信通'
@@ -186,7 +207,7 @@ export class RechargeComponent implements OnInit {
         }, () => {
           this.data.loading = false;
         });
-      } else if (this.payType === 5) {
+      } else if (this.payType === 5) { // 打开银联支付
         const data = {
           amount: this.money,
           channel: '银联'
@@ -202,7 +223,7 @@ export class RechargeComponent implements OnInit {
         }, () => {
           this.data.loading = false;
         });
-      } else if (this.payType === 6) {
+      } else if (this.payType === 6) { // 跳转到返回的链接
         const data = {
           amount: this.money,
           channel: '支付宝'
@@ -214,7 +235,7 @@ export class RechargeComponent implements OnInit {
           this.data.error = err.error;
           this.data.isError();
         });
-      } else if (this.payType === 7) {
+      } else if (this.payType === 7) { // 跳转到二维码页面
         const data = {
           amount: this.money,
           channel: '清算所三方支付'
@@ -228,7 +249,7 @@ export class RechargeComponent implements OnInit {
         }, () => {
           this.data.loading = false;
         });
-      } else if (this.payType === 8) {
+      } else if (this.payType === 8) { // 跳转到返回链接
         const data = {
           amount: this.money
         };
@@ -243,7 +264,16 @@ export class RechargeComponent implements OnInit {
         }, () => {
           this.data.loading = false;
         });
-      } else if (this.payType === 9) {
+      } else if (this.payType === 9 || this.payType === 10 || this.payType === 11 || this.payType === 12) { // 跳转到短信确认支付页面
+        if (this.payType === 9) {
+          this.data.setSession('payment-type', 'thirdpayJoinpay');
+        } else if (this.payType === 10) {
+          this.data.setSession('payment-type', 'thirdpayAllscoreQuick');
+        } else if (this.payType === 11) {
+          this.data.setSession('payment-type', 'thirdpayAllscoreB2CWap');
+        } else if (this.payType === 12) {
+          this.data.setSession('payment-type', 'thirdpayAllscoreB2C');
+        }
         this.data.setSession('payment-money', this.money);
         this.data.goto('payment');
       } else {

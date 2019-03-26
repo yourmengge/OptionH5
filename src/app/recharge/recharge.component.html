@@ -69,7 +69,7 @@
   <div class="bottom-btn" style="margin-top:20px;margin-bottom: 30px;">
     <div class="main" (click)='pay()'>下一步</div>
   </div>
-  <div class='text' *ngIf="cardConfig[1] === true || cardConfig[2] === true">
+  <div class='text' *ngIf="showText">
     <p>
       【温馨提示】
     </p>
