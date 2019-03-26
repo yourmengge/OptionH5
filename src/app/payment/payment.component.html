@@ -40,10 +40,12 @@
       </div>
     </div>
   </div>
+  <p style="padding-left:14px;"><input type="checkbox" [(ngModel)]="save" id="save">
+    <label for='save'>是否将支付信息保存至本地</label></p>
   <div class="bottom-btn" style="margin-top:20px;">
     <div class="main" (click)='submit()'>确定</div>
   </div>
-  <div class="bank-limit">
+  <div class="bank-limit" *ngIf="logo === 'txnr'">
     <table>
       <tr>
         <th>

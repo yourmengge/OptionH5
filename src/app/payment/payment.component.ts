@@ -23,12 +23,14 @@ export class PaymentComponent implements OnInit {
     userName: '',
     mobile: '',
     idCard: '',
-    bankCard: ''
+    bankCard: '',
+    bankCode: ''
   };
   second = 60;
   secondText = this.second + '秒后';
   t: any;
   codeDiv = false;
+  logo = '';
   code = '';
   num0 = '';
   num1 = '';
@@ -41,6 +43,7 @@ export class PaymentComponent implements OnInit {
   bankList = [];
   showBank = false;
   bankId = '';
+  save = true;
   bankLimit = [{
     name: '工商银行',
     money: '5k/笔',
@@ -102,7 +105,12 @@ export class PaymentComponent implements OnInit {
     money: '5w/笔',
     money2: '5w'
   }];
-  constructor(public http: HttpService, public data: DataService, @Inject(PLATFORM_ID) private platformId: Object) { }
+  constructor(public http: HttpService, public data: DataService, @Inject(PLATFORM_ID) private platformId: Object) {
+    this.logo = this.data.logo;
+    if (!this.data.isNull(this.data.getLocalStorage('PayInfo'))) {
+      Object.assign(this.paymentInfo, JSON.parse(this.data.getLocalStorage('PayInfo')));
+    }
+  }
 
   ngOnInit() {
     this.paymentInfo.amount = this.data.getSession('payment-money');
@@ -118,10 +126,11 @@ export class PaymentComponent implements OnInit {
           temp.text = element.split('-')[1];
           this.bankList.push(temp);
         });
-        this.bankId = this.bankList[0].value;
+        this.bankId = this.paymentInfo.bankCode || this.bankList[0].value;
       });
     } else {
       this.showBank = false;
+      this.paymentInfo.bankCode = '';
     }
     //  this.myInput.nativeElement.focus();
     // console.log(this.myInput);
@@ -162,8 +171,8 @@ export class PaymentComponent implements OnInit {
         this.data.error = err.error;
         this.data.isError();
       });
-    } else {
-      Object.assign(this.paymentInfo, { bankCode: this.bankId });
+    } else { // 需要选择银行
+      this.paymentInfo.bankCode = this.bankId;
       this.http.payment2(`${this.type}/order`, this.paymentInfo).subscribe(res => {
         const div = document.createElement('div');
         div.innerHTML = res;
@@ -171,9 +180,13 @@ export class PaymentComponent implements OnInit {
         document.forms[0].submit();
       });
     }
-    // console.log(this.myInput);
-    // this.codeDiv = true;
-    // this.secondCountDown();
+    if (this.save) {
+      this.data.setLocalStorage('PayInfo', JSON.stringify(this.paymentInfo));
+    } else {
+      this.data.setLocalStorage('PayInfo', '');
+    }
+    this.codeDiv = true;
+    this.secondCountDown();
   }
 
   back() {
