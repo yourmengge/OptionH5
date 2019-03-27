@@ -33,7 +33,7 @@ export class HttpService {
    * 资金流水
    */
   getFlow(data) {
-    return this.POST(this.host + 'tntg/payOrder/list', data);
+    return this.POST(this.host + 'tntg/fundStream/list', data);
   }
 
   /**
