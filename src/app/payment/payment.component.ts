@@ -115,7 +115,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.paymentInfo.amount = this.data.getSession('payment-money');
     this.type = this.data.getSession('payment-type');
-    if (this.type === 'thirdpayAllscoreB2CWap' || this.type === 'thirdpayAllscoreB2C') {
+    if (this.type === 'thirdpayAllscoreB2CWap' || this.type === 'thirdpayAllscoreB2C' || this.type === 'thirdpayAllscoreQuick') {
       this.showBank = true;
       this.http.getBankList2(this.type).subscribe(res => {
         let temp = { value: '', text: '' };
@@ -163,7 +163,7 @@ export class PaymentComponent implements OnInit {
     }
   }
   submit() {
-    if (this.type === 'thirdpayJoinpay' || this.type === 'thirdpayAllscoreQuick') {
+    if (this.type === 'thirdpayJoinpay') {
       this.http.payment(this.paymentInfo, this.type).subscribe(res => {
         this.codeDiv = true;
         this.secondCountDown();
