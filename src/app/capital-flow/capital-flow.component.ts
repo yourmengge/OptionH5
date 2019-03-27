@@ -54,13 +54,13 @@ export class CapitalFlowComponent implements OnInit {
       pageNo: this.pageNo,
       pageSize: 20,
     };
-    this.http.getFlow(data).subscribe(res => {
-      if (res['rows'].length === 0) {
+    this.http.getFlow(data).subscribe((res: Array<any>) => {
+      if (res.length === 0) {
         this.stopLoad = true;
       } else {
         this.stopLoad = false;
       }
-      this.list = this.list.concat(res['rows']);
+      this.list = this.list.concat(res);
     }, err => {
       this.data.error = err.error;
       this.data.isError();
