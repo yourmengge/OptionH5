@@ -182,8 +182,8 @@ export class PaymentComponent implements OnInit {
     }
   }
   submit() {
+    this.data.loading = true;
     if (this.type === 'thirdpayJoinpay' || this.type === 'thirdpayAllscoreQuick') {
-      this.data.loading = true;
       this.http.payment(this.paymentInfo, this.type).subscribe(res => {
         this.data.loading = false;
         this.codeDiv = true;
@@ -196,6 +196,7 @@ export class PaymentComponent implements OnInit {
     } else { // 需要选择银行
       this.paymentInfo.bankCode = this.bankId;
       this.http.payment2(`${this.type}/order`, this.paymentInfo).subscribe(res => {
+        this.data.loading = false;
         const div = document.createElement('div');
         if (this.type === 'thirdpayAllscoreB2CWap') {
           this.showIframe = 'block';
@@ -214,7 +215,7 @@ export class PaymentComponent implements OnInit {
   }
 
   back() {
-    this.data.back();
+    this.data.redirectTo('#/recharge');
   }
 
   close() {
