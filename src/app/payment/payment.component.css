@@ -103,7 +103,23 @@
   height: 30px;
 }
 
+.bank-limit table tr:first-child{
+  font-weight: bold;
+}
+
+.bank-limit table tr td{
+  width: 33%;
+}
+
 .payment-content {
   overflow-y: auto;
   height: calc(100vh - 48px);
+}
+
+iframe{
+  position: fixed;
+  width: 100vw;
+  height: calc(100vh - 50px);
+  top: 50px;
+  border: none;
 }

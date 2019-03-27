@@ -12,11 +12,12 @@ import { isPlatformBrowser } from '@angular/common';
 export class PaymentComponent implements OnInit {
   @ViewChild('myInput') myInput: ElementRef;
   // paymentInfo = {
-  //   amount: 0.01,
+  //   amount: 1,
   //   userName: '张萌立',
   //   mobile: 13305020974,
   //   idCard: '350301199406180018',
-  //   bankCard: '6222620720008415546'
+  //   bankCard: '6222620720008415546',
+  //   bankCode: ''
   // };
   paymentInfo = {
     amount: 0,
@@ -45,6 +46,10 @@ export class PaymentComponent implements OnInit {
   bankId = '';
   save = true;
   bankLimit = [{
+    name: '银行',
+    money: '单笔限额',
+    money2: '单日限额'
+  }, {
     name: '工商银行',
     money: '5k/笔',
     money2: '2w'
@@ -105,6 +110,7 @@ export class PaymentComponent implements OnInit {
     money: '5w/笔',
     money2: '5w'
   }];
+  showIframe = 'none';
   constructor(public http: HttpService, public data: DataService, @Inject(PLATFORM_ID) private platformId: Object) {
     this.logo = this.data.logo;
     if (!this.data.isNull(this.data.getLocalStorage('PayInfo'))) {
@@ -115,9 +121,9 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     this.paymentInfo.amount = this.data.getSession('payment-money');
     this.type = this.data.getSession('payment-type');
-    if (this.type === 'thirdpayAllscoreB2CWap' || this.type === 'thirdpayAllscoreB2C' || this.type === 'thirdpayAllscoreQuick') {
+    if (this.type !== 'thirdpayJoinpay') {
       this.showBank = true;
-      this.http.getBankList2(this.type).subscribe(res => {
+      this.http.getBankList2(`PAY_SYX_BANKS_${this.type}`).subscribe(res => {
         let temp = { value: '', text: '' };
         const resultInfo: Array<any> = res['resultInfo'].split(';');
         resultInfo.forEach(element => {
@@ -127,6 +133,19 @@ export class PaymentComponent implements OnInit {
           this.bankList.push(temp);
         });
         this.bankId = this.paymentInfo.bankCode || this.bankList[0].value;
+      });
+      this.bankLimit = [];
+      this.http.getBankList2(`PAY_LIMIT_${this.type}`).subscribe(res => {
+        let temp = { name: '', money: '', money2: '' };
+        const resultInfo: Array<any> = res['resultInfo'].split(';');
+        resultInfo.forEach(element => {
+          temp = { name: '', money: '', money2: '' };
+          const array = element.split('-');
+          temp.name = array[0];
+          temp.money = array[1];
+          temp.money2 = array[2];
+          this.bankLimit.push(temp);
+        });
       });
     } else {
       this.showBank = false;
@@ -163,11 +182,14 @@ export class PaymentComponent implements OnInit {
     }
   }
   submit() {
-    if (this.type === 'thirdpayJoinpay') {
+    if (this.type === 'thirdpayJoinpay' || this.type === 'thirdpayAllscoreQuick') {
+      this.data.loading = true;
       this.http.payment(this.paymentInfo, this.type).subscribe(res => {
+        this.data.loading = false;
         this.codeDiv = true;
         this.secondCountDown();
       }, (err) => {
+        this.data.loading = false;
         this.data.error = err.error;
         this.data.isError();
       });
@@ -175,6 +197,10 @@ export class PaymentComponent implements OnInit {
       this.paymentInfo.bankCode = this.bankId;
       this.http.payment2(`${this.type}/order`, this.paymentInfo).subscribe(res => {
         const div = document.createElement('div');
+        if (this.type === 'thirdpayAllscoreB2CWap') {
+          this.showIframe = 'block';
+          res = res.replace('method="POST"', 'method="POST" target="myiframe"');
+        }
         div.innerHTML = res;
         document.body.appendChild(div);
         document.forms[0].submit();
@@ -185,8 +211,6 @@ export class PaymentComponent implements OnInit {
     } else {
       this.data.setLocalStorage('PayInfo', '');
     }
-    this.codeDiv = true;
-    this.secondCountDown();
   }
 
   back() {

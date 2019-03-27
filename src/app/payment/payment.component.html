@@ -45,19 +45,8 @@
   <div class="bottom-btn" style="margin-top:20px;">
     <div class="main" (click)='submit()'>确定</div>
   </div>
-  <div class="bank-limit" *ngIf="logo === 'txnr'">
+  <div class="bank-limit">
     <table>
-      <tr>
-        <th>
-          支持银行
-        </th>
-        <th>
-          当笔限额
-        </th>
-        <th>
-          单卡单日限额
-        </th>
-      </tr>
       <tr *ngFor="let item of bankLimit">
         <td>
           {{item.name}}
@@ -95,3 +84,4 @@
     <button (click)='resend()' [disabled]='second !== 0'>{{secondText}}重新发送</button>
   </div>
 </div>
+<iframe name='myiframe' [style.display]="showIframe"></iframe>

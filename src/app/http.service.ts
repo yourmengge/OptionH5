@@ -390,6 +390,6 @@ export class HttpService {
    * 获取银行列表
    */
   getBankList2(type) {
-    return this.POST(`${this.host}tntg/config/PAY_SYX_BANKS_${type}`, {});
+    return this.POST(`${this.host}tntg/config/${type}`, {});
   }
 }
