@@ -67,9 +67,9 @@ export class ChedanComponent implements OnInit {
       // for (const i in this.list) {
       //   this.list[i].appointTime = this.toTime(this.list[i].appointTime);
       // }
-      this.data.intervalAppoint = setTimeout(() => {
-        this.getOrder();
-      }, 3000);
+      // this.data.intervalAppoint = setTimeout(() => {
+      //   this.getOrder();
+      // }, 3000);
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();

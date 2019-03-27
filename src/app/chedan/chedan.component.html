@@ -32,9 +32,8 @@
     </p>
   </div>
 </div>
-<div class="chedang-div">
 
-  <div class="cclb">
+<!-- <div class="cclb">
     <table cellspacing="0">
       <tr>
         <td>
@@ -88,6 +87,26 @@
         </td>
       </tr>
     </table>
+  </div> -->
+<div class="chedan-list">
+  <div *ngFor='let a of list' class="chedan-div">
+    <p>
+      <span>名称：{{a.stockName | replace:'50ETF'}}</span>
+      <span>代码：{{a.stockCode}}</span>
+    </p>
+    <p>
+      <span>委托价：{{a.appointPrice}}</span>
+      <span>均价：{{a.dealAvrPrice}}</span>
+    </p>
+    <p>
+      <span>委托量：{{a.appointCnt}}</span>
+      <span>成交量：{{a.dealCnt}}</span>
+    </p>
+    <p>
+      <span>时间：{{a.appointTime}}</span>
+      <span>状态：{{a.appointStatusDesc}}</span>
+    </p>
+    <button (click)='chedan(a)' class="chedan-button {{a.appointType == 2?'blue':''}}">撤{{a.appointType === 1?'买':'卖'}}单</button>
   </div>
   <div class="submit-alert" *ngIf='submitAlert'>
     <div class="alert-div">
