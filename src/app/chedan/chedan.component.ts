@@ -64,12 +64,12 @@ export class ChedanComponent implements OnInit {
     this.http.getAppoint(`ing=true&date=${today}`).subscribe((res) => {
       this.list = res;
       // tslint:disable-next-line:forin
-      // for (const i in this.list) {
-      //   this.list[i].appointTime = this.toTime(this.list[i].appointTime);
-      // }
-      // this.data.intervalAppoint = setTimeout(() => {
-      //   this.getOrder();
-      // }, 3000);
+      for (const i in this.list) {
+        this.list[i].appointTime = this.toTime(this.list[i].appointTime);
+      }
+      this.data.intervalAppoint = setTimeout(() => {
+        this.getOrder();
+      }, 3000);
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
@@ -78,9 +78,9 @@ export class ChedanComponent implements OnInit {
     });
   }
 
-  // toTime(time) {
-  //   return time.substr(0, 2) + ':' + time.substr(2, 2) + ':' + time.substr(4, 2);
-  // }
+  toTime(time) {
+    return time.substr(0, 2) + ':' + time.substr(2, 2) + ':' + time.substr(4, 2);
+  }
 
   /**
   * 关闭弹窗
