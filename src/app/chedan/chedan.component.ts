@@ -63,10 +63,6 @@ export class ChedanComponent implements OnInit {
     const today = this.data.getTime('yyyyMMdd', new Date());
     this.http.getAppoint(`ing=true&date=${today}`).subscribe((res) => {
       this.list = res;
-      // tslint:disable-next-line:forin
-      for (const i in this.list) {
-        this.list[i].appointTime = this.toTime(this.list[i].appointTime);
-      }
       this.data.intervalAppoint = setTimeout(() => {
         this.getOrder();
       }, 3000);
