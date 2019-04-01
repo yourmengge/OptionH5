@@ -15,7 +15,12 @@
         [(ngModel)]="inputMoney">
     </div>
   </div>
-  <div class="pay-way" (click)='selectPayType(1)' *ngIf="cardConfig[0]">
+  <div class="pay-way" (click)='selectPayType(item.index)' *ngFor="let item of payWayConfig">
+    <img src="./assets/images/{{item.pic}}.png" alt="">
+    <span>{{item.name}}</span> <span class="red" *ngIf="item.fee !== ''">(手续费{{item.fee}})</span>
+    <div class="radio {{payType == item.index?'':'radio-none'}}"></div>
+  </div>
+  <!-- <div class="pay-way" (click)='selectPayType(1)' *ngIf="cardConfig[0]">
     <img src="./assets/images/ali.png" alt="">
     <span>支付宝支付<label class='red'>（手续费6‰）</label></span>
     <div class="radio {{payType == 1?'':'radio-none'}}"></div>
@@ -56,10 +61,15 @@
     <span>第三方支付</span>
     <div class="radio {{payType == 8?'':'radio-none'}}"></div>
   </div>
+  <div class="pay-way" (click)='selectPayType(9)' *ngIf="cardConfig[8]">
+    <img src="./assets/images/yinlian.png" alt="">
+    <span>汇聚支付</span>
+    <div class="radio {{payType == 9?'':'radio-none'}}"></div>
+  </div> -->
   <div class="bottom-btn" style="margin-top:20px;margin-bottom: 30px;">
     <div class="main" (click)='pay()'>下一步</div>
   </div>
-  <div class='text' *ngIf="cardConfig[1] === true || cardConfig[2] === true">
+  <div class='text' *ngIf="showText">
     <p>
       【温馨提示】
     </p>

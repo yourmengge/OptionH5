@@ -200,6 +200,8 @@ export class DataService {
       this.logo = 'xdgs';
     } else if (window.location.host.indexOf('hbetfzx') > 0) {
       this.logo = 'hb';
+    } else if (window.location.host.indexOf('niurenet') > 0) {
+      this.logo = 'txnr';
     } else {
       this.logo = 'login';
     }
@@ -539,6 +541,10 @@ export class DataService {
       return { headers: new HttpHeaders({ 'Authorization': this.token }) };
     }
 
+  }
+
+  redirectTo(url) {
+    location.replace(url);
   }
 
   /**

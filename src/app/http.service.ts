@@ -33,7 +33,7 @@ export class HttpService {
    * 资金流水
    */
   getFlow(data) {
-    return this.POST(this.host + 'tntg/payOrder/list', data);
+    return this.POST(this.host + 'tntg/fundStream/list', data);
   }
 
   /**
@@ -363,5 +363,33 @@ export class HttpService {
    */
   transferCommission() {
     return this.POST(`${this.host}tntg/config/CTRL_WITHDRAW_COMMISSION`, {});
+  }
+
+  /**
+   * 支付接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
+   */
+  payment(data, type) {
+    return this.POST(`${this.host}${type}/smsCode`, data);
+  }
+
+ /**
+   * 短信确认接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
+   */
+  smsCode(code, type) {
+    return this.POST(`${this.host}${type}/pay/${code}`, {});
+  }
+
+  /**
+   * 支付接口标准快捷支付
+   */
+  payment2(url, data) {
+    return this.http.post(`${this.host}${url}`, data, { headers: { 'Authorization': this.data.getToken() }, responseType: 'text' });
+  }
+
+  /**
+   * 获取银行列表
+   */
+  getBankList2(type) {
+    return this.POST(`${this.host}tntg/config/${type}`, {});
   }
 }

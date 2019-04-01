@@ -14,7 +14,7 @@
   <span>
     可提现余额：{{backableScale}} 元
   </span>
-  <span class="red"> 
+  <span class="red" *ngIf="showCommission"> 
     提现手续费：{{commission}}
   </span>
 </p>

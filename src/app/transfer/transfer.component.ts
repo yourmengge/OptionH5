@@ -17,6 +17,7 @@ export class TransferComponent implements OnInit {
   minMoney: any;
   commission = '';
   maxMoney: any;
+  showCommission = true;
   constructor(public data: DataService, public http: HttpService) {
     this.backableScale = this.data.getSession('backscale');
     this.liftScale = '';
@@ -45,7 +46,12 @@ export class TransferComponent implements OnInit {
     });
     this.http.transferCommission().subscribe(res => {
       // 判断返回值为字符串时，直接展示，为数字类型加上元
-      this.commission = isNaN(res['resultInfo']) ? res['resultInfo'] : res['resultInfo'] + '元';
+      if (res['resultInfo'] === '' || res['resultInfo'] === '0') {
+        this.showCommission = false;
+      } else {
+        this.commission = isNaN(res['resultInfo']) ? res['resultInfo'] : res['resultInfo'] + '元';
+      }
+
     });
   }
   back() {

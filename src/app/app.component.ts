@@ -25,8 +25,6 @@ export class AppComponent implements DoCheck, OnInit {
       this.data.token = this.data.randomString(32);
       this.data.setLocalStorage('token', this.data.token);
     }
-    this.socket = new SockJS(this.http.ws);
-    this.stompClient = over(this.socket);
     this.connect();
   }
   /**
@@ -51,40 +49,32 @@ export class AppComponent implements DoCheck, OnInit {
    */
   connect() {
     console.log('发起ws请求');
-    let temp = false;
+    this.socket = new SockJS(this.http.ws);
+    this.stompClient = over(this.socket);
+    this.disconnect();
     const that = this;
     const headers = { token: this.data.getTokenP() };
-    this.stompClient.connect(headers, function (frame) {
+    that.stompClient.connect(headers, function (frame) {
       console.log('连接成功');
-      temp = true;
       that.connectWs();
     }, function (err) {
       console.log('连接失败');
-    });
-    setTimeout(() => {
-      if (!temp) {
-        this.disconnect();
-        this.socket = new SockJS(this.http.ws);
-        this.stompClient = over(this.socket);
-        this.connect();
-        if (!this.data.isNull(this.data.searchStockCode)) {
-          if (this.data.getUrl(1) === 'chart') {
-            this.http.getGPHQ(this.data.searchStockCode).subscribe(res => {
-
-            });
-          } else if (this.data.getUrl(3) === 'buy' || this.data.getUrl(3) === 'sell') {
-            this.http.getGPHQ2(this.data.searchStockCode, this.data.getUrl(4)).subscribe(res => {
-
-            });
-          }
-        }
-      }
-    }, 10000);
-    this.socket.onclose = function () {
-      console.log('断开了');
-      temp = false;
       that.connect();
-
+    });
+    that.socket.onclose = function () {
+      console.log('断开了');
+      that.disconnect();
+      setTimeout(() => {
+        that.socket = new SockJS(that.http.ws);
+        that.stompClient = over(that.socket);
+        that.stompClient.connect(headers, function (frame) {
+          console.log('连接成功');
+          that.connectWs();
+        }, function (err) {
+          console.log('连接失败');
+          that.connect();
+        });
+      }, 10000);
     };
   }
 
@@ -95,7 +85,18 @@ export class AppComponent implements DoCheck, OnInit {
       if (that.data.searchStockCode === data.stockCode || that.data.getSession('optionCode') === data.stockCode) {
         that.data.stockHQ = data;
       }
+    }, function (err) {
+      console.log(err);
     });
+    if (!that.data.isNull(that.data.searchStockCode)) {
+      if (that.data.getUrl(1) === 'chart') {
+        that.http.getGPHQ(that.data.searchStockCode).subscribe(() => {
+        });
+      } else if (that.data.getUrl(3) === 'buy' || that.data.getUrl(3) === 'sell') {
+        that.http.getGPHQ2(that.data.searchStockCode, that.data.getUrl(4)).subscribe(() => {
+        });
+      }
+    }
   }
 
   ngDoCheck() {

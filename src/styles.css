@@ -380,9 +380,8 @@ table td p {
 
 .list-item select {
   width: 65%;
-  position: absolute;
-  height: 45px;
-  z-index: 10;
+  position: relative;
+  height: 44px;
   background: none;
   border: none;
   appearance: none;

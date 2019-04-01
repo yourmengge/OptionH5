@@ -316,6 +316,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.priceType = 1;
         this.ccount = '';
         this.show = 'inactive';
+        this.data.searchStockCode = this.stockCode;
         this.http.getGPHQ2(this.stockCode, this.data.token).subscribe((res) => {
             console.log('订阅成功');
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
