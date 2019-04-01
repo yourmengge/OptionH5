@@ -106,13 +106,8 @@ export class RechargeComponent implements OnInit {
         if (this.isWeiChat) {
           _AP.pay(this.http.host + `/alipay/sign?totalAmount=${this.money}&token=${this.data.getToken()}`);
         } else {// 普通浏览器
-          this.http.aliPay(this.money).subscribe(res => {
-            // 支付方法
-            const div = document.createElement('div');
-            div.innerHTML = res;
-            document.body.appendChild(div);
-            document.forms[0].submit();
-          });
+          this.data.setSession('alipaymoney', this.money);
+          this.data.goto('alipayment');
         }
       } else if (this.payType === 2 || this.payType === 3) { // 银行卡支付
         this.data.setSession('payType', this.payType);

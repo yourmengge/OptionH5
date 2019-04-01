@@ -541,6 +541,11 @@ export class DataService {
 
   }
 
+  redirectTo(url) {
+    location.replace(url);
+  }
+
+
   /**
    * 带参数的页面跳转
    */
