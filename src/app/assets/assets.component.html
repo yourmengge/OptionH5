@@ -133,5 +133,19 @@
         </p>
       </div>
     </div>
+    <div class='caozuo' *ngIf="caozuo == index;">
+      <div (click)='detail(a.stockCode)'>
+        <a class='icon detail'></a> 详情
+      </div>
+      <!-- <div (click)='select(a,"buy")'>
+      <a class='icon'></a> 买入
+    </div>
+    <div (click)='select(a,"sell")'>
+      <a class='icon sell'></a> 卖出
+    </div> -->
+      <div (click)='submitAlert(a)'>
+        <a class='icon sell2'></a> 一键平仓
+      </div>
+    </div>
   </div>
 </div>

@@ -312,8 +312,8 @@ export class HttpService {
   /**
    * 平仓
    */
-  appointSELL(stockCode, type) {
-    return this.POST(`${this.host}tntg/appoint/${type}/CLOSE/${stockCode}`, {});
+  appointSELL(stockCode, type, pkOrder = '') {
+    return this.POST(`${this.host}tntg/appoint/${type}/CLOSE/${stockCode}?pkOrder=${pkOrder}`, {});
   }
 
   /**

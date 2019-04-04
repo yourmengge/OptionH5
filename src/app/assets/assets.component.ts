@@ -48,7 +48,7 @@ export class AssetsComponent implements OnInit, OnDestroy {
   }
 
   sell(a) {
-    this.http.appointSELL(a.stockCode, 'SELL').subscribe(res => {
+    this.http.appointSELL(a.stockCode, 'SELL', a.pkOrder || '').subscribe(res => {
       this.data.ErrorMsg('已委托，待成交');
       this.caozuo = -1;
       this.getlist();
@@ -68,6 +68,7 @@ export class AssetsComponent implements OnInit, OnDestroy {
 
   changeType(type) {
     this.type = type;
+    this.caozuo = -1;
     this.getlist();
   }
 
