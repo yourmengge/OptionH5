@@ -75,7 +75,8 @@ export class AppointComponent implements OnInit {
 
   goto(data) {
     this.data.setSession('appointType', this.text);
-    this.data.setSession('appointUrl', `${this.text === '委托' ? 'entrust/' + data.pkorder : 'deal/' + data.dealno}`);
+    this.data.setSession('appointUrl', `${this.text === '委托' ? 'entrust/' + data.pkorder
+     : 'deal/' + data.dealdate + '/' + data.orderno + '/' + data.dealno}`);
     this.data.setSession('appointDetail', data);
     this.data.goto('appointDetail');
   }
