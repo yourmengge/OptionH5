@@ -227,12 +227,12 @@
         {{detail.dealAmount}}
       </span>
     </div>
-    <div class="list-item">
+    <div class="list-item" *ngIf="url == 'settleCloseDetail'">
       <span class="list-item-name">
         盈亏
       </span>
       <span class="list-item-content">
-        {{detail.profit}}
+        {{detail.profit || '---'}}
       </span>
     </div>
     <div class="list-item">
