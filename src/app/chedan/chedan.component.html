@@ -106,7 +106,8 @@
       <span>时间：{{a.appointTime}}</span>
       <span>状态：{{a.appointStatusDesc}}</span>
     </p>
-    <button (click)='chedan(a)' class="chedan-button {{a.appointType == 2?'blue':''}}">撤{{a.appointType === 1?'买':'卖'}}单</button>
+    <button (click)='chedan(a)'
+      class="chedan-button {{a.appointType == 2?'blue':''}}">撤{{a.appointType === 1?'买':'卖'}}单</button>
   </div>
   <div class="submit-alert" *ngIf='submitAlert'>
     <div class="alert-div">
@@ -138,3 +139,4 @@
       </button>
     </div>
   </div>
+</div>
