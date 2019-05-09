@@ -137,7 +137,7 @@ export class RechargeComponent implements OnInit {
         }
         this.payWayConfig.push(data);
         this.payType = this.payWayConfig[0].index;
-        console.log(this.payWayConfig);
+        // console.log(this.payWayConfig);
       });
     }, (err) => {
       this.data.error = err.error;
