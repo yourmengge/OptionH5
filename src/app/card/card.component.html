@@ -35,7 +35,7 @@
     <span class="span-title">
       开户银行支行
     </span>
-    <input [readonly]='filledIn' placeholder="请输入开户银行支行" maxlength="30" type="text" [(ngModel)]="cardInfo.subBranchId">
+    <input [readonly]='filledIn' placeholder="请输入开户银行支行" maxlength="30" type="text" [(ngModel)]="cardInfo.subBranchName">
     <!-- <select [disabled]='filledIn' name="" id="" [(ngModel)]="cardInfo.subBranchId">
       <option value="{{item.value}}" *ngFor="let item of branchesList">{{item.text}}</option>
     </select>
@@ -68,5 +68,5 @@
 </div>
 
 <div class="bottom-btn" style="margin-top:20px;">
-  <div class="main" (click)='submit()'>完成</div>
+  <div class="main" (click)='submit()'>确定</div>
 </div>

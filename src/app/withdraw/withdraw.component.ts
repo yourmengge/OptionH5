@@ -24,9 +24,19 @@ export class WithdrawComponent implements OnInit {
   }
 
   goto(url) {
-    if (url === 'card') {
-      this.data.setSession('updateCard', false);
+    if (url === 'transfer') {
+      this.http.getCard().subscribe(res => {
+        if (this.data.isNull(res)) {
+          this.data.setSession('cardId', '');
+          this.data.ErrorMsg('请先绑定银行卡');
+          this.data.goto('card');
+        } else {
+          this.data.goto(url);
+        }
+      });
+    } else {
+      this.data.goto(url);
     }
-    this.data.goto(url);
+
   }
 }

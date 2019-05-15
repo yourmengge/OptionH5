@@ -23,7 +23,7 @@ export class CardComponent implements OnInit {
     provinceName: '',
     cityId: '',
     cityName: '',
-    subBranchId: '',
+    subBranchId: '0',
     subBranchName: '',
     cardNo: '',
     userName: '',
@@ -31,19 +31,19 @@ export class CardComponent implements OnInit {
     mobile: ''
   };
   isUpdate = 'false';
-  text = '绑定';
+  text = '添加';
   constructor(public data: DataService, public http: HttpService) {
-    this.id = '';
+    this.id = this.data.getSession('cardId');
     this.bankList = this.data.selectOption;
     this.cardInfo.bankId = '0';
     this.provinceList = this.data.selectOption;
     this.cardInfo.provinceId = '0';
     this.cityList = this.data.selectOption;
     this.cardInfo.cityId = '0';
-    this.branchesList = this.data.selectOption;
-    this.cardInfo.subBranchId = '0';
+    // this.branchesList = this.data.selectOption;
+    // this.cardInfo.subBranchId = '0';
     this.isUpdate = this.data.getSession('updateCard') || 'false';
-    this.text = this.isUpdate === 'true' ? '修改' : '绑定';
+    this.text = this.id === '' ? '添加' : '修改';
   }
 
   ngOnInit() {
@@ -98,28 +98,50 @@ export class CardComponent implements OnInit {
   }
 
   // 查询绑定的银行卡
+  // getCard() {
+  //   this.http.getCard().subscribe(res => {
+  //     if (!this.data.isNull(res)) {
+  //       if (this.isUpdate === 'true') {
+  //         this.filledIn = false;
+  //       } else {
+  //         this.filledIn = true;
+  //       }
+  //       this.filledIn2 = true;
+  //       this.cardInfo = Object.assign(this.cardInfo, res);
+  //       this.id = this.cardInfo.id;
+  //       // this.getBranch();
+  //       this.getProvinces();
+  //       this.getCity();
+  //     } else {
+  //       this.filledIn = false;
+  //       this.filledIn2 = false;
+  //     }
+  //   }, err => {
+  //     this.data.error = err.error;
+  //     this.data.isError();
+  //   });
+  // }
+
   getCard() {
-    this.http.getCard().subscribe(res => {
-      if (!this.data.isNull(res)) {
-        if (this.isUpdate === 'true') {
-          this.filledIn = false;
-        } else {
-          this.filledIn = true;
-        }
-        this.filledIn2 = true;
-        this.cardInfo = Object.assign(this.cardInfo, res);
-        this.id = this.cardInfo.id;
-        this.getBranch();
+    if (this.id !== '') { // 修改银行卡
+      this.http.getCard2(this.id).subscribe(res => {
+        Object.assign(this.cardInfo, res);
         this.getProvinces();
         this.getCity();
-      } else {
-        this.filledIn = false;
-        this.filledIn2 = false;
-      }
-    }, err => {
-      this.data.error = err.error;
-      this.data.isError();
-    });
+      }, err => {
+        this.data.error = err.error;
+        this.data.isError();
+      });
+    } else { // 新增银行卡
+      this.http.getCard().subscribe(res => {
+        this.cardInfo.mobile = res['mobile'];
+        this.cardInfo.userName = res['userName'];
+        this.cardInfo.identityNo = res['identityNo'];
+      }, err => {
+        this.data.error = err.error;
+        this.data.isError();
+      });
+    }
   }
 
   // 绑定银行卡
@@ -127,14 +149,14 @@ export class CardComponent implements OnInit {
     this.cardInfo.bankName = this.getName(this.bankList, this.cardInfo.bankId);
     this.cardInfo.provinceName = this.getName(this.provinceList, this.cardInfo.provinceId);
     this.cardInfo.cityName = this.getName(this.cityList, this.cardInfo.cityId);
-    this.cardInfo.subBranchName = this.getName(this.branchesList, this.cardInfo.subBranchId);
+    // this.cardInfo.subBranchName = this.getName(this.branchesList, this.cardInfo.subBranchId);
     if (this.cardInfo.bankId === '0') {
       this.data.ErrorMsg('请选择开户银行');
     } else if (this.cardInfo.provinceId === '0') {
       this.data.ErrorMsg('请选择开户银行省份');
     } else if (this.cardInfo.cityId === '0') {
       this.data.ErrorMsg('请选择开户银行城市');
-    } else if (this.cardInfo.subBranchId === '0') {
+    } else if (this.cardInfo.subBranchName === '') {
       this.data.ErrorMsg('请选择开户银行支行');
     } else if (this.cardInfo.cardNo.length === 0) {
       this.data.ErrorMsg('请输入正确的银行卡号');

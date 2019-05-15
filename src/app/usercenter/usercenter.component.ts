@@ -72,6 +72,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
     if (url === 'withdraw' || (url === 'recharge' && this.data.logo === 'dfqq')) {
       this.http.getCard().subscribe(res => {
         if (this.data.isNull(res)) {
+          this.data.setSession('cardId', '');
           this.data.ErrorMsg('请先绑定银行卡');
           this.data.goto('card');
         } else {

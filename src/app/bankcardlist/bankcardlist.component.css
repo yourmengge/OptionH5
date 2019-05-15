@@ -1,0 +1,47 @@
+.card-div {
+    width: calc(96vw - 40px);
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 2vw;
+    margin-bottom: 10px;
+    box-shadow: 0px 1px 3px 0px rgba(83, 56, 56, 0.08);
+    padding: 15px 20px;
+    margin-top: 5px;
+}
+
+.card-div p {
+    margin: 15px;
+}
+
+.radio {
+    background: url(../../assets/images/radio-button.png);
+    background-size: 100% 100%;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    float: left;
+    margin-left: 10px;
+}
+
+.radio-none {
+    background: url(../../assets/images/radio02.png);
+    background-size: 100% 100%;
+    width: 23px;
+    height: 23px;
+    margin-right: 8px;
+    margin-top: -2px;
+}
+
+.del-btn {
+    float: right;
+    padding: 2px 14px;
+    color: #b00e23;
+    margin-top: -6px;
+    border: solid 1px #b00e23;
+    border-radius: 4px;
+}
+
+.del-btn:active{
+    color: #fff;
+    background: #b00e23;
+}

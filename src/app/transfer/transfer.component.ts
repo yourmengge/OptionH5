@@ -18,6 +18,8 @@ export class TransferComponent implements OnInit {
   commission = '';
   maxMoney: any;
   showCommission = true;
+  bankId = '';
+  list = [];
   constructor(public data: DataService, public http: HttpService) {
     this.backableScale = this.data.getSession('backscale');
     this.liftScale = '';
@@ -41,6 +43,7 @@ export class TransferComponent implements OnInit {
         this.startTime = 0;
         this.endTime = 0;
       }
+      this.getList();
 
 
     });
@@ -58,6 +61,13 @@ export class TransferComponent implements OnInit {
     this.data.back();
   }
 
+  getList() {
+    this.http.getCardList().subscribe((res: Array<any>) => {
+      this.list = res;
+      this.bankId = this.list[0].id;
+    });
+  }
+
   withdraw() {
     const now = this.data.timeToNum(this.data.add0(new Date().getHours()) + ':' + this.data.add0(new Date().getMinutes()));
     if (!this.data.isOnTime(this.startTime, this.endTime, now)) {
@@ -70,7 +80,8 @@ export class TransferComponent implements OnInit {
       this.data.ErrorMsg('提现金额不能大于余额');
     } else {
       const data = {
-        liftScale: this.liftScale
+        liftScale: this.liftScale,
+        userBankCardId: this.bankId
       };
       this.data.loading = this.data.show;
       this.http.withdraw(data).subscribe(res => {

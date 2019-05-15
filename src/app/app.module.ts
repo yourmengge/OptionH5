@@ -58,6 +58,7 @@ import { SettlePageComponent } from './settle-page/settle-page.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NumberInputDirective } from './number-input.directive';
 import { AlipaymentComponent } from './alipayment/alipayment.component';
+import { BankcardlistComponent } from './bankcardlist/bankcardlist.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -82,6 +83,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'bankcardlist', component: BankcardlistComponent },
   { path: 'alipayment', component: AlipaymentComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'settleCloseDetail', component: HoldDetailComponent },
@@ -169,7 +171,8 @@ const appRoutes: Routes = [
     SettlePageComponent,
     PaymentComponent,
     NumberInputDirective,
-    AlipaymentComponent
+    AlipaymentComponent,
+    BankcardlistComponent
   ],
   imports: [
     BrowserAnimationsModule,

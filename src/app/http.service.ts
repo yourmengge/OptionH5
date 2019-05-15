@@ -114,6 +114,13 @@ export class HttpService {
     return this.POST(this.host + `tn/query/card`, {});
   }
 
+  /**
+  * 查询指定银行卡绑定
+  */
+  getCard2(cardId) {
+    return this.POST(this.host + `tn/query/card/${cardId}`, {});
+  }
+
 
   /**
    * 绑定银行卡
@@ -372,9 +379,9 @@ export class HttpService {
     return this.POST(`${this.host}${type}/smsCode`, data);
   }
 
- /**
-   * 短信确认接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
-   */
+  /**
+    * 短信确认接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
+    */
   smsCode(code, type) {
     return this.POST(`${this.host}${type}/pay/${code}`, {});
   }
@@ -391,5 +398,26 @@ export class HttpService {
    */
   getBankList2(type) {
     return this.POST(`${this.host}tntg/config/${type}`, {});
+  }
+
+  /**
+   * 删除绑定银行卡
+   */
+  delCard(cardId) {
+    return this.POST(`${this.host}tn/delete/card/${cardId}`, {});
+  }
+
+  /**
+   * 获取银行卡列表
+   */
+  getCardList() {
+    return this.POST(`${this.host}tn/query/card/list`, {});
+  }
+
+  /**
+   * 银行卡设为默认
+   */
+  defaultCard(id) {
+    return this.POST(`${this.host}tn/default/card/${id}`, {});
   }
 }

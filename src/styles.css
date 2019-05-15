@@ -381,6 +381,7 @@ table td p {
 .list-item select {
   width: 65%;
   position: relative;
+  font-size: 1rem;
   height: 44px;
   background: none;
   border: none;
