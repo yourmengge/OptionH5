@@ -420,4 +420,11 @@ export class HttpService {
   defaultCard(id) {
     return this.POST(`${this.host}tn/default/card/${id}`, {});
   }
+
+  /**
+   * 获取充值金额
+   */
+  getRechargeMoney() {
+    return this.POST(`${this.host}tntg/config/PAY_CHARGE_ITEM`, {});
+  }
 }
