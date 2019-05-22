@@ -31,6 +31,7 @@ export class RechargeComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.getRechargeMoney();
     this.isWeiXin();
     this.getCardConfig();
     this.http.chargeWithdrawInfo().subscribe(res => {
@@ -50,6 +51,13 @@ export class RechargeComponent implements OnInit {
         this.startTime = 0;
         this.endTime = 0;
       }
+    });
+  }
+
+  getRechargeMoney() {
+    this.http.getRechargeMoney().subscribe((res: Array<any>) => {
+      this.list = res['resultInfo'].split(',');
+      this.money = this.list[0];
     });
   }
 
@@ -137,7 +145,7 @@ export class RechargeComponent implements OnInit {
         }
         this.payWayConfig.push(data);
         this.payType = this.payWayConfig[0].index;
-        console.log(this.payWayConfig);
+        // console.log(this.payWayConfig);
       });
     }, (err) => {
       this.data.error = err.error;

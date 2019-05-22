@@ -372,9 +372,9 @@ export class HttpService {
     return this.POST(`${this.host}${type}/smsCode`, data);
   }
 
- /**
-   * 短信确认接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
-   */
+  /**
+    * 短信确认接口 汇聚：thirdpayJoinpay 商银信：thirdpayAllscoreQuick
+    */
   smsCode(code, type) {
     return this.POST(`${this.host}${type}/pay/${code}`, {});
   }
@@ -391,5 +391,12 @@ export class HttpService {
    */
   getBankList2(type) {
     return this.POST(`${this.host}tntg/config/${type}`, {});
+  }
+
+  /**
+   * 获取充值金额
+   */
+  getRechargeMoney() {
+    return this.POST(`${this.host}tntg/config/PAY_CHARGE_ITEM`, {});
   }
 }
