@@ -13,7 +13,7 @@
     <span class="span-title">
       提现卡号
     </span>
-    <select style="margin-left:3px;" [disabled]='filledIn' name="" id="" [(ngModel)]="bankId">
+    <select style="margin-left:3px;" name="" id="" [(ngModel)]="bankId">
       <option value="{{item.id}}" *ngFor="let item of list">{{item.cardNo}}-{{item.bankName}}</option>
     </select>
   </div>
