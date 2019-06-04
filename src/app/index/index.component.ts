@@ -13,9 +13,11 @@ export class IndexComponent implements OnInit, OnDestroy {
   timeout: any;
   newslist: any;
   logo = '';
+  url = '';
   responseData: Object;
   constructor(public data: DataService, public http: HttpService) {
     this.responseData = this.data.responseData;
+    this.url = 'http://kcb.kcyuan123.com/h5tncl/';
   }
 
   ngOnInit() {

@@ -1,9 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import './assets/css/swiper.min.css';
-
-html,
-body {
+html, body {
   margin: 0;
   padding: 0;
   font-size: 14px;
@@ -304,6 +302,16 @@ table td p {
   color: #969696;
 }
 
+.translate-btn {
+  float: right;
+  margin-right: 15px;
+  font-size: 14px;
+  position: relative;
+  z-index: 10;
+  color: #000;
+  text-decoration: none;
+}
+
 .confirm {
   background: rgba(0, 0, 0, 0.308);
   height: 100vh;
@@ -416,9 +424,7 @@ table td p {
 }
 
 @media screen and (max-width: 320px) {
-
-  body,
-  html {
+  body, html {
     font-size: 12px;
   }
 }
