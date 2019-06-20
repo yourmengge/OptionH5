@@ -202,8 +202,10 @@ export class DataService {
       this.logo = 'hb';
     } else if (window.location.host.indexOf('niurenet') > 0) {
       this.logo = 'txnr';
+    } else if (window.location.host.indexOf('5150etf') > 0) {
+      this.logo = 'yifu';
     } else {
-      this.logo = 'login';
+      this.logo = 'yifu';
     }
   }
 
