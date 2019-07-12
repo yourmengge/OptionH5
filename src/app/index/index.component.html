@@ -1,11 +1,12 @@
 <div class="navigation">
   <p class="navigation-title">首页</p>
+  <a *ngIf="logo === 'kcyuan'" href="{{url}}" class="translate-btn">切换</a>
 </div>
 <!-- {{responseData}} -->
 <div class='demonstration' *ngIf="logo === 'login'">模拟</div>
 <div class="index">
   <div class="swiper-container">
-    <div class="swiper-wrapper" >
+    <div class="swiper-wrapper">
       <div class="swiper-slide"><img src='./assets/images/banner4.jpg' alt=""></div>
       <div class="swiper-slide"><img src='./assets/images/banner2.jpg' alt=""></div>
       <div class="swiper-slide"><img src='./assets/images/banner3.jpg' alt=""></div>
@@ -41,6 +42,9 @@
       </p>
     </div>
   </div>
+  <!-- <div  *ngIf="logo === 'kcyuan'">
+    <img src="../../assets/images/kechuang.png" alt="" style="width:100%">
+  </div> -->
   <div class="tabs" style='padding: 0 5px;'>
     <div class="tabs-div2 " *ngFor="let item of list">
       <p [class]="color(item.upRatio)">{{item.lastPrice}}</p>
