@@ -105,7 +105,7 @@ export class ChedanComponent implements OnInit {
         this.data.Loading(this.data.hide);
       });
     } else {
-      this.data.ErrorMsg('撤单失败');
+      this.data.ErrorMsg('已提交状态撤不了');
       this.closeAlert();
     }
   }
