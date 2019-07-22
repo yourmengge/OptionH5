@@ -35,13 +35,13 @@
 }
 
 .securities-div-p {
-  width: calc(100vw - 120px);
+  width: calc(100vw - 115px);
   font-size: 0.9rem;
   float: right;
 }
 
 .securities-div-p span:nth-child(2n - 1) {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 .securities-div-p span:nth-child(2n) {

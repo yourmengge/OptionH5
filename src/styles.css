@@ -383,7 +383,7 @@ table td p {
 .list-item-content {
   float: right;
   margin-right: 20px;
-  max-width: 200px;
+  max-width: calc(100vw - 120px);
   text-align: right;
 }
 
