@@ -138,6 +138,13 @@ export class HttpService {
       { headers: this.data.getPayHeader(), responseType: 'text' });
   }
 
+    /**
+   * 获取证券静态数据
+   */
+  getSecurities(code) {
+    return this.POST(this.host + `tn/quota/oneTrend/${code}`, '');
+  }
+
   /**
    * 获取充值配置
    */

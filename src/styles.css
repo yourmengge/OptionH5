@@ -69,7 +69,7 @@ input:read-only {
   width: 100vw;
 }
 
-.alert {
+/* .alert {
   bottom: 100px;
   position: fixed;
   z-index: 0618;
@@ -81,7 +81,7 @@ input:read-only {
   line-height: 40px;
   color: #fff;
   text-align: center;
-}
+} */
 
 table td p {
   margin: 5px 0;

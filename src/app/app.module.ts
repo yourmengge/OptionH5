@@ -59,6 +59,7 @@ import { PaymentComponent } from './payment/payment.component';
 import { NumberInputDirective } from './number-input.directive';
 import { AlipaymentComponent } from './alipayment/alipayment.component';
 import { BankcardlistComponent } from './bankcardlist/bankcardlist.component';
+import { ChartETFComponent } from './chart-etf/chart-etf.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -113,6 +114,7 @@ const appRoutes: Routes = [
   { path: 'recharge', component: RechargeComponent },
   { path: 'card', component: CardComponent },
   { path: 'chart', component: ChartComponent },
+  { path: 'chartetf', component: ChartETFComponent },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'main', component: MainComponent, children: appChildRoutes },
   { path: 'newdetail/:id', component: NewsDetailComponent },
@@ -172,7 +174,8 @@ const appRoutes: Routes = [
     PaymentComponent,
     NumberInputDirective,
     AlipaymentComponent,
-    BankcardlistComponent
+    BankcardlistComponent,
+    ChartETFComponent
   ],
   imports: [
     BrowserAnimationsModule,

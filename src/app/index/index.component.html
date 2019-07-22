@@ -46,7 +46,7 @@
     <img src="../../assets/images/kechuang.png" alt="" style="width:100%">
   </div> -->
   <div class="tabs" style='padding: 0 5px;'>
-    <div class="tabs-div2 " *ngFor="let item of list">
+    <div class="tabs-div2 " *ngFor="let item of list" (click)='goto3(item.stockCode,item.exchangeCode,item.stockName)' >
       <p [class]="color(item.upRatio)">{{item.lastPrice}}</p>
       <p [class]="color(item.upRatio)">
         <span>

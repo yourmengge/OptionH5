@@ -36,6 +36,13 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.newsList();
   }
 
+  goto3(code, marketType, name) {
+    this.data.setSession('stockName', name);
+    const temp = marketType === 'SH' ? '1' : '2';
+    this.data.setSession('optionCode', code + temp);
+    this.data.goto('chartetf');
+  }
+
   newsList() {
     this.http.newsList().subscribe(res => {
       this.newslist = res;
