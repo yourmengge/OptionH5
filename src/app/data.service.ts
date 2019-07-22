@@ -207,7 +207,7 @@ export class DataService {
     } else if (window.location.host.indexOf('kcyuan123') > 0) {
       this.logo = 'kcyuan';
     } else {
-      this.logo = 'login';
+      this.logo = 'kcyuan';
     }
   }
 
