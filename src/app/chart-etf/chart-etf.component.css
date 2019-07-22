@@ -1,194 +1,193 @@
 .navigation {
-    line-height: 22px;
-  }
-  
-  .navigation p {
-    margin: 0;
-    font-size: 15px;
-  }
-  
-  .chart-content .chart-head {
-    display: flex;
-    padding: 5px;
-  }
-  
-  .chart-content .chart-head div {
-    flex: 1;
-  }
-  
-  .chart-content .head {
-    width: 100vw;
-    border-radius: 0;
-    float: none;
-  }
-  .securities-div {
-    height: 90px;
-    font-size: 1.2rem;
-    background: #f3f3f3;
-  }
-  
-  .securities-div div {
-    width: 100px;
-    float: left;
-    height: 80px;
-    text-align: center;
-  }
-  
-  .securities-div-p {
-    width: calc(100vw - 120px);
-    font-size: 0.95rem;
-    float: right;
-  }
-  
-  .securities-div-p span:nth-child(2n - 1) {
-    margin-right: 10px;
-  }
-  
-  .securities-div-p span:nth-child(2n) {
-    margin-right: 5px;
-  }
+  line-height: 22px;
+}
 
-  .shifen {
-    display: flex;
-    height: 40px;
-    line-height: 40px;
-    text-align: center;
-    font-size: 1.1rem;
-    color: #333;
-    margin-top: 8px;
-  }
-  
-  .active{
-    color: #b00e23 !important;
-    border-bottom: solid 1px #b00e23;
-  }
-  
-  .shifen span{
-    flex: 1;
-  }
-  
-  .chart-content .chart-head p {
-    margin: 2px 0;
-    font-size: .83rem;
-  }
-  
-  .chart-content .head1 {
-    flex: 4 !important;
-    text-align: center;
-  }
-  
-  .chart-content .chart-head2 {
-    padding: 5px 0;
-    border-top: solid 1px #eaeaea;
-  }
-  
-  .chart-content .chart-head2 div {
-    display: flex;
-    padding: 1px 7px;
-  }
-  
-  .chart-content .chart-head2 div span {
-    flex: 1;
-    font-size: 12px;
-    text-align: right;
-    margin-right: 5px;
-    color: rgb(60, 60, 60);
-    width: 52px;
-  }
-  
-  .chart-content .chart-head2 div span:nth-child(odd) {
-    text-align: left;
-    color: #909090;
-  }
-  
-  .chart-content .head-span {
-    font-size: 1.5rem;
-    margin-top: 3px;
-  }
-  
-  .chart-content .head2 p:nth-child(odd) {
-    color: #909090;
-  }
-  
-  .chart-content .head2 p:nth-child(even) {
-    color: rgb(60, 60, 60);
-  }
-  
-  .chart-content {
-    height: calc(100vh - 49px);
-    overflow-y: auto;
-  }
-  
-  .bottom-btn {
-    width: 100vw;
-    height: 40px;
-    display: flex;
-    position: fixed;
-    bottom: 0;
-    z-index: 10;
-  }
-  
-  .bottom-btn button {
-    flex: 1;
-    border: none;
-    color: #fff;
-    background: #145c90;
-  }
-  
-  .bottom-btn button:nth-child(1) {
-    background: #b00e23 !important;
-  
-  }
-  
-  .right-div {
-    display: flex;
-    border-bottom: solid 1px #eaeaea;
-    padding: 0 2%;
-    width: calc(100vw - 4%);
-    margin-top: 8px;
-    margin-bottom: 60px;
-    border-left: none;
-  }
-  
-  .right-div div {
-    flex: 1;
-    padding: 5px;
-  }
-  
-  .right-div div:first-child {
-    border-right: solid 1px #eaeaea;
-  }
-  
-  .right-div p {
-    margin: 2px;
-    font-size: .9rem;
-    display: flex;
-    height: 24px;
-    line-height: 24px;
-  }
-  
-  .right-div p span {
-    flex: 1;
-    text-align: center;
-  }
-  
-  .right-div p span:first-child {
-    text-align: left;
-  }
-  
-  .right-div p span:last-child {
-    text-align: right;
-  }
-  
-  .right-title {
-    text-align: center;
-    border-right: none !important;
-  }
-  
-  .head,
-  .right-div,
-  .fenshi-div {
-    background:none;
-    /* box-shadow: 0 0 3px 3px rgba(193, 193, 193, 0.2); */
-  }
-  
+.navigation p {
+  margin: 0;
+  font-size: 15px;
+}
+
+.chart-content .chart-head {
+  display: flex;
+  padding: 5px;
+}
+
+.chart-content .chart-head div {
+  flex: 1;
+}
+
+.chart-content .head {
+  width: 100vw;
+  border-radius: 0;
+  float: none;
+}
+.securities-div {
+  height: 90px;
+  font-size: 1.2rem;
+  background: #f3f3f3;
+}
+
+.securities-div div {
+  width: 100px;
+  float: left;
+  height: 80px;
+  text-align: center;
+}
+
+.securities-div-p {
+  width: calc(100vw - 120px);
+  font-size: 0.9rem;
+  float: right;
+}
+
+.securities-div-p span:nth-child(2n - 1) {
+  margin-right: 10px;
+}
+
+.securities-div-p span:nth-child(2n) {
+  margin-right: 5px;
+}
+
+.shifen {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #333;
+  margin-top: 8px;
+  width: 100vw;
+}
+
+.active {
+  color: #b00e23 !important;
+  border-bottom: solid 1px #b00e23;
+}
+
+.shifen span {
+  flex: 1;
+}
+
+.chart-content .chart-head p {
+  margin: 2px 0;
+  font-size: 0.83rem;
+}
+
+.chart-content .head1 {
+  flex: 4 !important;
+  text-align: center;
+}
+
+.chart-content .chart-head2 {
+  padding: 5px 0;
+  border-top: solid 1px #eaeaea;
+}
+
+.chart-content .chart-head2 div {
+  display: flex;
+  padding: 1px 7px;
+}
+
+.chart-content .chart-head2 div span {
+  flex: 1;
+  font-size: 12px;
+  text-align: right;
+  margin-right: 5px;
+  color: rgb(60, 60, 60);
+  width: 52px;
+}
+
+.chart-content .chart-head2 div span:nth-child(odd) {
+  text-align: left;
+  color: #909090;
+}
+
+.chart-content .head-span {
+  font-size: 1.5rem;
+  margin-top: 3px;
+}
+
+.chart-content .head2 p:nth-child(odd) {
+  color: #909090;
+}
+
+.chart-content .head2 p:nth-child(even) {
+  color: rgb(60, 60, 60);
+}
+
+.chart-content {
+  height: calc(100vh - 49px);
+  overflow-y: auto;
+}
+
+.bottom-btn {
+  width: 100vw;
+  height: 40px;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+}
+
+.bottom-btn button {
+  flex: 1;
+  border: none;
+  color: #fff;
+  background: #145c90;
+}
+
+.bottom-btn button:nth-child(1) {
+  background: #b00e23 !important;
+}
+
+.right-div {
+  display: flex;
+  border-bottom: solid 1px #eaeaea;
+  padding: 0 2%;
+  width: calc(100vw - 4%);
+  margin-top: 8px;
+  margin-bottom: 60px;
+  border-left: none;
+}
+
+.right-div div {
+  flex: 1;
+  padding: 5px;
+}
+
+.right-div div:first-child {
+  border-right: solid 1px #eaeaea;
+}
+
+.right-div p {
+  margin: 2px;
+  font-size: 0.9rem;
+  display: flex;
+  height: 24px;
+  line-height: 24px;
+}
+
+.right-div p span {
+  flex: 1;
+  text-align: center;
+}
+
+.right-div p span:first-child {
+  text-align: left;
+}
+
+.right-div p span:last-child {
+  text-align: right;
+}
+
+.right-title {
+  text-align: center;
+  border-right: none !important;
+}
+
+.head,
+.right-div,
+.fenshi-div {
+  background: none;
+  /* box-shadow: 0 0 3px 3px rgba(193, 193, 193, 0.2); */
+}

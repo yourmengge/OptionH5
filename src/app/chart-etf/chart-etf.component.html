@@ -11,71 +11,27 @@
 <div class="main-content2">
   <div class="chart-content">
     <div class="head">
-      <div class="chart-head" *ngIf="!isSecurities">
-        <div class="head1">
-          <div style="color:#ff2121;margin-top: 10px;text-align: left;padding-left: 10px;">
-            <span class="head-span">{{stockHQ.lastPrice | round4}}</span>
-            <span [class]='color(stockHQ.upDiff)' style="margin:0 10px;">
-              {{stockHQ.upDiff}}
-            </span>
-            <span [class]='color(stockHQ.upRatio)'>
-              {{stockHQ.upRatio}}
-            </span>
-            <p style="color:#fff;margin-top: 7px;">
-              交易时间：09:30-11:30 13:00-14:57
-            </p>
-          </div>
-        </div>
-        <div class="head2">
-          <p>
-            高
-          </p>
-          <p>
-            {{stockHQ.highPrice | round4}}
-          </p>
-          <p>
-            低
-          </p>
-          <p>
-            {{stockHQ.lowPrice | round4}}
-          </p>
-        </div>
-        <div class="head2">
-          <p>
-            今开
-          </p>
-          <p>
-            {{stockHQ.openPrice | round4}}
-          </p>
-          <p>
-            昨收
-          </p>
-          <p>
-            {{staticData.preClosePrice | round4}}
-          </p>
-        </div>
-      </div>
       <div *ngIf="isSecurities" class="securities-div">
         <div>
-          <p>
-            <span style="font-size:1.2rem;" [class]='HQColor2(staticData2.lastPrice)'>{{staticData2.lastPrice | round4}}</span>
+          <p style="margin-top: 11px;"> 
+            <span style="font-size:1.2rem;" [class]='HQColor2(staticData2.lastPrice)'>{{staticData2.lastPrice | toFixed}}</span>
           </p>
           <p>
             <span style="font-size:0.9rem;" [class]='color(staticData2.upRatio)'>{{staticData2.upRatio}}</span>
-            <span style="font-size:0.9rem;margin-left: 10px;" [class]='color(staticData2.upDown)'>{{staticData2.upDown}}</span>
+            <span style="font-size:0.9rem;margin-left: 10px;" [class]='color(staticData2.upDown)'>{{staticData2.upDown | toFixed}}</span>
           </p>
         </div>
         <p class="securities-div-p">
           <span>今开</span>
-          <span [class]='HQColor2(staticData2.openPrice)'>{{staticData2.openPrice | round4}}</span>
+          <span [class]='HQColor2(staticData2.openPrice)'>{{staticData2.openPrice | toFixed}}</span>
           <span>最高</span>
-          <span [class]='HQColor2(staticData2.highPrice)'>{{staticData2.highPrice | round4}}</span>
+          <span [class]='HQColor2(staticData2.highPrice)'>{{staticData2.highPrice | toFixed}}</span>
           <span>最低</span>
-          <span [class]='HQColor2(staticData2.lowPrice)'>{{staticData2.lowPrice | round4}}</span>
+          <span [class]='HQColor2(staticData2.lowPrice)'>{{staticData2.lowPrice | toFixed}}</span>
         </p>
         <p class="securities-div-p">
           <span>昨开</span>
-          <span>{{staticData2.preClosePrice | round4}}</span>
+          <span>{{staticData2.preClosePrice | toFixed}}</span>
           <span>总手</span>
           <span>{{filter(staticData2.totalVolume)}}</span>
           <span>金额</span>
