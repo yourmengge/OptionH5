@@ -7,7 +7,7 @@
     <img src="./assets/images/usercenter-banner.jpg" alt="" class="banner">
     <img src="./assets/images/{{logo}}.png" alt="" class="head">
     <img src="./assets/images/sel.png" alt="" (click)='setting()' class="setting">
-    <p class="name">{{userInfo.accountName}}</p>
+    <p class="name">{{userInfo.accountName || ''}}</p>
     <div class="caozuo">
       <button (click)='goto2("withdraw")' class="recharge">提现</button>
       <button (click)='goto2("recharge")' class="recharge">充值</button>

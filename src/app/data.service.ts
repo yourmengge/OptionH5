@@ -115,7 +115,7 @@ export class DataService {
   userInfo = {
     allottedScale: 0, // 初期规模
     ableScale: 0,  // 可用资金
-    accountName: 'null', // 中文名
+    accountName: '', // 中文名
     lockScale: 0, // 冻结资金
     stockScale: 0, // 股票市值
     totalScale: 0// 总资产
@@ -207,7 +207,7 @@ export class DataService {
     } else if (window.location.host.indexOf('kcyuan123') > 0) {
       this.logo = 'kcyuan';
     } else {
-      this.logo = 'kcyuan';
+      this.logo = 'login';
     }
   }
 
@@ -460,7 +460,7 @@ export class DataService {
     this.alert = true;
     setTimeout(() => {
       this.alert = false;
-    }, 5000);
+    }, 3000);
     if (typeof (this.error) === 'string') {
       this.error = JSON.parse(this.error);
     }
