@@ -14,6 +14,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   newslist: any;
   logo = '';
   url = '';
+  clickTime = 0;
   responseData: Object;
   constructor(public data: DataService, public http: HttpService) {
     this.responseData = this.data.responseData;
@@ -54,6 +55,17 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     window.clearTimeout(this.timeout);
+  }
+
+  reload() {
+    if (this.clickTime === 0) {
+      this.clickTime = new Date().getTime();
+    } else if (new Date().getTime() - this.clickTime < 1000) {
+      this.clickTime = 0;
+      window.location.reload();
+    } else {
+      this.clickTime = 0;
+    }
   }
 
   generalTrend() {

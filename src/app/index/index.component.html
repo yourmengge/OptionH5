@@ -1,5 +1,5 @@
 <div class="navigation">
-  <p class="navigation-title">首页</p>
+  <p class="navigation-title"><span (click)='reload()'>首页</span></p>
   <a *ngIf="logo === 'kcyuan'" href="{{url}}" class="translate-btn">切换</a>
 </div>
 <!-- {{responseData}} -->
@@ -50,7 +50,7 @@
       <p [class]="color(item.upRatio)">{{item.lastPrice}}</p>
       <p [class]="color(item.upRatio)">
         <span>
-          {{item.preClosePrice}}
+          {{item!.preClosePrice}}
         </span>
         <span style="margin-left:5px;">
           {{item.upRatio}}
