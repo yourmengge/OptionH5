@@ -29,6 +29,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   }
 
   usercenter() {
+    this.data.loading = this.data.show;
     this.http.userCenter().subscribe((res: DataService['userInfo']) => {
       this.userInfo = res;
       this.data.setSession('accountCode', res['accountCode']);
@@ -41,6 +42,8 @@ export class UsercenterComponent implements OnInit, OnDestroy {
     }, (err) => {
       this.data.error = err.error;
       this.data.isError();
+    }, () => {
+      this.data.loading = this.data.hide;
     });
   }
   /**

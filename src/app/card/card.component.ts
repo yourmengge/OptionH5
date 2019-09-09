@@ -43,7 +43,7 @@ export class CardComponent implements OnInit {
     // this.branchesList = this.data.selectOption;
     // this.cardInfo.subBranchId = '0';
     this.isUpdate = this.data.getSession('updateCard') || 'false';
-    this.text = this.id === '' ? '添加' : '修改';
+    this.text = this.id === '' ? '添加' : '我的';
   }
 
   ngOnInit() {

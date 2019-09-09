@@ -31,7 +31,7 @@
     d = n(22),
     u = function () {
       function t(t) {
-        this.defaultoptions = e.chartTime, this.options = {}, l(!0, this.options, e.defaulttheme, this.defaultoptions, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () {} : t.onChartLoaded
+        this.defaultoptions = e.chartTime, this.options = {}, l(!0, this.options, e.defaulttheme, this.defaultoptions, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () { } : t.onChartLoaded
       }
 
       function i(t) {
@@ -175,13 +175,13 @@
           for (var l = 0; p > l; l++)
             if (0 == l) t.fillText(n[l].str, e, a);
             else if (l == p - 1) t.fillText(n[l].str, r - t.measureText(n[l].str).width, a);
-        else {
-          var c = r * (n[l].tick / o) + e - t.measureText(n[l].str).width / 2,
-            d = r * (n[p - 1].tick / o) + e - t.measureText(n[p - 1].str).width,
-            u = h + t.measureText(n[l].str).width;
-          if (u + 10 > c || c + t.measureText(n[l].str).width + 10 > d) continue;
-          h = c, t.fillText(n[l].str, c, a)
-        } else
+            else {
+              var c = r * (n[l].tick / o) + e - t.measureText(n[l].str).width / 2,
+                d = r * (n[p - 1].tick / o) + e - t.measureText(n[p - 1].str).width,
+                u = h + t.measureText(n[l].str).width;
+              if (u + 10 > c || c + t.measureText(n[l].str).width + 10 > d) continue;
+              h = c, t.fillText(n[l].str, c, a)
+            } else
           for (var f = (r - e) / p, g = 0; p > g; g++) t.fillText(n[g], (g + 1) * f - f / 2 - t.measureText(n[g]).width / 2, a);
         var m = this.options.x_sep,
           v = r / m;
@@ -514,7 +514,7 @@
   t.exports = i
 }, function (t) {
   var i = function (t, i, n, o) {
-    t = t || "", i = i || {}, n = n || "", o = o || function () {};
+    t = t || "", i = i || {}, n = n || "", o = o || function () { };
     var e = function (t) {
       var i = [];
       for (var n in t) t.hasOwnProperty(n) && i.push(n);
@@ -927,7 +927,7 @@
       if ("undefined" != typeof t[n]) try {
         if (o(t[n]) && o(i[n]) && e(t[n], i[n]), i.hasOwnProperty(n)) continue;
         i[n] = t[n]
-      } catch (s) {}
+      } catch (s) { }
   }, i = function () {
     var t, i = arguments,
       e = {};
@@ -962,7 +962,7 @@
     u = n(32),
     f = function () {
       function t(t) {
-        this.defaultoptions = e.chartK, this.options = {}, c(!0, this.options, e.defaulttheme, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.options.onChartLoaded = void 0 == t.onChartLoaded ? function () {} : t.onChartLoaded
+        this.defaultoptions = e.chartK, this.options = {}, c(!0, this.options, e.defaulttheme, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.options.onChartLoaded = void 0 == t.onChartLoaded ? function () { } : t.onChartLoaded
       }
 
       function i() {
@@ -1455,7 +1455,7 @@
     p = n(22),
     h = (n(13), function () {
       function t(t) {
-        this.defaultoptions = e.chartLine, this.options = {}, r(!0, this.options, e.defaulttheme, this.defaultoptions, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () {} : t.onChartLoaded
+        this.defaultoptions = e.chartLine, this.options = {}, r(!0, this.options, e.defaulttheme, this.defaultoptions, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () { } : t.onChartLoaded
       }
 
       function i(t) {
@@ -1865,7 +1865,7 @@
     h = n(38),
     l = function () {
       function t(t) {
-        this.defaultoptions = e.defaulttheme, this.options = r(this.defaultoptions, t), this.container = document.getElementById(t.container), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () {} : t.onChartLoaded
+        this.defaultoptions = e.defaulttheme, this.options = r(this.defaultoptions, t), this.container = document.getElementById(t.container), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () { } : t.onChartLoaded
       }
 
       function i(t, i) {
@@ -2147,7 +2147,7 @@
     l = n(38),
     c = function () {
       function t(t) {
-        this.options = {}, this.options = r(e.defaulttheme, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () {} : t.onChartLoaded
+        this.options = {}, this.options = r(e.defaulttheme, t), this.container = document.getElementById(t.container), this.container.className = this.container.className.replace(/emcharts-container/g, "").trim(), this.container.className = this.container.className + " emcharts-container", this.onChartLoaded = void 0 == t.onChartLoaded ? function () { } : t.onChartLoaded
       }
 
       function i(t) {
@@ -2312,14 +2312,14 @@
             e = n.offsetY || n.clientY - l.container.getBoundingClientRect().top;
           try {
             i.preventDefault()
-          } catch (s) {}
+          } catch (s) { }
           t.call(l, o, e)
         }), h.addEvent(l.eventDiv, "mousemove", function (i) {
           var n = i.clientX - l.container.getBoundingClientRect().left,
             o = i.clientY - l.container.getBoundingClientRect().top;
           try {
             i.preventDefault()
-          } catch (e) {}
+          } catch (e) { }
           t.call(l, n, o)
         }), h.addEvent(l.eventDiv, "touchend", function (t) {
           if (l.options.interOption) {
@@ -2330,7 +2330,7 @@
           }
           try {
             t.preventDefault()
-          } catch (e) {}
+          } catch (e) { }
         }), h.addEvent(l.eventDiv, "mouseleave", function (t) {
           if (l.options.interOption) {
             var i = l.options.interOption.circles;
@@ -2340,7 +2340,7 @@
           }
           try {
             t.preventDefault()
-          } catch (e) {}
+          } catch (e) { }
         })
       }, t.prototype.reDraw = function () {
         this.clear(), this.init(), this.draw()
@@ -2391,9 +2391,9 @@
               var u = c * (h - e) / (l - 1) + e;
               this.options.angle && 0 != this.options.angle ? p(s.value, t, a(u), a(this.options.c_1_height + 10 * o), this.options.angle) : (this.options.drawWidth > u + t.measureText(s.value).width || c == l - 1) && t.fillText(s.value, a(u), a(this.options.c_1_height + 20 * o))
             } if (void 0 == s.showline ? !0 : s.showline) {
-            var u = c * (h - e) / (l - 1) + e;
-            0 == c || c == l - 1 || (t.strokeStyle = "#e6e6e6", r(t, u, 0, c * (h - e) / (l - 1) + e, this.options.c_1_height + 2, 3))
-          }
+              var u = c * (h - e) / (l - 1) + e;
+              0 == c || c == l - 1 || (t.strokeStyle = "#e6e6e6", r(t, u, 0, c * (h - e) / (l - 1) + e, this.options.c_1_height + 2, 3))
+            }
         }
         t.restore()
       }
@@ -2427,8 +2427,8 @@
         t.beginPath(), t.lineWidth = 1, t.strokeStyle = "#ccc", t.rect(a(this.options.padding_left), .5, Math.round(this.options.drawWidth - this.options.padding_left), Math.round(f)), t.stroke();
         var g = h(o, r, d, f, s);
         if (i.call(this, t, o, r, g, !1), c && 0 !== c.length && c.some(function (t) {
-            return 0 !== t.data.length
-          })) {
+          return 0 !== t.data.length
+        })) {
           var m = h(e, p, d, f, l);
           i.call(this, t, o, r, m, !0)
         }
@@ -2768,8 +2768,8 @@
       o = i.sourceMap;
     o && (n += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(o)))) + " */");
     var e = new Blob([n], {
-        type: "text/css"
-      }),
+      type: "text/css"
+    }),
       s = t.href;
     t.href = URL.createObjectURL(e), s && URL.revokeObjectURL(s)
   }
@@ -2797,7 +2797,7 @@
         for (var s = [], r = 0; r < e.length; r++) {
           var a = e[r],
             p = c[a.id];
-          p.refs--, s.push(p)
+          p.refs-- , s.push(p)
         }
         if (t) {
           var h = n(t);

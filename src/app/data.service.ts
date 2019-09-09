@@ -190,7 +190,7 @@ export class DataService {
       this.logo = 'dfqq';
     } else if (window.location.host.indexOf('anandakeji') > 0) { // 权盈
       this.logo = 'qy';
-    } else if (window.location.host.indexOf('ly50etf') > 0) { // 世纪方略
+    } else if (window.location.host.indexOf('zs50etf') > 0) { // 世纪方略
       this.logo = 'zhishu';
     } else if (window.location.host.indexOf('f8f8s') > 0) { // 成都
       this.logo = 'chengdu';
