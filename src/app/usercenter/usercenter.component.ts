@@ -11,7 +11,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   public menuList: any;
   public userInfo: DataService['userInfo'];
   public logo = 'hk';
-  authFlag = false;
+  authFlag = '0';
   constructor(public data: DataService, public http: HttpService) {
     this.menuList = this.data.getCenterMenuList();
   }
@@ -32,7 +32,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   usercenter() {
     this.data.loading = this.data.show;
     this.http.getCertifyFlag().subscribe(res => {
-      this.authFlag = res['resultInfo']['CERTIFY_FLAG'];
+      this.authFlag = res['resultInfo'];
     });
     this.http.userCenter().subscribe((res: DataService['userInfo']) => {
       this.userInfo = res;
@@ -76,27 +76,57 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   }
 
   goto2(url) {
-    if (url === 'withdraw') {
-      if (this.authFlag) { // 判断是否需要实名认证
+    // authFlag认证标志（0 不认证；1 充值；2 提现；12 充值提现）
+    if (url === 'withdraw') { // 提现
+      if (this.authFlag === '2' || this.authFlag === '12') { // 判断是否需要实名认证
         this.http.getAuth().subscribe(res => {
-
-        })
+          if (this.data.isNull(res)) { // 未完成实名
+            this.data.ErrorMsg('请先完成实名认证');
+            this.data.goto('auth');
+          } else {
+            this.getCard(url);
+          }
+        });
+      } else {
+        this.getCard(url);
       }
-    }
-    if (url === 'withdraw' || (url === 'recharge' && this.data.logo === 'dfqq')) {
-      this.http.getCard().subscribe(res => {
-        if (this.data.isNull(res)) {
-          this.data.setSession('cardId', '');
-          this.data.ErrorMsg('请先绑定银行卡');
-          this.data.goto('card');
+    } else if (url === 'recharge') { // 充值
+      if (this.authFlag === '1' || this.authFlag === '12') { // 判断是否需要实名认证
+        this.http.getAuth().subscribe(res => {
+          if (this.data.isNull(res)) { // 未完成实名
+            this.data.ErrorMsg('请先完成实名认证');
+            this.data.goto('auth');
+          } else {
+            if (this.data.logo === 'dfqq') {
+              this.getCard(url);
+            } else {
+              this.data.goto(url);
+            }
+          }
+        });
+      } else { // 不需要实名认证
+        if (this.data.logo === 'dfqq') { // 东方期权需要先
+          this.getCard(url);
         } else {
           this.data.goto(url);
         }
-      });
+      }
     } else {
       this.data.goto(url);
     }
 
+  }
+
+  getCard(url) {
+    this.http.getCard().subscribe(res => {
+      if (this.data.isNull(res)) {
+        this.data.setSession('cardId', '');
+        this.data.ErrorMsg('请先绑定银行卡');
+        this.data.goto('card');
+      } else {
+        this.data.goto(url);
+      }
+    });
   }
 
 }

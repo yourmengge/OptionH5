@@ -86,6 +86,7 @@ const appChildRoutes: Routes = [
 
 const appRoutes: Routes = [
   { path: 'bankcardlist', component: BankcardlistComponent },
+  { path: 'auth', component: AuthComponent },
   { path: 'alipayment', component: AlipaymentComponent },
   { path: 'payment', component: PaymentComponent },
   { path: 'settleCloseDetail', component: HoldDetailComponent },
