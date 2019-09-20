@@ -434,4 +434,29 @@ export class HttpService {
   getRechargeMoney() {
     return this.POST(`${this.host}tntg/config/PAY_CHARGE_ITEM`, {});
   }
+
+    /**
+   * 获取充值金额
+   */
+  getCertifyFlag() {
+    return this.POST(`${this.host}tntg/config/CERTIFY_FLAG`, {});
+  }
+
+
+  /**
+   * 实名认证
+   */
+  auth(data) {
+    return this.POST(`${this.host}tntg/bankCheck4`, data);
+  }
+
+
+  /**
+   * 查询实名信息
+   */
+  getAuth() {
+    return this.POST(`${this.host}tntg/certifyInfo`, '');
+  }
+
+
 }

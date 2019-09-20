@@ -11,6 +11,7 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   public menuList: any;
   public userInfo: DataService['userInfo'];
   public logo = 'hk';
+  authFlag = false;
   constructor(public data: DataService, public http: HttpService) {
     this.menuList = this.data.getCenterMenuList();
   }
@@ -30,6 +31,9 @@ export class UsercenterComponent implements OnInit, OnDestroy {
 
   usercenter() {
     this.data.loading = this.data.show;
+    this.http.getCertifyFlag().subscribe(res => {
+      this.authFlag = res['resultInfo']['CERTIFY_FLAG'];
+    });
     this.http.userCenter().subscribe((res: DataService['userInfo']) => {
       this.userInfo = res;
       this.data.setSession('accountCode', res['accountCode']);
@@ -72,6 +76,13 @@ export class UsercenterComponent implements OnInit, OnDestroy {
   }
 
   goto2(url) {
+    if (url === 'withdraw') {
+      if (this.authFlag) { // 判断是否需要实名认证
+        this.http.getAuth().subscribe(res => {
+
+        })
+      }
+    }
     if (url === 'withdraw' || (url === 'recharge' && this.data.logo === 'dfqq')) {
       this.http.getCard().subscribe(res => {
         if (this.data.isNull(res)) {

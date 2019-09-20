@@ -60,6 +60,7 @@ import { NumberInputDirective } from './number-input.directive';
 import { AlipaymentComponent } from './alipayment/alipayment.component';
 import { BankcardlistComponent } from './bankcardlist/bankcardlist.component';
 import { ChartETFComponent } from './chart-etf/chart-etf.component';
+import { AuthComponent } from './auth/auth.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -175,7 +176,8 @@ const appRoutes: Routes = [
     NumberInputDirective,
     AlipaymentComponent,
     BankcardlistComponent,
-    ChartETFComponent
+    ChartETFComponent,
+    AuthComponent
   ],
   imports: [
     BrowserAnimationsModule,
