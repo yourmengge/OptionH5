@@ -5,12 +5,12 @@ import { DomSanitizer } from '@angular/platform-browser';
   name: 'htmlpipe'
 })
 export class HtmlpipePipe implements PipeTransform {
-  constructor(private sanitizer: DomSanitizer) {
+  constructor() {
 
   }
 
   transform(style) {
-    return this.sanitizer.bypassSecurityTrustHtml(style);
+    // return this.sanitizer.bypassSecurityTrustHtml(style);
   }
 
 }

@@ -23,7 +23,8 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     exerciseDate: '',
     leftDays: '',
     exercisePrice: '',
-    preClosePrice: ''
+    preClosePrice: '',
+    unit: ''
   };
   chartTypeList = [{
     name: '分时',

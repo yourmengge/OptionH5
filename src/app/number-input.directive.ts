@@ -10,7 +10,7 @@ import { NgModel } from '@angular/forms';
 })
 export class NumberInputDirective {
 
-  constructor(public control: NgModel) {
+  constructor() {
   }
 
   onkeyup(event) {
