@@ -26,6 +26,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
     preClosePrice: '',
     unit: ''
   };
+  isETF = false;
   chartTypeList = [{
     name: '分时',
     type: 'T1'
@@ -45,6 +46,7 @@ export class ChartComponent implements OnInit, DoCheck, OnDestroy {
   chartType = 'T1';
   constructor(public data: DataService, public http: HttpService) {
     this.stockCode = this.data.getSession('optionCode');
+    this.isETF = this.stockCode.length === 6 ? true : false;
     this.isconnect = false;
     this.data.resetStockHQ();
     this.stockHQ = this.data.stockHQ;

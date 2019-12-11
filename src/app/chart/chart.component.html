@@ -33,7 +33,7 @@
           成交量
         </p>
         <p>
-          {{stockHQ.totalVolume}}
+          {{stockHQ.totalVolume | numInt}}
         </p>
       </div>
       <div class="head2">
@@ -72,7 +72,8 @@
   </div>
   <div class="fenshi-div">
     <p class="shifen">
-      <span *ngFor="let item of chartTypeList" [class]='item.type == chartType?"active":""' (click)='changeType(item.type)'>{{item.name}}</span>
+      <span *ngFor="let item of chartTypeList" [class]='item.type == chartType?"active":""'
+        (click)='changeType(item.type)'>{{item.name}}</span>
     </p>
     <!-- <canvas style="margin-left:10px;" id="trendLine"></canvas> -->
     <div id="chart"></div>
@@ -86,27 +87,27 @@
       <p>
         <span>卖1</span>
         <span class="{{HQColor(stockHQ.sellLevel.sellPrice01)}}">{{stockHQ.sellLevel.sellPrice01 | round4}}</span>
-        <span>{{stockHQ.sellLevel.sellVolume01 }}</span>
+        <span>{{isETF? (stockHQ.sellLevel.sellVolume01 | numInt):stockHQ.sellLevel.sellVolume01 }}</span>
       </p>
       <p>
         <span>卖2</span>
         <span class="{{HQColor(stockHQ.sellLevel.sellPrice02)}}">{{stockHQ.sellLevel.sellPrice02 | round4}}</span>
-        <span>{{stockHQ.sellLevel.sellVolume02 }}</span>
+        <span>{{isETF? (stockHQ.sellLevel.sellVolume02 | numInt):stockHQ.sellLevel.sellVolume02 }}</span>
       </p>
       <p>
         <span>卖3</span>
         <span class="{{HQColor(stockHQ.sellLevel.sellPrice03)}}">{{stockHQ.sellLevel.sellPrice03 | round4}}</span>
-        <span>{{stockHQ.sellLevel.sellVolume03 }}</span>
+        <span>{{isETF? (stockHQ.sellLevel.sellVolume03 | numInt):stockHQ.sellLevel.sellVolume03 }}</span>
       </p>
       <p>
         <span>卖4</span>
         <span class="{{HQColor(stockHQ.sellLevel.sellPrice04)}}">{{stockHQ.sellLevel.sellPrice04 | round4}}</span>
-        <span>{{stockHQ.sellLevel.sellVolume04 }}</span>
+        <span>{{isETF? (stockHQ.sellLevel.sellVolume04 | numInt):stockHQ.sellLevel.sellVolume04 }}</span>
       </p>
       <p>
         <span>卖5</span>
         <span class="{{HQColor(stockHQ.sellLevel.sellPrice05)}}">{{stockHQ.sellLevel.sellPrice05 | round4}}</span>
-        <span>{{stockHQ.sellLevel.sellVolume05 }}</span>
+        <span>{{isETF? (stockHQ.sellLevel.sellVolume05 | numInt):stockHQ.sellLevel.sellVolume05 }}</span>
       </p>
     </div>
     <div>
@@ -116,27 +117,27 @@
       <p>
         <span>买1</span>
         <span class="{{HQColor(stockHQ.buyLevel.buyPrice01)}}">{{stockHQ.buyLevel.buyPrice01 | round4}}</span>
-        <span>{{stockHQ.buyLevel.buyVolume01 }}</span>
+        <span>{{isETF ? (stockHQ.buyLevel.buyVolume01 | numInt): stockHQ.buyLevel.buyVolume01}}</span>
       </p>
       <p>
         <span>买2</span>
         <span class="{{HQColor(stockHQ.buyLevel.buyPrice02)}}">{{stockHQ.buyLevel.buyPrice02 | round4}}</span>
-        <span>{{stockHQ.buyLevel.buyVolume02 }}</span>
+        <span>{{isETF ? (stockHQ.buyLevel.buyVolume02 | numInt): stockHQ.buyLevel.buyVolume02}}</span>
       </p>
       <p>
         <span>买3</span>
         <span class="{{HQColor(stockHQ.buyLevel.buyPrice03)}}">{{stockHQ.buyLevel.buyPrice03 | round4}}</span>
-        <span>{{stockHQ.buyLevel.buyVolume03 }}</span>
+        <span>{{isETF ? (stockHQ.buyLevel.buyVolume03 | numInt): stockHQ.buyLevel.buyVolume03}}</span>
       </p>
       <p>
         <span>买4</span>
         <span class="{{HQColor(stockHQ.buyLevel.buyPrice04)}}">{{stockHQ.buyLevel.buyPrice04 | round4}}</span>
-        <span>{{stockHQ.buyLevel.buyVolume04 }}</span>
+        <span>{{isETF ? (stockHQ.buyLevel.buyVolume04 | numInt): stockHQ.buyLevel.buyVolume04}}</span>
       </p>
       <p>
         <span>买5</span>
         <span class="{{HQColor(stockHQ.buyLevel.buyPrice05)}}">{{stockHQ.buyLevel.buyPrice05 | round4}}</span>
-        <span>{{stockHQ.buyLevel.buyVolume05 }}</span>
+        <span>{{isETF ? (stockHQ.buyLevel.buyVolume05 | numInt): stockHQ.buyLevel.buyVolume05}}</span>
       </p>
     </div>
   </div>
