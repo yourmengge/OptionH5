@@ -33,7 +33,7 @@
           成交量
         </p>
         <p>
-          {{stockHQ.totalVolume | numInt}}
+          {{isETF?(stockHQ.totalVolume | numInt):stockHQ.totalVolume}}
         </p>
       </div>
       <div class="head2">

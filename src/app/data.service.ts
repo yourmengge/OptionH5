@@ -206,6 +206,8 @@ export class DataService {
       this.logo = 'yifu';
     } else if (window.location.host.indexOf('kcyuan123') > 0) {
       this.logo = 'kcyuan';
+    } else if (window.location.host.indexOf('ppb333') > 0) {
+      this.logo = 'zhishuyun';
     } else {
       this.logo = 'login';
     }
