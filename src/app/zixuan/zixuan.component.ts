@@ -16,16 +16,19 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   date: String;
   quote50ETF: any;
   quoteDetail: any;
+  tabsValue: string;
+  tabsName: string;
   q50eft = {
     lastPrice: '',
     upDiff: '',
     upRatio: '',
     stockCode: ''
   };
+  tabs = [];
   constructor(public data: DataService, public http: HttpService) { }
 
   ngOnInit() {
-    this.getDate();
+    this.getTabs();
     this.cancelSubscribe();
   }
 
@@ -59,9 +62,27 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   quato(type) {
     this.data.gotoId('quatolist', this.date + '_' + type);
   }
+  changeTabs(index) {
+    this.tabsValue = this.tabs[index].value;
+    this.tabsName = this.tabs[index].text;
+    this.data.setSession('tabsIndex', index);
+    this.data.removeSession('dateType');
+    clearTimeout(this.data.timeoutQoute);
+    this.getDate();
+  }
+  getTabs() {
+    this.http.getTabs().subscribe((res: Array<any>) => {
+      this.tabs = res;
+      const index = !this.data.isNull(this.data.getSession('tabsIndex')) ? this.data.getSession('tabsIndex') : 0;
+      this.data.setSession('tabsIndex', index);
+      this.tabsValue = this.tabs[index].value;
+      this.tabsName = this.tabs[index].text;
+      this.getDate();
+    })
+  }
 
   getDate() {
-    this.http.heyuezhouqi().subscribe(res => {
+    this.http.heyuezhouqi(this.tabsValue).subscribe(res => {
       this.dateList = res;
       this.date = !this.data.isNull(this.data.getSession('dateType')) ? this.data.getSession('dateType') : this.date = res[0];
       if (!this.data.isNull(this.date)) {
@@ -74,7 +95,7 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   }
 
   getlist() {
-    this.http.heyueList(this.date).subscribe(res => {
+    this.http.heyueList(this.date, this.tabsValue).subscribe(res => {
       this.quoteDetail = res['quoteDetail'];
       this.q50eft = res['quote50ETF'];
       this.data.timeoutQoute = setTimeout(() => {

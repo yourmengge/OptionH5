@@ -17,8 +17,8 @@
 .tabs-active {
   line-height: 46px !important;
   height: 46px !important;
-  border-bottom: solid 1px #b00e23 !important;
-  color: #b00e23 !important;
+  border-bottom: solid 1px #E72D23 !important;
+  color: #E72D23 !important;
 }
 
 .cclb {
@@ -46,7 +46,7 @@
 }
 
 .red {
-  color: #b00e23;
+  color: #E72D23;
 }
 
 .table-div {

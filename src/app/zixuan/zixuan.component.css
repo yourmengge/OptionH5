@@ -97,14 +97,13 @@
   from {
     margin-left: 0px;
   }
-
   to {
     margin-left: 60px;
   }
 }
 
 .zixuan-list {
-  height: calc(100vh - 270px);
+  height: calc(100vh - 283px);
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -114,6 +113,10 @@
   line-height: 40px;
   display: flex;
   border-bottom: solid 1px #eae9e9;
+}
+
+.optionTitle span:first-child {
+  font-size: 14px;
 }
 
 .optionTitle span {
@@ -130,7 +133,7 @@
 }
 
 .active {
-  border-bottom: solid 2px #b00e23 !important;
+  border-bottom: solid 2px #E72D23 !important;
 }
 
 .btn-list {
@@ -147,11 +150,11 @@
 }
 
 .btn-list button:nth-child(1) {
-  background: #b00e23;
+  background: #E72D23;
 }
 
 .btn-list button:nth-child(2) {
-  background: #145c90;
+  background: #19aa49;
 }
 
 .btn-list button:active {
@@ -159,9 +162,42 @@
 }
 
 .btn-list button:nth-child(2):active {
-  background: #0d3b5c;
+  background: rgb(22, 158, 67);
 }
 
 .zixuancontent {
   background: #fff;
+}
+
+.top-tabs {
+  width: 100vw;
+  background: #fff;
+  padding: 15px 0;
+}
+
+.top-tabs_div {
+  display: flex;
+  margin: auto;
+  width: 250px;
+  border: solid 1px #2f84d3;
+  border-radius: 5px;
+  height: 30px;
+  line-height: 30px;
+}
+
+.top-tabs_div div {
+  font-size: 13px;
+  flex: 1;
+  text-align: center;
+  border-right: solid 1px #2f84d3;
+  color: #2f84d3;
+}
+
+.top-tabs_div div:last-child {
+  border-right: none;
+}
+
+.top-tabs_div--active {
+  background: #2f84d3;
+  color: #fff !important;
 }

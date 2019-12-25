@@ -50,7 +50,7 @@ input:read-only {
   font-size: 30px;
   color: #fff;
   right: 40px;
-  background: #b00e23;
+  background: #E72D23;
   z-index: 100;
 }
 
@@ -135,7 +135,7 @@ table td p {
 }
 
 .red {
-  color: #b00e23 !important;
+  color: #E72D23 !important;
 }
 
 .green {
@@ -194,8 +194,8 @@ table td p {
   margin-left: 5%;
   height: 43px;
   color: #fff;
-  background: #b00e23;
-  border: solid 1px #b00e23;
+  background: #E72D23;
+  border: solid 1px #E72D23;
   border-radius: 5px;
   margin-top: 20px;
   font-size: 1.2rem;
@@ -267,12 +267,12 @@ table td p {
 
 .bottom-btn .main {
   flex: 1;
-  background: #b00e23;
+  background: #E72D23;
   color: #fff;
   height: 40px;
   line-height: 40px;
   text-align: center;
-  border: solid 1px #b00e23;
+  border: solid 1px #E72D23;
   margin: 3px 2vw;
 }
 

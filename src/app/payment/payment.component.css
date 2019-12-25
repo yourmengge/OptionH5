@@ -1,7 +1,7 @@
 .payment-amount {
   text-align: center;
   font-size: 2rem;
-  color: #b00e23;
+  color: #E72D23;
 }
 
 .payment-amount span {
@@ -40,7 +40,7 @@
   float: right;
   margin-right: 10px;
   margin-top: -56px;
-  color: #b00e23;
+  color: #E72D23;
 }
 
 .code-input {
@@ -80,7 +80,7 @@
   border: none;
   color: #fff;
   font-size: 17px;
-  background: #b00e23;
+  background: #E72D23;
 }
 
 .input-code-div button:disabled {

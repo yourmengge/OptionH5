@@ -21,13 +21,13 @@
   margin-top: 14px;
   font-size: .7rem;
   display: block;
-  border: solid 1px #b00e23;
+  border: solid 1px #E72D23;
   border-radius: 50px;
   height: 20px;
   width: 20px;
   line-height: 20px;
   margin-left: 2px;
-  color: #b00e23;
+  color: #E72D23;
   margin-right: 2px;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .zichan {
-  background: #b00e23;
+  background: #E72D23;
   color: #fff;
   width: 100vw;
   text-align: center;
@@ -82,8 +82,8 @@
   float: right;
   margin-top: -62px;
   margin-right: 11px;
-  border: solid 1px #b00e23;
-  color: #b00e23;
+  border: solid 1px #E72D23;
+  color: #E72D23;
   background: none;
   padding: 2px 9px;
   border-radius: 5px;
@@ -91,7 +91,7 @@
 
 .chedan-button:active {
   color: #fff;
-  background: #b00e23;
+  background: #E72D23;
 }
 
 .blue:active{

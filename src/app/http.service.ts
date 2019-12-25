@@ -36,6 +36,10 @@ export class HttpService {
     return this.POST(this.host + 'tntg/fundStream/list', data);
   }
 
+  getTabs() {
+    return this.POST(this.host + 'tn/quota/tabs', {});
+  }
+
   /**
    * 用户注册
    */
@@ -138,9 +142,9 @@ export class HttpService {
       { headers: this.data.getPayHeader(), responseType: 'text' });
   }
 
-    /**
-   * 获取证券静态数据
-   */
+  /**
+ * 获取证券静态数据
+ */
   getSecurities(code) {
     return this.POST(this.host + `tn/quota/oneTrend/${code}`, '');
   }
@@ -168,8 +172,8 @@ export class HttpService {
   /**
    * 合约周期
    */
-  heyuezhouqi() {
-    return this.http.post(this.host + `tn/quota/yymm`, {});
+  heyuezhouqi(value) {
+    return this.http.post(this.host + `tn/quota/yymm?type=${value}`, {});
   }
 
   /**
@@ -199,8 +203,8 @@ export class HttpService {
    * 合约列表
    * @Param date
    */
-  heyueList(date) {
-    return this.http.post(this.host + `tn/quota/yymm/${date}`, {});
+  heyueList(date, value) {
+    return this.http.post(this.host + `tn/quota/yymm/${date}?type=${value}`, {});
   }
 
   /**
@@ -435,9 +439,9 @@ export class HttpService {
     return this.POST(`${this.host}tntg/config/PAY_CHARGE_ITEM`, {});
   }
 
-    /**
-   * 获取充值金额
-   */
+  /**
+ * 获取充值金额
+ */
   getCertifyFlag() {
     return this.POST(`${this.host}tntg/config/CERTIFY_FLAG`, {});
   }

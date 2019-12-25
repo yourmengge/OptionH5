@@ -1,11 +1,18 @@
-<div class="navigation">
-  <!-- <div class="edit" (click)='edit()'>编辑</div> -->
+<!-- <div class="navigation">
+  <div class="edit" (click)='edit()'>编辑</div>
   <p class="navigation-title">期权T型报价</p>
+</div> -->
+<div class="top-tabs">
+  <div class="top-tabs_div">
+    <div [class]="item.value === tabsValue?'top-tabs_div--active':''" *ngFor="let item of tabs;let i = index;" (click)="changeTabs(i)">
+      {{item.text}}
+    </div>
+  </div>
 </div>
 <div class="zixuancontent">
   <div class="optionTitle" (click)='goto(q50eft.stockCode)'>
     <span>
-      50ETF
+      {{tabsName}}
     </span>
     <span [class]="color(q50eft.upRatio)">
       {{q50eft.lastPrice}}
@@ -68,5 +75,5 @@
   </div>
 </div>
 <div style="height:50px;">
-  
+
 </div>

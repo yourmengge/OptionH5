@@ -74,8 +74,8 @@
 }
 
 .active{
-  color: #b00e23 !important;
-  border-bottom: solid 1px #b00e23;
+  color: #E72D23 !important;
+  border-bottom: solid 1px #E72D23;
 }
 
 .shifen span{
@@ -104,7 +104,7 @@
 }
 
 .bottom-btn button:nth-child(1) {
-  background: #b00e23 !important;
+  background: #E72D23 !important;
 
 }
 

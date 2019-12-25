@@ -35,13 +35,13 @@
 .del-btn {
     float: right;
     padding: 2px 14px;
-    color: #b00e23;
+    color: #E72D23;
     margin-top: -6px;
-    border: solid 1px #b00e23;
+    border: solid 1px #E72D23;
     border-radius: 4px;
 }
 
 .del-btn:active{
     color: #fff;
-    background: #b00e23;
+    background: #E72D23;
 }
