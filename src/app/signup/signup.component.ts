@@ -17,6 +17,8 @@ export class SignupComponent implements OnInit {
   userName = '';
   time = 60;
   url: any;
+  html: any;
+  agreement = false;
   type: string; // 判断注册还是忘记密码
   constructor(public data: DataService, public http: HttpService) {
     this.phone = '';
@@ -28,6 +30,7 @@ export class SignupComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.newDetail();
     if (window.location.hash.indexOf('?code=') > 0) {
       this.inviteCode = window.location.hash.split('?code=')[1].split('&')[0].replace(/%3D/g, '');
       this.type = this.data.getUrl(2).split('?code=')[0];
@@ -58,6 +61,18 @@ export class SignupComponent implements OnInit {
     }
   }
 
+  newDetail() {
+    this.http.newsDetail(1).subscribe(res => {
+      this.html = res['body'];
+      this.html = this.html.replace(/<img/g, '<img style="max-width: calc(100vw - 20px);"');
+    }, err => {
+      this.data.error = err.error;
+      this.data.isError();
+    });
+  }
+  back() {
+    this.data.back();
+  }
   countDown() {
     this.text = `重新获取${this.time}S`;
     if (this.time > 0) {

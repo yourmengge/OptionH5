@@ -132,6 +132,10 @@
   font-size: 1.2rem;
 }
 
+.optionTitle span:first-child{
+  font-size: 1rem;
+}
+
 .optionTitle button {
   border: none;
   flex: 1;

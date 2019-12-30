@@ -1,4 +1,4 @@
-<div class="login-div">
+<div class="login-div" *ngIf="agreement">
   <img class="logo" src="./assets/images/signup.jpg" alt="">
   <div class="input-div">
     <p class="title">{{type == 'signup'?'注册':'找回密码'}}</p>
@@ -35,4 +35,19 @@
   </div>
   <!-- <div class="bottom-div">
   </div> -->
+</div>
+<div *ngIf="!agreement">
+  <div class="navigation">
+    <div class="back" (click)='back()'></div>
+    <p class="navigation-title">{{'风险揭示书'}}</p>
+  </div>
+  <div id="content">
+    <div [innerHtml]='html' class="news">
+  
+    </div>
+  </div>
+  <div id="bottom-button">
+    <button (click)='back()'>不同意</button>
+    <button (click)='agreement = true;'>同意</button>
+  </div>
 </div>

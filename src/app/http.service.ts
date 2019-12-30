@@ -181,8 +181,8 @@ export class HttpService {
    * @param date 日期
    * @param type 买或卖
    */
-  getQuotaList(date, type) {
-    return this.http.post(this.host + `tn/quota/yymm/${date}/${type}`, {});
+  getQuotaList(date, type, value) {
+    return this.http.post(this.host + `tn/quota/yymm/${date}/${type}?type=${value}`, {});
   }
 
   /**

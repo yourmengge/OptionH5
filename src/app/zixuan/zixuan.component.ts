@@ -60,6 +60,8 @@ export class ZixuanComponent implements OnInit, OnDestroy {
   }
 
   quato(type) {
+    this.data.setSession('tabsValue', this.tabsValue);
+    this.data.setSession('tabsName', this.tabsName);
     this.data.gotoId('quatolist', this.date + '_' + type);
   }
   changeTabs(index) {
@@ -78,7 +80,7 @@ export class ZixuanComponent implements OnInit, OnDestroy {
       this.tabsValue = this.tabs[index].value;
       this.tabsName = this.tabs[index].text;
       this.getDate();
-    })
+    });
   }
 
   getDate() {

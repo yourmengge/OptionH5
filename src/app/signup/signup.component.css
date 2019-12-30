@@ -129,3 +129,36 @@
 .book a{
   color: #145c90;
 }
+
+#content{
+  z-index: 10000;
+  position: fixed;
+  background: #f7f7f7;
+  padding:10px 20px;
+  overflow-y: auto;
+  height: calc(100vh - 105px);
+}
+
+#bottom-button{
+  position: fixed;
+  bottom: 0;
+  height: 40px;
+  width: 100vw;
+  display: flex;
+  z-index: 10000;
+}
+
+#bottom-button button{
+  flex: 1;
+  font-size: 15px;
+  border: none;
+}
+
+#bottom-button button:first-child{
+  background: #bfc0c0;
+}
+
+#bottom-button button:last-child{
+  background: #145c90;
+  color: #fff;
+}
