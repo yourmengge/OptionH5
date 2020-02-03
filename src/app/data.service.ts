@@ -605,14 +605,17 @@ export class DataService {
   /**
    * 判断时间点是否在8：00到16：00之间
    */
-  isPerfectTime() {
+  isPerfectTime(string = '08:00~16:00') {
+    const limitTime = string.split('~');
+    const startTime = parseInt(limitTime[0].replace(':', '').toString(), 0);
+    const endTime = parseInt(limitTime[1].replace(':', '').toString(), 0);
     const time = new Date();
-    if (time.getHours() >= 8 && time.getHours() < 16) {
+    const now = parseInt((time.getHours() + '' + time.getMinutes()), 0);
+    if (now >= startTime && now < endTime) {
       return true;
     } else {
       return false;
     }
-
   }
 
   /**

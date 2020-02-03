@@ -14,6 +14,15 @@ export class AssetsComponent implements OnInit, OnDestroy {
   resData: any;
   caozuo = -1;
   Interval: any;
+  stopWin = 0;
+  stopLose = 0;
+  stopWinRate = '0%';
+  stopLoseRate = '0%';
+  stopDiv = false;
+  stockCode;
+  pkOrder;
+  preClosePrice: number;
+  limitTime: string;
   constructor(public data: DataService, public http: HttpService) { }
 
   ngOnDestroy() {
@@ -29,6 +38,10 @@ export class AssetsComponent implements OnInit, OnDestroy {
     this.Interval = setInterval(() => {
       this.getlist();
     }, 3000);
+
+    this.http.getBankList2('CTRL_PROFIT_TIME').subscribe(res => {
+      this.limitTime = res['resultInfo'] || '09:30~15:00';
+    });
   }
 
   submitAlert(a) {
@@ -40,6 +53,17 @@ export class AssetsComponent implements OnInit, OnDestroy {
         this.sell(a);
       }
     });
+  }
+
+  stopWinOrLose(data) {
+    this.stockCode = data.stockCode;
+    this.pkOrder = data.pkOrder;
+    this.preClosePrice = data.preClosePrice;
+    this.http.getStopData(this.pkOrder).subscribe(res => {
+      this.stopWin = res['upprice'];
+      this.stopLose = res['downprice'];
+    });
+    this.stopDiv = true;
   }
 
   detail(code) {
@@ -58,6 +82,14 @@ export class AssetsComponent implements OnInit, OnDestroy {
     });
   }
 
+  winOrLostRate(price) {
+    if (price === 0) {
+      return '0%';
+    } else {
+      return ((price - this.preClosePrice) / this.preClosePrice * 100).toFixed(2) + '%';
+    }
+  }
+
   select(a, type) {
     this.data.searchStockCode = a.stockCode;
     this.data.sellCnt = a.stockCntAble;
@@ -70,6 +102,52 @@ export class AssetsComponent implements OnInit, OnDestroy {
     this.type = type;
     this.caozuo = -1;
     this.getlist();
+  }
+
+  closeStop() {
+    this.stopDiv = false;
+  }
+
+  add(type, value) {
+    if (type < 0) { // 点击减按钮
+      if (value === 0) { // 止盈
+        this.stopWin = this.stopWin <= 0 ? 0 : this.formatRound4(this.stopWin - 0.0001);
+      } else { // 止损
+        this.stopLose = this.stopLose <= 0 ? 0 : this.formatRound4(this.stopLose - 0.0001);
+      }
+    } else { // 点击加按钮
+      if (value === 0) { // 止盈
+        this.stopWin = this.formatRound4(this.stopWin + 0.0001);
+      } else { // 止损
+        this.stopLose = this.formatRound4(this.stopLose + 0.0001);
+      }
+    }
+  }
+
+  submitStop() {
+    if (this.stopWin < 0 || this.stopLose < 0) {
+      this.data.ErrorMsg('设置的止盈止损价格不能小于0');
+    } else if (!this.data.isPerfectTime(this.limitTime)) {
+      this.data.ErrorMsg(`只能在${this.limitTime}时间内设置`);
+    } else {
+      const data = {
+        stockcode: this.stockCode,
+        pkorder: this.pkOrder,
+        downprice: this.stopLose,
+        upprice: this.stopWin
+      };
+      this.http.submitStopData(data).subscribe(res => {
+        this.data.ErrorMsg('设置成功');
+        this.closeStop();
+      }, (err) => {
+        this.data.error = err.error;
+        this.data.isError();
+      });
+    }
+  }
+
+  formatRound4(num) {
+    return Math.round(num * 10000) / 10000;
   }
 
   getlist() {

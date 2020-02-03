@@ -335,6 +335,17 @@ export class HttpService {
   }
 
   /**
+  * 获取止盈止损
+  */
+  getStopData(pkOrder) {
+    return this.POST(`${this.host}tntg/getProfitCtrl?pkOrder=${pkOrder}`, {});
+  }
+
+  submitStopData(data) {
+    return this.POST(`${this.host}tntg/saveOrUpdateProfitCtrl`, data);
+  }
+
+  /**
    * 获取推广码
    */
   getInviteCode() {

@@ -146,6 +146,73 @@
       <div (click)='submitAlert(a)'>
         <a class='icon sell2'></a> 一键平仓
       </div>
+      <div (click)='stopWinOrLose(a)'>
+        <a class='icon sell3'></a> 止盈止损
+      </div>
+    </div>
+  </div>
+</div>
+<div class="stop-bg" *ngIf="stopDiv">
+  <div class="stop-div">
+    <div class="stop-div-title">
+      <span>修改止盈止损</span>
+    </div>
+    <div class="stop-div-input">
+      <span>
+        止盈
+      </span>
+      <span class="stop-div-input-button" (click)="add(-1,0)">
+        -
+      </span>
+      <input type="number" [(ngModel)]="stopWin">
+      <span class="stop-div-input-button" (click)="add(1,0)">
+        +
+      </span>
+      <span style="margin-left: 20px;margin-right: 10px;">
+        涨幅约
+      </span>
+      <span class="red">
+        {{winOrLostRate(stopWin)}}
+      </span>
+    </div>
+    <div class="stop-div-input">
+      <span>
+        止损
+      </span>
+      <span class="stop-div-input-button" (click)="add(-1,1)">
+        -
+      </span>
+      <input type="number" [(ngModel)]="stopLose">
+      <span class="stop-div-input-button" (click)="add(1,1)">
+        +
+      </span>
+      <span style="margin-left: 20px;margin-right: 10px;">
+        跌幅约
+      </span>
+      <span class="green">
+        {{winOrLostRate(stopLose)}}
+      </span>
+    </div>
+    <div class="stop-div-tips">
+      <p>
+        当日云条件盈损单，只保证触发，不保证成交。（成交价是由交易所根据行情撮合产生的，不是由软件决定的。）
+      </p>
+      <p>
+        注意三点:
+      </p>
+      <p>
+        1,如果持仓为0，自动解除。
+      </p>
+      <p>
+        2,当日有效，收盘后自动解除。
+      </p>
+      <p>
+        3,止损止盈单不保证成交，且实际成交价与触发价之间可能存在点差。
+      </p>
+    </div>
+    <div class="stop-div-button">
+      <button (click)="closeStop()">取消</button>
+      <button (click)="submitStop()">确定</button>
     </div>
   </div>
 </div>

@@ -102,7 +102,7 @@
   display: inline-block;
   background: url(../../assets/images/hold-icon.png) no-repeat;
   vertical-align: middle;
-  background-size: 100% 400%;
+  background-size: 100% 500%;
   margin-top: -5px;
 }
 
@@ -114,6 +114,99 @@
   background-position-y: -46px;
 }
 
-.caozuo .detail{
+.caozuo .sell3 {
+  background-position-y: -92px;
+}
+
+.caozuo .detail {
   background-position-y: -69px;
+}
+
+.stop-bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 0618;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, .6);
+}
+
+.stop-div {
+  width: 100vw;
+  background: #fff;
+  position: fixed;
+  bottom: 0;
+}
+
+.stop-div-title {
+  padding: 10px 15px;
+  color: #fff;
+  background: #E72D23;
+  font-size: 15px;
+}
+
+.stop-div-input {
+  margin: 15px;
+  padding-bottom: 10px;
+  border-bottom: solid 1px #e8e8e8;
+}
+
+.stop-div-input span {
+  user-select: none;
+  display: inline-block;
+}
+
+.stop-div-input span:first-child {
+  width: 65px;
+}
+
+.stop-div-input-button {
+  border: solid 1px rgb(192, 192, 192);
+  text-align: center;
+  font-size: 16px;
+  padding: 0 8px;
+  padding-bottom: 3px;
+  color: rgb(128, 128, 128);
+}
+
+.stop-div-input input {
+  width: 60px;
+  margin: 0 8px;
+  text-align: center;
+  border: solid 1px rgb(192, 192, 192);
+  color: rgb(85, 85, 85);
+  height: 25px;
+  font-size: 14px;
+}
+
+.stop-div-input-button:active{
+  background: #e8e8e8;
+}
+
+.stop-div-button{
+  width: 100vw;
+  display: flex;
+  border-top: solid 1px #e8e8e8;
+}
+
+.stop-div-button button{
+  flex: 1;
+  height: 40px;
+  border: none;
+  font-size: 13px;
+  background: #fff;
+}
+.stop-div-tips{
+  padding: 10px 15px;
+}
+
+.stop-div-tips p{
+  margin: 0;
+  font-size: 12px;
+  color: #4e4e4e;
+}
+.stop-div-button button:last-child{
+  color: #fff;
+  background: #E72D23;
 }
