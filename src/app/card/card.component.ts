@@ -89,12 +89,12 @@ export class CardComponent implements OnInit {
 
   // 获取银行支行列表
   getBranch() {
-    this.http.getBranchList(this.cardInfo.bankId, this.cardInfo.provinceId, this.cardInfo.cityId).subscribe((res: Array<any>) => {
-      this.branchesList = this.data.selectOption.concat(res);
-    }, err => {
-      this.data.error = err.error;
-      this.data.isError();
-    });
+    // this.http.getBranchList(this.cardInfo.bankId, this.cardInfo.provinceId, this.cardInfo.cityId).subscribe((res: Array<any>) => {
+    //   this.branchesList = this.data.selectOption.concat(res);
+    // }, err => {
+    //   this.data.error = err.error;
+    //   this.data.isError();
+    // });
   }
 
   // 查询绑定的银行卡
