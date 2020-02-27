@@ -186,31 +186,7 @@ export class DataService {
   }
 
   initLogo() {
-    if (window.location.host.indexOf('eastnsd') > 0) { // 东方期权
-      this.logo = 'dfqq';
-    } else if (window.location.host.indexOf('anandakeji') > 0) { // 权盈
-      this.logo = 'qy';
-    } else if (window.location.host.indexOf('zs50etf') > 0) { // 世纪方略
-      this.logo = 'zhishu';
-    } else if (window.location.host.indexOf('f8f8s') > 0) { // 成都
-      this.logo = 'chengdu';
-    } else if (window.location.host.indexOf('ahgcdl') > 0) { // 创宇
-      this.logo = 'chuangyu';
-    } else if (window.location.host.indexOf('mkqe') > 0) {
-      this.logo = 'xdgs';
-    } else if (window.location.host.indexOf('hbetfzx') > 0) {
-      this.logo = 'hb';
-    } else if (window.location.host.indexOf('niurenet') > 0) {
-      this.logo = 'txnr';
-    } else if (window.location.host.indexOf('5150etf') > 0) {
-      this.logo = 'yifu';
-    } else if (window.location.host.indexOf('kcyuan123') > 0) {
-      this.logo = 'kcyuan';
-    } else if (window.location.host.indexOf('ppb333') > 0) {
-      this.logo = 'zhishuyun';
-    } else {
-      this.logo = 'login';
-    }
+    this.logo = `${window.location.origin}/images/`;
   }
 
   /**
