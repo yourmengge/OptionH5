@@ -74,6 +74,12 @@ export class RechargeComponent implements OnInit {
         };
         data.type = element;
         switch (element) {
+          case 'pay_qrcode':
+            data.name = '扫码支付';
+            data.pic = 'bank';
+            data.index = 13;
+            // data.fee = '0.6%';
+            break;
           case 'alipay_online':
             data.name = '支付宝支付';
             data.pic = 'ali';
@@ -142,9 +148,14 @@ export class RechargeComponent implements OnInit {
             data.index = 12;
             data.fee = '0.4%';
             break;
+          default:
+            data.name = '';
         }
-        this.payWayConfig.push(data);
-        this.payType = this.payWayConfig[0].index;
+        if (data.name !== '') {
+          this.payWayConfig.push(data);
+          this.payType = this.payWayConfig[0].index;
+        }
+
         // console.log(this.payWayConfig);
       });
     }, (err) => {
@@ -279,6 +290,17 @@ export class RechargeComponent implements OnInit {
         }
         this.data.setSession('payment-money', this.money);
         this.data.goto('payment');
+      } else if (this.payType === 13) { // 跳转到扫码链接
+        this.data.loading = true;
+        this.http.submitBankTrans(this.money, 'BANK').subscribe(res => {
+          this.data.ErrorMsg('提交成功,请尽快转账');
+          this.data.goto('pay-qrcode');
+        }, (err) => {
+          this.data.error = err.error;
+          this.data.isError();
+        }, () => {
+          this.data.loading = false;
+        });
       } else {
         this.data.ErrorMsg('充值金额必须大于0，最多两位小数');
       }

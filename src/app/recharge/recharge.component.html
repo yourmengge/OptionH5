@@ -20,52 +20,6 @@
     <span>{{item.name}}</span> <span class="red" *ngIf="item.fee !== ''">(手续费{{item.fee}})</span>
     <div class="radio {{payType == item.index?'':'radio-none'}}"></div>
   </div>
-  <!-- <div class="pay-way" (click)='selectPayType(1)' *ngIf="cardConfig[0]">
-    <img src="./assets/images/ali.png" alt="">
-    <span>支付宝支付<label class='red'>（手续费6‰）</label></span>
-    <div class="radio {{payType == 1?'':'radio-none'}}"></div>
-  </div>
-  <div class="pay-way" (click)='selectPayType(2)' *ngIf="cardConfig[1]">
-    <img src="./assets/images/ali.png" alt="">
-    <span>支付宝支付</span>
-    <div class="radio {{payType == 2?'':'radio-none'}}"></div>
-  </div>
-  <div class="pay-way" (click)='selectPayType(3)' *ngIf="cardConfig[2]">
-    <img src="./assets/images/bank.png" alt="">
-    <span>银行卡转账(线下)</span>
-    <div class="radio {{payType == 3?'':'radio-none'}}"></div>
-  </div>
-
-  <div class="pay-way" (click)='selectPayType(4)' *ngIf="cardConfig[3]">
-    <img src="./assets/images/wechat.png" alt="">
-    <span>华阳信通支付(微信)</span>
-    <div class="radio {{payType == 4?'':'radio-none'}}"></div>
-  </div>
-  <div class="pay-way" (click)='selectPayType(5)' *ngIf="cardConfig[4]">
-    <img src="./assets/images/yinlian.png" alt="">
-    <span>银联</span>
-    <div class="radio {{payType == 5?'':'radio-none'}}"></div>
-  </div>
-  <div class="pay-way" (click)='selectPayType(6)' *ngIf="cardConfig[5]">
-    <img src="./assets/images/ali.png" alt="">
-    <span>支付宝支付</span>
-    <div class="radio {{payType == 6?'':'radio-none'}}"></div>
-  </div>
-  <div class="pay-way" (click)='selectPayType(7)' *ngIf="cardConfig[6]">
-    <img src="./assets/images/wechat.png" alt="">
-    <span>微信支付<label class='red'>（手续费6‰）</label></span>
-    <div class="radio {{payType == 7?'':'radio-none'}}"></div>
-  </div>
-  <div class="pay-way" (click)='selectPayType(8)' *ngIf="cardConfig[7]">
-    <img src="./assets/images/yinlian.png" alt="">
-    <span>第三方支付</span>
-    <div class="radio {{payType == 8?'':'radio-none'}}"></div>
-  </div>
-  <div class="pay-way" (click)='selectPayType(9)' *ngIf="cardConfig[8]">
-    <img src="./assets/images/yinlian.png" alt="">
-    <span>汇聚支付</span>
-    <div class="radio {{payType == 9?'':'radio-none'}}"></div>
-  </div> -->
   <div class="bottom-btn" style="margin-top:20px;margin-bottom: 30px;">
     <div class="main" (click)='pay()'>下一步</div>
   </div>
