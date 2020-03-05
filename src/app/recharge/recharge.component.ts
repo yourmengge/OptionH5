@@ -75,7 +75,7 @@ export class RechargeComponent implements OnInit {
         data.type = element;
         switch (element) {
           case 'pay_qrcode':
-            data.name = '扫码支付';
+            data.name = '扫码支付（线上）';
             data.pic = 'bank';
             data.index = 13;
             // data.fee = '0.6%';
