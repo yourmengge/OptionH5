@@ -186,11 +186,7 @@ export class DataService {
   }
 
   initLogo() {
-    if (window.location.host.indexOf('ppb333') > 0) {
-      this.logo = 'zhishuyun';
-    } else {
-      this.logo = 'zhishuyun';
-    }
+    this.logo = `${window.location.origin}/images/`;
   }
 
   /**
