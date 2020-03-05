@@ -61,6 +61,7 @@ import { AlipaymentComponent } from './alipayment/alipayment.component';
 import { BankcardlistComponent } from './bankcardlist/bankcardlist.component';
 import { ChartETFComponent } from './chart-etf/chart-etf.component';
 import { AuthComponent } from './auth/auth.component';
+import { PayQrcodeComponent } from './pay-qrcode/pay-qrcode.component';
 
 const jiaoyiChildRoutes: Routes = [
   { path: 'chicang', component: ChicangComponent },
@@ -85,6 +86,7 @@ const appChildRoutes: Routes = [
 ];
 
 const appRoutes: Routes = [
+  { path: 'pay-qrcode', component: PayQrcodeComponent },
   { path: 'bankcardlist', component: BankcardlistComponent },
   { path: 'auth', component: AuthComponent },
   { path: 'alipayment', component: AlipaymentComponent },
@@ -178,7 +180,8 @@ const appRoutes: Routes = [
     AlipaymentComponent,
     BankcardlistComponent,
     ChartETFComponent,
-    AuthComponent
+    AuthComponent,
+    PayQrcodeComponent
   ],
   imports: [
     BrowserAnimationsModule,
