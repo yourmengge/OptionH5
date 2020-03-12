@@ -34,7 +34,7 @@
       <div class='userInfo-icon zzc'></div>
       <p>总资产</p>
       <p class="red">
-        {{userInfo.totalScale}}
+        {{userInfo.totalScale < 0?0:userInfo.totalScale}}
       </p>
     </div>
     <div class='userInfo-flex'>
@@ -48,7 +48,7 @@
       <div class='userInfo-icon kyzj'></div>
       <p>可用资金</p>
       <p class="red">
-        {{userInfo.ableScale}}
+        {{userInfo.ableScale < 0?0:userInfo.ableScale}}
       </p>
     </div>
     <div class='userInfo-flex'>
