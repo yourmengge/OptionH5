@@ -606,7 +606,7 @@ export class DataService {
     const startTime = parseInt(limitTime[0].replace(':', '').toString(), 0);
     const endTime = parseInt(limitTime[1].replace(':', '').toString(), 0);
     const time = new Date();
-    const now = parseInt((time.getHours() + '' + time.getMinutes()), 0);
+    const now = parseInt((time.getHours() + '' + this.add0(time.getMinutes())), 0);
     if (now >= startTime && now < endTime) {
       return true;
     } else {
