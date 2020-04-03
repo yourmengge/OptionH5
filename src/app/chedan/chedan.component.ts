@@ -94,11 +94,13 @@ export class ChedanComponent implements OnInit {
         productCode: this.orderData.productCode,
         pkOrder: this.orderData.pkOrder
       };
+      this.data.Loading(this.data.show);
       this.http.chedan({ list: [data] }).subscribe((res) => {
-        console.log(res);
         this.data.ErrorMsg('撤单已提交');
+        this.data.Loading(this.data.hide);
         this.closeAlert();
       }, (err) => {
+        this.data.Loading(this.data.hide);
         this.data.error = err.error;
         this.data.isError();
       }, () => {

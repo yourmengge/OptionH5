@@ -292,7 +292,7 @@ export class RechargeComponent implements OnInit {
         this.data.goto('payment');
       } else if (this.payType === 13) { // 跳转到扫码链接
         this.data.loading = true;
-        this.http.submitBankTrans(this.money, 'BANK').subscribe(res => {
+        this.http.submitBankTrans(this.money, 'SCAN_ONLINE').subscribe(res => {
           this.data.ErrorMsg('提交成功,请尽快转账');
           this.data.goto('pay-qrcode');
         }, (err) => {

@@ -53,14 +53,14 @@
     </table>
   </div> -->
   <div class='table-div' style='border-top: none;line-height: 50px;height: 50px;'>
-    <div>名称</div>
+    <div style="width: 30px;flex: auto;">名称</div>
     <div>盈亏</div>
     <div>持仓/可用</div>
     <div>参考成本/现价</div>
   </div>
   <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
     <div class='table-div table-content'>
-      <div>
+      <div style="width: 30px;flex: auto;">
         <p>{{a.stockCode}}</p>
         <p>{{a.stockName | replace:'50ETF'}}</p>
       </div>
