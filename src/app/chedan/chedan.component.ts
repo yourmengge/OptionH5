@@ -55,8 +55,6 @@ export class ChedanComponent implements OnInit {
     this.submitAlert = this.data.show;
     this.orderData = Object.assign(this.orderData, orderdata);
     this.type = orderdata.appointTypeDesc;
-
-
   }
 
   getOrder() {

@@ -30,7 +30,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     show = 'inactive';
     stockCode = '';
     appointPrice: any;
-    appointCnt: any;
+    appointCnt: number;
     ccount: any;
     fullcount: any;
     minPrice: number;
@@ -49,10 +49,15 @@ export class BuyComponent implements DoCheck, OnDestroy {
     ableScale = 0; // 可用资金
     ygsxf = 0; // 预估手续费
     commission = 0; // 交易佣金
+    gearing = 3; // 杠杆倍数
+    jiaoyiType: string; // 卖方或者买方
+    baozhengjin = 0;
     constructor(public data: DataService, public http: HttpService) {
+        this.jiaoyiType = this.data.jiaoyiType;
         this.fullcount = '--';
         this.maxPrice = 10;
         this.minPrice = 5;
+        this.appointCnt = null;
         this.stockHQ = this.data.stockHQ;
         this.appointPrice = '';
         this.connectStatus = false;
@@ -78,6 +83,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     }
 
     ngDoCheck() {
+        this.jiaoyiType = this.data.jiaoyiType;
         if (this.data.getUrl(3) === 'buy') {
             this.text = '买入';
             this.classType = 'BUY';
@@ -154,7 +160,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.show = 'active';
         const content = null;
         this.cancelSubscribe();
-        this.http.searchStock(this.stockCode).subscribe((res) => {
+        this.http.searchStock(this.data.jiaoyiType === 'BUY' ? this.stockCode : this.stockCode + '&seller=true').subscribe((res) => {
             this.list = res;
         }, (err) => {
             this.data.error = err.error;
@@ -179,7 +185,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.data.ErrorMsg('委托价格不能超过四位小数');
         } else if (this.data.isNull(this.appointPrice)) {
             this.data.ErrorMsg('委托价格不能为空');
-        } else if (parseInt(this.appointCnt, 0) !== this.appointCnt) {
+        } else if (this.appointCnt !== this.appointCnt) {
             this.data.ErrorMsg(this.text + '数量必须是整数');
         } else if (this.appointCnt > this.fullcount && this.classType === 'SELL') {
             this.data.ErrorMsg(`${this.text}数量必须小于可${this.text2}数量`);
@@ -188,7 +194,11 @@ export class BuyComponent implements DoCheck, OnDestroy {
         } else if (this.appointCnt > 200) {
             this.data.ErrorMsg(this.text + '数量不能大于200张');
         } else {
-            this.submitAlert = this.data.show;
+            if (this.data.jiaoyiType === 'SELL' && this.classType === 'BUY') { // 卖方买入获取释放保证金
+                this.getBaozhengjin();
+            } else {
+                this.submitAlert = this.data.show;
+            }
 
         }
 
@@ -199,12 +209,36 @@ export class BuyComponent implements DoCheck, OnDestroy {
      */
     submintBuy() {
         this.data.Loading(this.data.show);
-        const content = {
+        let content = {
             'stockCode': this.stockCode,
             'appointCnt': this.appointCnt,
             'appointPrice': this.appointPrice
         };
-        this.http.order(this.classType, content, this.classType === 'BUY' ? 'OPEN' : 'CLOSE').subscribe((res: Response) => {
+        /**
+         * 买方买入 BUY OPEN
+         * 买方卖出 SELL CLOSE
+         * 卖方卖出 SELL OPEN
+         * 卖方买入 BUY CLOSE
+         */
+        let classType = 'BUY';
+        let openType = 'CLOSE';
+        if (this.classType === 'BUY' && this.jiaoyiType === 'BUY') { // 买方买入
+            classType = 'BUY';
+            openType = 'OPEN';
+        } else if (this.classType === 'SELL' && this.jiaoyiType === 'BUY') { // 买方卖出
+            classType = 'SELL';
+            openType = 'CLOSE';
+        } else if (this.classType === 'SELL' && this.jiaoyiType === 'SELL') { // 卖方卖出
+            classType = 'SELL';
+            openType = 'OPEN';
+            content = Object.assign(content, { lever: this.gearing });
+        } else if (this.classType === 'BUY' && this.jiaoyiType === 'SELL') { // 卖方买入
+            classType = 'BUY';
+            openType = 'CLOSE';
+        }
+
+
+        this.http.order(classType, content, openType).subscribe((res: Response) => {
             if (res['success']) {
                 this.data.ErrorMsg('已委托，待成交');
                 this.closeAlert();
@@ -263,7 +297,7 @@ export class BuyComponent implements DoCheck, OnDestroy {
     clear() {
         this.stockCode = '';
         this.appointPrice = '';
-        this.appointCnt = '';
+        this.appointCnt = null;
         this.ccount = '';
         this.stockName = '';
         this.fullcount = '--';
@@ -307,8 +341,28 @@ export class BuyComponent implements DoCheck, OnDestroy {
      */
     selectGP(data: StockList) {
         this.stockCode = data.stockCode;
+        this.data.searchStockCode = data.stockCode;
         this.appointPrice = '';
         this.getGPHQ();
+        if (this.data.jiaoyiType === 'SELL' && this.classType === 'SELL') { // 卖方卖出获取保证金
+            this.getBaozhengjin();
+        }
+    }
+
+    /**
+     * 获取保证金
+     */
+    getBaozhengjin() {
+        const code = this.classType === 'SELL' ? `OPEN/${this.stockCode}` : `CLOSE/${this.stockCode}?closeCnt=${this.appointCnt}`;
+        this.http.getBaozhengjin(code).subscribe(res => {
+            this.baozhengjin = res['resultInfo'];
+            if (this.classType === 'BUY') {
+                this.submitAlert = this.data.show;
+            }
+        }, err => {
+            this.data.error = err.error;
+            this.data.isError();
+        });
     }
 
     // 选中合约
@@ -316,14 +370,14 @@ export class BuyComponent implements DoCheck, OnDestroy {
         this.priceType = 1;
         this.ccount = '';
         this.show = 'inactive';
-        this.data.searchStockCode = this.stockCode;
-        this.http.getGPHQ2(this.stockCode, this.data.token).subscribe((res) => {
+        this.http.getGPHQ2(this.stockCode,  this.data.jiaoyiType === 'SELL' ? 'true' : 'false').subscribe((res) => {
             console.log('订阅成功');
             if (!this.data.isNull(res['resultInfo']['quotation'])) {
                 this.data.stockHQ = res['resultInfo']['quotation'];
                 if (this.classType === 'BUY') {
-                    this.appointCnt = 10;
                     this.fullcount = res['resultInfo']['maxBuyCnt'];
+                    this.appointCnt = this.fullcount >= 10 ? 10 : this.fullcount;
+                    this.appointPrice = this.data.roundNum(this.data.stockHQ.sellLevel.sellPrice05, 4);
                 } else {
                     this.fullcount = res['resultInfo']['maxSellCnt'];
                     if (this.fullcount > 200) {
@@ -331,14 +385,9 @@ export class BuyComponent implements DoCheck, OnDestroy {
                     } else {
                         this.appointCnt = this.fullcount;
                     }
-
-                }
-                this.stockName = this.data.stockHQ.stockName;
-                if (this.classType === 'BUY') {
-                    this.appointPrice = this.data.roundNum(this.data.stockHQ.sellLevel.sellPrice05, 4);
-                } else {
                     this.appointPrice = this.data.roundNum(this.data.stockHQ.buyLevel.buyPrice05, 4);
                 }
+                this.stockName = this.data.stockHQ.stockName;
             } else {
                 this.stockHQ = this.data.stockHQ;
             }
@@ -347,6 +396,18 @@ export class BuyComponent implements DoCheck, OnDestroy {
             this.data.error = err.error;
             this.data.isError();
         });
+    }
+
+    gearingType(type) {
+        this.gearing = type;
+        this.http.maxSellCnt(this.stockCode, this.gearing).subscribe(res => {
+            this.fullcount = res['resultInfo'];
+            this.appointCnt = this.fullcount;
+        });
+    }
+
+    totalBZJ() {
+        return this.data.roundNumber(this.baozhengjin * this.appointCnt / this.gearing);
     }
 
 

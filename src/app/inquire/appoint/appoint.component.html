@@ -34,7 +34,8 @@
     </tr>
     <tr *ngFor='let a of list' (click)='goto(a)'>
       <td>
-        <span class="span {{a.subtype == 2?'blue':''}}">{{a.subtype === 1?'买':'卖'}}</span>
+        <span class="span {{a.subtype == 2?'blue':''}}">{{a.subtypeDesc}}</span>
+        <!-- <span class="span {{a.subtype == 2?'blue':''}}">{{a.subtype === 1?'买':'卖'}}</span> -->
         <p>
           {{a.stockName}}
         </p>

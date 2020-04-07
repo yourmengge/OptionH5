@@ -49,6 +49,7 @@ export class ZixuanComponent implements OnInit, OnDestroy {
 
   goto(code) {
     this.data.setSession('optionCode', code);
+    this.data.searchStockCode = code;
     this.data.goto('chart');
   }
 

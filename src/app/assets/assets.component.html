@@ -52,21 +52,25 @@
       </tr>
     </table>
   </div> -->
-  <div class='table-div' style='border-top: none;line-height: 50px;height: 50px;'>
-    <div style="width: 30px;flex: auto;">名称</div>
-    <div>盈亏</div>
+  <div class='table-div' style='border-top: none;line-height: 50px;height: 50px;font-size: .95rem'>
+    <div>名称</div>
+    <div>盈亏/保证金</div>
     <div>持仓/可用</div>
     <div>参考成本/现价</div>
   </div>
   <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
     <div class='table-div table-content'>
-      <div style="width: 30px;flex: auto;">
+      <div>
+        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 20px;'>{{a.holdTypeDesc}}</span>
         <p>{{a.stockCode}}</p>
         <p>{{a.stockName | replace:'50ETF'}}</p>
       </div>
       <div>
-        <p style='line-height: 57px;margin-top: 0;' class="{{a.profit < 0?'green':'red'}}">
+        <p class="{{a.profit < 0?'green':'red'}}">
           {{a.profit}}
+        </p>
+        <p>
+          {{a.deposit}}
         </p>
       </div>
       <div>
@@ -107,11 +111,12 @@
     <div>名称/代码</div>
     <div style='flex:1'>成交均价/市价</div>
     <div>盈亏额/市值</div>
-    <div>持仓数量</div>
+    <div>持仓数量/保证金</div>
   </div>
   <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
     <div class='table-div table-content'>
       <div>
+        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 20px;' >{{a.holdTypeDesc}}</span>
         <p>{{a.stockName | replace:'50ETF'}}</p>
         <p>{{a.stockCode}}</p>
       </div>
@@ -128,8 +133,11 @@
         </p>
       </div>
       <div>
-        <p style='line-height: 57px;margin-top: 0;'>
+        <p >
           {{a.unclose}}
+        </p>
+        <p >
+          {{a.depositReal}}
         </p>
       </div>
     </div>

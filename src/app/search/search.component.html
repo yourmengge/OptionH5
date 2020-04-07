@@ -26,9 +26,9 @@
     </tr>
     <tr *ngFor='let a of list' (click)='goto(a)'>
       <td>
-        <span class="span {{a.appointType == 2?'blue':''}}">{{a.appointType === 1?'买':'卖'}}</span>
+        <span class="span {{a.appointType == 2?'blue':''}}">{{a.appointTypeDesc}}</span>
         <p>
-          {{a.stockName}}
+          {{a.stockName | replace:'50ETF'}}
         </p>
         <p>
           {{a.stockCode}}

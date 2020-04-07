@@ -23,6 +23,10 @@ input:read-only {
   color: graytext;
 }
 
+button {
+  outline: none;
+}
+
 .navigation {
   position: relative;
   top: 0;
@@ -35,6 +39,40 @@ input:read-only {
   font-size: 1.2rem;
   font-weight: 400;
   box-shadow: 0px 1px 3px 0px rgba(83, 56, 56, 0.08);
+}
+
+.tabs-top {
+  width: 126px;
+  display: flex;
+  border: solid 1px #b00e23;
+  border-radius: 3px;
+  height: 22px;
+  font-size: 12px;
+  margin: auto;
+  top: 13px;
+  position: relative;
+}
+
+.SELL .main {
+  background: #145c90 !important;
+  border: solid 1px #145c90 !important;
+}
+
+.tabs-top button:first-child {
+  border-right: solid 1px #b00e23;
+}
+
+.tabs-top button {
+  flex: 1;
+  border: none;
+  background: none;
+  color: #b00e23;
+  line-height: 22px;
+}
+
+.tabs-top .active-btn {
+  background: #b00e23 !important;
+  color: #fff !important;
 }
 
 .main-content {
@@ -93,7 +131,6 @@ table td p {
   width: 100%;
   background: #f9f9f9;
   border-top: solid 1px #ececec;
-  margin-top: -8PX !important;
   height: 400px;
   z-index: 0617;
   overflow-y: auto;
@@ -160,24 +197,25 @@ table td p {
 }
 
 .alert-div p {
-  margin-left: 6%;
+  margin-left: 10%;
   font-size: 1.2rem;
   color: #333;
   margin-bottom: 0px;
   margin-top: 10px;
+  width: 80%;
+  height: 25px;
 }
 
 .alert-div p span:first-child {
-  display: inline-block;
-  width: 80px;
-  text-align: left;
-  margin-right: 10px;
-  margin-left: 30px;
+  display: block;
+  width: 101px;
+  float: left;
 }
 
 .alert-div p span {
   color: #353535;
   font-size: .9rem;
+  float: right;
 }
 
 .alert-div p:nth-child(1) {
@@ -186,7 +224,7 @@ table td p {
   padding: 30px 0;
   margin-left: 0;
   font-weight: bold;
-  padding-bottom: 15px;
+  width: 100%;
 }
 
 .submit-btn {
@@ -421,6 +459,21 @@ table td p {
   float: right;
   margin-right: 10px;
   margin-top: 15px;
+}
+
+
+.span {
+  float: left;
+  margin-top: 14px;
+  font-size: .7rem;
+  display: block;
+  border: solid 1px #b00e23;
+  border-radius: 5px;
+  width: 20px;
+  line-height: 16px;
+  margin-left: 2px;
+  color: #b00e23;
+  margin-right: 2px;
 }
 
 @media screen and (max-width: 320px) {

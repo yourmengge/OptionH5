@@ -39,6 +39,11 @@ export class CclbComponent implements OnInit {
   select(a) {
     this.data.searchStockCode = a.stockCode;
     this.data.sellCnt = a.stockCntAble;
+    if (a.holdType === 1) { // 买方
+      this.data.jiaoyiType = 'BUY';
+    } else if (a.holdType === 2) {
+      this.data.jiaoyiType = 'SELL';
+    }
     if (location.href.indexOf('chicang') > 0) {
       this.data.goto('main/jiaoyi/sell');
     }

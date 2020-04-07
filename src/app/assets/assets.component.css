@@ -67,17 +67,14 @@
 }
 
 .table-div div:nth-child(2) {
-  flex: .7;
+  flex: .8;
 }
 
 .table-div div p {
   margin: 0;
   font-size: .85rem;
   line-height: 20px;
-}
-
-.table-div div p:first-child {
-  margin-top: 8px;
+  margin-top: 5px;
 }
 
 .caozuo {

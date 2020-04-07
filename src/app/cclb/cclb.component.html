@@ -16,8 +16,9 @@
     </tr>
     <tr *ngFor='let a of list' (click)='select(a)'>
       <td>
+        <span class="span {{a.holdType == 2?'blue':''}}">{{a.holdTypeDesc}}</span>
         <p>{{a.stockCode}}</p>
-        <p>{{a.stockName}}</p>
+        <p>{{a.stockName | replace:'50ETF'}}</p>
       </td>
       <td>
         <p class="{{a.profit < 0?'green':'red'}}">
