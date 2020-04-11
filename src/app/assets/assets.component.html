@@ -53,17 +53,30 @@
     </table>
   </div> -->
   <div class='table-div' style='border-top: none;line-height: 50px;height: 50px;font-size: .95rem'>
-    <div>名称</div>
-    <div>盈亏/保证金</div>
-    <div>持仓/可用</div>
-    <div>参考成本/现价</div>
+    <div style="width: 40px;flex: auto;">
+      <p>名称</p>
+      <p>代码</p>
+    </div>
+    <div>
+      <p>盈亏</p>
+      <p>保证金</p>
+    </div>
+    <div>
+      <p>持仓</p>
+      <p>可用</p>
+    </div>
+    <div>
+      <p>参考成本</p>
+      <p>现价</p>
+    </div>
   </div>
   <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
     <div class='table-div table-content'>
-      <div>
-        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 20px;'>{{a.holdTypeDesc}}</span>
-        <p>{{a.stockCode}}</p>
+      <div style="width: 40px;flex: auto;">
+        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 12px;'>{{a.holdTypeDesc}}</span>
+       
         <p>{{a.stockName | replace:'50ETF'}}</p>
+        <p>{{a.stockCode}}</p>
       </div>
       <div>
         <p class="{{a.profit < 0?'green':'red'}}">
@@ -108,15 +121,27 @@
 </div>
 <div *ngIf="type == 1" style='padding-bottom:50px;'>
   <div class='table-div' style='border-top: none;line-height: 50px;height: 50px;'>
-    <div>名称/代码</div>
-    <div style='flex:1'>成交均价/市价</div>
-    <div>盈亏额/市值</div>
-    <div>持仓数量/保证金</div>
+    <div style="width: 40px;flex: auto;">
+      <p>名称</p>
+      <p>代码</p>
+    </div>
+    <div>
+      <p>成交均价</p>
+      <p>市价</p>
+    </div>
+    <div>
+      <p>盈亏额</p>
+      <p>市值</p>
+    </div>
+    <div>
+      <p>持仓数量</p>
+      <p>保证金</p>
+    </div>
   </div>
   <div *ngFor='let a of list;let index = index;' (click)='caozuo = index'>
     <div class='table-div table-content'>
-      <div>
-        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 20px;' >{{a.holdTypeDesc}}</span>
+      <div style="width: 40px;flex: auto;">
+        <span class="span {{a.holdType == 2?'blue':''}}" style='margin-top: 12px;'>{{a.holdTypeDesc}}</span>
         <p>{{a.stockName | replace:'50ETF'}}</p>
         <p>{{a.stockCode}}</p>
       </div>
@@ -133,10 +158,10 @@
         </p>
       </div>
       <div>
-        <p >
+        <p>
           {{a.unclose}}
         </p>
-        <p >
+        <p>
           {{a.depositReal}}
         </p>
       </div>

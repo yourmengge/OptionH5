@@ -22,21 +22,23 @@ export class JiaoyiComponent implements DoCheck {
   }
 
   changeType(type) {
-    this.http.cancelSubscribe().subscribe(res => {
-      console.log(`取消订阅,${this.data.getTokenP()}`);
-    });
-    this.data.sellCnt = '';
-    this.data.searchStockCode = '';
-    this.data.resetStockHQ();
-    this.data.removeSession('optionCode');
-    this.data.jiaoyiType = type;
-    this.jiaoyiType = type;
-    if (this.jiaoyiType === 'BUY') {
-      this.menuList = this.data.getCenterMenuList();
-    } else {
-      this.menuList = this.data.getCenterMenuList2();
+    if (this.jiaoyiType !== type) {
+      this.http.cancelSubscribe().subscribe(res => {
+        console.log(`取消订阅,${this.data.getTokenP()}`);
+      });
+      this.data.sellCnt = '';
+      this.data.searchStockCode = '';
+      this.data.resetStockHQ();
+      this.data.removeSession('optionCode');
+      this.data.jiaoyiType = type;
+      this.jiaoyiType = type;
+      if (this.jiaoyiType === 'BUY') {
+        this.menuList = this.data.getCenterMenuList();
+      } else {
+        this.menuList = this.data.getCenterMenuList2();
+      }
+      this.getMenu();
     }
-    this.getMenu();
   }
 
   getMenu() {

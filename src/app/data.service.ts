@@ -118,7 +118,8 @@ export class DataService {
     accountName: '', // 中文名
     lockScale: 0, // 冻结资金
     stockScale: 0, // 股票市值
-    totalScale: 0// 总资产
+    totalScale: 0, // 总资产
+    depositeAll: 0
   };
 
   responseData: Object;
