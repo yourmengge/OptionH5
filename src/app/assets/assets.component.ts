@@ -23,6 +23,7 @@ export class AssetsComponent implements OnInit, OnDestroy {
   pkOrder;
   preClosePrice: number;
   limitTime: string;
+  show = false;
   constructor(public data: DataService, public http: HttpService) { }
 
   ngOnDestroy() {
@@ -41,6 +42,9 @@ export class AssetsComponent implements OnInit, OnDestroy {
 
     this.http.getBankList2('CTRL_PROFIT_TIME').subscribe(res => {
       this.limitTime = res['resultInfo'] || '09:30~15:00';
+    });
+    this.http.getBankList2('CTRL_PROFIT_FLAG').subscribe(res => {
+      this.show = res['resultInfo'] === '1' ? true : false;
     });
   }
 
@@ -73,7 +77,7 @@ export class AssetsComponent implements OnInit, OnDestroy {
 
   sell(a) {
     const holdType = a.holdType === 1 ? 'SELL' : 'BUY'; // 1.卖平，2.买平
-    this.http.appointSELL(a.stockCode, holdType).subscribe(res => {
+    this.http.appointSELL(a.stockCode, holdType, a.pkOrder).subscribe(res => {
       this.data.ErrorMsg('已委托，待成交');
       this.caozuo = -1;
       this.getlist();

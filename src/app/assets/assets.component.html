@@ -179,7 +179,7 @@
       <div (click)='submitAlert(a)'>
         <a class='icon sell2'></a> 一键平仓
       </div>
-      <div (click)='stopWinOrLose(a)'>
+      <div *ngIf="show" (click)='stopWinOrLose(a)' >
         <a class='icon sell3'></a> 止盈止损
       </div>
     </div>
