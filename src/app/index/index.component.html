@@ -47,7 +47,7 @@
     <img src="../../assets/images/kechuang.png" alt="" style="width:100%">
   </div> -->
   <div class="tabs" style='padding: 0 5px;'>
-    <div class="tabs-div2 " *ngFor="let item of list" (click)='goto3(item.stockCode,item.exchangeCode,item.stockName)' >
+    <div class="tabs-div2 " *ngFor="let item of list" (click)='goto3(item.stockCode,item.exchangeCode,item.stockName)'>
       <p [class]="color(item.upRatio)">{{item.lastPrice}}</p>
       <p [class]="color(item.upRatio)">
         <span>
@@ -81,4 +81,16 @@
 </div>
 <div style="height:50px;">
 
+</div>
+<div class="pop-notice" *ngIf="hasNotice">
+  <div class="notice-bg"></div>
+  <div class="notice-content">
+    <div class="notice-title">
+      {{notice.title}}
+    </div>
+    <div class="notice-text">
+      {{notice.content}}
+    </div>
+    <button class="notice-btn" (click)='close()'>我知道了</button>
+  </div>
 </div>

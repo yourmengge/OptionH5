@@ -193,6 +193,13 @@ export class HttpService {
   }
 
   /**
+   * 弹出框公告
+   */
+  getPopInfo() {
+    return this.http.get(this.host + '/public/notifyInfo', {});
+  }
+
+  /**
    * 分时图数组
    */
   fenshituList(optionCode) {

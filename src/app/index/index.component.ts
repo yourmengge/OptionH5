@@ -16,6 +16,11 @@ export class IndexComponent implements OnInit, OnDestroy {
   url = '';
   clickTime = 0;
   responseData: Object;
+  notice = {
+    title: '',
+    content: ''
+  };
+  hasNotice = false;
   constructor(public data: DataService, public http: HttpService) {
     this.responseData = this.data.responseData;
     this.url = 'http://kcb.kcyuan123.com/h5tncl/';
@@ -35,6 +40,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     });
     this.generalTrend();
     this.newsList();
+    this.getConfig();
   }
 
   goto3(code, marketType, name) {
@@ -66,6 +72,31 @@ export class IndexComponent implements OnInit, OnDestroy {
     } else {
       this.clickTime = 0;
     }
+  }
+
+  close() {
+    this.hasNotice = false;
+    const month = new Date().getMonth().toString();
+    const day = new Date().getDate().toString();
+    const date = month + day;
+    localStorage.setItem('noticeDate', date);
+  }
+
+  getConfig() {
+    this.http.getPopInfo().subscribe(res => {
+      if (res['resultInfo']) {
+        const month = new Date().getMonth().toString();
+        const day = new Date().getDate().toString();
+        const date = month + day;
+        if (date !== localStorage.getItem('noticeDate')) {
+          this.hasNotice = true;
+          Object.assign(this.notice, res['resultInfo']);
+        }
+      }
+    }, err => {
+      this.data.error = err.error;
+      this.data.isError();
+    });
   }
 
   generalTrend() {
